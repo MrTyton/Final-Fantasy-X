@@ -1,0 +1,1613 @@
+{
+    "id": "chapter_27_inside_sin",
+    "title": "Inside Sin",
+    "content": [
+        {
+            "type": "image",
+            "path": "graphics/sinpath"
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "textual_inline_if_then",
+                            "textCondition": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "If ",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "formattedText",
+                                    "text": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true,
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "formattedText",
+                                    "text": " doesn't have OD",
+                                    "isItalic": true
+                                }
+                            ],
+                            "thenContent": [
+                                {
+                                    "type": "formation",
+                                    "characters": [
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Auron",
+                                            "color": "red",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Rikku",
+                                            "color": "ForestGreen",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ],
+                            "elseContent": [
+                                {
+                                    "type": "formation",
+                                    "characters": [
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Auron",
+                                            "color": "red",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Kimahri",
+                                            "color": "Tan",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk along the path, you can charge "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "'s "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "od"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on an encounter with a Behemoth King or Adamantoise (Escape with the others), flee from the rest."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Before Seymour Omnis, "
+                        },
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "flag_by_drop_2_return_2_friend",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "textParagraph",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Customize:"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "instructionList",
+                                            "ordered": false,
+                                            "items": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Auron",
+                                                            "actionText": "Shimmering Blade $\\rightarrow$ First Strike",
+                                                            "color": "red",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "additionalNote": "If you got 2 Return Spheres:"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go up the steps, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Seymour Omnis",
+            "hp": 80000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Defend",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Armor Break",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_inline_if_then",
+                    "textCondition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If Armor Break Hit:",
+                            "isItalic": true
+                        }
+                    ],
+                    "thenContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Auron",
+                                    "actionText": "Defend",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "elseContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Overdrive Mix Arctic Wind/Lightning Marble/Bomb Core/Fish Scale + HiPot/MegaPot/XPot/Mega Phoenix",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Cure Mortiphasm",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Enemy",
+                                    "actionText": "Firaga x3, Blizzara",
+                                    "color": "RubineRed",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Change Weapon to Wind Rod",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Armor Break",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Summon Bahamut",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Bahamut",
+                            "actionText": "Attack",
+                            "color": "RoyalPurple",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk north."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "You can charge "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "'s "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "od"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on an encounter with a Behemoth King, Adamantoise or Barbatos (Escape with the others), flee from the rest."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Turn left onto the bridge, go onto the next screen."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Complete the minigame, picking up the eggs and avoiding the crystals."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_by_drop_0_return_4_friend",
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Yuna",
+                                            "slvlInfo": "(If you got 2 or 4 Return Spheres)",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\downarrow\\downarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Agi+2"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "SpeedSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_insidesin_24ret_agi2_ss1",
+                                                            "description": "Yuna Agi+2 (2/4 Ret)"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\leftarrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " x5"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Agi+4 (be careful to not activate the Acc+2 Node)"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "SpeedSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_insidesin_24ret_agi4_ss1",
+                                                            "description": "Yuna Agi+4 (2/4 Ret)"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\nwarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Spare Change"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Attribute Sphere "
+                                                        },
+                                                        {
+                                                            "type": "characterReference",
+                                                            "characterName": "Kimahri",
+                                                            "color": "Tan",
+                                                            "isBold": true
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "'s +4 Agi"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/4_Return_final_grid"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Yuna",
+                                            "slvlInfo": "(If you got 0 Return Spheres)",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Attribute Sphere "
+                                                        },
+                                                        {
+                                                            "type": "characterReference",
+                                                            "characterName": "Rikku",
+                                                            "color": "ForestGreen",
+                                                            "isBold": true
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "'s +3 Agi "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\rightarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Spare Change"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\downarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Agi+4 (be careful to not activate the Acc+2 Node)"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "SpeedSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_insidesin_0ret_agi4_1_ss1",
+                                                            "description": "Yuna Agi+4 (1st) (0Ret)"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\rightarrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " x6"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Agi+4"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "SpeedSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_insidesin_0ret_agi4_2_ss1",
+                                                            "description": "Yuna Agi+4 (2nd) (0Ret)"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/0_return_before_BFA"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_no_zombiestrike_dropped",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Tidus",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\uparrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " x5"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Level 4 Keysphere"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\uparrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Zombie Attack"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/Tidus_BFA"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Rikku",
+                    "slvlInfo": "(If no OD)",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "use Skill Sphere to learn Armor Break "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\uparrow"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "conditional",
+            "conditionSource": "acquired_item_flag_check",
+            "flagName": "flag_zombiestrike_othernonfirststrike",
+            "contentToShowIfTrue": [
+                {
+                    "type": "equip",
+                    "content": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Equip Zombie Strike Weapon (to Lulu, Kimahri, Wakka, or Rikku as available)"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "additionalNote": "If Lulu/Kimahri/Wakka/Rikku got a Zombie Strike weapon (and Tidus/Yuna/Auron didn't):"
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk up to Jecht, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "4:30"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Braska's Final Aeon",
+            "hp": 180000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Overdrive Mix Grenade + HP Sphere or Armor Break",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Talk",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Summon Bahamut",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Bahamut",
+                            "actionText": "Attack",
+                            "color": "RoyalPurple",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "4:00"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Possessed Aeons",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Spare Change as follows:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Valefor",
+                                            "actionText": "",
+                                            "color": "Salmon",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "num",
+                                            "value": 20000
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " Gil"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Ifrit",
+                                            "actionText": "",
+                                            "color": "OrangeRed",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "num",
+                                            "value": 30000
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " Gil"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Ixion",
+                                            "actionText": "",
+                                            "color": "Lavender",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "num",
+                                            "value": 30000
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " Gil"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Shiva",
+                                            "actionText": "",
+                                            "color": "Cyan",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "num",
+                                            "value": 30000
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " Gil"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Bahamut",
+                                            "actionText": "All remaining Gil",
+                                            "color": "RoyalPurple",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:40"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Yu Yevon",
+            "hp": 99999,
+            "strategy": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_zombiestrike_tidus",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "textParagraph",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Strategy if Tidus has Zombie Strike Weapon:"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Yuna",
+                                                    "actionText": "Defend",
+                                                    "color": "gray",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Change Weapon",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Attack",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "conditional",
+                                    "conditionSource": "acquired_item_flag_check",
+                                    "flagName": "flag_zombiestrike_yuna",
+                                    "contentToShowIfTrue": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "textParagraph",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Strategy if Yuna has Zombie Strike Weapon:"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "instructionList",
+                                                    "ordered": false,
+                                                    "items": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Yuna",
+                                                                    "actionText": "Switch Weapon",
+                                                                    "color": "gray",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Tidus",
+                                                                    "actionText": "Switch Weapon",
+                                                                    "color": "blue",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Yuna",
+                                                                    "actionText": "Attack",
+                                                                    "color": "gray",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "contentToShowIfFalse": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditionSource": "acquired_item_flag_check",
+                                                    "flagName": "flag_zombiestrike_auron",
+                                                    "contentToShowIfTrue": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "textParagraph",
+                                                                    "content": [
+                                                                        {
+                                                                            "type": "plainText",
+                                                                            "text": "Strategy if Auron has Zombie Strike Weapon:"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "instructionList",
+                                                                    "ordered": false,
+                                                                    "items": [
+                                                                        {
+                                                                            "type": "listItem",
+                                                                            "content": [
+                                                                                {
+                                                                                    "type": "plainText",
+                                                                                    "text": "Switch "
+                                                                                },
+                                                                                {
+                                                                                    "type": "characterReference",
+                                                                                    "characterName": "Yuna",
+                                                                                    "color": "gray",
+                                                                                    "isBold": true
+                                                                                },
+                                                                                {
+                                                                                    "type": "plainText",
+                                                                                    "text": " for "
+                                                                                },
+                                                                                {
+                                                                                    "type": "characterReference",
+                                                                                    "characterName": "Auron",
+                                                                                    "color": "red",
+                                                                                    "isBold": true
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "listItem",
+                                                                            "content": [
+                                                                                {
+                                                                                    "type": "characterCommand",
+                                                                                    "characterName": "Auron",
+                                                                                    "actionText": "Change Weapon",
+                                                                                    "color": "red",
+                                                                                    "isBold": true
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "listItem",
+                                                                            "content": [
+                                                                                {
+                                                                                    "type": "characterCommand",
+                                                                                    "characterName": "Tidus",
+                                                                                    "actionText": "Defend",
+                                                                                    "color": "blue",
+                                                                                    "isBold": true
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "listItem",
+                                                                            "content": [
+                                                                                {
+                                                                                    "type": "characterCommand",
+                                                                                    "characterName": "Auron",
+                                                                                    "actionText": "Attack",
+                                                                                    "color": "red",
+                                                                                    "isBold": true
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "contentToShowIfFalse": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "conditional",
+                                                                    "conditionSource": "acquired_item_flag_check",
+                                                                    "flagName": "flag_zombiestrike_rikku",
+                                                                    "contentToShowIfTrue": [
+                                                                        {
+                                                                            "type": "listItem",
+                                                                            "content": [
+                                                                                {
+                                                                                    "type": "textParagraph",
+                                                                                    "content": [
+                                                                                        {
+                                                                                            "type": "plainText",
+                                                                                            "text": "Strategy if Rikku has Zombie Strike Weapon:"
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "instructionList",
+                                                                                    "ordered": false,
+                                                                                    "items": [
+                                                                                        {
+                                                                                            "type": "listItem",
+                                                                                            "content": [
+                                                                                                {
+                                                                                                    "type": "characterCommand",
+                                                                                                    "characterName": "Yuna",
+                                                                                                    "actionText": "Defend",
+                                                                                                    "color": "gray",
+                                                                                                    "isBold": true
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "listItem",
+                                                                                            "content": [
+                                                                                                {
+                                                                                                    "type": "characterCommand",
+                                                                                                    "characterName": "Tidus",
+                                                                                                    "actionText": "Haste Rikku",
+                                                                                                    "color": "blue",
+                                                                                                    "isBold": true
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "listItem",
+                                                                                            "content": [
+                                                                                                {
+                                                                                                    "type": "characterCommand",
+                                                                                                    "characterName": "Yuna",
+                                                                                                    "actionText": "Change Weapon",
+                                                                                                    "color": "gray",
+                                                                                                    "isBold": true
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "listItem",
+                                                                                            "content": [
+                                                                                                {
+                                                                                                    "type": "characterCommand",
+                                                                                                    "characterName": "Rikku",
+                                                                                                    "actionText": "Attack",
+                                                                                                    "color": "ForestGreen",
+                                                                                                    "isBold": true
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ],
+                                                                    "contentToShowIfFalse": [
+                                                                        {
+                                                                            "type": "listItem",
+                                                                            "content": [
+                                                                                {
+                                                                                    "type": "conditional",
+                                                                                    "conditionSource": "acquired_item_flag_check",
+                                                                                    "flagName": "flag_zombiestrike_othernonfirststrike",
+                                                                                    "contentToShowIfTrue": [
+                                                                                        {
+                                                                                            "type": "listItem",
+                                                                                            "content": [
+                                                                                                {
+                                                                                                    "type": "textParagraph",
+                                                                                                    "content": [
+                                                                                                        {
+                                                                                                            "type": "plainText",
+                                                                                                            "text": "Strategy if Other Non-FirstStrike Character has Zombie Strike Weapon:"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "instructionList",
+                                                                                                    "ordered": false,
+                                                                                                    "items": [
+                                                                                                        {
+                                                                                                            "type": "listItem",
+                                                                                                            "content": [
+                                                                                                                {
+                                                                                                                    "type": "plainText",
+                                                                                                                    "text": "Switch "
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "characterReference",
+                                                                                                                    "characterName": "Yuna",
+                                                                                                                    "color": "gray",
+                                                                                                                    "isBold": true
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "plainText",
+                                                                                                                    "text": " for character with Zombie Strike Weapon"
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "listItem",
+                                                                                                            "content": [
+                                                                                                                {
+                                                                                                                    "type": "plainText",
+                                                                                                                    "text": "That Character: Attack"
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ],
+                                                                                    "contentToShowIfFalse": [
+                                                                                        {
+                                                                                            "type": "listItem",
+                                                                                            "content": [
+                                                                                                {
+                                                                                                    "type": "conditional",
+                                                                                                    "conditionSource": "acquired_item_flag_check",
+                                                                                                    "flagName": "flag_no_zombiestrike_dropped",
+                                                                                                    "contentToShowIfTrue": [
+                                                                                                        {
+                                                                                                            "type": "listItem",
+                                                                                                            "content": [
+                                                                                                                {
+                                                                                                                    "type": "textParagraph",
+                                                                                                                    "content": [
+                                                                                                                        {
+                                                                                                                            "type": "plainText",
+                                                                                                                            "text": "Strategy if Tidus learned Zombie Attack via Sphere Grid (no ZS weapon drop):"
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "instructionList",
+                                                                                                                    "ordered": false,
+                                                                                                                    "items": [
+                                                                                                                        {
+                                                                                                                            "type": "listItem",
+                                                                                                                            "content": [
+                                                                                                                                {
+                                                                                                                                    "type": "characterCommand",
+                                                                                                                                    "characterName": "Yuna",
+                                                                                                                                    "actionText": "Defend",
+                                                                                                                                    "color": "gray",
+                                                                                                                                    "isBold": true
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "type": "listItem",
+                                                                                                                            "content": [
+                                                                                                                                {
+                                                                                                                                    "type": "characterCommand",
+                                                                                                                                    "characterName": "Tidus",
+                                                                                                                                    "actionText": "Zombie Attack",
+                                                                                                                                    "color": "blue",
+                                                                                                                                    "isBold": true
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "contentToShowIfFalse": [
+                                                                                                        {
+                                                                                                            "type": "listItem",
+                                                                                                            "content": [
+                                                                                                                {
+                                                                                                                    "type": "textParagraph",
+                                                                                                                    "content": [
+                                                                                                                        {
+                                                                                                                            "type": "plainText",
+                                                                                                                            "text": "Default Strategy (no specific ZS weapon or Tidus ZS ability):"
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "type": "instructionList",
+                                                                                                                    "ordered": false,
+                                                                                                                    "items": [
+                                                                                                                        {
+                                                                                                                            "type": "listItem",
+                                                                                                                            "content": [
+                                                                                                                                {
+                                                                                                                                    "type": "plainText",
+                                                                                                                                    "text": "Anyone: Phoenix Down Yu Yevon"
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Anyone: Phoenix Down Yu Yevon"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

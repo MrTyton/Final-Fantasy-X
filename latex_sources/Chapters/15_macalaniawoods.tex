@@ -1,0 +1,107 @@
+\chapter{Macalania Woods}
+
+\begin{enumerate}
+    \item \sd, walk north, \sd, \save
+    \item \formation{\tidus}{\rikku}{\auron}
+    \item Cure \tidus\ if he's ever below 404 HP.
+    \item Make sure that you charge \rikku\ \od, and that you do at least one of each of the following steals.
+\end{enumerate}
+\begin{encounters}
+    \begin{itemize}
+        \item Chimera: Steal Arctic Wind, Flee
+        \item Blue Elemental: Steal Fish Scale x2, Flee
+        \item Else: Flee
+    \end{itemize}
+\end{encounters}
+\begin{enumerate}[resume]
+    \item Once \rikku\ has \od\ and you have at least 1 Arctic Wind and 1 Fish Scale, \formation{\tidus}{\kimahri}{\auron}
+    \item Follow path, \sd\ twice
+    \item Catch butterfly near the exit to avoid encounters
+    \formation{\tidus}{\kimahri}{\auron}
+    \item \save, talk to O'aka, pick the first option ("Got any weapons?"), exit the shop, pick the first option ("Too pricey."), talk to him again ("Got any weapons?")
+\end{enumerate}
+\begin{shop}{11550}
+    \begin{itemize}
+        \item Sell: Stunning Steel, Buckler, Hunter Spear, any other equipment to go above 11550 Gil
+        \item Buy:
+        \begin{itemize}
+            \item Sonic Steel, Equip
+            \item Shimmering Blade, Equip
+        \end{itemize}
+    \end{itemize}
+\end{shop}
+\begin{enumerate}[resume]
+    \item Run up, \sd. Enter the hidden path, walk to \auron, \sd
+\end{enumerate}
+\begin{battle}[12000]{Spherimorph}
+    \begin{itemize}
+        \tidusf Defend
+        \switch{\tidus}{\yuna}
+        \yunaf Defend
+        \kimahrif Defend
+        \switch{\auron}{\rikku}
+        \rikkuf Grenade, check the Element
+        \yunaf Defend
+        \rikkuf \od, HP Sphere with
+        \begin{itemize}
+            \item Fire: Arctic Wind
+            \item Ice: Bomb Core
+            \item Water: Lightning Marble
+            \item Thunder: Fish Scale
+        \end{itemize}
+        \item \textit{If you don't have the elemental item:}
+        \begin{itemize}
+            \switch{\rikku}{\lulu}
+            \luluf Use the spell opposite of what Spherimorph used
+            \kimahrif Attack, check the Element
+            \switch{\yuna}{\rikku}
+            \rikkuf \od
+        \end{itemize}
+    \end{itemize}
+    \tidus, \yuna, \kimahri, \rikku\ all need AP.
+\end{battle}
+\begin{enumerate}[resume]
+    \item \cs[1:50], \sd, \sd
+\end{enumerate}
+\begin{spheregrid}
+    \begin{itemize}
+        \rikkuf (1 S.Lvl)
+        \begin{itemize}
+            \item Move $\downarrow$
+            \item Agi+3
+        \end{itemize}
+        \sggraphics{.7}{.4}{graphics/macalaniarikku}
+        \kimahrif (15 S.Lvl)
+        \begin{itemize}
+            \item Move $\downarrow x6$ (or Hold $\downarrow$), next to Lv. 1 Lock
+            \item Level 1 Key Sphere
+            \item Move $\leftarrow x4$ (or Hold $\leftarrow$)
+            \item Level 1 Key Sphere
+            \blitzballdetermination[true]{%
+                \item Move $\uparrow\uparrow\leftarrow$
+            }{%
+                \item Move $\uparrow\uparrow\downarrow$
+                \item HP+200, HP+200
+                \item Move $\leftarrow$
+            }
+            \item Steal, Use
+        \end{itemize}
+        \ifthenelse{\equal{\blitzresult}{win}}{%
+            \sggraphics{.7}{.4}{graphics/Kimahri_post_spheremorph}
+        }{\ifthenelse{\equal{\blitzresult}{both}}{%
+            \sggraphics{.7}{.4}{graphics/Kimahri_post_spheremorph_loss}
+        }{%
+            \sggraphics{.7}{.4}{graphics/Kimahri_post_spheremorph_loss}
+        }}
+    \end{itemize}
+\end{spheregrid}
+\begin{enumerate}[resume]
+    \item \formation{\tidus}{\lulu}{\kimahri}
+    \ifthenelse{\equal{\blitzresult}{both}}{%
+        \item If \blitzloss\ and don't have a Light Curtain: Use a Mega-Potion
+    }{\ifthenelse{\equal{\blitzresult}{loss}}{%
+        \item If you don't have a Light Curtain: Use a Mega-Potion
+    }{}}
+    \item Talk to \auron\ on the way out, then exit
+\end{enumerate}
+\winnp

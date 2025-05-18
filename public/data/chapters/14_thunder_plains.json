@@ -1,0 +1,562 @@
+{
+    "id": "chapter_14_thunder_plains",
+    "title": "Thunder Plains",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk north, dodging lightning, Flee all encounters."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " when approaching Al Bhed shop. Walk into the shop when "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " begs to go inside."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "shop",
+            "gilInfo": "1200+",
+            "sections": [
+                {
+                    "title": "Buy",
+                    "items": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "lossContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Baroque Sword (Equip)"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "3 Phoenix Downs"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "winContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "3 Grenades"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "Grenade",
+                                            "quantity": 3,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "tp_shop_g3_win",
+                                            "description": "Buy Grenades (Blitz Win)"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "lossContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "4 Grenades"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "Grenade",
+                                            "quantity": 4,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "tp_shop_g4_loss",
+                                            "description": "Buy Grenades (Blitz Loss)"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": ", +1 if you are missing any Speed Spheres (need 15 Speed Spheres for the rest of the run)"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "Grenade",
+                                    "quantity": 1,
+                                    "updateType": "user_confirm_rng_gain",
+                                    "id": "tp_shop_g1_speedbackup",
+                                    "description": "Buy +1 Grenade (Backup Speed Spheres - check if needed)"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk into shop corridor, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "2:00"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Speak to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", then to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Pickup the "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Yellow Shield",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " outside the shop on the ground."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "equip",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Yellow Shield",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Try to end Thunder Plains with the Light Curtain."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "encounters",
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Iron Giants will always target the Character with the least HP, make sure everyone's HP is above Rikku's"
+                }
+            ],
+            "content": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_direct_choice",
+                    "options": [
+                        {
+                            "conditionText": "Iron Giant + 2 Buers, if you bought an extra Grenade for Speed Spheres (only do this once):",
+                            "content": [
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Switch "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " for "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Rikku",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Use Grenade",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "Grenade",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_explicit_fixed",
+                                                    "id": "tp_enc_iron_giant_use_g1",
+                                                    "description": "Rikku uses Grenade on Iron Giant + Buers"
+                                                },
+                                                {
+                                                    "name": "SpeedSphere",
+                                                    "quantity": 2,
+                                                    "updateType": "auto_guaranteed",
+                                                    "id": "tp_enc_iron_giant_buers_ss2",
+                                                    "description": "From Iron Giant + Buers (using Grenade for Speed Sphere backup)"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Wakka",
+                                                    "actionText": "Defend",
+                                                    "color": "BurntOrange",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Auron",
+                                                    "actionText": "Defend",
+                                                    "color": "red",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Enemy",
+                                                    "actionText": "Attacks Rikku",
+                                                    "color": "RubineRed",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Switch "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Wakka",
+                                                    "color": "BurntOrange",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " for "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Flee"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "conditionText": "Iron Giant (only do this once):",
+                            "content": [
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Defend",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Switch "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Wakka",
+                                                    "color": "BurntOrange",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " for "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Rikku",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Steal Light Curtain",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ],
+                                            "itemAcquisitionFlags": [
+                                                {
+                                                    "itemName": "LightCurtain",
+                                                    "setType": "user_checkbox_on_pickup_or_drop",
+                                                    "sourceDescription": "Steal from Iron Giant in Thunder Plains",
+                                                    "id": "tp_steal_lightcurtain_iron_giant",
+                                                    "promptText": "Stole Light Curtain from Iron Giant?"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Auron",
+                                                    "actionText": "Defend",
+                                                    "color": "red",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Enemy",
+                                                    "actionText": "Attacks Rikku",
+                                                    "color": "RubineRed",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Flee"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "conditionText": "",
+                            "content": [
+                                {
+                                    "type": "conditional",
+                                    "conditionSource": "blitzballdetermination",
+                                    "displayAsItemizedCondition": true,
+                                    "lossContent": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Larva: Steal Lunar Curtain"
+                                                }
+                                            ],
+                                            "itemAcquisitionFlags": [
+                                                {
+                                                    "itemName": "LunarCurtain",
+                                                    "setType": "user_checkbox_on_pickup_or_drop",
+                                                    "sourceDescription": "Steal from Larva in Thunder Plains (Blitz Loss route)",
+                                                    "id": "tp_steal_lunarcurtain_larva_loss",
+                                                    "promptText": "Stole Lunar Curtain from Larva (Blitz Loss)?"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Exit screen, go north, near the exit "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "3:10"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,797 @@
+{
+    "id": "chapter_17_bikanel_desert",
+    "title": "Bikanel Desert",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk up, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk up"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Zu",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Enemy",
+                            "actionText": "Attack",
+                            "color": "RubineRed",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Equip Sonic Steel",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Defend until Lulu shows up",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Auron",
+                            "actionText": "Defend until Lulu shows up",
+                            "color": "red",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Flee"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", then run up to meet with "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Go left to enter next screen, go right to join with "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Kimahri",
+                            "color": "Tan",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Run back and then up to meet "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "textParagraph",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Need 6 (4 if you still have 2 Bomb Cores) in any combination of Silence Grenades, Sleeping Powders, Smoke Bombs"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "If "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " needs her "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "od"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", you can charge it on an encounter with a Zu or a Sand Worm (Escape with the others)."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Continue along path. On the next screen, go in north-west towards the save sphere, take the shortcut to the left. Go up to the next screen and fight the Sandragora fights. They're located in the Top Right Sinkhole with Chest, and then at the end of the path up and to the left, then go up and "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "encounters",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Steal (preferably Sleeping Powders) and optionally Use items on these enemies:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Sand Wolf steals Sleeping Powders x2, drops 2 Power Spheres"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "SleepingPowder",
+                                            "quantity": 2,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "bikanel_steal_sandwolf_sp2",
+                                            "description": "Steal Sleeping Powders from Sand Wolf"
+                                        },
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": 2,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "bikanel_sandwolf_ps2",
+                                            "description": "Drop from Sand Wolf"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Zu steals Smoke Bomb x3 (don't try to kill them)"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "SmokeBomb",
+                                            "quantity": 3,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "bikanel_steal_zu_sb3",
+                                            "description": "Steal Smoke Bombs from Zu"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Alcyone steals Smoke Bomb x1, drops 2 Speed Spheres"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "SmokeBomb",
+                                            "quantity": 1,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "bikanel_steal_alcyone_sb1",
+                                            "description": "Steal Smoke Bomb from Alcyone"
+                                        },
+                                        {
+                                            "name": "SpeedSphere",
+                                            "quantity": 2,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "bikanel_alcyone_ss2",
+                                            "description": "Drop from Alcyone"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Mushussu drops 1 Power Sphere (don't Steal from them)"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": 1,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "bikanel_mushussu_ps1",
+                                            "description": "Drop from Mushussu"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_direct_choice",
+                    "options": [
+                        {
+                            "conditionText": "Pre-Empt:",
+                            "content": [
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Defend",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Steal or Use a Smoke Bomb/Silence Grenade/Sleeping Powder",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Lulu",
+                                                    "actionText": "Defend",
+                                                    "color": "purple",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Flee"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "conditionText": "Neutral:",
+                            "content": [
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Switch "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " for "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Kimahri",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Kimahri",
+                                                    "actionText": "Steal",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Switch for Tidus or Use a Smoke Bomb/Silence Grenade/Sleeping Powder",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Flee"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "conditionText": "Ambush:",
+                            "content": [
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Flee"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Sandragora",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Auron",
+                            "actionText": "Overdrive Shooting Star (Triangle, O, Square, X, $\\leftarrow, \\rightarrow$, X)",
+                            "color": "red",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "At the bottom of the pit, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "pickup",
+                            "value": "Teleport Spheres"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "conditional",
+            "conditionSource": "blitzballdetermination",
+            "winContent": [
+                {
+                    "type": "sphereGrid",
+                    "content": [
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Tidus",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\downarrow\\downarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " (or "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\downarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": ")"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "tidus_bikanel_str4_ps1_win",
+                                            "description": "Tidus Str+4 (Bikanel - Blitz Win)"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "associatedImages": [{
+                                "type": "image",
+                                "multiColumnWidth": ".7",
+                                "singleColumnWidth": ".4",
+                                "path": "graphics/tidus_bikanel"
+                            }]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": true,
+                            "winContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formation",
+                                            "characters": [
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Lulu",
+                                                    "color": "purple",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Auron",
+                                                    "color": "red",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "lossContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formation",
+                                            "characters": [
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Rikku",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Auron",
+                                                    "color": "red",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "You need 22 Power Spheres and 10 Speed Spheres "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "at this point",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " to be done farming them."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Sandragora skip:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go near the Sandragora pit that blocks the entrance to Home"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Run North into the wall just on the right of the pit until Tidus is in the pit"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Let "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Rikku",
+                                            "color": "ForestGreen",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " push you (don't move until she goes past you)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go north and enter Home"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "If Rikku is stuck running East walk South to trigger the Sandragora encounter"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "If you have triggered the encounter, Flee and retry"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

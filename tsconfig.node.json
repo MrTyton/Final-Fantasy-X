@@ -1,0 +1,15 @@
+// tsconfig.node.json
+{
+    "compilerOptions": {
+        "composite": true, // Required for project references
+        "skipLibCheck": true,
+        "module": "ESNext", // or CommonJS if your scripts are exclusively CommonJS
+        "moduleResolution": "bundler", // or "node"
+        "allowSyntheticDefaultImports": true, // Good for interop
+        "strict": true // Good practice
+    },
+    "include": [
+        "vite.config.ts",
+        // "scripts/**/*.ts" // If you have helper scripts in a 'scripts' folder
+    ]
+}

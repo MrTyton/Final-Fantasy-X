@@ -1,0 +1,758 @@
+{
+    "id": "chapter_12_moonflow",
+    "title": "Moonflow",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk north, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Kimahri",
+                            "color": "Tan",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Scene."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Before Belgemine, go right into alcove and "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "pickup",
+                            "value": "Lv. 1 Key Spheres x3"
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "Lv1KeySphere",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Chest in Moonflow alcove before Belgemine (x3)",
+                            "id": "moonflow_lv1keysphere_x3_pickup",
+                            "promptText": "Picked up Lv. 1 Key Spheres x3?"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk north, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk left, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk left past 2 screens, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Wakka",
+                    "slvlInfo": "(7 S.Lvl) (if you don't have enough, skip this Grid entirely)",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\downarrow\\downarrow\\rightarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " to Silence Attack"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "+2 Strength"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "wakka_moonflow_str2_ps1",
+                                    "description": "Wakka +2 Strength (Moonflow)"
+                                }
+                            ]
+                        }
+                    ],
+                    "associatedImages": [{
+                        "type": "image",
+                        "multiColumnWidth": ".7",
+                        "singleColumnWidth": ".4",
+                        "path": "graphics/Wakka_Grid"
+                    }]
+                }
+            ]
+        },
+        {
+            "type": "equip",
+            "content": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "ThunderBall",
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Wakka",
+                                    "actionText": "Official Ball",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "additionalNote": "If you don't have Thunder Ball:"
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "LightningSteel",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Stunning Steel",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "additionalNote": "If you had Lightning Steel:"
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Potion/Cure "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " if he got injured. Walk right and use the "
+                        },
+                        {
+                            "type": "nth",
+                            "value": "2nd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " option to ride ze shoopuf, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Extractor",
+            "hp": 4000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Haste self",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Wakka",
+                            "actionText": "Attack",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", Hi-Potion anyone below 216 HP"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack Extractor until you apply Slow",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_inline_if_then",
+                    "textCondition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If Extractor is not Slowed when it Rises:"
+                        }
+                    ],
+                    "thenContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Wakka",
+                                    "actionText": "Overdrive Thunder Reels.",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Haste Wakka",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "LightningSteel",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Cheer x1",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Equip Lightning Steel",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Cheer x4",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Equip Brotherhood",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "additionalNote": "Strategy depends on Lightning Steel."
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk left to next screen, walk left and talk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk up to the forced encounter"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Rikku Tutorial",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Mash through the tutorial"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Steal from the Treasure Chest",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "ifthenelse_blitzresult",
+                    "winContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "conditional",
+                                    "conditionSource": "tracked_resource_check",
+                                    "resourceName": "PowerSphere",
+                                    "comparison": "less_than",
+                                    "value": 34,
+                                    "contentToShowIfTrue": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Overdrive Two Ability Spheres",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "contentToShowIfFalse": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Overdrive Two Potions or Hi-Potions",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Defend",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Flee"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "lossContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "conditional",
+                                    "conditionSource": "tracked_resource_check",
+                                    "resourceName": "PowerSphere",
+                                    "comparison": "less_than",
+                                    "value": 35,
+                                    "contentToShowIfTrue": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Overdrive Two Ability Spheres",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "contentToShowIfFalse": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Overdrive Two Potions or Hi-Potions",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Defend",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Flee"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "trackedResourceUpdates": [
+                {
+                    "name": "PowerSphere",
+                    "quantity": 2,
+                    "updateType": "user_confirm_rng_gain",
+                    "id": "rikku_tutorial_ability_sphere_mix_ps2",
+                    "description": "From Rikku tutorial Ability Sphere Mix (if chosen)",
+                    "condition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If 'Two Ability Spheres' Overdrive is used"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Tidus",
+                    "slvlInfo": "(4 S.Lvl)",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\rightarrow\\uparrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Str+1, HP+200, Agil+2"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_moonflow_str1_ps1",
+                                    "description": "Tidus Str+1 (Moonflow)"
+                                },
+                                {
+                                    "name": "SpeedSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_moonflow_agi2_ss1",
+                                    "description": "Tidus Agil+2 (Moonflow)"
+                                }
+                            ]
+                        }
+                    ],
+                    "associatedImages": [{
+                        "type": "image",
+                        "multiColumnWidth": ".7",
+                        "singleColumnWidth": ".4",
+                        "path": "graphics/Tidus_post_gui"
+                    }]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Auto-Sort items"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Heal everyone with Potions (use them all if you can to free up the 1st Inventory Slot)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "If your 1st Inventory Slot is not empty: Manual Sort, select whatever is in the 1st Inventory Slot and scroll down a page with R2, place it there."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Wakka",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk north to next screen."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,65 @@
+{
+  "compilerOptions": {
+    // --- Settings for Vite + React Frontend ---
+    "target": "ESNext", // Target the latest ECMAScript features
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ], // Essential for web/React development
+    "module": "ESNext", // Use ES modules, Vite handles bundling
+    "moduleResolution": "bundler", // Recommended by Vite for modern module resolution
+    "jsx": "react-jsx", // Use the new JSX transform (no React import needed per file for JSX)
+    "noEmit": true, // Vite handles transpilation/emission, tsc only type-checks
+    "isolatedModules": true, // Required by Vite/Babel for single-file transpilation
+    // --- Recommended for robust projects ---
+    "strict": true, // Keep this, it's good practice
+    "esModuleInterop": true, // Good for interoperability with CommonJS modules
+    "skipLibCheck": true, // Keep this, saves time
+    "forceConsistentCasingInFileNames": true, // Keep this
+    "resolveJsonModule": true, // Can be useful if you ever import small JSON config directly (not for your main data)
+    // --- Path Aliases (Optional but Recommended for larger projects) ---
+    // "baseUrl": "./src", // Set the base URL for module paths
+    // "paths": {
+    //   "@components/*": ["components/*"],
+    //   "@hooks/*": ["hooks/*"],
+    //   "@contexts/*": ["contexts/*"],
+    //   "@utils/*": ["utils/*"],
+    //   "@assets/*": ["assets/*"],
+    //   "@services/*": ["services/*"]
+    //   // Add more aliases as needed
+    // },
+    // --- Type Checking Specifics ---
+    "allowSyntheticDefaultImports": true, // Often enabled by esModuleInterop
+    "noUnusedLocals": true, // Catches unused local variables
+    "noUnusedParameters": true, // Catches unused function parameters
+    "noFallthroughCasesInSwitch": true, // Prevents accidental fall-through in switch statements
+    // --- Vite Specific Type Helper ---
+    "types": [
+      "vite/client",
+      "node"
+    ] // "vite/client" for Vite env types; "node" if your helper scripts still run in this context
+                                     // or if some frontend code needs Node types (less common).
+    // If helper scripts have their own tsconfig or use ts-node with different settings, 'node' might not be needed here.
+    // --- REMOVE/REPLACE these from your old config for the frontend ---
+    // "rootDir": "./src", // Vite has its own understanding of root, usually project root for config. 'src' is implicit.
+    // "outDir": "./dist", // Vite manages the 'dist' directory for its build output.
+  },
+  "include": [
+    "src", // Include all files in the src directory (components, main.tsx, types.ts, etc.)
+    "vite.config.ts" // Important: Include your Vite config file for type checking
+    // Add other specific files or patterns if necessary, e.g., test files
+  ],
+  "exclude": [
+    "node_modules",
+    "dist" // Exclude Vite's build output directory
+  ],
+  // Optional: If you have a separate tsconfig for any Node.js scripts (like your helper scripts)
+  // and for vite.config.ts itself, you can use project references.
+  // This is good practice for monorepo-like setups or separating concerns.
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ] // If you create tsconfig.node.json
+}

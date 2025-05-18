@@ -1,0 +1,624 @@
+[
+    {
+        "type": "textParagraph",
+        "content": [
+            {
+                "type": "plainText",
+                "text": "Welcome to the Final Fantasy X Any\\"
+            }
+        ]
+    },
+    {
+        "type": "textParagraph",
+        "content": [
+            {
+                "type": "plainText",
+                "text": "Some beginning information about the run:"
+            }
+        ]
+    },
+    {
+        "type": "instructionList",
+        "ordered": false,
+        "items": [
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "You should be able to complete the first run that you do, as long as you follow the notes exactly. Misreading them can lead to runs that cannot complete. Don't try to do something else because you think it will also work, unless you've tried it before. Examples of this include using Marbles instead of Gems on Biran and Yenke - even though Marbles will still kill, you won't get the overkill which gives us required drops. Information about WHY we do these things are not present in these notes, as they are outside the scope of this document. If you want additional reading, you can check out "
+                    },
+                    {
+                        "type": "link",
+                        "url": "https://grayfox96.github.io/FFX-Info/",
+                        "text": [
+                            {
+                                "type": "formattedText",
+                                "text": "this site by Grayfox",
+                                "color": "blue",
+                                "textDecoration": "underline"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "plainText",
+                        "text": " or join us in the "
+                    },
+                    {
+                        "type": "link",
+                        "url": "https://discord.gg/X3qXHWG",
+                        "text": [
+                            {
+                                "type": "formattedText",
+                                "text": "Discord",
+                                "color": "blue",
+                                "textDecoration": "underline"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "plainText",
+                        "text": " and ask - we don't bite."
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "Common mistakes usually end up being gridding mistakes - some of these are unrecoverable. It sucks, it happens, just realize for next time and double check your grids before doing anything."
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "The run is very long. Make sure you have all the supplies you need. If you want a shorter run, use the Cutscene Remover Mod, which is its own category. These notes will still work."
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "Blitzball sucks. If you lose, it's awful, but the run is still very completable, only loses about 1-2 minutes. Don't worry about it too much."
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "formattedText",
+                        "text": "Learn how to do MRR Skip First",
+                        "isBold": true
+                    },
+                    {
+                        "type": "plainText",
+                        "text": ". These sets of notes require that you do not fail the skip. A tutorial video can be found "
+                    },
+                    {
+                        "type": "link",
+                        "url": "https://www.youtube.com/watch?v=SSnxE6Xzvkk",
+                        "text": [
+                            {
+                                "type": "formattedText",
+                                "text": "here",
+                                "color": "blue",
+                                "textDecoration": "underline"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "plainText",
+                        "text": ". Practice saves can be found in the "
+                    },
+                    {
+                        "type": "link",
+                        "url": "https://discord.gg/X3qXHWG",
+                        "text": [
+                            {
+                                "type": "formattedText",
+                                "text": "Discord",
+                                "color": "blue",
+                                "textDecoration": "underline"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "plainText",
+                        "text": "."
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "These notes do not include how to RNG Manipulate, as the actions taken when doing that will vary depending on what the seed is and how the run goes. Do not worry about it when starting out. Once you get a feel for the run, if you want to give it a go, then ask in the "
+                    },
+                    {
+                        "type": "link",
+                        "url": "https://discord.gg/X3qXHWG",
+                        "text": [
+                            {
+                                "type": "formattedText",
+                                "text": "Discord",
+                                "color": "blue",
+                                "textDecoration": "underline"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "plainText",
+                        "text": "."
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "Have fun!"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "textParagraph",
+        "content": [
+            {
+                "type": "plainText",
+                "text": "Some information about how these notes are laid out:"
+            }
+        ]
+    },
+    {
+        "type": "instructionList",
+        "ordered": false,
+        "items": [
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "There are a few acronyms used throughout the run."
+                    },
+                    {
+                        "type": "instructionList",
+                        "ordered": false,
+                        "items": [
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "formattedText",
+                                        "text": "SD",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": ": "
+                                    },
+                                    {
+                                        "type": "formattedText",
+                                        "text": "Skip Dialogue",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": ". During some cutscenes, some of the dialogue is skippable. As soon as the text finishes appearing on the screen, you can hit "
+                                    },
+                                    {
+                                        "type": "formattedText",
+                                        "text": "Confirm",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": " to cause it to disappear. This will stop the Voice Over lines from completing, causing the cutscene to progress faster. As a result, you can mash during this to progress faster."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "formattedText",
+                                        "text": "CS",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": ": "
+                                    },
+                                    {
+                                        "type": "formattedText",
+                                        "text": "Cutscene",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": ". In game rendered cutscene. Can't do anything about it, just take a break. Usually they will have the approximate time that the cutscenes take, so you can plan your breaks better. These are timed for PS2."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "formattedText",
+                                        "text": "FMV",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": ": "
+                                    },
+                                    {
+                                        "type": "formattedText",
+                                        "text": "Full Motion Video",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": ". Pre-rendered cutscene. Can't do anything about it (usually), just take a break. Usually they will have the approximate time that the cutscenes take, so you can plan your breaks better. These are timed for PS2."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "formattedText",
+                                        "text": "Skippable FMV",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": ": "
+                                    },
+                                    {
+                                        "type": "formattedText",
+                                        "text": "Skippable Full Motion Video",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": ". Pre-rendered cutscene, but you can skip these if you are on PC. They still have times, because these are not skippable on PS2."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "formattedText",
+                                        "text": "Touch the Save Sphere",
+                                        "isBold": true
+                                    },
+                                    {
+                                        "type": "plainText",
+                                        "text": ": Touching Save Spheres will full heal you. Touch the save sphere, and then cancel out."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "Read each page as such: Left column, then right column, then the next page. There are some instances where there will be an instruction box that takes up both columns - in this case, do whatever is above the instruction box first (left column, then right column), then do whatever is below the instruction box the same way (left column, then right column)"
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "Each bullet point is their own item. Do what it says there before going to the next one."
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "There are instances where you have to get an item, or overdrive, etc before progressing. If the notes say to do so... "
+                    },
+                    {
+                        "type": "formattedText",
+                        "text": "Do So",
+                        "isBold": true
+                    },
+                    {
+                        "type": "plainText",
+                        "text": ". These notes don't contain many backup strats."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "textParagraph",
+        "content": [
+            {
+                "type": "plainText",
+                "text": "Some information about Spheres:"
+            }
+        ]
+    },
+    {
+        "type": "instructionList",
+        "ordered": false,
+        "items": [
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "The sphere grid route requires 45 Power Spheres. There are 37 Power Spheres that are guaranteed drops during the course of the run, so you need 8 ``bonus'' spheres in order to be able to complete the run. It will be stated which ones are guaranteed and which values are bonuses. Keep track of the bonuses in order to determine at the stated points if you're low and to do the backup strats then. The guaranteed Power Spheres are:"
+                    },
+                    {
+                        "type": "instructionList",
+                        "ordered": false,
+                        "items": [
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "plainText",
+                                        "text": "Tros - 2"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "plainText",
+                                        "text": "Besaid Dingos - 2"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "plainText",
+                                        "text": "Besaid Garuda - 1"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "plainText",
+                                        "text": "Geneaux - 4"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "plainText",
+                                        "text": "Sahagins - 17"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "plainText",
+                                        "text": "Vouivre + Garuda - 2"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "plainText",
+                                        "text": "Raldo - 1"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "plainText",
+                                        "text": "Wendigo - 2"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "listItem",
+                                "content": [
+                                    {
+                                        "type": "plainText",
+                                        "text": "Bombs - 6"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "plainText",
+                        "text": "The sphere grid route requires 17 Speed Spheres. For the most part it doesn't matter when you get them, but keep track of all the ones that you get dropped. There are points to get backup speed spheres that are stated throughout the run."
+                    }
+                ]
+            },
+            {
+                "type": "listItem",
+                "content": [
+                    {
+                        "type": "conditional",
+                        "conditionSource": "ifthenelse_blitzresult",
+                        "winContent": [
+                            {
+                                "type": "plainText",
+                                "text": "These are the "
+                            },
+                            {
+                                "type": "formattedText",
+                                "text": "Blitz Win",
+                                "isBold": true,
+                                "color": "OliveGreen"
+                            },
+                            {
+                                "type": "plainText",
+                                "text": " version of the notes. These notes have the strategies assuming that you have Won Blitzball. If you end up losing Blitzball, then you should switch to the "
+                            },
+                            {
+                                "type": "formattedText",
+                                "text": "Blitz Loss",
+                                "isBold": true,
+                                "color": "Magenta"
+                            },
+                            {
+                                "type": "plainText",
+                                "text": " set of notes."
+                            }
+                        ],
+                        "lossContent": [
+                            {
+                                "type": "plainText",
+                                "text": "These are the "
+                            },
+                            {
+                                "type": "formattedText",
+                                "text": "Blitz Loss",
+                                "isBold": true,
+                                "color": "Magenta"
+                            },
+                            {
+                                "type": "plainText",
+                                "text": " version of the notes. These notes have the strategies assuming that you have Lost Blitzball. If you end up Winning Blitzball, then you should switch to the "
+                            },
+                            {
+                                "type": "formattedText",
+                                "text": "Blitz Win",
+                                "isBold": true,
+                                "color": "OliveGreen"
+                            },
+                            {
+                                "type": "plainText",
+                                "text": " set of notes."
+                            }
+                        ],
+                        "bothContent": [
+                            {
+                                "type": "plainText",
+                                "text": "These set of notes contain both the "
+                            },
+                            {
+                                "type": "formattedText",
+                                "text": "Blitz Win",
+                                "isBold": true,
+                                "color": "OliveGreen"
+                            },
+                            {
+                                "type": "plainText",
+                                "text": " and "
+                            },
+                            {
+                                "type": "formattedText",
+                                "text": "Blitz Loss",
+                                "isBold": true,
+                                "color": "Magenta"
+                            },
+                            {
+                                "type": "plainText",
+                                "text": " strategies. At various points, the strategies that you have to do are different depending on whether or not you won or lost blitzball."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "textParagraph",
+        "displayHint": "emphasizedBlock",
+        "content": [
+            {
+                "type": "formattedText",
+                "text": "READ EVERY LINE AND LEARN MRR SKIP BEFORE DOING THIS RUN.\n",
+                "isBold": true,
+                "isLarge": true,
+                "color": "black"
+            },
+            {
+                "type": "formattedText",
+                "text": "READ EVERY LINE AND LEARN MRR SKIP BEFORE DOING THIS RUN.\n",
+                "isBold": true,
+                "isLarge": true,
+                "color": "purple"
+            },
+            {
+                "type": "formattedText",
+                "text": "READ EVERY LINE AND LEARN MRR SKIP BEFORE DOING THIS RUN.\n",
+                "isBold": true,
+                "isLarge": true,
+                "color": "gray"
+            },
+            {
+                "type": "formattedText",
+                "text": "READ EVERY LINE AND LEARN MRR SKIP BEFORE DOING THIS RUN.\n",
+                "isBold": true,
+                "isLarge": true,
+                "color": "red"
+            },
+            {
+                "type": "formattedText",
+                "text": "READ EVERY LINE AND LEARN MRR SKIP BEFORE DOING THIS RUN.\n",
+                "isBold": true,
+                "isLarge": true,
+                "color": "blue"
+            },
+            {
+                "type": "formattedText",
+                "text": "READ EVERY LINE AND LEARN MRR SKIP BEFORE DOING THIS RUN.\n",
+                "isBold": true,
+                "isLarge": true,
+                "color": "BurntOrange"
+            },
+            {
+                "type": "formattedText",
+                "text": "READ EVERY LINE AND LEARN MRR SKIP BEFORE DOING THIS RUN.\n",
+                "isBold": true,
+                "isLarge": true,
+                "color": "ForestGreen"
+            },
+            {
+                "type": "formattedText",
+                "text": "READ EVERY LINE AND LEARN MRR SKIP BEFORE DOING THIS RUN.\n",
+                "isBold": true,
+                "isLarge": true,
+                "color": "Tan"
+            }
+        ]
+    }
+]

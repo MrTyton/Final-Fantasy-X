@@ -1,0 +1,810 @@
+{
+    "id": "chapter_21_via_purifico",
+    "title": "Via Purifico",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run up past the first telepad"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go to the second telepad and travel north."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Auron",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\rightarrow\\rightarrow\\rightarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Level 2 Keysphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\rightarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " x4 (or Hold "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\rightarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": ")"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Level 2 Keysphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\uparrow\\uparrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " ("
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\uparrow\\leftarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " if you are not on the correct Node)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Mag+3"
+                                }
+                            ]
+                        }
+                    ],
+                    "associatedImages": [
+                        {
+                            "type": "image",
+                            "multiColumnWidth": ".7",
+                            "singleColumnWidth": ".4",
+                            "path": "graphics/Auron_Via_Purifico"
+                        }
+                    ]
+                },
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Yuna",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\uparrow\\uparrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Level 4 Keysphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\rightarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " x3 "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\uparrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Str+2, Str+2, Str+2"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -3,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_str2x3_ps3",
+                                    "description": "Yuna Str+2 x3"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Teleport Sphere to "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": "'s Magic Node "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\uparrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Use Magic Sphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Str+4, Mag+3, Mag+4"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_str4_ps1",
+                                    "description": "Yuna Str+4"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\rightarrow\\rightarrow\\rightarrow\\uparrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Mag+3, HP+200, Str+4"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_str4_2_ps1",
+                                    "description": "Yuna Str+4 (2nd)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\rightarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Def+3, Str+4"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_str4_3_ps1",
+                                    "description": "Yuna Str+4 (3rd)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\leftarrow\\downarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Agi+3, MP+20"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "SpeedSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_agi3_ss1",
+                                    "description": "Yuna Agi+3"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\leftarrow\\downarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "HP+200, Str+2"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_str2_1_ps1",
+                                    "description": "Yuna Str+2 (1st of pair)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\downarrow\\downarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "HP+200, Str+2, Mag+3"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_str2_2_ps1",
+                                    "description": "Yuna Str+2 (2nd of pair)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Level 1 Keysphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\searrow\\searrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Agi+4, Str+2"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "SpeedSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_agi4_ss1",
+                                    "description": "Yuna Agi+4"
+                                },
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_str2_3_ps1",
+                                    "description": "Yuna Str+2 (3rd)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\leftarrow\\leftarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Str+2"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_str2_4_ps1",
+                                    "description": "Yuna Str+2 (4th)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\downarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Str+2, MP+20, Agi+3"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_str2_5_ps1",
+                                    "description": "Yuna Str+2 (5th)"
+                                },
+                                {
+                                    "name": "SpeedSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "yuna_viapurifico_agi3_2_ss1",
+                                    "description": "Yuna Agi+3 (2nd)"
+                                }
+                            ]
+                        }
+                    ],
+                    "associatedImages": [
+                        {
+                            "type": "image",
+                            "multiColumnWidth": ".7",
+                            "singleColumnWidth": ".4",
+                            "path": "graphics/via_purifico_yuna_1"
+                        },
+                        {
+                            "type": "image",
+                            "multiColumnWidth": ".7",
+                            "singleColumnWidth": ".4",
+                            "path": "graphics/via_purifico_yuna_2"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "You need 13 Power Spheres and 7 Speed Spheres for the rest of the run."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Keep track of how many things you kill here."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "encounters",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Maze Larva: Summon "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Ixion",
+                            "color": "Lavender",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", Attack"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Isaaru",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Grothia (8000 HP):"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Yuna",
+                                            "actionText": "Summon Bahamut",
+                                            "color": "gray",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Bahamut",
+                                            "actionText": "Attack",
+                                            "color": "RoyalPurple",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Pterya (12000 HP):"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Yuna",
+                                            "actionText": "Summon Bahamut",
+                                            "color": "gray",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Bahamut",
+                                            "actionText": "Attack",
+                                            "color": "RoyalPurple",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Spathi (20000 HP):"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Yuna",
+                                            "actionText": "Summon Ixion",
+                                            "color": "gray",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Ixion",
+                                            "actionText": "Attack x4",
+                                            "color": "Lavender",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "You can use the underwater chest on the right at the start to buy a Speed Distiller (this is the last convenient opportunity to acquire Speed Spheres) or a Power Distiller."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "If needed, you can attack a Phlegias or a Sahagin with "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for 2x Power Spheres (only do so on a non-Ambush)."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Swim up, then up again when the camera changes."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Evrae Altana",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Anyone: 1 Power/Speed Distiller if needed"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Anyone: Elixir/Phoenix Down x2 Evrae Altana"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Swim to exit, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

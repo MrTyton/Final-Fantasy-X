@@ -1,0 +1,12 @@
+// tsconfig.scripts.json (in project root)
+{
+    "extends": "./tsconfig.json", // Inherit from main, but override module system for scripts
+    "compilerOptions": {
+        "module": "CommonJS",
+        "noEmit": false, // Allow emitting .js if needed by Node, though ts-node handles .ts
+        "outDir": "./dist-scripts" // Optional: if you were to compile scripts
+    },
+    "include": [
+        "scripts/**/*"
+    ]
+}
