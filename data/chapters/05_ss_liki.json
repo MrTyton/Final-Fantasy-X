@@ -1,0 +1,514 @@
+{
+    "id": "chapter_05_ss_liki",
+    "title": "S.S. Liki",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "2:00"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk up to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk back to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk back up to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " + 4 "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "4:20"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " from `Sin!'"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Sin Fin",
+            "hp": 2000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Defend",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Lulu",
+                            "color": "purple",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Lulu",
+                            "actionText": "Thunder the Sin Fin",
+                            "color": "purple",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Kimahri",
+                            "color": "Tan",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Summon Valefor",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Valefor",
+                            "actionText": "Energy Ray Overdrive on Sin Fin",
+                            "color": "Salmon",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Enemy",
+                            "actionText": "Move x2 and Spines x2",
+                            "color": "RubineRed",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Valefor",
+                            "actionText": "Thunder the Sin Fin",
+                            "color": "Salmon",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Enemy",
+                            "actionText": "Spines and Move",
+                            "color": "RubineRed",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Valefor",
+                            "actionText": "Thunder the Sin Fin x2",
+                            "color": "Salmon",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_inline_if_then",
+                    "textCondition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If Sin Fin is not dead yet:",
+                            "isItalic": true
+                        }
+                    ],
+                    "thenContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Enemy",
+                                    "actionText": "Spines",
+                                    "color": "RubineRed",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Wakka",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Wakka",
+                                    "actionText": "Attack the Sin Fin",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "fmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:40"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Sinspawn Echuilles",
+            "hp": 2000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Cheer x2",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Wakka",
+                            "actionText": "Dark Attack",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "if Str Node Attack x2, otherwise Cheer x2",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Wakka",
+                            "actionText": "Attack x2",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Enemy",
+                            "actionText": "Blender",
+                            "color": "RubineRed",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Wakka",
+                            "actionText": "Attack x2",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack x2, one less if either Tidus crits or Wakka crits twice.",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Overdrive",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ],
+            "itemAcquisitionFlags": [
+                {
+                    "itemName": "IceBrand",
+                    "setType": "user_checkbox_on_pickup_or_drop",
+                    "sourceDescription": "Drop from Sinspawn Echuilles",
+                    "id": "echuilles_drop_icebrand",
+                    "promptText": "Did Ice Brand drop?"
+                },
+                {
+                    "itemName": "IceBall",
+                    "setType": "user_checkbox_on_pickup_or_drop",
+                    "sourceDescription": "Drop from Sinspawn Echuilles",
+                    "id": "echuilles_drop_iceball",
+                    "promptText": "Did Ice Ball drop?"
+                }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Check for "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Ice Brand, Ice Ball",
+                    "isBold": true
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " monologue."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,647 @@
+{
+    "id": "chapter_03_baaj_temple",
+    "title": "Baaj Temple",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Hold O, Down-Left to talk to Jecht. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " when "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " wakes up. Swim around rock and to temple."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", hold O, down and right, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Sahagins and Geosgaeno",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Attack the two Sahagins until dead"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "0:30"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Defend until "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Heal "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " with Potions. Open options, switch cursor to memory, aeons to short."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", go down and left and go through door. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "pickup",
+                            "value": "flint"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " and exit."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go north and through door. Climb steps to withered bouquet. Go back to the fire in the center. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "2:10"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Klikk",
+            "hp": 1500,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack x6",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", Potion once "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " has less than 227 HP"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Grenade x1, Steal x2 Grenades Total, Attack",
+                            "color": "ForestGreen",
+                            "isBold": true,
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "Grenade",
+                                    "quantity": -1,
+                                    "updateType": "consumption_explicit_fixed",
+                                    "id": "klikk_use_g1",
+                                    "description": "Rikku uses Grenade on Klikk"
+                                },
+                                {
+                                    "name": "Grenade",
+                                    "quantity": 2,
+                                    "updateType": "user_confirm_rng_gain",
+                                    "id": "klikk_steal_g2",
+                                    "description": "Steal from Klikk (target 2)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " (need at least 6 Grenades for Tros)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Potion if "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " has less than 114 HP"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Continue until dead"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "2:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Talk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for tutorial, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Hold O, down, left. Use circle and move forward."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "encounters",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Piranha:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Steal Grenades with "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Rikku",
+                                            "color": "ForestGreen",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " and Attack with "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "Grenade",
+                                            "quantity": 1,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "baaj_piranha_steal_g1",
+                                            "description": "Steal Grenades from Piranha"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Swim to "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", swim forward. Circle and right across the station."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Piranha",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Steal Grenades from each set",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ],
+                    "trackedResourceUpdates": [
+                        {
+                            "name": "Grenade",
+                            "quantity": 1,
+                            "updateType": "user_confirm_rng_gain",
+                            "id": "baaj_piranha_battle_steal_g1",
+                            "description": "Steal Grenades from Piranha set"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", swim down, swim left. Heal with Potions if "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " is below 250 HP"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Tros",
+            "hp": 2200,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "tracked_resource_check",
+                            "resourceName": "Grenade",
+                            "comparison": "less_than",
+                            "value": 6,
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Steal",
+                                    "color": "ForestGreen",
+                                    "isBold": true,
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "Grenade",
+                                            "quantity": 1,
+                                            "updateType": "user_confirm_rng_gain",
+                                            "id": "tros_steal_if_low_g1",
+                                            "description": "Steal from Tros (if Grenades < 6)"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Grenade x6",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ],
+                    "trackedResourceUpdates": [
+                        {
+                            "name": "Grenade",
+                            "quantity": -6,
+                            "updateType": "user_confirm_rng_consumption",
+                            "id": "tros_use_g6",
+                            "description": "Rikku uses Grenades on Tros (up to 6, confirm actual)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack x2, Standby otherwise",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ],
+            "trackedResourceUpdates": [
+                {
+                    "name": "PowerSphere",
+                    "quantity": 2,
+                    "updateType": "auto_guaranteed",
+                    "id": "tros_guaranteed_ps2",
+                    "description": "From Tros"
+                },
+                {
+                    "name": "PowerSphere",
+                    "quantity": 2,
+                    "updateType": "user_confirm_rng_gain",
+                    "id": "tros_overkill_ps2",
+                    "description": "From Tros Overkill"
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Swim up to the next screen. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", follow red arrow to "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "0:50"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " until "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " gets food. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "3:00"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "2:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during Al Bhed Dialogue. Don't save."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

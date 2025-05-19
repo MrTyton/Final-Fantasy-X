@@ -1,0 +1,33 @@
+{
+    "title": "FFX Any% Speedrun Guide",
+    "introductionFile": "/data/introduction.json",
+    "acknowledgementsFile": "/data/acknowledgements.json",
+    "chapterFiles": [
+        "/data/chapters/02_zanarkand.json",
+        "/data/chapters/03_baaj_temple.json",
+        "/data/chapters/04_besaid.json",
+        "/data/chapters/05_ss_liki.json",
+        "/data/chapters/06_kilika.json",
+        "/data/chapters/07_ss_winno.json",
+        "/data/chapters/08_luca.json",
+        "/data/chapters/09_miihen_highroad.json",
+        "/data/chapters/10_mushroom_rock_road.json",
+        "/data/chapters/11_djose.json",
+        "/data/chapters/12_moonflow.json",
+        "/data/chapters/13_guadosalam.json",
+        "/data/chapters/14_thunder_plains.json",
+        "/data/chapters/15_macalania_woods.json",
+        "/data/chapters/16_lake_macalania.json",
+        "/data/chapters/17_bikanel_desert.json",
+        "/data/chapters/18_home.json",
+        "/data/chapters/19_airship.json",
+        "/data/chapters/20_bevelle.json",
+        "/data/chapters/21_via_purifico.json",
+        "/data/chapters/22_highbridge.json",
+        "/data/chapters/23_calm_lands.json",
+        "/data/chapters/24_mt_gagazet.json",
+        "/data/chapters/25_zanarkand_dome.json",
+        "/data/chapters/26_airship_sin.json",
+        "/data/chapters/27_inside_sin.json"
+    ]
+}

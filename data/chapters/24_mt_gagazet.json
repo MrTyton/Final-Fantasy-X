@@ -1,0 +1,2163 @@
+{
+    "id": "chapter_24_mt_gagazet",
+    "title": "Mt. Gagazet",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk up, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "3:40"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk up, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Biran and Yenke",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Steal from Biran",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Enemy",
+                            "actionText": "Biran Bulldoze",
+                            "color": "RubineRed",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Gem Yenke",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Gem Biran",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Pay attention to your drops, they affect Yuna's sphere grid below."
+                }
+            ],
+            "itemAcquisitionFlags": [
+                {
+                    "itemName": "ReturnSpheres_4_From_BiranYenke",
+                    "setType": "user_prompt_after_event",
+                    "sourceDescription": "Drop from Biran and Yenke (4 Return Spheres).",
+                    "id": "flag_by_drop_4_return",
+                    "promptText": "Did you get 4 Return Spheres from Biran & Yenke?"
+                },
+                {
+                    "itemName": "ReturnSpheres_2_From_BiranYenke",
+                    "setType": "user_prompt_after_event",
+                    "sourceDescription": "Drop from Biran and Yenke (2 Return Spheres and 2 Friend Spheres).",
+                    "id": "flag_by_drop_2_return_2_friend",
+                    "promptText": "Did you get 2 Return Spheres and 2 Friend Spheres from Biran & Yenke?"
+                },
+                {
+                    "itemName": "FriendSpheres_All_From_BiranYenke",
+                    "setType": "user_prompt_after_event",
+                    "sourceDescription": "Drop from Biran and Yenke (0 Return Spheres and 4 Friend Spheres).",
+                    "id": "flag_by_drop_0_return_4_friend",
+                    "promptText": "Did you get 0 Return Spheres and 4 Friend Spheres from Biran & Yenke?"
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "The drop from the previous fight will give be one of the following:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formattedText",
+                                            "text": "4 Return Spheres",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formattedText",
+                                            "text": "2 Return Spheres and 2 Friend Spheres",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formattedText",
+                                            "text": "0 Return Spheres and 4 Friend Spheres",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "These three branching paths will from now on be referred to by the number of "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Return Spheres",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " that dropped."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Do the "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Lulu",
+                            "color": "purple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Grid below first, then one of the three Grids depending on the drop from the previous fight."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "contextInfo": "Lulu",
+            "content": [
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Lulu",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\uparrow\\uparrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Level 2 Key Sphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\downarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " x9"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Level 3 Key Sphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\searrow\\searrow"
+                                }
+                            ]
+                        }
+                    ],
+                    "associatedImages": [{
+                        "type": "image",
+                        "multiColumnWidth": ".7",
+                        "singleColumnWidth": ".4",
+                        "path": "graphics/lulu_grid"
+                    }]
+                }
+            ]
+        },
+        {
+            "type": "conditional",
+            "conditionSource": "acquired_item_flag_check",
+            "flagName": "flag_by_drop_4_return",
+            "contentToShowIfTrue": [
+                {
+                    "type": "sphereGrid",
+                    "contextInfo": "4 Return Spheres",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": true,
+                            "winContent": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Yuna",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Use Return Sphere to Str+4 Node"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move to the empty node "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\leftarrow\\downarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Str+4, Agi+2"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "PowerSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_mtgagazet_4ret_str4_ps1_win",
+                                                            "description": "Yuna Str+4 (4Ret - Blitz Win)"
+                                                        },
+                                                        {
+                                                            "name": "SpeedSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_mtgagazet_4ret_agi2_ss1_win",
+                                                            "description": "Yuna Agi+2 (4Ret - Blitz Win)"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/4_returns_1"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "lossContent": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Yuna",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Use Return Sphere to Str+4 Node "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\leftarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move to the empty node "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\rightarrow\\rightarrow\\rightarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Str+4, Def+3"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "PowerSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_mtgagazet_4ret_str4_ps1_loss",
+                                                            "description": "Yuna Str+4 (4Ret - Blitz Loss)"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/loss_4_returns_1"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Tidus",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move to Armor Break "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\rightarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " x3, "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\downarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " x5"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Armor Break"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "associatedImages": [{
+                                "type": "image",
+                                "multiColumnWidth": ".7",
+                                "singleColumnWidth": ".4",
+                                "path": "graphics/Tidus armor break 4 returns"
+                            }]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "conditional",
+            "conditionSource": "acquired_item_flag_check",
+            "flagName": "flag_by_drop_2_return_2_friend",
+            "contentToShowIfTrue": [
+                {
+                    "type": "sphereGrid",
+                    "contextInfo": "2 Return Spheres",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": true,
+                            "winContent": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Yuna",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move to the empty node "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\leftarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Str+4, Agi+2"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "PowerSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_mtgagazet_2ret_str4_ps1_win",
+                                                            "description": "Yuna Str+4 (2Ret - Blitz Win)"
+                                                        },
+                                                        {
+                                                            "name": "SpeedSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_mtgagazet_2ret_agi2_ss1_win",
+                                                            "description": "Yuna Agi+2 (2Ret - Blitz Win)"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/2_and_2-1"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "lossContent": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Yuna",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move to the empty node "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\rightarrow\\rightarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Str+4, Def+3"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "PowerSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_mtgagazet_2ret_str4_ps1_loss",
+                                                            "description": "Yuna Str+4 (2Ret - Blitz Loss)"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/loss_2_and_2-1"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Yuna",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Friend Sphere to "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Lulu",
+                                            "color": "purple",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\downarrow\\downarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4, Str+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -2,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_mtgagazet_2ret_str4x2_ps2",
+                                            "description": "Yuna Str+4 x2 (2Ret - Lulu path)"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Lulu",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\nearrow\\uparrow\\uparrow"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Yuna",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Friend Sphere to "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Lulu",
+                                            "color": "purple",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+3, Agi+4, Agi+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_mtgagazet_2ret_str3_ps1",
+                                            "description": "Yuna Str+3 (2Ret - Lulu path)"
+                                        },
+                                        {
+                                            "name": "SpeedSphere",
+                                            "quantity": -2,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_mtgagazet_2ret_agi4x2_ss2",
+                                            "description": "Yuna Agi+4 x2 (2Ret - Lulu path)"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "associatedImages": [{
+                                "type": "image",
+                                "multiColumnWidth": ".7",
+                                "singleColumnWidth": ".4",
+                                "path": "graphics/2_and_2"
+                            }]
+                        },
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Tidus",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Return Sphere "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\downarrow\\searrow\\searrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " (or Hold "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\searrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": ") to Str+4 near Armor Break"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\nwarrow\\leftarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " or "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\leftarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " x3"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Armor Break"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "associatedImages": [{
+                                "type": "image",
+                                "multiColumnWidth": ".7",
+                                "singleColumnWidth": ".4",
+                                "path": "graphics/Tidus armor break 2 returns"
+                            }]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "conditional",
+            "conditionSource": "acquired_item_flag_check",
+            "flagName": "flag_by_drop_0_return_4_friend",
+            "contentToShowIfTrue": [
+                {
+                    "type": "sphereGrid",
+                    "contextInfo": "0 Return Spheres",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": true,
+                            "winContent": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Tidus",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move to Str+4 by Mental Break "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\rightarrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " x3, "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\downarrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": ", "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\rightarrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " x3"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/0_returns_pt2"
+                                            }]
+                                        },
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Yuna",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move to the empty node "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\leftarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Str+4, Agi+2"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "PowerSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_mtgagazet_0ret_str4_ps1_win",
+                                                            "description": "Yuna Str+4 (0Ret - Blitz Win)"
+                                                        },
+                                                        {
+                                                            "name": "SpeedSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_mtgagazet_0ret_agi2_ss1_win",
+                                                            "description": "Yuna Agi+2 (0Ret - Blitz Win)"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/2_and_2-1"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "lossContent": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Tidus",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move to Armor Break "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\rightarrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " x3, "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\downarrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " x6"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Armor Break"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move to HP "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\rightarrow\\rightarrow\\downarrow"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Yuna",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move to the empty node "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\rightarrow\\rightarrow"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Str+4, Def+3"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "PowerSphere",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_implicit_grid",
+                                                            "id": "yuna_mtgagazet_0ret_str4_ps1_loss",
+                                                            "description": "Yuna Str+4 (0Ret - Blitz Loss)"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/loss_2_and_2-1"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Yuna",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Friend Sphere to "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_mtgagazet_0ret_str4_2_ps1",
+                                            "description": "Yuna Str+4 (0Ret - Tidus path)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Friend Sphere to Lulu twice like described "
+                                        },
+                                        {
+                                            "type": "formattedText",
+                                            "text": "in the 2 Return Sphere Menu",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Kimahri",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\swarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " x2"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Yuna",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Friend to "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Kimahri",
+                                            "color": "Tan",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\downarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Agi+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "SpeedSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_mtgagazet_0ret_agi4_ss1",
+                                            "description": "Yuna Agi+4 (0Ret - Kimahri path)"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "associatedImages": [{
+                                "type": "image",
+                                "multiColumnWidth": ".7",
+                                "singleColumnWidth": ".4",
+                                "path": "graphics/post_BY_0_returns"
+                            }]
+                        },
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": true,
+                            "winContent": [
+                                {
+                                    "type": "sphereGrid",
+                                    "content": [
+                                        {
+                                            "type": "sphereGridCharacterActions",
+                                            "character": "Tidus",
+                                            "actions": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Move "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\nwarrow\\leftarrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " or "
+                                                        },
+                                                        {
+                                                            "type": "mathSymbol",
+                                                            "symbol": "\\leftarrow"
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " x3"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Armor Break"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "associatedImages": [{
+                                                "type": "image",
+                                                "multiColumnWidth": ".7",
+                                                "singleColumnWidth": ".4",
+                                                "path": "graphics/Tidus armor break 0 returns"
+                                            }]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "flag_by_drop_4_return",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Customize:"
+                                        },
+                                        {
+                                            "type": "instructionList",
+                                            "ordered": false,
+                                            "items": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Auron",
+                                                            "actionText": "Shimmering Blade $\\rightarrow$ First Strike",
+                                                            "color": "red",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Yuna",
+                                                            "actionText": "Staff $\\rightarrow$ First Strike",
+                                                            "color": "gray",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "additionalNote": "If you got 4 Return Spheres:"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "flag_by_drop_2_return_2_friend",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Customize:"
+                                        },
+                                        {
+                                            "type": "instructionList",
+                                            "ordered": false,
+                                            "items": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Yuna",
+                                                            "actionText": "Staff $\\rightarrow$ First Strike",
+                                                            "color": "gray",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "additionalNote": "If you got 2 Return Spheres:"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "textual_inline_if_then",
+                            "textCondition": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "If you need to charge ",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "formattedText",
+                                    "text": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true,
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "formattedText",
+                                    "text": "'s OD",
+                                    "isItalic": true
+                                }
+                            ],
+                            "thenContent": [
+                                {
+                                    "type": "formation",
+                                    "characters": [
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Rikku",
+                                            "color": "ForestGreen",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Auron",
+                                            "color": "red",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ],
+                            "elseContent": [
+                                {
+                                    "type": "formation",
+                                    "characters": [
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Kimahri",
+                                            "color": "Tan",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Wakka",
+                                            "color": "BurntOrange",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk up, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:20"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", continue walking up, avoid the gravestones."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Charge "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "'s "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "od"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " in an encounter with Mechs, Steal from the Mech Leader with "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " and Escape with the others (optional if you have a Silence Grenade)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Follow the path around."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "flag_by_drop_0_return_4_friend",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formation",
+                                            "characters": [
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Kimahri",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Wakka",
+                                                    "color": "BurntOrange",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "contentToShowIfFalse": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formation",
+                                            "characters": [
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Yuna",
+                                                    "color": "gray",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Auron",
+                                                    "color": "red",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "additionalNote": "Formation depends on Biran & Yenke drops (0 Return Spheres vs 2 or 4 Return Spheres)."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Seymour Flux",
+            "hp": 70000,
+            "strategy": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_by_drop_4_return",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Attack",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Yuna",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Overdrive HP Sphere + Grenade or Silence Grenade",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Summon Bahamut",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Bahamut",
+                                    "actionText": "Impulse, otherwise Attack (If you used a Silence Grenade)",
+                                    "color": "RoyalPurple",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Attack",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack once, otherwise Defend (If you used a Silence Grenade)",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Defend",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Check if you get the Overkill on Seymour Flux"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_by_drop_2_return_2_friend",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Attack",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Yuna",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Summon Bahamut",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Bahamut",
+                                    "actionText": "Impulse",
+                                    "color": "RoyalPurple",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_by_drop_0_return_4_friend",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Summon Bahamut",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Bahamut",
+                                    "actionText": "Attack",
+                                    "color": "RoyalPurple",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " if "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Bahamut",
+                            "color": "RoyalPurple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " was banished, Walk to the next screen. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "0:20"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk up to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " House, go into the center, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Follow the boy outside, speak to him upstairs, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk up to the next screen, go up the steps. Go down the left path into the water, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", swim up. Go up the steps, play the minigame, return to the previous screen."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " can attack Splashers for Power Spheres (only attack the 3 fish group): if you got 4 "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Return Spheres",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " you need 4 Power Spheres; if you got 2 "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Return Spheres",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " you need 1 Power Sphere, on 0 "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Return Spheres",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " you don't need any Power Spheres."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Return to Save Sphere, go up and left, then go down the right path, swim up into the next screen. Complete the minigame, "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Green, "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Blue, "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Red. Return."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go up left path, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", continue up the path, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " if "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Bahamut",
+                            "color": "RoyalPurple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " was banished and you didn't touch one earlier."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "flag_by_drop_0_return_4_friend",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formation",
+                                            "characters": [
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Kimahri",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Wakka",
+                                                    "color": "BurntOrange",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "contentToShowIfFalse": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formation",
+                                            "characters": [
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Yuna",
+                                                    "color": "gray",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Auron",
+                                                    "color": "red",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "additionalNote": "Formation depends on Biran & Yenke drops (0 Return Spheres vs 2 or 4 Return Spheres)."
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Go onto the next screen."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Sanctuary Keeper",
+            "hp": 40000,
+            "strategy": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_by_drop_0_return_4_friend",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Defend",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Defend",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Armor Break",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "additionalNote": "Strategy depends on Biran & Yenke drops (0 Return Spheres vs 2 or 4 Return Spheres)."
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Summon Bahamut",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Bahamut",
+                            "actionText": "Attack",
+                            "color": "RoyalPurple",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

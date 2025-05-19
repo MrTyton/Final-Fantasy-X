@@ -1,0 +1,663 @@
+{
+    "id": "chapter_22_highbridge",
+    "title": "Highbridge",
+    "content": [
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Yuna",
+                    "actions": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": false,
+                            "winContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Teleport to Strength Sphere "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\uparrow\\uparrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " or "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\nearrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4, Str+4, Def+3"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -2,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_highbridge_str4x2_ps2_win",
+                                            "description": "Yuna Str+4 x2 (Highbridge - Blitz Win)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\leftarrow\\leftarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4, HP+200, Agi+2"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_highbridge_str4_ps1_win",
+                                            "description": "Yuna Str+4 (Highbridge - Blitz Win)"
+                                        },
+                                        {
+                                            "name": "SpeedSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_highbridge_agi2_ss1_win",
+                                            "description": "Yuna Agi+2 (Highbridge - Blitz Win)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\rightarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Def +3"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\leftarrow\\leftarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_highbridge_str4_2_ps1_win",
+                                            "description": "Yuna Str+4 (2nd) (Highbridge - Blitz Win)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "image",
+                                    "multiColumnWidth": ".7",
+                                    "singleColumnWidth": ".4",
+                                    "path": "graphics/Yuna_blitz_WIN_highroad"
+                                }
+                            ],
+                            "lossContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Teleport to "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " Str+4 by Mental Break "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\leftarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_highbridge_str4_ps1_loss",
+                                            "description": "Yuna Str+4 (Highbridge - Blitz Loss)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Friend Sphere to "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\uparrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4, Agi+2"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_highbridge_str4_2_ps1_loss",
+                                            "description": "Yuna Str+4 (2nd) (Highbridge - Blitz Loss)"
+                                        },
+                                        {
+                                            "name": "SpeedSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_highbridge_agi2_ss1_loss",
+                                            "description": "Yuna Agi+2 (Highbridge - Blitz Loss)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\rightarrow\\rightarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_highbridge_str4_3_ps1_loss",
+                                            "description": "Yuna Str+4 (3rd) (Highbridge - Blitz Loss)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\rightarrow\\rightarrow\\rightarrow\\rightarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "yuna_highbridge_str4_4_ps1_loss",
+                                            "description": "Yuna Str+4 (4th) (Highbridge - Blitz Loss)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\rightarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Def+3"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "image",
+                                    "multiColumnWidth": ".7",
+                                    "singleColumnWidth": ".4",
+                                    "path": "graphics/Yuna_blitz_loss_highbridge_1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Wakka",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "From this point on, watch any pre-empts if "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " is in the party, because she will get the first turn. Check to make sure that "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Lulu",
+                            "color": "purple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " has 35 levels."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Need 4 Maze Larva/YKT-63 Kills total, Overkills count as 1."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk north"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "encounters",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "YKT-63:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Tidus",
+                                            "actionText": "Attack",
+                                            "color": "blue",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Yuna",
+                                            "actionText": "Attack",
+                                            "color": "gray",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Flee"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Seymour Natus",
+            "hp": 36000,
+            "strategy": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_inline_if_then",
+                    "textCondition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Lulu",
+                            "color": "purple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": " has less than 35 levels:"
+                        }
+                    ],
+                    "thenContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Lulu",
+                                    "actionText": "Switch Weapon",
+                                    "color": "purple",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Summon Bahamut",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Bahamut",
+                            "actionText": "Attack",
+                            "color": "RoyalPurple",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "10:10"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk down, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:40"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk right, exit Macalania Woods"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

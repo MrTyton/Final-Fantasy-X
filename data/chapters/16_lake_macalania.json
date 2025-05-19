@@ -1,0 +1,2420 @@
+{
+    "id": "chapter_16_lake_macalania",
+    "title": "Lake Macalania",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run up and "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Crawler",
+            "hp": 16000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Lightning Marble x1/2 Negator (1,000 HP)",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Lightning Marble Crawler",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Lightning Marble Crawler",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Lulu",
+                            "actionText": "Phoenix Down Rikku",
+                            "color": "purple",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Lightning Marble Crawler",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "ifthenelse_blitzresult",
+                    "winContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Mega Phoenix",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Equip Brotherhood",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "lossContent": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "LightCurtain",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Kimahri",
+                                            "actionText": "Defend",
+                                            "color": "Tan",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ],
+                            "contentToShowIfFalse": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Kimahri",
+                                            "actionText": "Steal Crawler",
+                                            "color": "Tan",
+                                            "isBold": true,
+                                            "itemAcquisitionFlags": [
+                                                {
+                                                    "itemName": "LunarCurtain",
+                                                    "setType": "user_checkbox_on_pickup_or_drop",
+                                                    "sourceDescription": "Steal from Crawler (Lake Macalania - Blitz Loss)",
+                                                    "id": "crawler_steal_lunarcurtain_loss",
+                                                    "promptText": "Stole Lunar Curtain from Crawler?"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "If 2 Characters dead: ",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Yuna",
+                                    "actionText": "Mega Phoenix, else Phoenix Down Rikku",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Equip Brotherhood",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": ", Phoenix Down "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " if he is dead"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Overdrive Lv. 2 Key Sphere and Lightning Marble",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "Lv2KeySphere",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Rikku OD Mix (Lv.2 Key Sphere + Lightning Marble) vs Crawler",
+                            "id": "crawler_rikku_od_lv2keysphere"
+                        }
+                    ]
+                }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Tidus",
+                    "color": "blue",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": ", "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Yuna",
+                    "color": "gray",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": ", "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Lulu",
+                    "color": "purple",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": " and "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Kimahri",
+                    "color": "Tan",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": " need AP."
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Kimahri",
+                    "slvlInfo": "(12 S.Lvl)",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\downarrow\\downarrow\\downarrow\\downarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " on the Luck node"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "HP +200, Agi+4"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "SpeedSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "kimahri_lakemac_agi4_ss1",
+                                    "description": "Kimahri Agi+4 (Lake Macalania)"
+                                }
+                            ]
+                        }
+                    ],
+                    "associatedImages": [{
+                        "type": "image",
+                        "multiColumnWidth": ".7",
+                        "singleColumnWidth": ".4",
+                        "path": "graphics/macalania_kimahri"
+                    }]
+                },
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Tidus",
+                    "slvlInfo": "(22 S.Lvl)",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Level 2 Key Sphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\rightarrow\\uparrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Str +4"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_lakemac_str4_1_ps1",
+                                    "description": "Tidus Str+4 (1st)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\uparrow\\uparrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "HP+200"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\rightarrow\\rightarrow\\uparrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "HP+200, Str+4, Agi+2"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_lakemac_str4_2_ps1",
+                                    "description": "Tidus Str+4 (2nd)"
+                                },
+                                {
+                                    "name": "SpeedSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_lakemac_agi2_1_ss1",
+                                    "description": "Tidus Agi+2 (1st)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": true,
+                            "winContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\rightarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Use Strength Sphere, Activate it"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "tidus_lakemac_str_sphere_ps1",
+                                            "description": "Tidus activates Strength Sphere"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\uparrow\\leftarrow\\leftarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " or "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\nwarrow\\nwarrow"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "lossContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\uparrow\\leftarrow"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "HP+200, Str+4, Agi+2"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_lakemac_str4_3_ps1",
+                                    "description": "Tidus Str+4 (3rd)"
+                                },
+                                {
+                                    "name": "SpeedSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_lakemac_agi2_2_ss1",
+                                    "description": "Tidus Agi+2 (2nd)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\leftarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Str+4"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_lakemac_str4_4_ps1",
+                                    "description": "Tidus Str+4 (4th)"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "ifthenelse_blitzresult",
+                    "winContent": [
+                        {
+                            "type": "image",
+                            "multiColumnWidth": ".7",
+                            "singleColumnWidth": ".4",
+                            "path": "graphics/Tidus_post_crawler"
+                        }
+                    ],
+                    "lossContent": [
+                        {
+                            "type": "image",
+                            "multiColumnWidth": ".7",
+                            "singleColumnWidth": ".4",
+                            "path": "graphics/Tidus_post_crawler_loss"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "0:40"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", head to next screen"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Head to Temple, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Jyscal Skip"
+                        }
+                    ],
+                    "csrBehavior": "standard_only",
+                    "csrNote": [
+                        {
+                            "type": "formattedText",
+                            "text": "(Ignore if playing with Cutscene Remover)"
+                        }
+                    ],
+                    "subContent": [
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Speak to Tromell for "
+                                        },
+                                        {
+                                            "type": "formattedText",
+                                            "text": "Shell Targe",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Walk into the wall to the right of Tromell"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move slightly to the right, turn around and Talk to Tromell while moving Right."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "If successful, walk forward while mashing Shelinda's dialogue."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "When dialogue finishes, walk up the stairs, push the man, and go through."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "If Shelinda is not saying her dialogue, talk to one of the musicians"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk to Fayth room, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "2:10"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Seymour",
+            "hp": 3000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Haste Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Change Weapon to Staff",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Overdrive Stone Breath",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Talk to Seymour",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Auron",
+                            "actionText": "Defend",
+                            "color": "red",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Enemy",
+                            "actionText": "Seymour Blizzara",
+                            "color": "RubineRed",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "ifthenelse_blitzresult",
+                    "winContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Defend",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "lossContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Cheer",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Anima",
+            "hp": 18000,
+            "strategy": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "blitzballdetermination",
+                    "displayAsItemizedCondition": true,
+                    "winContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Kimahri",
+                                    "actionText": "Defend",
+                                    "color": "Tan",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Auron",
+                                    "actionText": "Defend",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Wakka",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Wakka",
+                                    "actionText": "Change Weapon to anything",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Enemy",
+                                    "actionText": "Pain",
+                                    "color": "RubineRed",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch first survivor for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack x4",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch second survivor for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Steal x2",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "SilenceGrenade",
+                                    "quantity": 3,
+                                    "updateType": "user_confirm_rng_gain",
+                                    "id": "anima_steal_sg_win_x2",
+                                    "description": "Steal Silence Grenades from Anima (Blitz Win)"
+                                }
+                            ]
+                        }
+                    ],
+                    "lossContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Kimahri",
+                                    "actionText": "Lightning Marble Anima",
+                                    "color": "Tan",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Lightning Marble Anima",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Wakka",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Wakka",
+                                    "actionText": "Change Weapon to anything",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Enemy",
+                                    "actionText": "Pain",
+                                    "color": "RubineRed",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch first survivor for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack x4",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch second survivor for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " or "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " or "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": ": Steal"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "SilenceGrenade",
+                                    "quantity": 3,
+                                    "updateType": "user_confirm_rng_gain",
+                                    "id": "anima_steal_sg_loss",
+                                    "description": "Steal Silence Grenade from Anima (Blitz Loss)"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_inline_if_then",
+                    "textCondition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If Tidus Misses:"
+                        }
+                    ],
+                    "thenContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "On Tidus' 4th turn switch him for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Lulu",
+                                    "actionText": "Phoenix Down dead character",
+                                    "color": "purple",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Enemy",
+                                    "actionText": "Pain",
+                                    "color": "RubineRed",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch first survivor for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Continue the fight like normal"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Seymour",
+            "hp": 6000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Phoenix Down Rikku if she died before Multi-Thundara.",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "blitzballdetermination",
+                    "displayAsItemizedCondition": true,
+                    "winContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Change Weapon to Sonic Steel",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Anyone: Defend until Multi-Thundara."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Enemy",
+                            "actionText": "Multi-Thundara",
+                            "color": "RubineRed",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack x2",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Tidus",
+                    "color": "blue",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": " and "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Yuna",
+                    "color": "gray",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": " need AP."
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Name "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Shiva",
+                            "color": "Cyan",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Tidus",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\leftarrow\\leftarrow\\leftarrow\\leftarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "HP+200, Str+4"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_post_seymour_str4_ps1",
+                                    "description": "Tidus Str+4 (Post Seymour)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\leftarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Agi+2"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "SpeedSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_post_seymour_agi2_ss1",
+                                    "description": "Tidus Agi+2 (Post Seymour)"
+                                }
+                            ]
+                        }
+                    ],
+                    "associatedImages": [{
+                        "type": "image",
+                        "multiColumnWidth": ".7",
+                        "singleColumnWidth": ".4",
+                        "path": "graphics/Tidus_Post_Seymour"
+                    }]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "You need 21 Power Spheres and 10 Speed Spheres "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "at this point",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " to be done farming them."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "ifthenelse_blitzresult",
+                            "lossContent": [
+                                {
+                                    "type": "equip",
+                                    "content": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Equip Sonic Steel",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", exit Fayth room. Make sure that the Save Sphere touch is done "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "after",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " the above Sphere Grid, otherwise you will die to Wendigo."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "trial",
+            "steps": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Slide pedestal to the right"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Take sphere from the right wall, place into pedestal"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Push pedestal up"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Take Glyph sphere from middle pillar"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go downstairs and push pedestal to the right"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Place Glyph sphere in far left slot in the wall"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go upstairs, pick up new sphere"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go downstairs, place sphere in pillar"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go upstairs, take the sphere at the top of the slope"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Place in last pillar"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go to temple entrance, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Move south and go down the left path."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": true,
+                            "winContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Try to not get caught by the Guados chasing you, if you get caught Flee"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "lossContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Intentionally get caught by a Guado, kill the enemies to gain AP on Tidus"
+                                        },
+                                        {
+                                            "type": "encounters",
+                                            "content": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Tidus",
+                                                            "actionText": "Attack Guado, then Surviving Enemies",
+                                                            "color": "blue",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Rikku",
+                                                            "actionText": "Silence Grenade",
+                                                            "color": "ForestGreen",
+                                                            "isBold": true
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "SilenceGrenade",
+                                                            "quantity": -1,
+                                                            "updateType": "consumption_explicit_fixed",
+                                                            "id": "macalania_guado_catch_silence_grenade",
+                                                            "description": "Rikku uses Silence Grenade on Guado encounter (Blitz Loss)"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Kimahri",
+                                                            "actionText": "Defend",
+                                                            "color": "Tan",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "conditional",
+            "conditionSource": "blitzballdetermination",
+            "lossContent": [
+                {
+                    "type": "sphereGrid",
+                    "content": [
+                        {
+                            "type": "sphereGridCharacterActions",
+                            "character": "Tidus",
+                            "actions": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\downarrow\\downarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " (or "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\downarrow"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": ")"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Str+4"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "tidus_bikanel_str4_ps1_loss",
+                                            "description": "Tidus Str+4 (Bikanel - Blitz Loss)"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "associatedImages": [{
+                                "type": "image",
+                                "multiColumnWidth": ".7",
+                                "singleColumnWidth": ".4",
+                                "path": "graphics/tidus_bikanel"
+                            }]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Wendigo",
+            "hp": 18000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Haste Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Switch Weapon to Brotherhood",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack Guado B (Top One)",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "LightCurtain",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Light Curtain Tidus",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Auron",
+                                    "actionText": "Power Break Wendigo",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " on his next turn"
+                                }
+                            ]
+                        }
+                    ],
+                    "additionalNote": "Strategy depends on Light Curtain."
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Spiral Cut Wendigo, then Attack it until it's dead",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Steal from Guado if everyone is at full HP, otherwise switch to Lulu",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Lulu",
+                            "actionText": "Elixir Tidus/Phoenix Down dead character/Defend",
+                            "color": "purple",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Elixir Tidus/Phoenix Down dead character/Steal from Guado/Defend",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "After Wendigo is dead:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Switch anyone for "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Yuna",
+                                            "color": "gray",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Yuna",
+                                            "actionText": "Defend",
+                                            "color": "gray",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Switch anyone for "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Tidus",
+                                            "actionText": "Attack Guado",
+                                            "color": "blue",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Yuna",
+                    "color": "gray",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": ", "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Tidus",
+                    "color": "blue",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": " need AP. Helpful if "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Lulu",
+                    "color": "purple",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": " gets it."
+                }
+            ],
+            "trackedResourceUpdates": [
+                {
+                    "name": "PowerSphere",
+                    "quantity": 2,
+                    "updateType": "auto_guaranteed",
+                    "id": "wendigo_guaranteed_ps2",
+                    "description": "From Wendigo"
+                },
+                {
+                    "name": "PowerSphere",
+                    "quantity": 2,
+                    "updateType": "user_confirm_rng_gain",
+                    "id": "wendigo_rare_drop_ps2",
+                    "description": "Rare Drop from Wendigo"
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run up to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk up to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", run past "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Kimahri",
+                            "color": "Tan",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " and go to the hidden area to "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "pickup",
+                            "value": "Level 2 Key Sphere"
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "Lv2KeySphere",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Chest in Lake Macalania hidden area",
+                            "id": "lakemac_lv2keysphere_pickup"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run up to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " and speak with him, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk back, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "1:00"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", (press Start immediately after skip), "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " in Dream Sequence"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

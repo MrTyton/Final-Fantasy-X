@@ -1,0 +1,1039 @@
+{
+    "id": "chapter_15_macalania_woods",
+    "title": "Macalania Woods",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk north, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Cure "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " if he's ever below 404 HP."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Make sure that you charge "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "od"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", and that you do at least one of each of the following steals."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "encounters",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Chimera: Steal Arctic Wind, Flee"
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "SpherimorphElementalItem_Fire",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Steal Arctic Wind from Chimera in Macalania Woods",
+                            "id": "macalania_steal_arcticwind_chimera",
+                            "promptText": "Stole Arctic Wind from Chimera?"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Blue Elemental: Steal Fish Scale x2, Flee"
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "SpherimorphElementalItem_Thunder",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Steal Fish Scale from Blue Elemental in Macalania Woods",
+                            "id": "macalania_steal_fishscale_blueelemental",
+                            "promptText": "Stole Fish Scale from Blue Elemental?"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Else: Flee"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Once "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " has "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "od"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " and you have at least 1 Arctic Wind and 1 Fish Scale, "
+                        },
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Follow path, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " twice"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Catch butterfly near the exit to avoid encounters"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", talk to O'aka, pick the first option (\"Got any weapons?\"), exit the shop, pick the first option (\"Too pricey.\"), talk to him again (\"Got any weapons?\")"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "shop",
+            "gilInfo": "11550",
+            "sections": [
+                {
+                    "title": "Sell",
+                    "items": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Stunning Steel, Buckler, Hunter Spear, any other equipment to go above 11550 Gil"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Buy",
+                    "items": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Sonic Steel, Equip"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Shimmering Blade, Equip"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run up, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Enter the hidden path, walk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Spherimorph",
+            "hp": 12000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Defend",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Defend",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Defend",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Grenade, check the Element",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        }
+                    ],
+                    "trackedResourceUpdates": [
+                        {
+                            "name": "Grenade",
+                            "quantity": -1,
+                            "updateType": "consumption_explicit_fixed",
+                            "id": "spherimorph_rikku_grenade",
+                            "description": "Rikku uses Grenade on Spherimorph"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Defend",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Overdrive, HP Sphere with",
+                            "color": "ForestGreen",
+                            "isBold": true,
+                            "subItems": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Fire: Arctic Wind"
+                                        }
+                                    ],
+                                    "itemAcquisitionFlags": [
+                                        {
+                                            "itemName": "SpherimorphElementalItem_Fire",
+                                            "setType": "derived_from_user_choice",
+                                            "sourceDescription": "Used Arctic Wind for Spherimorph (Fire weakness).",
+                                            "id": "spherimorph_mix_arcticwind"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Ice: Bomb Core"
+                                        }
+                                    ],
+                                    "itemAcquisitionFlags": [
+                                        {
+                                            "itemName": "SpherimorphElementalItem_Ice",
+                                            "setType": "derived_from_user_choice",
+                                            "sourceDescription": "Used Bomb Core for Spherimorph (Ice weakness).",
+                                            "id": "spherimorph_mix_bombcore"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Water: Lightning Marble"
+                                        }
+                                    ],
+                                    "itemAcquisitionFlags": [
+                                        {
+                                            "itemName": "SpherimorphElementalItem_Water",
+                                            "setType": "derived_from_user_choice",
+                                            "sourceDescription": "Used Lightning Marble for Spherimorph (Water weakness).",
+                                            "id": "spherimorph_mix_lightningmarble"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Thunder: Fish Scale"
+                                        }
+                                    ],
+                                    "itemAcquisitionFlags": [
+                                        {
+                                            "itemName": "SpherimorphElementalItem_Thunder",
+                                            "setType": "derived_from_user_choice",
+                                            "sourceDescription": "Used Fish Scale for Spherimorph (Thunder weakness).",
+                                            "id": "spherimorph_mix_fishscale"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_inline_if_then",
+                    "textCondition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If you don't have the elemental item:"
+                        }
+                    ],
+                    "thenContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Lulu",
+                                    "actionText": "Use the spell opposite of what Spherimorph used",
+                                    "color": "purple",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Kimahri",
+                                    "actionText": "Attack, check the Element",
+                                    "color": "Tan",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Switch "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Overdrive",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Tidus",
+                    "color": "blue",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": ", "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Yuna",
+                    "color": "gray",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": ", "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Kimahri",
+                    "color": "Tan",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": ", "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Rikku",
+                    "color": "ForestGreen",
+                    "isBold": true
+                },
+                {
+                    "type": "formattedText",
+                    "text": " all need AP."
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:50"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Rikku",
+                    "slvlInfo": "(1 S.Lvl)",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\downarrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Agi+3"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "SpeedSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "rikku_macalania_agi3_ss1",
+                                    "description": "Rikku Agi+3 (Macalania)"
+                                }
+                            ]
+                        }
+                    ],
+                    "associatedImages": [{
+                        "type": "image",
+                        "multiColumnWidth": ".7",
+                        "singleColumnWidth": ".4",
+                        "path": "graphics/macalaniarikku"
+                    }]
+                },
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Kimahri",
+                    "slvlInfo": "(15 S.Lvl)",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\downarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " x6 (or Hold "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\downarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": "), next to Lv. 1 Lock"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Level 1 Key Sphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\leftarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " x4 (or Hold "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\leftarrow"
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": ")"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Level 1 Key Sphere"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": true,
+                            "winContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\uparrow\\uparrow\\leftarrow"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "lossContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\uparrow\\uparrow\\downarrow"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "HP+200, HP+200"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Move "
+                                        },
+                                        {
+                                            "type": "mathSymbol",
+                                            "symbol": "\\leftarrow"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Steal, Use"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "ifthenelse_blitzresult",
+                    "winContent": [
+                        {
+                            "type": "image",
+                            "multiColumnWidth": ".7",
+                            "singleColumnWidth": ".4",
+                            "path": "graphics/Kimahri_post_spheremorph"
+                        }
+                    ],
+                    "lossContent": [
+                        {
+                            "type": "image",
+                            "multiColumnWidth": ".7",
+                            "singleColumnWidth": ".4",
+                            "path": "graphics/Kimahri_post_spheremorph_loss"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "ifthenelse_blitzresult",
+                            "lossContent": [
+                                {
+                                    "type": "conditional",
+                                    "conditionSource": "acquired_item_flag_check",
+                                    "flagName": "LightCurtain",
+                                    "contentToShowIfFalse": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Use a Mega-Potion"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "additionalNote": "If you don't have a Light Curtain:"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Talk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on the way out, then exit"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

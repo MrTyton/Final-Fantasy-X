@@ -1,0 +1,421 @@
+{
+    "id": "chapter_09_miihen_highroad",
+    "title": "Mi'ihen Highroad",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk up. Forced encounter, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk up, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during Maechen Scene. Guaranteed 1 Power Sphere from the tutorial, +1 if Overkill."
+                        }
+                    ],
+                    "trackedResourceUpdates": [
+                        {
+                            "name": "PowerSphere",
+                            "quantity": 1,
+                            "updateType": "auto_guaranteed",
+                            "id": "miihen_raldo_tutorial_ps1",
+                            "description": "From Raldo tutorial encounter"
+                        },
+                        {
+                            "name": "PowerSphere",
+                            "quantity": 1,
+                            "updateType": "user_confirm_rng_gain",
+                            "id": "miihen_raldo_overkill_ps1",
+                            "description": "Overkill on Raldo tutorial encounter"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Wakka",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Flee from every encounter"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Heal using "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "'s Cure if "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " is in crit and after every Ambush"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Mi'ihen Skip"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "After Maechen Scene, run up as quickly as possible."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go to the White Spot on the ground towards the left before the Man in Blue"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Speak to the man, get the "
+                                        },
+                                        {
+                                            "type": "formattedText",
+                                            "text": "Hunter's Spear",
+                                            "isBold": true
+                                        }
+                                    ],
+                                    "itemAcquisitionFlags": [
+                                        {
+                                            "itemName": "Hunter's Spear",
+                                            "setType": "user_checkbox_on_pickup_or_drop",
+                                            "sourceDescription": "Received during Mi'ihen Skip from man in blue.",
+                                            "id": "miihen_skip_hunters_spear",
+                                            "promptText": "Did you obtain the Hunter's Spear?"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Mash and step forward over the cutscene line"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Walk up during the cutscene after the teleport to the next screen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Make sure you get the "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Hunter's Spear",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " if you fail the skip."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go right and "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " at Calli scene. Continue walking up. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Luzzu scene, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Shelinda scene"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go to the next screen"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go to the Al-Bhed shop, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk out of the shop and "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "5:30"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Leave shop, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on Rin. Walk outside."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Chocobo Eater",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Haste Boss",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Defend with everyone."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Swap any characters that fall into crit HP with someone in the back."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Wakka",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk north, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk north to next screen. Walk to blocked road, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Speak to the guard on the right, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk back, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk up to next screen."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

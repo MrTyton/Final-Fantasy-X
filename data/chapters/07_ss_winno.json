@@ -1,0 +1,122 @@
+{
+    "id": "chapter_07_ss_winno",
+    "title": "S.S. Winno",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:10"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", exit door on the right. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " with Oaka. Run outside, go up to the top deck for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " and "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Lulu",
+                            "color": "purple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " cutscene, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run up the blitzball on the front of the boat. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:10"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Follow the tutorial, fail the minigame. Do "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "not",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " get Jecht Shot."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "'s scene, do not save. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "0:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " if you buffered the Start command in Kilika."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

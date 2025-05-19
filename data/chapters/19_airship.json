@@ -1,0 +1,504 @@
+{
+    "id": "chapter_19_airship",
+    "title": "Airship",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+3 "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk down corridor to the next screen, go back in, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Speak to Brother, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk towards corridor, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk towards camera to the next screen, go up."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "tracked_resource_check",
+                            "resourceName": "PowerSphere",
+                            "comparison": "less_than",
+                            "value": 24,
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "textParagraph",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "You may need more Power Spheres (currently have less than 24; target is 28 for run, allowing a buffer of 4). Consider buying Power Distiller(s) from Rin. Each Power Distiller provides 2 Power Spheres."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "shop",
+                                    "gilInfo": "Rin - Distillers (Conditional)",
+                                    "sections": [
+                                        {
+                                            "title": "Buy",
+                                            "items": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Power Distiller (Consider if Power Spheres < 24)"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "PowerSphere",
+                                                            "quantity": 2,
+                                                            "updateType": "user_confirm_rng_gain",
+                                                            "id": "airship_rin_buy_power_distiller",
+                                                            "description": "Bought Power Distiller from Rin"
+                                                        }
+                                                    ],
+                                                    "itemAcquisitionFlags": [
+                                                        {
+                                                            "itemName": "BoughtAnyDistiller_AirshipRin",
+                                                            "setType": "derived_from_user_choice",
+                                                            "sourceDescription": "Purchased a Power Distiller from Rin on the Airship.",
+                                                            "id": "flag_bought_any_distiller_rin_power",
+                                                            "promptText": "Confirm Power Distiller purchase from Rin?"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "additionalNote": "Power Sphere Check: Target is 28 total for run. This conditional block activates if current Power Spheres < 24."
+                        },
+                        {
+                            "type": "conditional",
+                            "conditionSource": "tracked_resource_check",
+                            "resourceName": "SpeedSphere",
+                            "comparison": "less_than",
+                            "value": 10,
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "textParagraph",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "You may need more Speed Spheres (currently have less than 10; target is 10 for the rest of the run). Consider buying Speed Distiller(s) from Rin. Each Speed Distiller provides 2 Speed Spheres."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "shop",
+                                    "gilInfo": "Rin - Distillers (Conditional)",
+                                    "sections": [
+                                        {
+                                            "title": "Buy",
+                                            "items": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Speed Distiller (Consider if Speed Spheres < 10)"
+                                                        }
+                                                    ],
+                                                    "trackedResourceUpdates": [
+                                                        {
+                                                            "name": "SpeedSphere",
+                                                            "quantity": 2,
+                                                            "updateType": "user_confirm_rng_gain",
+                                                            "id": "airship_rin_buy_speed_distiller",
+                                                            "description": "Bought Speed Distiller from Rin"
+                                                        }
+                                                    ],
+                                                    "itemAcquisitionFlags": [
+                                                        {
+                                                            "itemName": "BoughtAnyDistiller_AirshipRin",
+                                                            "setType": "derived_from_user_choice",
+                                                            "sourceDescription": "Purchased a Speed Distiller from Rin on the Airship.",
+                                                            "id": "flag_bought_any_distiller_rin_speed",
+                                                            "promptText": "Confirm Speed Distiller purchase from Rin?"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "additionalNote": "Speed Sphere Check: Target is 10 for the rest of the run. This conditional block activates if current Speed Spheres < 10."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Make sure that "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " has "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "od"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". If she doesn't, you can get encounters on Rin's first screen."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Evrae",
+            "hp": 32000,
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Turns in this fight can be a bit random at times - Treat each character independantly of each other, doing their action as their turn comes up."
+                }
+            ],
+            "strategy": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "blitzballdetermination",
+                    "displayAsItemizedCondition": true,
+                    "winContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Cheer",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Change Weapon to Sonic Steel",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " If "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " is still going next, immediately after his previous action"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Overdrive Mix Luck Sphere + Map",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack x2",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Cheer",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack x3",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " or "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": ": Heal "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " with an Elixir/X-Potion/Mega-Potion if he was hit in the first attack, Steal otherwise"
+                                }
+                            ]
+                        }
+                    ],
+                    "lossContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Cheer x2",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Equip Baroque Sword [Strength +5%]",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack x6",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Overdrive Mix Luck Sphere + Map",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " or "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": ": Heal "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " with an Elixir/X-Potion/Mega-Potion, Lunar Curtain "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " or Steal"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "3:00"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " - Press Start immediately after the FMV."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

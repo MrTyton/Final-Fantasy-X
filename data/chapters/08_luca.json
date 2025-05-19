@@ -1,0 +1,1920 @@
+{
+    "id": "chapter_08_luca",
+    "title": "Luca",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", go right and up to the next screen, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "2:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Don't save."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " in locker room. Don't do the tutorial. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " by mashing another button (like "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "R1",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ") at the same time as confirm, walk down, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk down to next screen, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Whistle "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "0:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk right to next screen."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", run to the cafe. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:20"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run left to next screen, then left to the docks."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Talk to O'aka on the first docks screen, before going into the Machina Fights. Do the following shop:"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "shop",
+            "gilInfo": "3050",
+            "sections": [
+                {
+                    "title": "Sell",
+                    "items": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "All Weapons and Armor other than Official Ball, Lightning Steel, Thunder Ball."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Buy",
+                    "items": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Stunning Steel, Equip"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Note",
+                    "items": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "If you don't have enough gil after selling Equipment, on the same dock as O'aka there are 2 chests with 600 Gil and a Tidal Spear you can sell"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run north to the next screen."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Machina - First Two Encounters",
+            "strategy": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "TidusHasHaste",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Lulu",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Defend",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Defend",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Lulu",
+                            "actionText": "Thunder",
+                            "color": "purple",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "TidusHasHaste",
+                            "contentToShowIfFalse": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Check if Tidus has 5 S.Lvls. "
+                                        },
+                                        {
+                                            "type": "formattedText",
+                                            "text": "If yes, perform Haste Sphere Grid now",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " (details below)."
+                                        }
+                                    ],
+                                    "itemAcquisitionFlags": [
+                                        {
+                                            "itemName": "TidusHasHaste",
+                                            "setType": "user_prompt_after_event",
+                                            "sourceDescription": "Decision in Luca (after 2 Machina): User prompted whether to grid Haste if S.Lvl available.",
+                                            "id": "flag_tidus_haste_decision_luca1",
+                                            "promptText": "Do you have 5 S.Lvls and want to activate Tidus's Haste Sphere Grid now?"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Machina Third Encounter",
+            "strategy": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "TidusHasHaste",
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "First Wave:",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Attack",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Kimahri",
+                                                    "actionText": "Attack",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Lulu",
+                                                    "actionText": "Thunder a different Machina",
+                                                    "color": "purple",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Attack",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Kimahri",
+                                                    "actionText": "Overdrive Seed Cannon, else Attack (if no crits)",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "Second Wave:",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Defend",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Kimahri",
+                                                    "actionText": "Defend",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Lulu",
+                                                    "actionText": "Thunder",
+                                                    "color": "purple",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "Third Wave:",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Attack",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Kimahri",
+                                                    "actionText": "Attack or Overdrive Seed Canon",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Lulu",
+                                                    "actionText": "Thunder a different Machina",
+                                                    "color": "purple",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Lulu, then Defend",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Kimahri",
+                                    "actionText": "Defend",
+                                    "color": "Tan",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Lulu",
+                                    "actionText": "Thunder",
+                                    "color": "purple",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "notes": [
+                        {
+                            "type": "formattedText",
+                            "text": "Strategy depends on whether Tidus has Haste."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "If anyone is Critical HP, use Potions. "
+                        },
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "TidusHasHaste",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "gameMacro",
+                                            "macroName": "save"
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " to restore "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": "'s MP."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "TidusHasHaste",
+                            "contentToShowIfFalse": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Check if Tidus has 5 S.Lvls. "
+                                        },
+                                        {
+                                            "type": "formattedText",
+                                            "text": "If yes, perform Haste Sphere Grid now",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": " (details below)."
+                                        }
+                                    ],
+                                    "itemAcquisitionFlags": [
+                                        {
+                                            "itemName": "TidusHasHaste",
+                                            "setType": "user_prompt_after_event",
+                                            "sourceDescription": "Decision in Luca (after 3rd Machina): User prompted whether to grid Haste if S.Lvl available.",
+                                            "id": "flag_tidus_haste_decision_luca2",
+                                            "promptText": "Do you have 5 S.Lvls and want to activate Tidus's Haste Sphere Grid now?"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run right."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Oblitzerator",
+            "hp": 3000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Defend",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "TidusHasHaste",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Lulu",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ],
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Defend",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Lulu",
+                            "actionText": "Thunder Crane x3",
+                            "color": "purple",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Use Crane",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " after "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Lulu",
+                            "color": "purple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "'s 3rd Thunder"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Defend",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Lulu",
+                            "actionText": "Thunder",
+                            "color": "purple",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ],
+            "itemAcquisitionFlags": [
+                {
+                    "itemName": "LightningSteel",
+                    "setType": "user_checkbox_on_pickup_or_drop",
+                    "sourceDescription": "Drop from Oblitzerator",
+                    "id": "oblitzerator_drop_lightningsteel",
+                    "promptText": "Did Lightning Steel drop?"
+                },
+                {
+                    "itemName": "ThunderBall",
+                    "setType": "user_checkbox_on_pickup_or_drop",
+                    "sourceDescription": "Drop from Oblitzerator",
+                    "id": "oblitzerator_drop_thunderball",
+                    "promptText": "Did Thunder Ball drop?"
+                }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Check for "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Lightning Steel, Thunder Ball",
+                    "isBold": true
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "2:00"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during and after Blitzball game."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "sphereGridCharacterActions",
+                    "character": "Tidus",
+                    "slvlInfo": "(5 S.Lvl)",
+                    "actions": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Move "
+                                },
+                                {
+                                    "type": "mathSymbol",
+                                    "symbol": "\\downarrow \\searrow\\searrow"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Get Haste, +1 Str, +20 MP"
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "PowerSphere",
+                                    "quantity": -1,
+                                    "updateType": "consumption_implicit_grid",
+                                    "id": "tidus_luca_str1_ps1",
+                                    "description": "Tidus +1 Str (Haste path)"
+                                }
+                            ]
+                        }
+                    ],
+                    "associatedImages": [{
+                        "type": "image",
+                        "multiColumnWidth": ".7",
+                        "singleColumnWidth": ".4",
+                        "path": "graphics/haste"
+                    }]
+                }
+            ]
+        },
+        {
+            "type": "conditional",
+            "conditionSource": "acquired_item_flag_check",
+            "flagName": "ThunderBall",
+            "contentToShowIfTrue": [
+                {
+                    "type": "equip",
+                    "content": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Wakka",
+                                    "actionText": "Thunder Ball",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "conditional",
+                                    "conditionSource": "acquired_item_flag_check",
+                                    "flagName": "LightningSteel",
+                                    "contentToShowIfTrue": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Lightning Steel",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "additionalNote": "If you also got Lightning Steel:"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "additionalNote": "If you got Thunder Ball:"
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run South for the next two screens. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Go up the stairs to the locker room, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go back into locker room, speak to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:20"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " after "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Lulu",
+                            "color": "purple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " scene. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:40"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Entrance."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "blitzballGame",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formattedText",
+                            "text": "First Half:",
+                            "isBold": true
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "conditional",
+                                            "conditionSource": "textual_inline_if_then",
+                                            "textCondition": [
+                                                {
+                                                    "type": "formattedText",
+                                                    "text": "If Luca wins the Blitzoff:",
+                                                    "isItalic": true
+                                                }
+                                            ],
+                                            "thenContent": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Triangle, switch the mode to "
+                                                        },
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "Mark Mode",
+                                                            "isBold": true
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": ", and then "
+                                                        },
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "Left Side",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "conditional",
+                                            "conditionSource": "textual_inline_if_then",
+                                            "textCondition": [
+                                                {
+                                                    "type": "formattedText",
+                                                    "text": "When you get the ball:",
+                                                    "isItalic": true
+                                                }
+                                            ],
+                                            "thenContent": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Change to "
+                                                        },
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "Manual A",
+                                                            "isBold": true
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " and "
+                                                        },
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "Normal Mode",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "down some, pass the ball to "
+                                                        },
+                                                        {
+                                                            "type": "characterReference",
+                                                            "characterName": "Tidus",
+                                                            "color": "blue",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Tidus",
+                                                            "actionText": "Swim next to Jassu, pass to Jassu",
+                                                            "color": "blue",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Hide behind the Goalie"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "If you aggroed a Goer, Swim Around"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during half time"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formattedText",
+                            "text": "Second Half:",
+                            "isBold": true
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "conditional",
+                                            "conditionSource": "textual_inline_if_then",
+                                            "textCondition": [
+                                                {
+                                                    "type": "formattedText",
+                                                    "text": "If Luca wins the Blitzoff:",
+                                                    "isItalic": true
+                                                }
+                                            ],
+                                            "thenContent": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Triangle, switch the mode to "
+                                                        },
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "Mark Mode",
+                                                            "isBold": true
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": ", and then "
+                                                        },
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "Right Side",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "conditional",
+                                            "conditionSource": "textual_inline_if_then",
+                                            "textCondition": [
+                                                {
+                                                    "type": "formattedText",
+                                                    "text": "When you get the ball:",
+                                                    "isItalic": true
+                                                }
+                                            ],
+                                            "thenContent": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Pass to Jassu if he doesn't have it"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Swim to the Bottom Middle"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Wait until 2:20, if Abus Aggros then Break"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Swim to the Left, aggro Balgerda (bottom player), then swim back some"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Pass to "
+                                                        },
+                                                        {
+                                                            "type": "characterReference",
+                                                            "characterName": "Tidus",
+                                                            "color": "blue",
+                                                            "isBold": true
+                                                        },
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": " before Balgerda gets in range to block"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Tidus",
+                                                            "actionText": "Swim close to the Goal and Sphere Shot before anyone is close enough to block",
+                                                            "color": "blue",
+                                                            "isBold": true,
+                                                            "subItems": [
+                                                                {
+                                                                    "type": "listItem",
+                                                                    "content": [
+                                                                        {
+                                                                            "type": "plainText",
+                                                                            "text": "If 1 Defender and 2:49, Sphere Shot over the Defender"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "listItem",
+                                                                    "content": [
+                                                                        {
+                                                                            "type": "plainText",
+                                                                            "text": "Otherwise, Break and Sphere Shot"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "listItem",
+                                                                    "content": [
+                                                                        {
+                                                                            "type": "plainText",
+                                                                            "text": "If 2 Defenders, Break 1, Sphere Shot"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "If you need to Score or it's 1-1, then do the same as above with Jassu"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Wait until 4:20 then aggro Balgerda, Pass to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Wakka",
+                            "actionText": "swim close and Venom Shot, or Break, Venom Shot",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Don't try to score in the First Half"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "If you're losing, Change to "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Mark Mode",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " and lose the game."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", Don't Save, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:00"
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "BlitzballGameWon_Luca",
+                            "setType": "user_prompt_after_event",
+                            "sourceDescription": "Outcome of the mandatory Blitzball game in Luca vs. Goers.",
+                            "id": "flag_luca_blitzball_won",
+                            "promptText": "Did you win the Blitzball game against the Luca Goers?"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Sahagin Chief",
+            "strategy": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "ThunderBall",
+                    "contentToShowIfFalse": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Wakka",
+                                    "actionText": "Attack Sahagin C",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " For the first two waves"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Wakka",
+                                    "actionText": "Potion Tidus if he has less than 156 HP, otherwise Defend",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " For the third wave"
+                                }
+                            ]
+                        }
+                    ],
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Cheer",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Wakka",
+                                    "actionText": "Attack",
+                                    "color": "BurntOrange",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Haste Wakka",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "LightningSteel",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Tidus",
+                                            "actionText": "Cheer",
+                                            "color": "blue",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ],
+                            "additionalNote": "If you also got Lightning Steel:"
+                        }
+                    ],
+                    "additionalNote": "Strategy depends on Thunder Ball."
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ],
+            "trackedResourceUpdates": [
+                {
+                    "name": "PowerSphere",
+                    "quantity": 17,
+                    "updateType": "auto_guaranteed",
+                    "id": "sahagins_guaranteed_ps17",
+                    "description": "From Sahagin Chiefs"
+                },
+                {
+                    "name": "PowerSphere",
+                    "quantity": 1,
+                    "updateType": "user_confirm_rng_gain",
+                    "id": "sahagins_overkill_ps1_each",
+                    "description": "From Sahagin Chief Overkill (per enemy)"
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Overkill on Vouivre is +1 Power Sphere"
+                        }
+                    ],
+                    "trackedResourceUpdates": [
+                        {
+                            "name": "PowerSphere",
+                            "quantity": 1,
+                            "updateType": "user_confirm_rng_gain",
+                            "id": "vouivre_overkill_ps1",
+                            "description": "Overkill on Vouivre"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Garuda",
+            "hp": 1800,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Haste Auron",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Auron",
+                            "actionText": "Attack x3",
+                            "color": "red",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Wakka",
+                            "actionText": "Defend, Potion if Tidus has less than 312 HP",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack x1, then Defend",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Wakka",
+                            "actionText": "Defend, Potion if Auron has less than 202 HP",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Auron",
+                            "actionText": "Attack x3",
+                            "color": "red",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Don't revive non-"
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " party members"
+                        }
+                    ]
+                }
+            ],
+            "trackedResourceUpdates": [
+                {
+                    "name": "PowerSphere",
+                    "quantity": 2,
+                    "updateType": "auto_guaranteed",
+                    "id": "luca_garuda_vouivre_ps2",
+                    "description": "From Vouivre and Garuda (Luca)"
+                },
+                {
+                    "name": "PowerSphere",
+                    "quantity": 1,
+                    "updateType": "user_confirm_rng_gain",
+                    "id": "luca_garuda_overkill_ps1",
+                    "description": "Overkill on Garuda (Luca)"
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "1:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", buffer the FMV Skip. Don't save. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " the Auroch scene"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "4:50"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Run north to the hidden chests, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "pickup",
+                            "value": "Magic and HP Sphere"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Run South and try to speak to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Auron",
+                            "color": "red",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " while he's walking away."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Follow red arrow to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during guardian scene. Walk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "4:20"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

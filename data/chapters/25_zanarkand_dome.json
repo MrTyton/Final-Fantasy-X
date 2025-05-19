@@ -1,0 +1,1319 @@
+{
+    "id": "chapter_25_zanarkand_dome",
+    "title": "Zanarkand",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "0:50"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk left. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "fmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "2:20"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Move left to the sphere, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:40"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk further left and follow the path down, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "3:20"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk left onto the next screen."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "textual_inline_if_then",
+                            "textCondition": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "If ",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "formattedText",
+                                    "text": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true,
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "formattedText",
+                                    "text": " doesn't have OD",
+                                    "isItalic": true
+                                }
+                            ],
+                            "thenContent": [
+                                {
+                                    "type": "formation",
+                                    "characters": [
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Auron",
+                                            "color": "red",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Rikku",
+                                            "color": "ForestGreen",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ],
+                            "elseContent": [
+                                {
+                                    "type": "formation",
+                                    "characters": [
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Auron",
+                                            "color": "red",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Kimahri",
+                                            "color": "Tan",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "You can charge "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Rikku",
+                            "color": "ForestGreen",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "'s "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "od"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on an encounter with a Behemoth or a Defender Z (Escape with the others)."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Open the first chest on the left for the "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Fortune Sphere",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", continue on the path until you get inside the Dome."
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "FortuneSphere",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Chest in Zanarkand Dome (left path).",
+                            "id": "zanarkand_dome_fortunesphere_pickup"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "flag_by_drop_4_return",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "conditional",
+                                    "conditionSource": "textual_inline_if_then",
+                                    "textCondition": [
+                                        {
+                                            "type": "formattedText",
+                                            "text": "If you missed the Overkill on ",
+                                            "isItalic": true
+                                        },
+                                        {
+                                            "type": "formattedText",
+                                            "text": "Seymour Flux",
+                                            "isBold": true,
+                                            "isItalic": true
+                                        }
+                                    ],
+                                    "thenContent": [
+                                        {
+                                            "type": "textParagraph",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "kill two "
+                                                },
+                                                {
+                                                    "type": "formattedText",
+                                                    "text": "YKT-11",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " or one "
+                                                },
+                                                {
+                                                    "type": "formattedText",
+                                                    "text": "Defender Z",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " with "
+                                                },
+                                                {
+                                                    "type": "formation",
+                                                    "characters": [
+                                                        {
+                                                            "type": "characterReference",
+                                                            "characterName": "Tidus",
+                                                            "color": "blue",
+                                                            "isBold": true
+                                                        },
+                                                        {
+                                                            "type": "characterReference",
+                                                            "characterName": "Auron",
+                                                            "color": "red",
+                                                            "isBold": true
+                                                        },
+                                                        {
+                                                            "type": "characterReference",
+                                                            "characterName": "Yuna",
+                                                            "color": "gray",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": ", only "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Yuna",
+                                                    "color": "gray",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " needs the AP."
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "encounters",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "YKT-11:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Yuna",
+                                            "actionText": "Attack",
+                                            "color": "gray",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Tidus",
+                                            "actionText": "Attack",
+                                            "color": "blue",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Flee"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Defender Z:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Yuna",
+                                            "actionText": "Summon Bahamut",
+                                            "color": "gray",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Bahamut",
+                                            "actionText": "Attack",
+                                            "color": "RoyalPurple",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "After Seymour's Mom "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", if you had "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "4 Return Spheres",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "pickup",
+                            "value": "Friend Sphere"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on the right path."
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "FriendSphere",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Chest in Zanarkand Dome (right path, after Seymour's Mom CS, if 4 Return Spheres from B&Y).",
+                            "id": "zanarkand_dome_friendsphere_pickup_4ret"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "When you leave the last encounter zone, the hallway before the Zanarkand Trials, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "pickup",
+                            "value": "Luck Sphere"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on the right."
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "LuckSphere",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Chest in Zanarkand Dome (hallway before Trials).",
+                            "id": "zanarkand_dome_lucksphere_pickup"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_by_drop_4_return",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "sphereGrid",
+                            "content": [
+                                {
+                                    "type": "sphereGridCharacterActions",
+                                    "character": "Yuna",
+                                    "inlineCondition": [
+                                        {
+                                            "type": "formattedText",
+                                            "text": "(If you got 4 Return Spheres)"
+                                        }
+                                    ],
+                                    "actions": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Friend Sphere to "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Lulu",
+                                                    "color": "purple",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\downarrow\\downarrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Str+4, Str+4"
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "PowerSphere",
+                                                    "quantity": -2,
+                                                    "updateType": "consumption_implicit_grid",
+                                                    "id": "yuna_zanarkand_4ret_str4x2_ps2",
+                                                    "description": "Yuna Str+4 x2 (4Ret - Lulu path)"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Move "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\nearrow"
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " to the empty node between HP+200 and Agi+4"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Agi+4"
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "SpeedSphere",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_implicit_grid",
+                                                    "id": "yuna_zanarkand_4ret_agi4_ss1",
+                                                    "description": "Yuna Agi+4 (4Ret)"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Luck Sphere, Fortune Sphere"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Return Sphere to the Agi+4 node you just activated"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Str+3"
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "PowerSphere",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_implicit_grid",
+                                                    "id": "yuna_zanarkand_4ret_str3_ps1",
+                                                    "description": "Yuna Str+3 (4Ret)"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Return Sphere to the Str+3 node you just activated"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Agi+4"
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "SpeedSphere",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_implicit_grid",
+                                                    "id": "yuna_zanarkand_4ret_agi4_2_ss1",
+                                                    "description": "Yuna Agi+4 (2nd) (4Ret)"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "associatedImages": [{
+                                        "type": "image",
+                                        "multiColumnWidth": ".7",
+                                        "singleColumnWidth": ".4",
+                                        "path": "graphics/4_returns_w_luck_pt1"
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_by_drop_2_return_2_friend",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "sphereGrid",
+                            "content": [
+                                {
+                                    "type": "sphereGridCharacterActions",
+                                    "character": "Yuna",
+                                    "inlineCondition": [
+                                        {
+                                            "type": "formattedText",
+                                            "text": "(If you got 2 Return Spheres)"
+                                        }
+                                    ],
+                                    "actions": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Use Blk Mag Sphere on Fire "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\uparrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Return Sphere to Fire "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\uparrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Move "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\leftarrow\\leftarrow\\leftarrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Luck Sphere, Fortune Sphere"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Agi+4"
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "SpeedSphere",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_implicit_grid",
+                                                    "id": "yuna_zanarkand_2ret_agi4_ss1",
+                                                    "description": "Yuna Agi+4 (2Ret)"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Move "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\nwarrow\\leftarrow\\leftarrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "MP+20, Str+2"
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "PowerSphere",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_implicit_grid",
+                                                    "id": "yuna_zanarkand_2ret_str2_ps1",
+                                                    "description": "Yuna Str+2 (2Ret)"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "associatedImages": [{
+                                        "type": "image",
+                                        "multiColumnWidth": ".7",
+                                        "singleColumnWidth": ".4",
+                                        "path": "graphics/yuna_returns_to_fire_2_returns"
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_by_drop_0_return_4_friend",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "sphereGrid",
+                            "content": [
+                                {
+                                    "type": "sphereGridCharacterActions",
+                                    "character": "Yuna",
+                                    "inlineCondition": [
+                                        {
+                                            "type": "formattedText",
+                                            "text": "(If you got 0 Return Spheres)"
+                                        }
+                                    ],
+                                    "actions": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Move "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\swarrow\\swarrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Luck Sphere, Fortune Sphere"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "associatedImages": [{
+                                        "type": "image",
+                                        "multiColumnWidth": ".7",
+                                        "singleColumnWidth": ".4",
+                                        "path": "graphics/0_return_w_luck"
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "acquired_item_flag_check",
+                            "flagName": "flag_by_drop_0_return_4_friend",
+                            "contentToShowIfTrue": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Customize:"
+                                        },
+                                        {
+                                            "type": "instructionList",
+                                            "ordered": false,
+                                            "items": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Auron",
+                                                            "actionText": "Shimmering Blade $\\rightarrow$ First Strike",
+                                                            "color": "red",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Yuna",
+                                                            "actionText": "Staff $\\rightarrow$ First Strike",
+                                                            "color": "gray",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "additionalNote": "If you had 0 Return Spheres:"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formattedText",
+                            "text": "Save",
+                            "isLarge": true
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "image",
+            "path": "graphics/Zanarkand_Trials",
+            "width": ".95\\columnwidth"
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Push in the pedestals starting from the Top Left, to Bottom Left, then Top Right, Bottom Right, then Besaid Sphere. After pushing in each pedestal, do the corresponding puzzle, shown above."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "After the second puzzle, take the Kilika Sphere on the left and put it into the second pedestal."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "After the fifth puzzle, take the Besaid Sphere from the right and put it into the fifth pedestal."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", run into the large room"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Spectral Keeper",
+            "hp": 52000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Summon Bahamut",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Bahamut",
+                            "actionText": "Attack x2",
+                            "color": "RoyalPurple",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "acquired_item_flag_check",
+                    "flagName": "flag_by_drop_4_return",
+                    "contentToShowIfTrue": [
+                        {
+                            "type": "sphereGrid",
+                            "content": [
+                                {
+                                    "type": "sphereGridCharacterActions",
+                                    "character": "Yuna",
+                                    "inlineCondition": [
+                                        {
+                                            "type": "formattedText",
+                                            "text": "(If you had 4 Return Spheres)"
+                                        }
+                                    ],
+                                    "actions": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Use Blk Mag Sphere on Fire "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\uparrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Return Sphere to Fire "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\uparrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Move "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\leftarrow\\leftarrow\\leftarrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Agi+4"
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "SpeedSphere",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_implicit_grid",
+                                                    "id": "yuna_zanarkand_4ret_fire_agi4_ss1",
+                                                    "description": "Yuna Agi+4 (4Ret - Fire path)"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Move "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\nwarrow\\leftarrow\\leftarrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "MP+20, Str+2"
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "PowerSphere",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_implicit_grid",
+                                                    "id": "yuna_zanarkand_4ret_fire_str2_ps1",
+                                                    "description": "Yuna Str+2 (4Ret - Fire path)"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "associatedImages": [{
+                                        "type": "image",
+                                        "multiColumnWidth": ".7",
+                                        "singleColumnWidth": ".4",
+                                        "path": "graphics/yuna_returns_to_fire_4_returns"
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", Run up, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " by mashing another button (like "
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "R1",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ") at the same time as confirm, walk up to Yunalesca's room, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Yunalesca",
+            "hp": 132000,
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Summon Bahamut",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Bahamut",
+                            "actionText": "Attack x3",
+                            "color": "RoyalPurple",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "If any weapon drops, it will have "
+                },
+                {
+                    "type": "formattedText",
+                    "text": "Zombie Strike",
+                    "isBold": true
+                }
+            ],
+            "itemAcquisitionFlags": [
+                {
+                    "itemName": "ZombieStrikeWeapon_Tidus",
+                    "setType": "user_checkbox_on_pickup_or_drop",
+                    "sourceDescription": "Zombie Strike weapon dropped for Tidus from Yunalesca.",
+                    "id": "flag_zombiestrike_tidus",
+                    "promptText": "Did Tidus get a Zombie Strike weapon?"
+                },
+                {
+                    "itemName": "ZombieStrikeWeapon_Yuna",
+                    "setType": "user_checkbox_on_pickup_or_drop",
+                    "sourceDescription": "Zombie Strike weapon dropped for Yuna from Yunalesca.",
+                    "id": "flag_zombiestrike_yuna",
+                    "promptText": "Did Yuna get a Zombie Strike weapon?"
+                },
+                {
+                    "itemName": "ZombieStrikeWeapon_Auron",
+                    "setType": "user_checkbox_on_pickup_or_drop",
+                    "sourceDescription": "Zombie Strike weapon dropped for Auron from Yunalesca.",
+                    "id": "flag_zombiestrike_auron",
+                    "promptText": "Did Auron get a Zombie Strike weapon?"
+                },
+                {
+                    "itemName": "ZombieStrikeWeapon_Rikku",
+                    "setType": "user_checkbox_on_pickup_or_drop",
+                    "sourceDescription": "Zombie Strike weapon dropped for Rikku from Yunalesca.",
+                    "id": "flag_zombiestrike_rikku",
+                    "promptText": "Did Rikku get a Zombie Strike weapon?"
+                },
+                {
+                    "itemName": "ZombieStrikeWeapon_OtherNonFirstStrikeChar",
+                    "setType": "user_checkbox_on_pickup_or_drop",
+                    "sourceDescription": "Zombie Strike weapon dropped for Wakka, Lulu, or Kimahri from Yunalesca.",
+                    "id": "flag_zombiestrike_othernonfirststrike",
+                    "promptText": "Did Wakka, Lulu, or Kimahri get a Zombie Strike weapon (and not Tidus/Yuna/Auron/Rikku)?"
+                },
+                {
+                    "itemName": "NoZombieStrikeWeaponDropped",
+                    "setType": "derived_from_user_choice",
+                    "sourceDescription": "Automatically set to true if no specific Zombie Strike weapon was reported as dropped by Yunalesca (i.e., all other ZombieStrikeWeapon_xxx flags are false).",
+                    "id": "flag_no_zombiestrike_dropped",
+                    "promptText": "No Zombie Strike weapon was obtained from Yunalesca."
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", leave room, walk down steps, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", go down on the next screens, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", go up the lift, walk out of the cloister of trials, walk down the steps, walk down, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

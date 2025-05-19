@@ -1,0 +1,1211 @@
+{
+    "id": "chapter_20_bevelle",
+    "title": "Bevelle",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Use a Mega-Potion"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "ifthenelse_blitzresult",
+                            "lossContent": [
+                                {
+                                    "type": "equip",
+                                    "content": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Equip Sonic Steel",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]                            
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "conditional",
+            "conditionSource": "tracked_resource_check",
+            "resourceName": "SleepingPowder",
+            "comparison": "greater_than_or_equal_to",
+            "value": 1,
+            "contentToShowIfTrue": [
+                {
+                    "type": "textParagraph",
+                    "content": [
+                        {
+                            "type": "formattedText",
+                            "text": "With Sleeping Powder:",
+                            "isItalic": true
+                        }
+                    ]
+                },
+                {
+                    "type": "battle",
+                    "enemyName": "Guard Fights - Sleeping Powder Strategy",
+                    "strategy": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "Fights 1 and 3 (3 Monks):",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Attack",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditionSource": "acquired_item_flag_check",
+                                                    "flagName": "flag_bought_any_distiller_rin",
+                                                    "contentToShowIfTrue": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "plainText",
+                                                                    "text": "Others: Defend or use Distillers"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "contentToShowIfFalse": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "plainText",
+                                                                    "text": "Others: Defend"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "Fights 2 and 4 (2 Monks and a YKT-63):",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Attack the YKT-63",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Sleeping Powder",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "SleepingPowder",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_explicit_fixed",
+                                                    "id": "bevelle_guard_f24_sp1_with",
+                                                    "description": "Rikku uses Sleeping Powder (Guards F2/4 - With SP Strategy)"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Kimahri",
+                                                    "actionText": "Smoke Bomb/Silence Grenade/Sleeping Powder",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditionSource": "blitzballdetermination",
+                                                    "displayAsItemizedCondition": true,
+                                                    "winContent": [],
+                                                    "lossContent": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "plainText",
+                                                                    "text": "If the YKT-63 is still alive Use a Lightning Marble/Arctic Wind/Fish Scale or Attack with "
+                                                                },
+                                                                {
+                                                                    "type": "characterReference",
+                                                                    "characterName": "Tidus",
+                                                                    "color": "blue",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "Fight 5 (2 Monks and a YAT-99):",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditionSource": "textual_inline_if_then",
+                                                    "textCondition": [
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "If you have 2 Smoke Bombs/Sleeping Powders/Silence Grenades:"
+                                                        }
+                                                    ],
+                                                    "thenContent": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Tidus",
+                                                                    "actionText": "Haste Rikku",
+                                                                    "color": "blue",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Rikku",
+                                                                    "actionText": "Sleeping Powder/Smoke Bomb/Silence Grenade",
+                                                                    "color": "ForestGreen",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Rikku",
+                                                                    "actionText": "If the Guards are sleeping use a Bomb Core on the YAT-99",
+                                                                    "color": "ForestGreen",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Rikku",
+                                                                    "actionText": "Sleeping Powder/Smoke Bomb/Silence Grenade",
+                                                                    "color": "ForestGreen",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Tidus",
+                                                                    "actionText": "Attack",
+                                                                    "color": "blue",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditionSource": "textual_inline_if_then",
+                                                    "textCondition": [
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "If you have 2 Bomb Cores:"
+                                                        }
+                                                    ],
+                                                    "thenContent": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Tidus",
+                                                                    "actionText": "Attack the Monks",
+                                                                    "color": "blue",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "plainText",
+                                                                    "text": "Others: Use Bomb Core x2 on the YAT-99"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "contentToShowIfFalse": [
+                {
+                    "type": "textParagraph",
+                    "content": [
+                        {
+                            "type": "formattedText",
+                            "text": "Without Sleeping Powder:",
+                            "isItalic": true
+                        }
+                    ]
+                },
+                {
+                    "type": "instructionList",
+                    "ordered": false,
+                    "items": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Keep "
+                                },
+                                {
+                                    "type": "formation",
+                                    "characters": [
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Rikku",
+                                            "color": "ForestGreen",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Lulu",
+                                            "color": "purple",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for the first 4 fights, "
+                                },
+                                {
+                                    "type": "formation",
+                                    "characters": [
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Rikku",
+                                            "color": "ForestGreen",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Kimahri",
+                                            "color": "Tan",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " for the last one"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "battle",
+                    "enemyName": "Guard Fights - No Sleeping Powder Strategy",
+                    "strategy": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "Fights 1 and 3 (3 Monks):",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Attack",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditionSource": "acquired_item_flag_check",
+                                                    "flagName": "flag_bought_any_distiller_rin",
+                                                    "contentToShowIfTrue": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "plainText",
+                                                                    "text": "Others: Defend or use Distillers"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "contentToShowIfFalse": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "plainText",
+                                                                    "text": "Others: Defend"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "Fights 2 and 4 (2 Monks and a YKT-63):",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Switch "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " for "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Kimahri",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Kimahri",
+                                                    "actionText": "Silence Grenade/Smoke Bomb",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Rikku",
+                                                    "actionText": "Silence Grenade/Smoke Bomb",
+                                                    "color": "ForestGreen",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Switch "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Kimahri",
+                                                    "color": "Tan",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "plainText",
+                                                    "text": " for "
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "characterCommand",
+                                                    "characterName": "Tidus",
+                                                    "actionText": "Attack the YKT-63",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditionSource": "blitzballdetermination",
+                                                    "displayAsItemizedCondition": true,
+                                                    "winContent": [],
+                                                    "lossContent": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "plainText",
+                                                                    "text": "If the YKT-63 is still alive Use a Lightning Marble/Arctic Wind/Fish Scale or Attack with "
+                                                                },
+                                                                {
+                                                                    "type": "characterReference",
+                                                                    "characterName": "Tidus",
+                                                                    "color": "blue",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "Fight 5 (2 Monks and a YAT-99):",
+                                    "isItalic": true
+                                },
+                                {
+                                    "type": "instructionList",
+                                    "ordered": false,
+                                    "items": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditionSource": "textual_inline_if_then",
+                                                    "textCondition": [
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "If you have 2 Smoke Bombs/Silence Grenades:"
+                                                        }
+                                                    ],
+                                                    "thenContent": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Tidus",
+                                                                    "actionText": "Haste Rikku",
+                                                                    "color": "blue",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Rikku",
+                                                                    "actionText": "Smoke Bomb/Silence Grenade x2",
+                                                                    "color": "ForestGreen",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Tidus",
+                                                                    "actionText": "Attack",
+                                                                    "color": "blue",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "conditional",
+                                                    "conditionSource": "textual_inline_if_then",
+                                                    "textCondition": [
+                                                        {
+                                                            "type": "formattedText",
+                                                            "text": "If you have 2 Bomb Cores:"
+                                                        }
+                                                    ],
+                                                    "thenContent": [
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "characterCommand",
+                                                                    "characterName": "Tidus",
+                                                                    "actionText": "Attack the Monks",
+                                                                    "color": "blue",
+                                                                    "isBold": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "listItem",
+                                                            "content": [
+                                                                {
+                                                                    "type": "plainText",
+                                                                    "text": "Others: Use Bomb Core x2 on the YAT-99"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "additionalNote": "Bevelle Guard Fights - strategy selection based on Sleeping Powder availability."
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "1:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " dialogue. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv",
+                            "value": "30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Use lift, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "trial",
+            "steps": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formattedText",
+                            "text": "Upper section:",
+                            "isItalic": true
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Push the pedestal in"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Press X"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go left at the 2nd junction"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Take sphere, push pedestal back"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "At the 3rd junction, go back (hold X)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go left at the 2nd junction"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Place sphere into wall, push pedestal back"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "At the 3rd junction, go back (hold X)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go left at the 1st junction (hold X after the 2nd junction)"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formattedText",
+                            "text": "Lower section (1st visit):",
+                            "isItalic": true
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "The platform will automatically stop at the 1st junction"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "After the platform stops, press X the 2nd time the arrow is pointing left"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go right at the 3rd junction (hold X after the 2nd junction)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Take Glyph sphere from wall, push pedestal back"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "At the 4th junction go right (hold X)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Place Glyph sphere into pedestal"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Take Bevelle sphere from pedestal"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Place Bevelle sphere into the wall"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Take the Glyph sphere from pedestal"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Place Glyph sphere into the next wall"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Take Destruction sphere from the new wall"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Place Destruction sphere on the pedestal"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Take Bevelle sphere from the wall"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Push pedestal back and fall off the edge"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formattedText",
+                            "text": "Lower section (2nd visit):",
+                            "isItalic": true
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go straight (start holding X before the platform stops)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "At the 3rd junction go right (hold X after the 2nd junction)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Place Bevelle sphere on the pedestal"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Take Destruction sphere from the pedestal"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Place Destruction sphere into wall"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Push pedestal back and fall off the edge"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formattedText",
+                            "text": "Lower section (3nd visit):",
+                            "isItalic": true
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go straight"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "At the 2nd junction go right (hold X)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Push pedestal"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go up the stairs, open the chest"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", name "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Bahamut",
+                            "color": "RoyalPurple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", don't save, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

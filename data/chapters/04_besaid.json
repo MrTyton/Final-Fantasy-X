@@ -1,0 +1,903 @@
+{
+    "id": "chapter_04_besaid",
+    "title": "Besaid",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "0:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "fmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Swim to the beach and "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk up to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk down to next screen."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk right to next screen, right again, down to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Swim in the Lagoon. Watch out for invisible wall at the end."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "encounters",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Piranhas:"
+                        },
+                        {
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Attack if 2 groups, or 3 if preempt."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Otherwise run away."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " next couple of screens. Walk to temple, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "0:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk to the Priest, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:30"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". Walk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " tent (middle right), talk to him and "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk to temple, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "trial",
+            "steps": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Touch the wall at the end"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Touch the wall on the right"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go down the steps and pickup the sphere from the wall"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go down the steps and place the sphere in the door"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go down the corridor past the first pedestal"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Touch the wall opposite the second pedestal to open the hidden room"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Pickup the sphere in the hidden room, place it on the second pedestal"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Push the pedestal to complete the trials"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:00"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " inside the Fayth room. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "fmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "+"
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:00"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " after the "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "fmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", walk down to Besaid Center. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:40"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", name "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Valefor",
+                            "color": "Salmon",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " at party, walk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Yuna",
+                            "color": "gray",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ". "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", respond with the "
+                        },
+                        {
+                            "type": "nth",
+                            "value": "2nd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " option, ``She's not my type''. Talk to "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", go to sleep, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " on the dream docks."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk out of tent, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": "."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Leave village, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " through forced encounters (guaranteed 1 Power Sphere, Overkill on Dingo gives +1 Power Sphere), "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " during cutscene, avoid statue and leave the area by going up. "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "skippableFmv"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " right before the "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Kimahri",
+                            "color": "Tan",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " fight."
+                        }
+                    ],
+                    "trackedResourceUpdates": [
+                        {
+                            "name": "PowerSphere",
+                            "quantity": 1,
+                            "updateType": "auto_guaranteed",
+                            "id": "besaid_forced_encounter_ps1",
+                            "description": "Forced encounter (Besaid Dingoes)"
+                        },
+                        {
+                            "name": "PowerSphere",
+                            "quantity": 1,
+                            "updateType": "user_confirm_rng_gain",
+                            "id": "besaid_dingo_overkill_ps1",
+                            "description": "Overkill on Dingo (Besaid Dingoes)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sphereGrid",
+            "content": [
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_inline_if_then",
+                    "textCondition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If ",
+                            "isItalic": true
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Tidus",
+                            "color": "blue",
+                            "isBold": true,
+                            "isItalic": true
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": " has 3 levels:",
+                            "isItalic": true
+                        }
+                    ],
+                    "thenContent": [
+                        {
+                            "type": "sphereGrid",
+                            "content": [
+                                {
+                                    "type": "sphereGridCharacterActions",
+                                    "character": "Tidus",
+                                    "actions": [
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Move "
+                                                },
+                                                {
+                                                    "type": "mathSymbol",
+                                                    "symbol": "\\leftarrow"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "listItem",
+                                            "content": [
+                                                {
+                                                    "type": "plainText",
+                                                    "text": "Get Cheer, Str +1"
+                                                }
+                                            ],
+                                            "trackedResourceUpdates": [
+                                                {
+                                                    "name": "PowerSphere",
+                                                    "quantity": -1,
+                                                    "updateType": "consumption_implicit_grid",
+                                                    "id": "tidus_grid_cheer_str1_ps1",
+                                                    "description": "Tidus Str+1 (Cheer path)"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "associatedImages": [{
+                                        "type": "image",
+                                        "multiColumnWidth": ".7",
+                                        "singleColumnWidth": ".4",
+                                        "path": "graphics/tiduscheer"
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Kimahri",
+            "hp": 750,
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Each Attack does average of 125, count damage compared to average to know if you need to Potion or not.\nIf you did the above sphere grid already, 6 Attacks will always kill."
+                }
+            ],
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack x5",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_inline_if_then",
+                    "textCondition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If the Attacks did at least 7 damage over average:",
+                            "isItalic": true
+                        }
+                    ],
+                    "thenContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "textual_inline_if_then",
+                    "textCondition": [
+                        {
+                            "type": "formattedText",
+                            "text": "If ",
+                            "isItalic": true
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": "Tidus",
+                            "color": "blue",
+                            "isBold": true,
+                            "isItalic": true
+                        },
+                        {
+                            "type": "formattedText",
+                            "text": " has less than 178 HP:",
+                            "isItalic": true
+                        }
+                    ],
+                    "thenContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Potion",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Attack x1-2",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", continue running"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Garuda",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Yuna",
+                            "actionText": "Summon Valefor",
+                            "color": "gray",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Valefor",
+                            "actionText": "Thunder x6 to build Overdrive",
+                            "color": "Salmon",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ],
+            "trackedResourceUpdates": [
+                {
+                    "name": "PowerSphere",
+                    "quantity": 1,
+                    "updateType": "auto_guaranteed",
+                    "id": "besaid_garuda_ps1",
+                    "description": "From Besaid Garuda"
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "If you didn't do the above sphere grid yet, do it now (only get Cheer if Tidus has 2 levels)."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Yuna",
+                                    "color": "gray",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Garuda",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Flee using the Escape Command"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "encounters",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterReference",
+                            "characterName": "Dingo",
+                            "isBold": false
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ": "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Attack"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterReference",
+                            "characterName": "Condor",
+                            "isBold": false
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ": "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Wakka",
+                            "color": "BurntOrange",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Attack"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterReference",
+                            "characterName": "Water Flan",
+                            "isBold": false
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ": "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Lulu",
+                            "color": "purple",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " Thunder"
+                        }
+                    ]
+                }
+            ],
+            
+            "trackedResourceUpdates": [
+                {
+                    "name": "PowerSphere",
+                    "quantity": 1,
+                    "updateType": "auto_guaranteed",
+                    "id": "besaid_enc_ps2",
+                    "description": "From Besaid Encounters (Dingo)"
+                },
+                {
+                    "name": "PowerSphere",
+                    "quantity": 1,
+                    "updateType": "user_confirm_rng_gain",
+                    "id": "besaid_enc_dingo_overkill_ps2",
+                    "description": "Overkill on Dingo (Besaid Encounters)"
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "At Besaid Beach "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "save"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": ", talk to the guy in red shorts for 400 Gil, go onto the boat."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

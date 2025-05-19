@@ -1,0 +1,666 @@
+{
+    "id": "chapter_18_home",
+    "title": "Home",
+    "content": [
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go into door, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Bombs",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Tidus",
+                            "actionText": "Haste Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "blitzballdetermination",
+                    "displayAsItemizedCondition": true,
+                    "winContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack each, starting with Guado",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Others: Defend"
+                                }
+                            ]
+                        }
+                    ],
+                    "lossContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack Guado",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Rikku",
+                                    "actionText": "Grenade",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                }
+                            ],
+                            "trackedResourceUpdates": [
+                                {
+                                    "name": "Grenade",
+                                    "quantity": -1,
+                                    "updateType": "consumption_explicit_fixed",
+                                    "id": "home_bombs_rikku_grenade_loss",
+                                    "description": "Rikku uses Grenade on Bombs (Blitz Loss)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack Bomb x2",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Auron",
+                                    "actionText": "Defend",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "conditional",
+                            "conditionSource": "textual_inline_if_then",
+                            "textCondition": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "If "
+                                },
+                                {
+                                    "type": "formattedText",
+                                    "text": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "formattedText",
+                                    "text": " doesn't have OD:"
+                                }
+                            ],
+                            "thenContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Switch anyone for "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Kimahri",
+                                            "color": "Tan",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "characterCommand",
+                                            "characterName": "Kimahri",
+                                            "actionText": "Lancet Bomb",
+                                            "color": "Tan",
+                                            "isBold": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Switch anyone for "
+                                        },
+                                        {
+                                            "type": "characterReference",
+                                            "characterName": "Tidus",
+                                            "color": "blue",
+                                            "isBold": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Tidus",
+                                    "actionText": "Attack Bomb",
+                                    "color": "blue",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "trackedResourceUpdates": [
+                {
+                    "name": "PowerSphere",
+                    "quantity": 6,
+                    "updateType": "auto_guaranteed",
+                    "id": "home_bombs_guaranteed_ps6",
+                    "description": "From Bombs encounter"
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Follow the others, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Dual Horn",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch anyone for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Kimahri",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "conditional",
+                    "conditionSource": "blitzballdetermination",
+                    "displayAsItemizedCondition": true,
+                    "winContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "characterCommand",
+                                    "characterName": "Kimahri",
+                                    "actionText": "Lancet Dual Horn (Fire Breath) if he doesn't have Overdrive",
+                                    "color": "Tan",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Overdrive Stone Breath",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go down the stairs. Once the camera flips, "
+                        },
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Lulu",
+                                    "color": "purple",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Auron",
+                                    "color": "red",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "conditional",
+                            "conditionSource": "blitzballdetermination",
+                            "displayAsItemizedCondition": true,
+                            "lossContent": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Go back up the stairs into the left door."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "You will be forced into another Dual Horn encounter"
+                                        },
+                                        {
+                                            "type": "battle",
+                                            "enemyName": "Dual Horns",
+                                            "strategy": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "plainText",
+                                                            "text": "Switch anyone for "
+                                                        },
+                                                        {
+                                                            "type": "characterReference",
+                                                            "characterName": "Kimahri",
+                                                            "color": "Tan",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Kimahri",
+                                                            "actionText": "Lancet Dual Horn (Fire Breath)",
+                                                            "color": "Tan",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "characterCommand",
+                                                            "characterName": "Kimahri",
+                                                            "actionText": "Overdrive Stone Breath",
+                                                            "color": "Tan",
+                                                            "isBold": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "formation",
+                                            "characters": [
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Tidus",
+                                                    "color": "blue",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Lulu",
+                                                    "color": "purple",
+                                                    "isBold": true
+                                                },
+                                                {
+                                                    "type": "characterReference",
+                                                    "characterName": "Auron",
+                                                    "color": "red",
+                                                    "isBold": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Open the right chest for a "
+                                        },
+                                        {
+                                            "type": "formattedText",
+                                            "text": "Friend Sphere",
+                                            "isBold": true
+                                        },
+                                        {
+                                            "type": "plainText",
+                                            "text": ", with the codes: Bottom Middle (up x2), Middle Right (up x4), Middle (down x4), exit the room and go down the stairs once again"
+                                        }
+                                    ],
+                                    "itemAcquisitionFlags": [
+                                        {
+                                            "itemName": "FriendSphere",
+                                            "setType": "user_checkbox_on_pickup_or_drop",
+                                            "sourceDescription": "Chest in Home (Dual Horn room, Blitz Loss route)",
+                                            "id": "home_friendsphere_pickup_loss",
+                                            "promptText": "Picked up Friend Sphere from Home (Blitz Loss route)?"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go left into the door, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "0:50"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "battle",
+            "enemyName": "Chimera",
+            "strategy": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Switch anyone for "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Kimahri",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Lancet Chimera (Aqua Breath)",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Kimahri",
+                            "actionText": "Overdrive Stone Breath",
+                            "color": "Tan",
+                            "isBold": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "instructionList",
+            "ordered": true,
+            "resume": true,
+            "items": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Walk down steps, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "1:30"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Before going further, "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "pickup",
+                            "value": "Level 2 Key Sphere"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " and "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "pickup",
+                            "value": "Level 4 Key Sphere"
+                        }
+                    ],
+                    "itemAcquisitionFlags": [
+                        {
+                            "itemName": "Lv2KeySphere",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Chest in Home",
+                            "id": "home_lv2keysphere_pickup"
+                        },
+                        {
+                            "itemName": "Lv4KeySphere",
+                            "setType": "user_checkbox_on_pickup_or_drop",
+                            "sourceDescription": "Chest in Home",
+                            "id": "home_lv4keysphere_pickup"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "gameMacro",
+                            "macroName": "sd"
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " until "
+                        },
+                        {
+                            "type": "characterReference",
+                            "characterName": "Tidus",
+                            "color": "blue",
+                            "isBold": true
+                        },
+                        {
+                            "type": "plainText",
+                            "text": " asks ``why'', "
+                        },
+                        {
+                            "type": "gameMacro",
+                            "macroName": "cs",
+                            "value": "6:20"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "formation",
+                            "characters": [
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Tidus",
+                                    "color": "blue",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Rikku",
+                                    "color": "ForestGreen",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "plainText",
+                            "text": "Go bottom right to the next screen, run across the bridge"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
