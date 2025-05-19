@@ -2,35 +2,41 @@
 import React, { useRef, useEffect, useCallback, useMemo } from 'react';
 import { useGlobalState, useGlobalDispatch } from '../../contexts/GlobalStateContext';
 import { GlobalActionType } from '../../contexts/GlobalStateContext';
-import type { ChapterContent, FormattedText } from '../../types';
+import type { ChapterContent } from '../../types';
 import ContentRenderer from '../ContentRenderer/ContentRenderer';
 
+// Style for the section title banner at the top of each chapter/section
 const sectionTitleBannerStyle: React.CSSProperties = {
-    backgroundColor: '#e9ecef', // A light grey, similar to Tracker header perhaps
-    color: '#212529',           // Dark text
-    padding: '12px 20px',       // Decent padding
-    margin: '-20px -20px 20px -20px', // Negative margins to make it stretch full width of padded parent
+    backgroundColor: '#e9ecef', // Light grey background for section banner
+    color: '#212529',           // Dark text for contrast
+    padding: '12px 20px',       // Padding for visual separation
+    margin: '-20px -20px 20px -20px', // Negative margins to stretch banner full width of padded parent
     // Assumes parent has 20px padding. Adjust if different.
-    fontSize: '1.8em',          // Prominent font size
+    fontSize: '1.8em',          // Prominent font size for section titles
     fontWeight: 'bold',
-    borderBottom: '2px solid #ced4da', // A slightly darker border below
-    borderTop: '1px solid #ced4da',    // Optional top border
-    textAlign: 'left', // Or 'center' if you prefer
+    borderBottom: '2px solid #ced4da', // Slightly darker border below
+    borderTop: '1px solid #ced4da',    // Optional top border for separation
+    textAlign: 'left', // Section titles are left-aligned by default
 };
 
+// MainContentArea is the central scrollable area that displays the main guide content.
+// It manages dynamic loading of chapters, scroll-to-section, and intersection observer for ToC sync.
 const MainContentArea: React.FC = () => {
+    // Access global state for guide data, current chapter, rendered chapters, and settings
     const { guideData, currentTopChapterId, renderedChapterIds, settings } = useGlobalState();
     const dispatch = useGlobalDispatch();
 
+    // Ref to the scrollable container div for main content
     const scrollableContainerRef = React.useRef<HTMLDivElement>(null);
+    // Ref object to hold references to each chapter/section DOM element
     const chapterSectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-    // Function to assign refs
-    const setChapterSectionRef = useCallback((id: string, element: HTMLElement | null) => { // <<< CORRECTED TYPE HERE
+    // Assigns a ref to a chapter section element for scroll and intersection observer logic
+    const setChapterSectionRef = useCallback((id: string, element: HTMLElement | null) => {
         chapterSectionRefs.current[id] = element;
     }, []);
 
-    // Clear refs for chapters that are no longer rendered
+    // Clean up refs for chapters that are no longer rendered (e.g., after ToC jump or dynamic loading)
     useEffect(() => {
         const currentRenderedIds = new Set(renderedChapterIds);
         Object.keys(chapterSectionRefs.current).forEach(id => {
@@ -40,6 +46,8 @@ const MainContentArea: React.FC = () => {
         });
     }, [renderedChapterIds]);
 
+    // Helper to get section data (title, content, id) for a given section id
+    // Handles introduction, acknowledgements, and regular chapters
     const getSectionData = useCallback((id: string): { title: string; content: ChapterContent[]; id: string } | null => {
         if (!guideData) return null;
         if (id === 'introduction_section' && guideData.introduction) {
@@ -54,36 +62,34 @@ const MainContentArea: React.FC = () => {
         return null;
     }, [guideData]);
 
+    // Scroll to the currentTopChapterId if it is the last in renderedChapterIds (i.e., ToC jump or initial load)
     useEffect(() => {
         if (currentTopChapterId && chapterSectionRefs.current[currentTopChapterId]) {
-            // Check if the currentTopChapterId is the *last* item in renderedChapterIds.
-            // This is a heuristic: if ToC was clicked, currentTopChapterId becomes the new "end"
-            // of the initially rendered set.
+            // Heuristic: if ToC was clicked, currentTopChapterId becomes the new "end" of the rendered set
             const isTocJump = renderedChapterIds.length > 0 && renderedChapterIds[renderedChapterIds.length - 1] === currentTopChapterId;
-
             if (isTocJump) {
-                // console.log(`[MainContentArea] ToC Click or initial load: Scrolling section ${currentTopChapterId} into view.`);
-                // Using 'auto' for behavior makes the jump instant, which is usually better for ToC clicks.
-                // 'smooth' can be disorienting if jumping far.
+                // Use 'auto' for instant jump (better for ToC clicks)
                 chapterSectionRefs.current[currentTopChapterId]?.scrollIntoView({ behavior: 'auto', block: 'start' });
             }
-            // If not a ToC jump (e.g., currentTopChapterId changed due to IntersectionObserver while scrolling),
-            // we don't want to force a scroll, as the user is already controlling scroll position.
+            // If not a ToC jump (e.g., changed by IntersectionObserver), do not force scroll
         }
-    }, [currentTopChapterId, renderedChapterIds]); // Dependency on renderedChapterIds is important here
+    }, [currentTopChapterId, renderedChapterIds]);
 
+    // Compute the full list of possible section IDs in order (introduction, chapters, acknowledgements)
     const allPossibleSectionIdsInOrder = useMemo(() => {
-        if (!guideData) return []; const ids: string[] = [];
+        if (!guideData) return [];
+        const ids: string[] = [];
         if (guideData.introduction) ids.push('introduction_section');
         if (guideData.chapters) ids.push(...guideData.chapters.map(c => c.id));
         if (guideData.acknowledgements) ids.push('acknowledgements_section');
         return ids;
     }, [guideData]);
 
+    // Infinite scroll: when user nears the bottom, add the next chapter to renderedChapterIds
     const handleScroll = useCallback(() => {
         const container = scrollableContainerRef.current;
         if (!container || !guideData || renderedChapterIds.length === 0) return;
-        const threshold = 300;
+        const threshold = 300; // px from bottom to trigger loading
         const nearBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - threshold;
         if (nearBottom) {
             const lastRenderedId = renderedChapterIds[renderedChapterIds.length - 1];
@@ -97,6 +103,7 @@ const MainContentArea: React.FC = () => {
         }
     }, [guideData, renderedChapterIds, allPossibleSectionIdsInOrder, dispatch]);
 
+    // Attach/detach scroll event listener for infinite scroll
     useEffect(() => {
         const scrollDiv = scrollableContainerRef.current;
         if (scrollDiv) {
@@ -105,10 +112,12 @@ const MainContentArea: React.FC = () => {
         }
     }, [handleScroll]);
 
+    // IntersectionObserver: update currentTopChapterId as user scrolls through sections
     useEffect(() => {
         const scrollRoot = scrollableContainerRef.current;
         if (!scrollRoot || renderedChapterIds.length === 0) return;
 
+        // Callback for IntersectionObserver: finds the topmost visible section
         const observerCallback = (entries: IntersectionObserverEntry[]) => {
             let topVisibleEntry: IntersectionObserverEntry | null = null;
             for (const entry of entries) {
@@ -125,35 +134,43 @@ const MainContentArea: React.FC = () => {
                 }
             }
         };
+        // Observer options: root is the scrollable div, rootMargin to trigger early, threshold for minimal intersection
         const observerOptions: IntersectionObserverInit = {
             root: scrollRoot, rootMargin: '0px 0px -80% 0px', threshold: 0.01,
         };
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-        const targetsToObserve: HTMLElement[] = []; // Ensure this is HTMLElement[]
+        // Observe all currently rendered chapter section elements
+        const targetsToObserve: HTMLElement[] = [];
         renderedChapterIds.forEach(id => {
-            const elementToObserve = chapterSectionRefs.current[id]; // This is HTMLElement | null
+            const elementToObserve = chapterSectionRefs.current[id];
             if (elementToObserve) {
                 targetsToObserve.push(elementToObserve);
                 observer.observe(elementToObserve);
             }
         });
 
+        // Cleanup: unobserve all and disconnect observer
         return () => {
             targetsToObserve.forEach(el => observer.unobserve(el));
             observer.disconnect();
         };
     }, [renderedChapterIds, dispatch, currentTopChapterId, settings.csrModeActive]);
 
+    // Fallback UI if guide data is not loaded or no chapters are rendered
+    if (!guideData) {
+        return <p style={{ padding: '20px', textAlign: 'center', color: '#555' }}>Guide data is not available.</p>;
+    }
+    if (renderedChapterIds.length === 0 && guideData) {
+        return <p style={{ padding: '20px', textAlign: 'center', color: '#555' }}>Loading content or select from Table of Contents...</p>;
+    }
 
-    if (!guideData) { return <p style={{ padding: '20px', textAlign: 'center', color: '#555' }}>Guide data is not available.</p>; }
-    if (renderedChapterIds.length === 0 && guideData) { return <p style={{ padding: '20px', textAlign: 'center', color: '#555' }}>Loading content or select from Table of Contents...</p>; }
-
+    // Render the main content area, including all currently rendered chapters/sections
     return (
         <div
             ref={scrollableContainerRef}
             style={{
-                padding: '20px', // Keep this padding for content *below* the title banner
+                padding: '20px', // Padding for content below the title banner
                 height: '100%',
                 overflowY: 'auto',
                 boxSizing: 'border-box',
@@ -173,11 +190,13 @@ const MainContentArea: React.FC = () => {
                         // Remove bottom margin from section if title banner provides enough separation
                         style={{ marginBottom: '20px', outline: settings.showConditionalBorders ? '1px dotted purple' : 'none' }}
                     >
+                        {/* Section title banner, always shown if present */}
                         {section.title && (
-                            <h1 style={sectionTitleBannerStyle}> {/* Apply new banner style */}
+                            <h1 style={sectionTitleBannerStyle}>
                                 {section.title}
                             </h1>
                         )}
+                        {/* Render the content for this section using ContentRenderer */}
                         <ContentRenderer
                             contentItems={section.content}
                             currentScopeKey={sectionScopeKey}
@@ -188,4 +207,5 @@ const MainContentArea: React.FC = () => {
         </div>
     );
 };
+
 export default MainContentArea;

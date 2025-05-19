@@ -1,36 +1,40 @@
 // src/contexts/GlobalStateContext.tsx
 import React, { createContext, useReducer, useContext, Dispatch, ReactNode, useEffect } from 'react';
-import type { FFXSpeedrunGuide, TrackedResource, AcquiredItemFlag } from '../types'; // Assuming types.ts is at ../types
-import { KNOWN_TRACKED_RESOURCE_NAMES, KNOWN_ACQUIRED_ITEM_FLAG_NAMES } from '../generated/knownTrackables'; // Adjust path if needed
+import type { FFXSpeedrunGuide } from '../types'; // Types for guide data and trackables
+import { KNOWN_TRACKED_RESOURCE_NAMES, KNOWN_ACQUIRED_ITEM_FLAG_NAMES } from '../generated/knownTrackables'; // Known resource/flag names
 
 // --- State Shape ---
+// TrackerData holds all tracked resources, flags, and a record of which auto-updates have been applied.
 export interface TrackerData {
-  resources: Record<string, number>; 
-  flags: Record<string, boolean>;   
+  resources: Record<string, number>; // Maps resource names to their current quantities
+  flags: Record<string, boolean>;   // Maps flag names to their current boolean state
   appliedAutoUpdateIds: Record<string, true>; // Stores IDs of auto-updates that have been applied ONCE
 }
 
+// GlobalAppSettings holds user-facing settings for the app (CSR mode, theme, text size, debug borders)
 export interface GlobalAppSettings {
-  csrModeActive: boolean;
-  theme: 'light' | 'dark';
-  textSize: 'small' | 'medium' | 'large';
-  showConditionalBorders: boolean;
+  csrModeActive: boolean; // Whether CSR (Conditional Speedrun Route) mode is active
+  theme: 'light' | 'dark'; // UI theme
+  textSize: 'small' | 'medium' | 'large'; // UI text size
+  showConditionalBorders: boolean; // Show debug borders for conditionals and trackables
 }
 
+// GlobalAppState is the root state for the entire app, including guide data, navigation, tracker, and settings
 export interface GlobalAppState {
-  guideData: FFXSpeedrunGuide | null;
-  isLoadingGuide: boolean;
-  guideLoadError: string | null;
-  currentTopChapterId: string | null; 
-  renderedChapterIds: string[];    
-  tracker: TrackerData;
-  settings: GlobalAppSettings;
+  guideData: FFXSpeedrunGuide | null; // The loaded guide data, or null if not loaded
+  isLoadingGuide: boolean;            // Whether the guide is currently loading
+  guideLoadError: string | null;      // Error message if guide failed to load
+  currentTopChapterId: string | null; // The chapter currently most visible at the top of the main content
+  renderedChapterIds: string[];       // List of chapter IDs currently rendered in the main content area
+  tracker: TrackerData;               // All tracked resources, flags, and applied auto-updates
+  settings: GlobalAppSettings;        // User-facing settings
 }
 
 // --- Initial State ---
+// Initialize all known resources to 0
 const initialResources: Record<string, number> = {};
 KNOWN_TRACKED_RESOURCE_NAMES.forEach(name => { initialResources[name] = 0; });
-
+// Initialize all known flags to false
 const initialFlags: Record<string, boolean> = {};
 KNOWN_ACQUIRED_ITEM_FLAG_NAMES.forEach(name => { initialFlags[name] = false; });
 
@@ -54,6 +58,7 @@ export const initialGlobalState: GlobalAppState = {
 };
 
 // --- Action Types ---
+// All possible actions that can be dispatched to the global reducer
 export enum GlobalActionType {
   // Guide Data
   SET_GUIDE_DATA = 'SET_GUIDE_DATA',
@@ -84,6 +89,7 @@ export enum GlobalActionType {
 }
 
 // --- Action Payloads ---
+// All possible action payloads for the global reducer
 export type GlobalAppAction =
   | { type: GlobalActionType.SET_GUIDE_DATA; payload: FFXSpeedrunGuide | null }
   | { type: GlobalActionType.SET_GUIDE_LOADING; payload: boolean }
@@ -101,9 +107,10 @@ export type GlobalAppAction =
   | { type: GlobalActionType.SET_TEXT_SIZE; payload: 'small' | 'medium' | 'large' }
   | { type: GlobalActionType.TOGGLE_CONDITIONAL_BORDERS }
   | { type: GlobalActionType.MARK_AUTO_UPDATE_APPLIED; payload: { id: string } };
-  // | { type: GlobalActionType.UNMARK_AUTO_UPDATE_APPLIED; payload: { id: string } }; // Disabled
+// | { type: GlobalActionType.UNMARK_AUTO_UPDATE_APPLIED; payload: { id: string } }; // Disabled
 
 // --- Reducer Function ---
+// Handles all state transitions for the global app state based on dispatched actions
 export const globalAppReducer = (state: GlobalAppState, action: GlobalAppAction): GlobalAppState => {
   switch (action.type) {
     case GlobalActionType.SET_GUIDE_LOADING:
@@ -112,12 +119,12 @@ export const globalAppReducer = (state: GlobalAppState, action: GlobalAppAction)
       return { ...state, guideData: action.payload, isLoadingGuide: false, guideLoadError: null };
     case GlobalActionType.SET_GUIDE_LOAD_ERROR:
       return { ...state, guideLoadError: action.payload, isLoadingGuide: false, guideData: null };
-    
+
     case GlobalActionType.SET_CURRENT_CHAPTER:
       return { ...state, currentTopChapterId: action.payload };
     case GlobalActionType.ADD_RENDERED_CHAPTER:
       if (state.renderedChapterIds.includes(action.payload)) {
-        return state; 
+        return state;
       }
       return { ...state, renderedChapterIds: [...state.renderedChapterIds, action.payload] };
     case GlobalActionType.SET_INITIAL_RENDERED_CHAPTERS:
@@ -160,11 +167,11 @@ export const globalAppReducer = (state: GlobalAppState, action: GlobalAppAction)
       };
     }
     case GlobalActionType.MANUALLY_EDIT_TRACKER_FLAG: {
-        const { name, newValue } = action.payload;
-        return {
-            ...state,
-            tracker: { ...state.tracker, flags: { ...state.tracker.flags, [name]: newValue } },
-        };
+      const { name, newValue } = action.payload;
+      return {
+        ...state,
+        tracker: { ...state.tracker, flags: { ...state.tracker.flags, [name]: newValue } },
+      };
     }
 
     case GlobalActionType.TOGGLE_CSR_MODE:
@@ -202,6 +209,7 @@ export const globalAppReducer = (state: GlobalAppState, action: GlobalAppAction)
 };
 
 // --- Provider Component & Custom Hooks ---
+// Provides the global state and dispatch context to the app, with logging for all actions.
 const StateContext = createContext<GlobalAppState | undefined>(undefined);
 const DispatchContext = createContext<Dispatch<GlobalAppAction> | undefined>(undefined);
 
@@ -210,8 +218,9 @@ interface GlobalStateProviderProps { children: ReactNode; }
 export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ children }) => {
   useEffect(() => {
     console.log('[GlobalStateProvider] Initializing with state:', initialGlobalState);
-  }, []); 
+  }, []);
 
+  // Logging reducer wraps the main reducer to log all actions dispatched
   const loggingReducer = (state: GlobalAppState, action: GlobalAppAction): GlobalAppState => {
     console.log(
       '[GlobalDispatch] Action Dispatched:',
@@ -234,6 +243,7 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
   );
 };
 
+// Custom hook to access the global state. Throws if used outside provider.
 export const useGlobalState = (): GlobalAppState => {
   const context = useContext(StateContext);
   if (context === undefined) {
@@ -242,6 +252,7 @@ export const useGlobalState = (): GlobalAppState => {
   return context;
 };
 
+// Custom hook to access the global dispatch function. Throws if used outside provider.
 export const useGlobalDispatch = (): Dispatch<GlobalAppAction> => {
   const context = useContext(DispatchContext);
   if (context === undefined) {

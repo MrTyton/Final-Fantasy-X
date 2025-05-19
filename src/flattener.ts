@@ -2,17 +2,21 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
-// Adjust this path if your LaTeX source files are elsewhere relative to the project root
+// LATEX_SOURCES_DIR is the directory containing all LaTeX source files to be flattened.
+// Adjust this path if your LaTeX source files are elsewhere relative to the project root.
 const LATEX_SOURCES_DIR = path.join(__dirname, '..', 'latex_sources');
-// Output file for the flattened content
+// FLATTENED_OUTPUT_FILE is the output file for the fully flattened LaTeX content.
 const FLATTENED_OUTPUT_FILE = path.join(__dirname, '..', 'preprocessed_output.txt');
 
 /**
- * Recursively loads a LaTeX file and resolves \input commands.
+ * Recursively loads a LaTeX file and resolves all \input commands, flattening the document.
+ * - Handles both .tex and .txt extensions.
+ * - Avoids circular dependencies by tracking processed files.
+ * - Removes line comments (starting with %) and optionally block comments.
  * @param filePath Path to the LaTeX file, relative to LATEX_SOURCES_DIR or absolute.
  * @param currentDir The directory of the file currently being processed, for resolving relative paths in \input.
  * @param processedFiles Set to keep track of processed files to avoid circular dependencies.
- * @returns The content of the file with \input commands resolved.
+ * @returns The content of the file with all \input commands recursively resolved.
  */
 async function loadAndPreprocessFile(
     filePath: string,
@@ -33,8 +37,7 @@ async function loadAndPreprocessFile(
         }
     }
 
-
-    // Ensure .tex extension if not present
+    // Ensure .tex or .txt extension if not present
     if (path.extname(absolutePath) !== '.tex' && path.extname(absolutePath) !== '.txt') {
         if (await fs.pathExists(absolutePath + '.tex')) {
             absolutePath += '.tex';
@@ -43,7 +46,7 @@ async function loadAndPreprocessFile(
         }
     }
 
-
+    // Avoid infinite loops by skipping files already processed in this chain
     if (processedFiles.has(absolutePath)) {
         console.warn(`Circular dependency or duplicate input detected for: ${absolutePath}. Skipping.`);
         return ''; // Avoid infinite loops
@@ -58,12 +61,13 @@ async function loadAndPreprocessFile(
     console.log(`Reading file: ${absolutePath}`);
     let content = await fs.readFile(absolutePath, 'utf-8');
 
+    // Read file content and remove comments
     // 1. Remove comments (lines starting with %)
     content = content.replace(/%.*$/gm, '');
     // Remove block comments if you use a package like 'comment' (less common in simple docs)
     // content = content.replace(/\\begin\{comment\}[\s\S]*?\\end\{comment\}/gm, '');
 
-
+    // Recursively resolve \input{filename} commands
     // 2. Resolve \input{filename} or \input{./path/to/filename}
     //    The path in \input is relative to the file containing the \input command.
     const inputRegex = /\\input\{(.*?)\}/g;
@@ -89,6 +93,9 @@ async function loadAndPreprocessFile(
 
 /**
  * Main function to start the flattening process.
+ * - Loads the main LaTeX file and all its dependencies via \input.
+ * - Writes the fully flattened content to FLATTENED_OUTPUT_FILE.
+ * - Handles errors and missing files gracefully.
  * @param mainTexFile The main LaTeX file (e.g., "FFX_Any_Compilation.tex") located in LATEX_SOURCES_DIR.
  */
 async function flattenLatex(mainTexFile: string) {
@@ -98,6 +105,7 @@ async function flattenLatex(mainTexFile: string) {
 
     const mainFilePath = path.join(LATEX_SOURCES_DIR, mainTexFile);
 
+    // Check for main file existence, process, and write output
     if (!await fs.pathExists(mainFilePath)) {
         console.error(`Main LaTeX file not found: ${mainFilePath}`);
         console.error(`Please ensure '${mainTexFile}' exists in '${LATEX_SOURCES_DIR}'.`);
@@ -124,7 +132,7 @@ async function flattenLatex(mainTexFile: string) {
 
 // --- Script Execution ---
 // Replace 'FFX_Any_Compilation.tex' with your actual main .tex file name if different.
-// Make sure this file is located in your LATEX_SOURCES_DIR.
+// This script will flatten all \input dependencies and output a single file for AI processing.
 const mainFile = 'FFX_Any_Compilation.tex';
 
 flattenLatex(mainFile).catch(err => {

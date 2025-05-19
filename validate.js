@@ -69,6 +69,15 @@ let filesValidated = 0;
 let filesFailed = 0;
 let allValid = true; // Assume success until proven otherwise
 
+/**
+ * Validates a JSON file against a referenced schema definition.
+ * - Handles both object and array top-level content.
+ * - Logs results to both console and file.
+ * - Increments validation/failure counters and sets allValid flag.
+ * @param filePath Path to the JSON file to validate.
+ * @param schemaReferenceKey $ref string for the schema definition (e.g., 'mainSchema#/definitions/Chapter').
+ * @param isArrayExpected If true, expects the file to be an array of items; otherwise, expects an object.
+ */
 function validateFile(filePath, schemaReferenceKey, isArrayExpected = false) {
     log(`\n▶️ Validating: ${filePath} against definition referenced by ${schemaReferenceKey}`);
     filesValidated++;
@@ -108,10 +117,11 @@ function validateFile(filePath, schemaReferenceKey, isArrayExpected = false) {
 
         if (!valid) {
             log(`  ❌ FAILED: ${filePath}`, true);
+            // Log each validation error with message and path in data
             validate.errors.forEach(err => {
                 log(`    - Error: ${err.message}`, true);
                 log(`      Path in data: ${err.instancePath || '(root)'}`, true);
-                // Log schema path for context, but might be complex due to $ref
+                // Optionally log schema path for context
                 // log(`      Schema Path: ${err.schemaPath}`, true);
             });
             allValid = false;
@@ -121,7 +131,7 @@ function validateFile(filePath, schemaReferenceKey, isArrayExpected = false) {
         }
 
     } catch (e) {
-        // Catch JSON parsing errors or other exceptionstypes.t
+        // Catch JSON parsing errors or other exceptions
         log(`  ❌ ERROR processing file ${filePath}: ${e.message || e}`, true);
         allValid = false;
         filesFailed++;

@@ -1,50 +1,57 @@
 // src/components/GuideBlocks/InstructionListBlockComponent.tsx
-import React, { useMemo } from 'react'; // Removed useEffect as resume logic is simplified
+import React, { useMemo } from 'react';
 import type { InstructionListBlock as InstructionListBlockType } from '../../types';
 import ListItemElementComponent from './ListItemElementComponent';
-// import { useListNumbering } from '../../contexts/ListNumberingContext'; // Context not used for resume now
 import { useGlobalState } from '../../contexts/GlobalStateContext';
 
+// Props for the InstructionListBlockComponent, including the block data and a unique scope key for list context
 interface InstructionListBlockProps {
-    blockData: InstructionListBlockType;
-    listScopeKey: string; // Still useful for unique keys for list items & if nested items need scoping
+    blockData: InstructionListBlockType; // The instruction list block data, including all list items and ordering info
+    listScopeKey: string; // Unique string for generating keys and context for nested lists
 }
 
+// Main component for rendering an ordered or unordered instruction list, with CSR filtering and stable keys
 const InstructionListBlockComponent: React.FC<InstructionListBlockProps> = ({ blockData, listScopeKey }) => {
-    const { settings } = useGlobalState(); // Get settings for csrModeActive
+    // Access global settings (e.g., for CSR mode filtering)
+    const { settings } = useGlobalState();
 
-    // Memoize visibleItems to prevent re-filtering on every render unless dependencies change.
-    // This calculates which items should be rendered based on CSR mode.
+    // Memoize the filtered list of items to display, based on CSR mode and item-specific behavior
+    // Only items matching the current mode (CSR or standard) are included in the rendered list
     const visibleItems = useMemo(() => {
         return blockData.items.filter(item => {
+            // Exclude items marked as CSR-only if not in CSR mode
             if (item.csrBehavior === 'csr_only' && !settings.csrModeActive) return false;
+            // Exclude items marked as standard-only if in CSR mode
             if (item.csrBehavior === 'standard_only' && settings.csrModeActive) return false;
+            // Include all other items
             return true;
         });
     }, [blockData.items, settings.csrModeActive]);
 
-    // RESUME FUNCTIONALITY DISABLED FOR STABILITY:
-    // startNumber will always be 1 for ordered lists, or undefined for ul (which is correct HTML default).
+    // Determine the starting number for ordered lists (always 1 for this implementation)
+    // For unordered lists, this will be undefined, which is the correct HTML default
     const startNumberForRender = useMemo(() => {
         return blockData.ordered ? 1 : undefined;
     }, [blockData.ordered]);
 
-
-    // If there are no visible items (e.g., all filtered out by CSR), render nothing.
+    // If there are no visible items (e.g., all filtered out by CSR logic), render nothing
     if (visibleItems.length === 0) {
         return null;
     }
 
+    // Render an ordered list (<ol>) if blockData.ordered is true
     if (blockData.ordered) {
         return (
-            <ol start={startNumberForRender} style={{ paddingLeft: '20px', marginBlockStart: '1em', marginBlockEnd: '1em' }}>
+            <ol
+                start={startNumberForRender}
+                style={{ paddingLeft: '20px', marginBlockStart: '1em', marginBlockEnd: '1em' }}
+            >
                 {visibleItems.map((item, index) => (
                     <ListItemElementComponent
-                        // Attempt to create a somewhat stable key, though if item content is identical, this isn't perfect.
-                        // If ListItemElement type had an 'id', that would be best.
+                        // Generate a stable key for each list item using content and index
                         key={`li-${listScopeKey}-${item.content.map(c => (c as any).text || (c as any).type || `idx${index}`).join('-').slice(0, 20)}-${index}`}
                         itemData={item}
-                        parentScopeKey={listScopeKey} // This list's scope key becomes parent for its items' potential nested lists
+                        parentScopeKey={listScopeKey} // Pass the list's scope key for nested lists
                         itemIndex={index}             // Index of the item within the visibleItems array
                     />
                 ))}
@@ -52,10 +59,12 @@ const InstructionListBlockComponent: React.FC<InstructionListBlockProps> = ({ bl
         );
     }
 
+    // Render an unordered list (<ul>) if blockData.ordered is false
     return (
         <ul style={{ paddingLeft: '20px', marginBlockStart: '1em', marginBlockEnd: '1em' }}>
             {visibleItems.map((item, index) => (
                 <ListItemElementComponent
+                    // Generate a stable key for each list item using content and index
                     key={`li-${listScopeKey}-${item.content.map(c => (c as any).text || (c as any).type || `idx${index}`).join('-').slice(0, 20)}-${index}`}
                     itemData={item}
                     parentScopeKey={listScopeKey}

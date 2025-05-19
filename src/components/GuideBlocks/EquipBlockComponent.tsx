@@ -1,28 +1,27 @@
 // src/components/GuideBlocks/EquipBlockComponent.tsx
 import React from 'react';
-import type { EquipBlock as EquipBlockType, ListItemElement, ConditionalBlock, ChapterContent } from '../../types'; // Assuming all types are in types.ts
+import type { EquipBlock as EquipBlockType, ListItemElement, ConditionalBlock } from '../../types';
 import ListItemElementComponent from './ListItemElementComponent';
-import ContentRenderer from '../ContentRenderer/ContentRenderer'; // For handling nested ConditionalBlocks or other ChapterContent
+import ContentRenderer from '../ContentRenderer/ContentRenderer';
 
+// Props for the EquipBlockComponent, including the block data and a parent scope key for context
 interface EquipBlockProps {
-    blockData: EquipBlockType;
-    // We need to pass down the currentScopeKey for any lists inside conditionals etc.
-    // This scopeKey is for list numbering if this block itself contains lists,
-    // or if its children (like ConditionalBlock) contain lists.
-    parentScopeKey: string;
+    blockData: EquipBlockType; // The equipment block data, including all equipment items and conditionals
+    parentScopeKey: string;    // Unique string for generating keys and context for nested lists/conditionals
 }
 
+// Main component for rendering an "Equipment" block, including a list of equipment items and conditional branches
 const EquipBlockComponent: React.FC<EquipBlockProps> = ({ blockData, parentScopeKey }) => {
-    // Define a base style for the block, can be moved to CSS
+    // Style for the outer equipment block container, visually distinguishing equipment sections
     const blockStyle: React.CSSProperties = {
-        border: '1px solid #e0e0e0', // Light border
+        border: '1px solid #e0e0e0', // Light gray border for equipment context
         borderRadius: '4px',
         margin: '1em 0',
-        backgroundColor: '#f9f9f9', // Light background for the block
+        backgroundColor: '#f9f9f9', // Very light gray background
     };
-
+    // Style for the block header, showing the section title
     const headerStyle: React.CSSProperties = {
-        backgroundColor: '#607d8b', // Example color (Greyish Blue) - Color F
+        backgroundColor: '#607d8b', // Blue-gray header for emphasis
         color: 'white',
         padding: '8px 15px',
         fontSize: '1.1em',
@@ -30,45 +29,44 @@ const EquipBlockComponent: React.FC<EquipBlockProps> = ({ blockData, parentScope
         borderTopLeftRadius: '3px',
         borderTopRightRadius: '3px',
     };
-
+    // Style for the content area inside the block
     const contentStyle: React.CSSProperties = {
         padding: '15px',
     };
 
+    // Render the equipment block, including header and all equipment items/conditionals
     return (
         <div style={blockStyle}>
+            {/* Header displays the section title for Equipment */}
             <div style={headerStyle}>EQUIPMENT</div>
             <div style={contentStyle}>
-                {/* 
-          The content of an EquipBlock is (ListItemElement | ConditionalBlock)[].
-          ListItemElementComponent can handle ListItemElement.
-          ConditionalBlock will be handled by ContentRenderer (using its placeholder for now).
-        */}
+                {/* Iterate over each item in the EquipBlock's content array. Items can be list items or conditional blocks. */}
                 {blockData.content.map((item, index) => {
-                    const itemScopeKey = `${parentScopeKey}_equipitem${index}`; // Scope key for potential lists within this item
+                    // Generate a unique scope key for each item, supporting nested lists or conditionals
+                    const itemScopeKey = `${parentScopeKey}_equipitem${index}`;
 
+                    // Render a single equipment item as a list item if type is 'listItem'
                     if (item.type === 'listItem') {
-                        // Cast to ListItemElement if necessary, though TypeScript should infer
                         return (
-                            <ul key={index} style={{ listStyle: 'disc', paddingLeft: '20px', margin: 0 }}> {/* Outer ul for consistent list appearance */}
+                            <ul key={index} style={{ listStyle: 'disc', paddingLeft: '20px', margin: 0 }}>
                                 <ListItemElementComponent
                                     itemData={item as ListItemElement}
-                                    parentScopeKey={itemScopeKey} // Pass down scope for potential nested lists in the LI
-                                    itemIndex={0} // This item is the 0th (only) in this temp ul for styling
+                                    parentScopeKey={itemScopeKey}
+                                    itemIndex={0}
                                 />
                             </ul>
                         );
+                        // Render a conditional block using ContentRenderer if type is 'conditional'
                     } else if (item.type === 'conditional') {
-                        // ConditionalBlock placeholder will be used by ContentRenderer
                         return (
                             <ContentRenderer
                                 key={index}
-                                contentItems={[item as ConditionalBlock]} // Pass as array
+                                contentItems={[item as ConditionalBlock]}
                                 currentScopeKey={itemScopeKey}
                             />
                         );
+                        // Fallback for unexpected item types (should not occur with valid EquipBlockType)
                     } else {
-                        // Should not happen based on EquipBlockType definition, but good to have a fallback
                         console.warn("Unexpected item type in EquipBlock:", item);
                         return <div key={index} style={{ color: 'red' }}>Unknown equip item type</div>;
                     }

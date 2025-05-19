@@ -26,34 +26,33 @@ const NotesRenderer: React.FC<{ notes: FormattedText[] | undefined, showBorders:
   if (!notes || notes.length === 0) return null;
   return (
     <div style={{
-      fontSize: '0.9em', 
-      color: 'gray', 
-      marginTop: '10px', 
+      fontSize: '0.9em',
+      color: 'gray',
+      marginTop: '10px',
       paddingLeft: showBorders ? '10px' : '0',
-      borderTop: showBorders ? '1px solid #ccc' : 'none', 
+      borderTop: showBorders ? '1px solid #ccc' : 'none',
       paddingTop: showBorders ? '5px' : '0px'
     }}>
-        <strong>Note:</strong>{' '}
-        {notes.map((n, i) => <InlineContentRenderer key={`note-${i}`} element={n} />)}
+      <strong>Note:</strong>{' '}
+      {notes.map((n, i) => <InlineContentRenderer key={`note-${i}`} element={n} />)}
     </div>
   );
 };
-
 
 const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData, parentScopeKey }) => {
   const { tracker, settings } = useGlobalState();
 
   // --- Debug Styles ---
   const baseStyleWithMargin: React.CSSProperties = { margin: '1em 0' };
-  const activeStateDrivenBranchStyle: React.CSSProperties = settings.showConditionalBorders ? 
-    { ...baseStyleWithMargin, padding: '10px', border: '1px dashed #4CAF50', borderRadius: '4px', background: '#E8F5E9' } : 
+  const activeStateDrivenBranchStyle: React.CSSProperties = settings.showConditionalBorders ?
+    { ...baseStyleWithMargin, padding: '10px', border: '1px dashed #4CAF50', borderRadius: '4px', background: '#E8F5E9' } :
     baseStyleWithMargin;
   const textualOptionContainerStyle: React.CSSProperties = baseStyleWithMargin;
-  const textualOptionItemStyle: React.CSSProperties = settings.showConditionalBorders ? 
-    { marginBottom: '15px', padding: '10px', border: '1px solid #e0e0e0', borderRadius: '4px', background: '#f9f9f9' } : 
+  const textualOptionItemStyle: React.CSSProperties = settings.showConditionalBorders ?
+    { marginBottom: '15px', padding: '10px', border: '1px solid #e0e0e0', borderRadius: '4px', background: '#f9f9f9' } :
     { marginBottom: '15px' };
-  const textualInlineIfThenBranchStyle: React.CSSProperties = settings.showConditionalBorders ? 
-    { padding: '10px', border: '1px solid #e0e0e0', borderRadius: '4px', background: '#f9f9f9' } : 
+  const textualInlineIfThenBranchStyle: React.CSSProperties = settings.showConditionalBorders ?
+    { padding: '10px', border: '1px solid #e0e0e0', borderRadius: '4px', background: '#f9f9f9' } :
     {};
   // --- End Debug Styles ---
 
@@ -63,10 +62,11 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
     if (mappedKey) {
       return mappedKey;
     }
-    // console.warn(`[ConditionalBlock] No mapping found for JSON flag ID "${jsonFlagId}". Using it directly as tracker key.`);
-    return jsonFlagId; 
+    // If no mapping is found, use the provided flag ID directly as the tracker key.
+    return jsonFlagId;
   };
 
+  // Helper to render a branch of conditional content, supporting both lists and mixed content.
   const renderBranch = (
     branchContent: (ChapterContent | ListItemElementType | InlineElement)[] | undefined,
     branchKeySuffix: string
@@ -76,31 +76,35 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
     const allAreListItems = branchContent.every(item => 'type' in item && item.type === 'listItem');
 
     if (allAreListItems) {
+      // Render as a bulleted list if all items are list items.
       return (
         <ul style={{ listStylePosition: 'outside', paddingLeft: '20px', margin: '0.5em 0 0.5em 20px' }}>
           {branchContent.map((item, index) => {
             const itemKey = `${branchKeySuffix}_li_${index}`;
             const itemScopeKey = `${branchBaseScopeKey}_li${index}`;
-            return ( <ListItemElementComponent key={itemKey} itemData={item as ListItemElementType} parentScopeKey={itemScopeKey} itemIndex={index} /> );
+            return (<ListItemElementComponent key={itemKey} itemData={item as ListItemElementType} parentScopeKey={itemScopeKey} itemIndex={index} />);
           })}
         </ul>
       );
     } else {
+      // Render mixed or block content, handling inline and block types appropriately.
       return (
         <>
           {branchContent.map((item, index) => {
             const itemKey = `${branchKeySuffix}_item_${index}`;
             const itemScopeKey = `${branchBaseScopeKey}_item${index}`;
-            if (!('type' in item)) { console.warn("Untyped item:", item); return <div key={itemKey} style={{color: 'red'}}>Untyped.</div>; }
-            const typedItem = item as { type: string }; 
+            if (!('type' in item)) { console.warn("Untyped item:", item); return <div key={itemKey} style={{ color: 'red' }}>Untyped.</div>; }
+            const typedItem = item as { type: string };
 
             if (typedItem.type === 'listItem') {
-              return ( <ul key={itemKey} style={{listStyleType: 'disc', paddingLeft:'20px', margin:'0.5em 0'}}><ListItemElementComponent itemData={item as ListItemElementType} parentScopeKey={itemScopeKey} itemIndex={index}/></ul> );
+              return (<ul key={itemKey} style={{ listStyleType: 'disc', paddingLeft: '20px', margin: '0.5em 0' }}><ListItemElementComponent itemData={item as ListItemElementType} parentScopeKey={itemScopeKey} itemIndex={index} /></ul>);
             }
+            // Handle inline element types by rendering with InlineContentRenderer.
             const inlineTypes = ['plainText', 'formattedText', 'characterReference', 'characterCommand', 'gameMacro', 'formation', 'link', 'nth', 'num', 'mathSymbol'];
             if (inlineTypes.includes(typedItem.type)) {
-              return <span key={itemKey} style={{display: 'block', margin: '0.5em 0'}}><InlineContentRenderer element={item as InlineElement} /></span>;
+              return <span key={itemKey} style={{ display: 'block', margin: '0.5em 0' }}><InlineContentRenderer element={item as InlineElement} /></span>;
             }
+            // Default: render as a block using ContentRenderer.
             return <ContentRenderer key={itemKey} contentItems={[item as ChapterContent]} currentScopeKey={itemScopeKey} />;
           })}
         </>
@@ -108,15 +112,16 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
     }
   };
 
+  // --- State for determining which branch to render based on the condition source ---
   let activeContentBranch: (ChapterContent | ListItemElementType | InlineElement)[] | undefined = undefined;
   let branchKeyForScope = 'default_branch';
   let blitzPendingNoteBlock: TextParagraphBlock | null = null;
 
-
+  // Evaluate the condition source and select the appropriate content branch to render.
   switch (blockData.conditionSource) {
     case 'acquired_item_flag_check':
       if (blockData.flagName) {
-        const trackerKey = getActualTrackerFlagKey(blockData.flagName); 
+        const trackerKey = getActualTrackerFlagKey(blockData.flagName);
         const flagValue = tracker.flags[trackerKey] === true;
         activeContentBranch = flagValue ? blockData.contentToShowIfTrue : blockData.contentToShowIfFalse;
         branchKeyForScope = flagValue ? `flag_${trackerKey}_true` : `flag_${trackerKey}_false`;
@@ -140,22 +145,24 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
 
     case 'blitzballdetermination':
     case 'ifthenelse_blitzresult':
+      // Special handling for Blitzball outcome-based branching.
       const blitzFlagNameInTracker = 'BlitzballGameWon_Luca';
       const blitzResult = tracker.flags[blitzFlagNameInTracker];
 
       if (blitzResult === undefined) {
-        activeContentBranch = blockData.winContent || blockData.lossContent || blockData.bothContent; 
+        // If the outcome is not yet determined, show default or both content and optionally a pending note.
+        activeContentBranch = blockData.winContent || blockData.lossContent || blockData.bothContent;
         branchKeyForScope = 'blitz_pending_default';
         if (settings.showConditionalBorders) {
-            blitzPendingNoteBlock = { 
-                type: 'textParagraph', 
-                content: [{
-                    type: 'formattedText', 
-                    text: `(Blitzball outcome for "${blitzFlagNameInTracker}" pending, showing default strategy)`, 
-                    isItalic: true, 
-                    color: 'darkorange'
-                }]
-            };
+          blitzPendingNoteBlock = {
+            type: 'textParagraph',
+            content: [{
+              type: 'formattedText',
+              text: `(Blitzball outcome for "${blitzFlagNameInTracker}" pending, showing default strategy)`,
+              isItalic: true,
+              color: 'darkorange'
+            }]
+          };
         }
       } else if (blitzResult === true && blockData.winContent) {
         activeContentBranch = blockData.winContent; branchKeyForScope = 'blitz_win';
@@ -168,6 +175,7 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
 
     case 'textual_direct_choice':
     case 'textual_block_options':
+      // Render a set of textual options, each with its own condition text and content branch.
       return (
         <div className="conditional-textual-options" style={textualOptionContainerStyle}>
           {blockData.options?.map((option: ConditionalOption, index: number) => (
@@ -175,7 +183,7 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
               <h4 style={{ marginTop: 0, marginBottom: '8px', fontStyle: 'italic', color: '#333', borderBottom: settings.showConditionalBorders ? '1px solid #ddd' : 'none', paddingBottom: '5px' }}>
                 {option.conditionText}
               </h4>
-              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : '20px'}}>
+              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : '20px' }}>
                 {renderBranch(option.content, `option${index}`)}
               </div>
             </div>
@@ -185,51 +193,60 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
       );
 
     case 'textual_inline_if_then':
+      // Render an inline if-then-else block with condition and corresponding content branches.
       return (
         <div className="conditional-textual-inline" style={baseStyleWithMargin}>
           {blockData.textCondition && blockData.thenContent && (
-            <div style={{...textualInlineIfThenBranchStyle, marginBottom: (blockData.elseContent ? '15px' : '0')}}>
+            <div style={{ ...textualInlineIfThenBranchStyle, marginBottom: (blockData.elseContent ? '15px' : '0') }}>
               <div style={{ fontStyle: 'italic', color: '#555', marginBottom: '5px' }}>
                 If:{' '}
-                {blockData.textCondition.map((tc,i)=><InlineContentRenderer key={`tc-${i}`} element={tc}/>)}
+                {blockData.textCondition.map((tc, i) => <InlineContentRenderer key={`tc-${i}`} element={tc} />)}
               </div>
-              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : '20px'}}>
+              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : '20px' }}>
                 {renderBranch(blockData.thenContent, 'then')}
               </div>
             </div>
           )}
           {blockData.elseContent && (
-            <div style={{...textualInlineIfThenBranchStyle, marginTop: (blockData.textCondition && blockData.thenContent ? '10px' : '0') }}>
+            <div style={{ ...textualInlineIfThenBranchStyle, marginTop: (blockData.textCondition && blockData.thenContent ? '10px' : '0') }}>
               <div style={{ fontStyle: 'italic', color: '#555', marginBottom: '5px' }}>Else:</div>
-              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : '20px'}}>
+              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : '20px' }}>
                 {renderBranch(blockData.elseContent, 'else')}
               </div>
             </div>
           )}
-           <NotesRenderer notes={blockData.notes} showBorders={settings.showConditionalBorders} />
+          <NotesRenderer notes={blockData.notes} showBorders={settings.showConditionalBorders} />
         </div>
       );
-      
+
     default:
-      const _exhaustiveCheckNever: never = blockData.conditionSource; 
+      // Fallback for unsupported or unknown condition sources. This ensures exhaustive type checking and provides a visible warning in the UI if an unknown conditionSource is encountered.
+      const _exhaustiveCheckNever: never = blockData.conditionSource;
       console.warn('Unsupported conditionalSource:', blockData.conditionSource, _exhaustiveCheckNever);
-      return <div style={{color: 'red', border: '1px solid red', padding: '10px'}}>Unsupported Conditional Source: {blockData.conditionSource}</div>;
+      return <div style={{ color: 'red', border: '1px solid red', padding: '10px' }}>Unsupported Conditional Source: {blockData.conditionSource}</div>;
   }
 
-  // For state-driven conditionals that evaluated to a single branch:
+  // For state-driven conditionals that evaluated to a single branch, render the active branch and any pending Blitzball note if needed.
+  // shouldRenderContent: True if there is a content branch to render (not empty)
   const shouldRenderContent = activeContentBranch && activeContentBranch.length > 0;
+  // shouldRenderBlitzNote: True if this is a Blitzball outcome conditional and a pending note should be shown
   const shouldRenderBlitzNote = (blockData.conditionSource === 'blitzballdetermination' || blockData.conditionSource === 'ifthenelse_blitzresult') && blitzPendingNoteBlock;
 
+  // Render the active branch and/or pending Blitzball note, along with any notes, if applicable
   if (shouldRenderContent || shouldRenderBlitzNote) {
     return (
-        <div className="conditional-active-branch" style={activeStateDrivenBranchStyle}>
-            {shouldRenderBlitzNote && <ContentRenderer contentItems={[blitzPendingNoteBlock!]} currentScopeKey={`${parentScopeKey}_blitznote`} />}
-            {shouldRenderContent && renderBranch(activeContentBranch!, branchKeyForScope)} {/* Use non-null assertion if logic guarantees it's set */}
-            <NotesRenderer notes={blockData.notes} showBorders={settings.showConditionalBorders} />
-        </div>
+      <div className="conditional-active-branch" style={activeStateDrivenBranchStyle}>
+        {/* Render the Blitzball pending note if needed */}
+        {shouldRenderBlitzNote && <ContentRenderer contentItems={[blitzPendingNoteBlock!]} currentScopeKey={`${parentScopeKey}_blitznote`} />}
+        {/* Render the main content branch for this conditional */}
+        {shouldRenderContent && renderBranch(activeContentBranch!, branchKeyForScope)}
+        {/* Render any notes associated with this conditional block */}
+        <NotesRenderer notes={blockData.notes} showBorders={settings.showConditionalBorders} />
+      </div>
     );
   }
-  return null; 
+  // If there is nothing to render, return null (renders nothing)
+  return null;
 };
 
 export default ConditionalBlockComponent;

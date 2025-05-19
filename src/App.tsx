@@ -1,5 +1,5 @@
 // src/App.tsx
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useGlobalState, useGlobalDispatch } from './contexts/GlobalStateContext';
 import { GlobalActionType } from './contexts/GlobalStateContext';
 import { loadFullGuideData } from './services/guideLoader';
@@ -9,53 +9,18 @@ import TableOfContents from './components/TableOfContents/TableOfContents';
 import MainContentArea from './components/MainContentArea/MainContentArea';
 import TrackerAreaComponent from './components/TrackerArea/TrackerAreaComponent';
 
-// Placeholder for MainContentArea and TrackerArea
-const MainContentAreaPlaceholder: React.FC = () => {
-    const { guideData, currentTopChapterId } = useGlobalState();
-    if (!guideData) return <p>Loading content...</p>;
+// MainContentAreaPlaceholder is a fallback for when the real MainContentArea is not used.
+// It displays a message or a simple preview of the current chapter/section content.
 
-    let contentToDisplay = <p>Select a chapter to view its content.</p>;
+// TrackerAreaPlaceholder is a fallback for when the real TrackerAreaComponent is not used.
 
-    if (currentTopChapterId === 'introduction_section' && guideData.introduction) {
-        contentToDisplay = (
-            <div>
-                <h2>Introduction</h2>
-                <p>(Intro content will be rendered here: {guideData.introduction.length} blocks)</p>
-            </div>
-        );
-    } else if (currentTopChapterId === 'acknowledgements_section' && guideData.acknowledgements) {
-        contentToDisplay = (
-            <div>
-                <h2>Acknowledgements</h2>
-                <p>(Acknowledgements content will be rendered here: {guideData.acknowledgements.length} lines)</p>
-            </div>
-        );
-    } else if (currentTopChapterId) {
-        const chapter = guideData.chapters?.find(c => c.id === currentTopChapterId);
-        if (chapter) {
-            contentToDisplay = (
-                <div>
-                    <h2>{chapter.title}</h2>
-                    <p>(Content for {chapter.title} will be rendered here: {chapter.content.length} blocks)</p>
-                </div>
-            );
-        } else {
-            contentToDisplay = <p>Chapter content not found for ID: {currentTopChapterId}</p>;
-        }
-    }
-    return <div style={{ padding: '20px' }}>{contentToDisplay}</div>;
-};
-
-const TrackerAreaPlaceholder: React.FC = () => {
-    // We'll fetch and display tracker data later
-    return <div style={{ padding: '10px' }}>Tracker Area (Coming Soon)</div>;
-};
-
-
+// Main App component. Handles guide data loading, error handling, and renders the main layout.
 function App() {
-    const { guideData, isLoadingGuide, guideLoadError, currentTopChapterId } = useGlobalState(); // Added currentTopChapterId
+    // Access global state for guide data, loading/error state, and current chapter
+    const { guideData, isLoadingGuide, guideLoadError } = useGlobalState();
     const dispatch = useGlobalDispatch();
 
+    // Effect to load the guide data on initial mount or when needed
     useEffect(() => {
         async function fetchData() {
             dispatch({ type: GlobalActionType.SET_GUIDE_LOADING, payload: true });
@@ -63,8 +28,7 @@ function App() {
                 const data = await loadFullGuideData('/data/ffx_guide_main.json');
                 if (data) {
                     dispatch({ type: GlobalActionType.SET_GUIDE_DATA, payload: data });
-                    // Set initial chapter AFTER data is loaded and if no chapter is set by ToC's own effect yet
-                    // The ToC useEffect will likely fire first if guideData becomes available.
+                    // The TableOfContents component will set the initial chapter if needed
                 } else {
                     dispatch({ type: GlobalActionType.SET_GUIDE_LOAD_ERROR, payload: 'Failed to load guide data.' });
                 }
@@ -74,31 +38,37 @@ function App() {
             }
         }
 
+        // Only fetch if not already loaded or errored
         if (!guideData && isLoadingGuide && !guideLoadError) {
             fetchData();
         } else if (guideData && isLoadingGuide) {
+            // If guide data is present but still marked as loading, clear loading state
             dispatch({ type: GlobalActionType.SET_GUIDE_LOADING, payload: false });
         }
     }, [dispatch, guideData, isLoadingGuide, guideLoadError]);
 
+    // Show loading message while guide data is being fetched
     if (isLoadingGuide) {
         return <div style={{ textAlign: 'center', padding: '50px', fontSize: '1.5em' }}>Loading FFX Guide Data...</div>;
     }
 
+    // Show error message if guide data failed to load
     if (guideLoadError) {
         return <div style={{ color: 'red', textAlign: 'center', padding: '50px' }}>Error: {guideLoadError}</div>;
     }
 
+    // Show fallback if guide data is not available
     if (!guideData) {
         return <div style={{ textAlign: 'center', padding: '50px' }}>No guide data available.</div>;
     }
 
+    // Render the main app layout with Table of Contents, Main Content, and Tracker
     return (
         <Layout
             tableOfContents={<TableOfContents />}
             tracker={<TrackerAreaComponent />}
         >
-            <MainContentArea /> {/* <-- Use the real component */}
+            <MainContentArea /> {/* Main content area for chapters/sections */}
         </Layout>
     );
 }
