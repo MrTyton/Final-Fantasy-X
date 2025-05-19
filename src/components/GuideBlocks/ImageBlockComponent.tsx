@@ -99,7 +99,10 @@ const ImageBlockComponent: React.FC<ImageBlockProps> = ({ blockData }) => {
         if (!/\.(jpeg|jpg|gif|png|svg)$/i.test(path)) {
             path += '.png';
         }
-        path = path.startsWith('/') ? path : `/${path}`;
+        // Use app base URL for correct asset resolution (works with Vite and fallback)
+        const APP_BASE_URL = (import.meta as any).env?.BASE_URL || '/';
+        // Ensure no double slashes except after protocol
+        path = APP_BASE_URL.replace(/\/+$/, '') + '/' + path.replace(/^\/+/, '');
         return path;
     }, [blockData.path]);
 
