@@ -1,7 +1,14 @@
 // src/components/TableOfContents/TableOfContents.tsx
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react'; // Keep useEffect for now, might remove if not needed
 import { useGlobalState, useGlobalDispatch } from '../../contexts/GlobalStateContext';
 import { GlobalActionType } from '../../contexts/GlobalStateContext';
+
+// Define Props interface
+interface TableOfContentsProps {
+    isMobileView: boolean;
+    isTocCollapsed: boolean;
+    setIsTocCollapsed: (isCollapsed: boolean) => void;
+}
 
 // Style for the Table of Contents (ToC) list container. Removes default list styling and spacing.
 const tocListStyle: React.CSSProperties = {
@@ -29,8 +36,33 @@ const inactiveTocItemStyle: React.CSSProperties = {
     color: '#555', // Default text color
 };
 
+// Style for the toggle button
+const toggleButtonStyleBase: React.CSSProperties = {
+    position: 'fixed', // Or 'absolute' if container is relative and fills viewport part
+    top: '60px', // Below header
+    left: '10px',
+    zIndex: 250, // Above expanded ToC but ensure it's clickable
+    padding: '8px',
+    backgroundColor: '#007bff',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
+};
+
+const toggleButtonStyleExpanded: React.CSSProperties = {
+    ...toggleButtonStyleBase,
+    // When TOC is expanded, button might be better placed within the TOC content
+    // For now, keep it fixed, but adjust left to be inside the expanded TOC
+    left: 'calc(100vw - 70px)', // Example: 100% width - button width - padding
+    top: '10px', // Relative to the TOC container top
+    position: 'absolute', // Relative to the TOC container
+};
+
+
 // Main TableOfContents component. Renders a clickable, keyboard-accessible list of all guide sections.
-const TableOfContents: React.FC = () => {
+const TableOfContents: React.FC<TableOfContentsProps> = ({ isMobileView, isTocCollapsed, setIsTocCollapsed }) => {
     // Access global state for guide data, current chapter, and rendered chapters
     const { guideData, currentTopChapterId, renderedChapterIds } = useGlobalState();
     const dispatch = useGlobalDispatch();
@@ -88,31 +120,68 @@ const TableOfContents: React.FC = () => {
         return <p style={{ padding: '10px', color: '#777' }}>Loading navigation...</p>;
     }
 
+    const renderToggleButton = () => {
+        if (!isMobileView) {
+            return null;
+        }
+
+        // Button style depends on whether the TOC is collapsed or expanded
+        // When TOC is expanded (fullscreen mobile), button should be part of that view
+        // When TOC is collapsed, button is fixed to edge of screen
+        const buttonStyle = isTocCollapsed ? toggleButtonStyleBase : toggleButtonStyleExpanded;
+        
+        return (
+            <button
+                onClick={() => setIsTocCollapsed(!isTocCollapsed)}
+                style={buttonStyle}
+                aria-label={isTocCollapsed ? "Expand Table of Contents" : "Collapse Table of Contents"}
+                aria-expanded={!isTocCollapsed}
+            >
+                {isTocCollapsed ? '➔' : '←'}
+            </button>
+        );
+    };
+
     // Render the Table of Contents as a vertical list of clickable/keyboard-accessible items
+    // Conditional rendering based on isMobileView and isTocCollapsed
+    if (isMobileView && isTocCollapsed) {
+        return (
+            <>
+                {renderToggleButton()}
+                {/* TOC Content is hidden */}
+            </>
+        );
+    }
+
     return (
         <div>
-            {/* Section header for the ToC */}
-            <h2 style={{ marginTop: 0, fontSize: '1.2em', marginBottom: '10px', paddingBottom: '5px', borderBottom: '1px solid #ccc' }}>
-                Table of Contents
-            </h2>
-            <ul style={tocListStyle}>
-                {navigableItemsForDisplay.map((item) => (
-                    <li
-                        key={item.id}
-                        style={item.id === currentTopChapterId ? activeTocItemStyle : inactiveTocItemStyle}
-                        onClick={() => handleChapterClick(item.id)}
-                        role="button"
-                        tabIndex={0}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                                handleChapterClick(item.id);
-                            }
-                        }}
-                    >
-                        {item.title}
-                    </li>
-                ))}
-            </ul>
+            {renderToggleButton()}
+            {/* Section header for the ToC - only render if not mobile and collapsed */}
+            {(!isMobileView || (isMobileView && !isTocCollapsed)) && (
+                <h2 style={{ marginTop: isMobileView ? '40px' : 0, fontSize: '1.2em', marginBottom: '10px', paddingBottom: '5px', borderBottom: '1px solid #ccc' }}>
+                    Table of Contents
+                </h2>
+            )}
+            {(!isMobileView || (isMobileView && !isTocCollapsed)) && (
+                <ul style={tocListStyle}>
+                    {navigableItemsForDisplay.map((item) => (
+                        <li
+                            key={item.id}
+                            style={item.id === currentTopChapterId ? activeTocItemStyle : inactiveTocItemStyle}
+                            onClick={() => handleChapterClick(item.id)}
+                            role="button"
+                            tabIndex={0}
+                            onKeyPress={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleChapterClick(item.id);
+                                }
+                            }}
+                        >
+                            {item.title}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

@@ -3,36 +3,76 @@ import React, { useState } from 'react';
 import { useGlobalState, useGlobalDispatch } from '../../contexts/GlobalStateContext';
 import { GlobalActionType } from '../../contexts/GlobalStateContext';
 
+// --- Props Interface ---
+interface TrackerAreaProps {
+    isMobileView: boolean;
+    isTrackerExpandedMobile?: boolean;
+    setIsTrackerExpandedMobile?: (isExpanded: boolean) => void;
+}
+
 // --- Styles ---
-// Style for the outer tracker area container. Sets width, background, and layout for the sidebar.
-const trackerAreaStyle: React.CSSProperties = {
+// Original style for the outer tracker area container (desktop).
+const desktopTrackerAreaStyle: React.CSSProperties = {
     width: '300px',
     borderLeft: '1px solid #ccc',
     backgroundColor: '#f8f9fa',
     display: 'flex',
     flexDirection: 'column',
-    // Height is set to fill the viewport minus the header. Adjust if header height changes.
-    height: 'calc(100vh - 50px)',
+    height: '100%', // Adjusted to fill parent in Layout.tsx
+    boxSizing: 'border-box',
 };
+
+// Style for mobile footer state
+const mobileFooterStyle: React.CSSProperties = {
+    height: '60px', // Fixed footer height
+    width: '100%',
+    padding: '0 10px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between', // For summary and button
+    backgroundColor: '#f8f9fa', // Match original for consistency
+    borderTop: '1px solid #ccc',
+    boxSizing: 'border-box',
+    position: 'relative', // For internal absolute positioning if needed
+};
+
+// Style for mobile fullscreen state
+const mobileFullscreenStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: 0, // Or APP_HEADER_HEIGHT if header is not overlaid
+    left: 0,
+    width: '100vw',
+    height: '100vh', // Full viewport height
+    zIndex: 300, // Above other content like TOC
+    backgroundColor: '#f8f9fa',
+    display: 'flex',
+    flexDirection: 'column',
+    paddingTop: '48px', // Assuming APP_HEADER_HEIGHT is 48px and header is visible
+    boxSizing: 'border-box',
+};
+
+
 // Style for the tracker header, including title and expand/collapse button.
-const headerStyle: React.CSSProperties = {
+const baseHeaderStyle: React.CSSProperties = {
     padding: '10px 15px',
-    backgroundColor: '#e9ecef', // Light grey for header
+    backgroundColor: '#e9ecef',
     borderBottom: '1px solid #dee2e6',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    flexShrink: 0, // Prevent header from shrinking
+    flexShrink: 0,
 };
+
 // Style for the tracker title text.
-const titleStyle: React.CSSProperties = {
+const baseTitleStyle: React.CSSProperties = {
     margin: 0,
     fontSize: '1.1em',
     fontWeight: 'bold',
 };
+
 // Style for the expand/collapse button in the tracker header.
-const toggleButtonStyle: React.CSSProperties = {
-    background: '#6c757d', // Darker grey for button
+const baseToggleButtonStyle: React.CSSProperties = {
+    background: '#6c757d',
     color: 'white',
     border: 'none',
     padding: '5px 10px',
@@ -40,14 +80,27 @@ const toggleButtonStyle: React.CSSProperties = {
     borderRadius: '4px',
     fontSize: '0.9em',
 };
+
 // Style for the main content area of the tracker, which is scrollable.
-const contentStyle: React.CSSProperties = {
-    padding: '10px 15px', // Consistent padding
-    overflowY: 'auto',   // Make content scrollable
-    flexGrow: 1,         // Allow content to take remaining space
+const baseContentStyle: React.CSSProperties = {
+    padding: '10px 15px',
+    overflowY: 'auto',
+    flexGrow: 1,
 };
+
+// Style for summary text in mobile footer view
+const summaryTextStyle: React.CSSProperties = {
+    fontSize: '0.9em',
+    color: '#333',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    marginRight: '10px', // Space before button
+};
+
+
 // Style for section titles within the tracker (e.g., Resources, Flags).
-const sectionTitleStyle: React.CSSProperties = {
+const baseSectionTitleStyle: React.CSSProperties = {
     marginTop: '0',      // Remove top margin for first section title
     marginBottom: '10px',
     fontSize: '1em',
@@ -154,69 +207,131 @@ const EditableFlagItem: React.FC<EditableFlagItemProps> = ({ name, value }) => {
 
 // --- Main Tracker Component ---
 // Renders the tracker sidebar, including resources and flags, with expand/collapse functionality.
-const TrackerAreaComponent: React.FC = () => {
+const TrackerAreaComponent: React.FC<TrackerAreaProps> = ({
+    isMobileView,
+    isTrackerExpandedMobile,
+    setIsTrackerExpandedMobile,
+}) => {
     const { tracker } = useGlobalState();
-    const [isExpanded, setIsExpanded] = useState(false); // Collapsed by default
+    const [isDesktopExpanded, setIsDesktopExpanded] = useState(false); // For desktop state
 
-    // Define which resources are "key" and always shown in collapsed view
-    // These names MUST match exactly those in KNOWN_TRACKED_RESOURCE_NAMES
+    // Define which resources are "key" and always shown in collapsed view / mobile footer
     const KEY_RESOURCES_FOR_SUMMARY: string[] = ['PowerSphere', 'SpeedSphere', 'Grenade'];
 
-    // Get all resource entries and sort them alphabetically by name
     const allResourceEntries = Object.entries(tracker.resources)
         .sort(([nameA], [nameB]) => nameA.localeCompare(nameB));
-
-    // Get all flag entries and sort them alphabetically by name
     const allFlagEntries = Object.entries(tracker.flags)
         .sort(([nameA], [nameB]) => nameA.localeCompare(nameB));
 
-    // Determine which resources to display based on expanded/collapsed state
-    const resourcesToDisplay = isExpanded
-        ? allResourceEntries
-        : allResourceEntries.filter(([name]) => KEY_RESOURCES_FOR_SUMMARY.includes(name));
+    // Determine current overall style for the component's root element
+    let currentTrackerStyle: React.CSSProperties = desktopTrackerAreaStyle;
+    if (isMobileView) {
+        currentTrackerStyle = isTrackerExpandedMobile ? mobileFullscreenStyle : mobileFooterStyle;
+    }
 
-    // Flags are only shown when expanded
-    const flagsToDisplay = isExpanded ? allFlagEntries : [];
+    // Determine button text and action
+    let buttonText = isDesktopExpanded ? 'Collapse' : 'Expand All';
+    let buttonAction = () => setIsDesktopExpanded(!isDesktopExpanded);
 
-    return (
-        <aside style={trackerAreaStyle}>
-            {/* Tracker header with title and expand/collapse button */}
-            <div style={headerStyle}>
-                <h2 style={titleStyle}>Tracker</h2>
-                <button onClick={() => setIsExpanded(!isExpanded)} style={toggleButtonStyle}>
-                    {isExpanded ? 'Collapse' : 'Expand All'}
-                </button>
-            </div>
-            {/* Main content area for resources and flags */}
-            <div style={contentStyle}>
-                <h3 style={sectionTitleStyle}>Resources</h3>
+    if (isMobileView && setIsTrackerExpandedMobile) {
+        buttonText = isTrackerExpandedMobile ? '↓ Close' : '↑ Details';
+        buttonAction = () => setIsTrackerExpandedMobile(!isTrackerExpandedMobile);
+    }
+    
+    // Content for mobile footer view
+    const renderMobileFooterContent = () => {
+        const summaryItems = KEY_RESOURCES_FOR_SUMMARY.map(key => {
+            const quantity = tracker.resources[key] || 0;
+            // Shorten names for brevity, e.g., PowerSphere -> Pwr
+            const shortName = key.replace('Sphere', '').substring(0,3);
+            return `${shortName}: ${quantity}`;
+        }).join(', ');
+        return <span style={summaryTextStyle}>{summaryItems || "No key items"}</span>;
+    };
+
+    // Content for expanded view (desktop or mobile fullscreen)
+    const renderExpandedContent = () => {
+        const resourcesToDisplay = isMobileView || isDesktopExpanded
+            ? allResourceEntries
+            : allResourceEntries.filter(([name]) => KEY_RESOURCES_FOR_SUMMARY.includes(name));
+        
+        const flagsToDisplay = (isMobileView && isTrackerExpandedMobile) || (!isMobileView && isDesktopExpanded)
+            ? allFlagEntries
+            : [];
+
+        return (
+            <>
+                <h3 style={baseSectionTitleStyle}>Resources</h3>
                 {resourcesToDisplay.length > 0 ? (
                     resourcesToDisplay.map(([name, quantity]) => (
                         <EditableResourceItem key={`res-${name}`} name={name} quantity={quantity as number} />
                     ))
                 ) : (
                     <p style={{ fontSize: '0.9em', color: '#6c757d', fontStyle: 'italic' }}>
-                        {isExpanded ? "No resources defined in system." : "No key resources to display."}
+                        {(isMobileView && isTrackerExpandedMobile) || (!isMobileView && isDesktopExpanded) ? "No resources defined." : "No key resources."}
                     </p>
                 )}
 
-                {/* Flags section, only shown when expanded */}
-                {isExpanded && (
+                {((isMobileView && isTrackerExpandedMobile) || (!isMobileView && isDesktopExpanded)) && (
                     <>
-                        <h3 style={{ ...sectionTitleStyle, marginTop: '20px' }}>Flags</h3>
+                        <h3 style={{ ...baseSectionTitleStyle, marginTop: '20px' }}>Flags</h3>
                         {flagsToDisplay.length > 0 ? (
                             flagsToDisplay.map(([name, value]) => (
                                 <EditableFlagItem key={`flag-${name}`} name={name} value={value as boolean} />
                             ))
                         ) : (
                             <p style={{ fontSize: '0.9em', color: '#6c757d', fontStyle: 'italic' }}>
-                                No flags defined in system.
+                                No flags defined.
                             </p>
                         )}
                     </>
                 )}
-            </div>
-        </aside>
+            </>
+        );
+    };
+
+    // Header style adjustments for mobile footer
+    const currentHeaderStyle = isMobileView && !isTrackerExpandedMobile 
+        ? { ...baseHeaderStyle, padding: '0', borderBottom: 'none', backgroundColor: 'transparent' } 
+        : baseHeaderStyle;
+    
+    const currentTitleStyle = isMobileView && !isTrackerExpandedMobile 
+        ? { display: 'none' } // Hide title in footer mode
+        : baseTitleStyle;
+
+    return (
+        // Note: The <aside> tag is in Layout.tsx. This component renders the *content* of that aside.
+        // For mobile fullscreen, this component's root div will be styled to be fixed and cover the screen.
+        // For mobile footer, this component's root div will be styled for the footer.
+        // For desktop, this component's root div will be styled as the original sidebar.
+        <div style={currentTrackerStyle}>
+            {/* Header: Title and Toggle Button */}
+            {/* In mobile footer, header might be just the button or a summary + button */}
+            { !(isMobileView && !isTrackerExpandedMobile) && ( // Hide header block in mobile footer, content is directly in the footer
+                 <div style={currentHeaderStyle}>
+                    <h2 style={currentTitleStyle}>Tracker</h2>
+                    <button onClick={buttonAction} style={baseToggleButtonStyle}>
+                        {buttonText}
+                    </button>
+                </div>
+            )}
+
+            {/* Content Area */}
+            {isMobileView && !isTrackerExpandedMobile ? (
+                // Mobile Footer View: Summary and Button are part of the main div with flex justify-space-between
+                <> 
+                    {renderMobileFooterContent()}
+                    <button onClick={buttonAction} style={{...baseToggleButtonStyle, fontSize: '0.8em', padding: '4px 8px'}}>
+                        {buttonText}
+                    </button>
+                </>
+            ) : (
+                // Desktop View or Mobile Fullscreen View
+                <div style={baseContentStyle}>
+                    {renderExpandedContent()}
+                </div>
+            )}
+        </div>
     );
 };
 

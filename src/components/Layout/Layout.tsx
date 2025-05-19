@@ -1,6 +1,10 @@
 // src/components/Layout/Layout.tsx
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import Header from './Header';
+// Import TableOfContentsProps to ensure type compatibility for props passed
+// Assuming TableOfContentsProps is exported from TableOfContents.tsx or a shared types file
+// For now, we'll work with the assumption that the props will match.
+// import { TableOfContentsProps } from './TableOfContents/TableOfContents'; // Adjust path if necessary
 
 // Constant for the header height. This value must match the actual rendered header height for correct layout offset.
 const APP_HEADER_HEIGHT = '48px';
@@ -82,25 +86,152 @@ interface LayoutProps {
 
 // Main Layout component. Arranges header, ToC, main content, and tracker in a responsive, fixed layout.
 const Layout: React.FC<LayoutProps> = ({ tableOfContents, children, tracker }) => {
+    const [isMobileView, setIsMobileView] = useState(false);
+    const [isTocCollapsed, setIsTocCollapsed] = useState(false);
+    const [isTrackerExpandedMobile, setIsTrackerExpandedMobile] = useState(false);
+
+    useEffect(() => {
+        const checkIfMobile = () => {
+            let mobile = false;
+            if (navigator.userAgentData) {
+                mobile = navigator.userAgentData.mobile;
+            } else {
+                const mediaQuery = window.matchMedia("(max-width: 768px)");
+                mobile = mediaQuery.matches;
+            }
+            setIsMobileView(mobile);
+            setIsTocCollapsed(mobile); // TOC defaults to collapsed on mobile
+            if (mobile) {
+                setIsTrackerExpandedMobile(false); // Tracker defaults to footer on mobile
+            }
+        };
+
+        checkIfMobile();
+
+        const mediaQuery = window.matchMedia("(max-width: 768px)");
+        const handleChange = (event: MediaQueryListEvent) => {
+            setIsMobileView(event.matches);
+            setIsTocCollapsed(event.matches);
+            if (event.matches) {
+                setIsTrackerExpandedMobile(false); // Reset tracker to footer on switch to mobile
+            }
+        };
+
+        mediaQuery.addEventListener('change', handleChange);
+
+        return () => {
+            mediaQuery.removeEventListener('change', handleChange);
+        };
+    }, []);
+
+    // Define conditional styles
+    let currentTocStyle: React.CSSProperties = tocStyle;
+    let currentMainContentStyle: React.CSSProperties = mainContentWrapperStyle;
+    let currentTrackerContainerStyle: React.CSSProperties = trackerStyle; // For the <aside>
+    let currentBodyContainerStyle: React.CSSProperties = bodyContainerStyle;
+
+    const tocIsFullscreenMobile = isMobileView && !isTocCollapsed;
+    const trackerIsFullscreenMobile = isMobileView && isTrackerExpandedMobile;
+
+    if (isMobileView) {
+        // Default body style for mobile - can be overridden by fullscreen TOC/Tracker
+        currentBodyContainerStyle = {
+            ...bodyContainerStyle,
+            flexDirection: 'column', // Stack main content above tracker footer
+            paddingBottom: isTrackerExpandedMobile ? '0px' : '60px', // Space for footer tracker, none if fullscreen
+        };
+
+        if (isTocCollapsed) { // TOC is collapsed (minimal or hidden)
+            currentTocStyle = {
+                ...tocStyle,
+                width: '0px',
+                padding: '0',
+                borderRight: 'none',
+                overflow: 'hidden',
+            };
+            // Main content takes full width if tracker is not fullscreen
+            currentMainContentStyle = trackerIsFullscreenMobile 
+                ? { display: 'none' } 
+                : { ...mainContentWrapperStyle, width: '100%' };
+            
+            if (trackerIsFullscreenMobile) {
+                currentTrackerContainerStyle = { display: 'none' }; // Tracker component handles its own fullscreen
+                currentBodyContainerStyle = { ...bodyContainerStyle, paddingBottom: '0px' };
+            } else { // Tracker is footer
+                currentTrackerContainerStyle = {
+                    position: 'fixed',
+                    bottom: 0, left: 0, right: 0,
+                    height: '60px', // Footer height
+                    width: '100vw',
+                    zIndex: 150,
+                    backgroundColor: '#f0f0f0', // Example footer color
+                    borderTop: '1px solid #ccc',
+                    // TrackerAreaComponent itself will use display:flex for its content
+                };
+            }
+        } else { // TOC is expanded (fullscreen mobile)
+            currentTocStyle = {
+                position: 'fixed',
+                top: APP_HEADER_HEIGHT, left: 0,
+                width: '100vw', height: `calc(100vh - ${APP_HEADER_HEIGHT})`,
+                backgroundColor: '#f0f0f0', zIndex: 200,
+                padding: '15px', overflowY: 'auto',
+                borderRight: 'none', boxSizing: 'border-box',
+            };
+            currentMainContentStyle = { display: 'none' }; // Hide main content when TOC is fullscreen
+            currentTrackerContainerStyle = { display: 'none' }; // Hide tracker when TOC is fullscreen
+            currentBodyContainerStyle = { ...bodyContainerStyle, paddingBottom: '0px' }; // No footer space needed
+        }
+
+        // If Tracker is fullscreen, it overrides TOC and Main Content visibility
+        if (trackerIsFullscreenMobile) {
+            currentTocStyle = { ...currentTocStyle, display: 'none' }; // Hide TOC
+            currentMainContentStyle = { display: 'none' }; // Hide Main Content
+            currentTrackerContainerStyle = { display: 'none' }; // Tracker component handles its own fullscreen
+            currentBodyContainerStyle = { ...bodyContainerStyle, paddingBottom: '0px' }; // No footer space needed
+        }
+
+    } else { // Desktop view
+        // Reset to default styles for desktop
+        currentTocStyle = tocStyle;
+        currentMainContentStyle = mainContentWrapperStyle;
+        currentTrackerContainerStyle = trackerStyle;
+        currentBodyContainerStyle = bodyContainerStyle;
+    }
+
+    const tocElement = React.isValidElement(tableOfContents)
+        ? React.cloneElement(tableOfContents as React.ReactElement<any>, {
+              isMobileView,
+              isTocCollapsed,
+              setIsTocCollapsed,
+          })
+        : tableOfContents;
+
+    const trackerElement = React.isValidElement(tracker)
+        ? React.cloneElement(tracker as React.ReactElement<any>, {
+            isMobileView,
+            isTrackerExpandedMobile,
+            setIsTrackerExpandedMobile,
+          })
+        : tracker;
+
     return (
         <div style={layoutContainerStyle}>
             {/* Fixed header at the top of the viewport */}
-            <div style={headerContainerStyle}>
+            <div style={headerContainerStyle}> {/* This one seems duplicated in the original, removing one */}
                 <Header />
             </div>
-            {/* Main body: ToC (left), main content (center), tracker (right) */}
-            <div style={bodyContainerStyle}>
-                {/* Table of Contents sidebar, scrolls independently */}
-                <aside style={tocStyle}>
-                    {tableOfContents}
+            {/* Main body: ToC (left), main content (center), tracker (right/footer) */}
+            <div style={currentBodyContainerStyle}>
+                <aside style={currentTocStyle}>
+                    {tocElement}
                 </aside>
-                {/* Main content area, fills available space */}
-                <div style={mainContentWrapperStyle}>
+                <div style={currentMainContentStyle}>
                     {children}
                 </div>
-                {/* Tracker sidebar, scrolls independently */}
-                <aside style={trackerStyle}>
-                    {tracker}
+                {/* The <aside> for tracker might be styled as footer or hidden if TrackerAreaComponent is fullscreen */}
+                <aside style={currentTrackerContainerStyle}>
+                    {trackerElement}
                 </aside>
             </div>
         </div>
