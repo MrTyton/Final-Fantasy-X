@@ -5,7 +5,8 @@ import { fileURLToPath } from 'url'; // Import fileURLToPath
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const typesFilePath = path.join(__dirname, '../src/types.ts');
-const outputFilePath = path.join(__dirname, '../src/generated/knownTrackables.ts');
+const projectRoot = path.join(__dirname, '..'); // This should correctly go up one level from 'scripts'
+const outputFilePath = path.join(projectRoot, 'src/generated/knownTrackables.ts');
 const outputDir = path.dirname(outputFilePath);
 
 console.log('Generating trackables from types.ts...');
