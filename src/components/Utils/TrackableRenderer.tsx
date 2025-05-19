@@ -1,88 +1,79 @@
 // src/components/Utils/TrackableRenderer.tsx
 import React from 'react';
 import type { TrackedResource, AcquiredItemFlag } from '../../types';
-import ViewportTrigger from './ViewportTrigger'; // Assuming ViewportTrigger.tsx is in the same Utils folder
-import { ResourcePromptComponent } from '../Prompts/ResourcePrompt'; // Adjust path if your Prompts folder is elsewhere
-import { FlagPromptComponent } from '../Prompts/FlagPrompt';       // Adjust path
+import ViewportTrigger from './ViewportTrigger';
+import { ResourcePromptComponent } from '../Prompts/ResourcePrompt'; // Assuming path is correct
+import { FlagPromptComponent } from '../Prompts/FlagPrompt';       // Assuming path is correct
 import { useGlobalState } from '../../contexts/GlobalStateContext';
 
 interface TrackableRendererProps {
   trackedResources?: TrackedResource[];
   itemFlags?: AcquiredItemFlag[];
-  // parentKeyPrefix was considered for React keys but using item.id is better
 }
 
 export const TrackableRenderer: React.FC<TrackableRendererProps> = ({ 
   trackedResources, 
   itemFlags 
 }) => {
-  const { settings } = useGlobalState(); // For conditional debug info visibility
+  const { settings } = useGlobalState();
 
   return (
     <>
       {/* Render Tracked Resources */}
-      {trackedResources?.map((resource) => {
-        // Use the resource's own unique ID for the React key.
-        // This assumes all TrackedResource objects in your JSON have a unique `id`.
-        const key = `trk-res-${resource.id}`; 
+      {trackedResources?.map((resUpd) => {
+        const key = `tr-${resUpd.id}`; // Use the resource's own unique ID for the React key
 
-        if (
-          resource.updateType === 'auto_guaranteed' || 
-          resource.updateType === 'consumption_explicit_fixed' || 
-          resource.updateType === 'consumption_implicit_grid'
-        ) {
+        const isAutoType = 
+          resUpd.updateType === 'auto_guaranteed' || 
+          resUpd.updateType === 'consumption_explicit_fixed' || 
+          resUpd.updateType === 'consumption_implicit_grid';
+
+        const isUserConfirmType = 
+          resUpd.updateType === 'user_confirm_rng_gain' || 
+          resUpd.updateType === 'user_confirm_rng_consumption';
+
+        console.log(`[TrackableRenderer] Processing Resource: ${resUpd.name}, ID: ${resUpd.id}, Type: ${resUpd.updateType}, IsAuto: ${isAutoType}, IsUserConfirm: ${isUserConfirmType}`);
+
+        if (isAutoType) {
           // For AUTOMATIC types, render ViewportTrigger.
-          // The ViewportTrigger itself renders a minimal div for observation.
-          // We pass ResourcePromptComponent as a child to ViewportTrigger only for debug display.
+          // ResourcePromptComponent is passed as a child ONLY for debug display.
           return (
-            <ViewportTrigger key={key} autoResourceToMonitor={resource}>
-              {/* 
-                ResourcePromptComponent has logic to display info for auto-types 
-                when settings.showConditionalBorders is true.
-              */}
+            <ViewportTrigger key={key} autoResourceToMonitor={resUpd}>
               {settings.showConditionalBorders && 
-                <ResourcePromptComponent resourceUpdate={resource} />
+                <ResourcePromptComponent resourceUpdate={resUpd} /> 
               }
             </ViewportTrigger>
           );
-        } else if (
-          resource.updateType === 'user_confirm_rng_gain' || 
-          resource.updateType === 'user_confirm_rng_consumption'
-        ) {
+        } else if (isUserConfirmType) {
           // For MANUAL resource prompts, render ResourcePromptComponent directly.
-          return <ResourcePromptComponent key={key} resourceUpdate={resource} />;
+          return <ResourcePromptComponent key={key} resourceUpdate={resUpd} />;
         }
         
         // Fallback for unhandled resource updateType
-        // console.warn(`TrackableRenderer: Unhandled TrackedResource updateType: ${resource.updateType} for ${resource.name} [${resource.id}]`);
+        console.warn(`TrackableRenderer: Unhandled TrackedResource updateType: ${resUpd.updateType} for ${resUpd.name} [${resUpd.id}]`);
         return null; 
       })}
 
       {/* Render Item Acquisition Flags */}
       {itemFlags?.map((flag) => {
-        // Use the flag's own unique ID for the React key.
-        // This assumes all AcquiredItemFlag objects in your JSON have a unique `id`.
-        const key = `acq-flag-${flag.id}`; 
+        const key = `af-${flag.id}`; 
 
-        // Check for flag types that require user interaction (manual prompts)
-        if (
+        const isUserPromptFlag = 
           flag.setType === 'user_checkbox_on_pickup_or_drop' || 
-          flag.setType === 'user_prompt_after_event'
-          // Add other manual flag setTypes here if any in the future
-        ) { 
+          flag.setType === 'user_prompt_after_event';
+
+        if (isUserPromptFlag) { 
           return <FlagPromptComponent key={key} flag={flag} />;
         }
         
-        // If 'auto_set_on_pass' for flags were implemented, ViewportTrigger would be used here.
-        // 'derived_from_user_choice' flags are typically not directly rendered as prompts by TrackableRenderer;
-        // their state changes as a consequence of other interactions.
-        // console.warn(`TrackableRenderer: Unhandled/Non-prompt AcquiredItemFlag setType: ${flag.setType} for ${flag.itemName} [${flag.id}]`);
+        console.warn(`TrackableRenderer: Unhandled AcquiredItemFlag setType: ${flag.setType} for ${flag.itemName} [${flag.id}]`);
         return null;
       })}
     </>
   );
 };
 
-// If this is the only export from this file, you might prefer:
-// export default TrackableRenderer;
-// However, keeping it as a named export is also fine.
+// Make sure it's the default export if you import it as default elsewhere,
+// or keep it as a named export if you import it as { TrackableRenderer }.
+// Based on previous usage, it seems to be a named export.
+// export default TrackableRenderer; 

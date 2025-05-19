@@ -863,14 +863,14 @@
                     "name": "PowerSphere",
                     "quantity": 1,
                     "updateType": "auto_guaranteed",
-                    "id": "besaid_enc_ps1",
+                    "id": "besaid_enc_ps2",
                     "description": "From Besaid Encounters (Dingo)"
                 },
                 {
                     "name": "PowerSphere",
                     "quantity": 1,
                     "updateType": "user_confirm_rng_gain",
-                    "id": "besaid_enc_dingo_overkill_ps1",
+                    "id": "besaid_enc_dingo_overkill_ps2",
                     "description": "Overkill on Dingo (Besaid Encounters)"
                 }
             ]
