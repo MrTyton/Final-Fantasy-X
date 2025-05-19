@@ -1,12 +1,34 @@
 // tsconfig.scripts.json (in project root)
 {
-    "extends": "./tsconfig.json", // Inherit from main, but override module system for scripts
-    "compilerOptions": {
-        "module": "CommonJS",
-        "noEmit": false, // Allow emitting .js if needed by Node, though ts-node handles .ts
-        "outDir": "./dist-scripts" // Optional: if you were to compile scripts
-    },
-    "include": [
-        "scripts/**/*"
-    ]
+  "compilerOptions": {
+    // Target ESNext for module system to align with package.json "type": "module"
+    "module": "ESNext", 
+    "moduleResolution": "bundler", // Or "node16"/"nodenext" for modern Node ESM resolution
+    "target": "ES2022",           // Modern Node.js versions support this well
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true, // Good for interop
+    "resolveJsonModule": true,      // If your scripts import .json files directly
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    
+    // For scripts run by ts-node with ESM loader, 'noEmit' should be true.
+    // Node.js with the loader will execute the .ts files directly.
+    "noEmit": true
+  },
+  "ts-node": {
+    // Tell ts-node this project (or specifically these scripts) uses ES Modules
+    "esm": true,
+    // transpileOnly can speed up execution by skipping full type checks by ts-node
+    // (assuming your editor or a separate tsc check handles full diagnostics)
+    "transpileOnly": true,
+    // If you have issues with how ts-node resolves specifiers for your imports:
+    // "experimentalSpecifierResolution": "node" 
+  },
+  "include": [
+    "scripts/**/*.ts" // Glob pattern for your script files
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

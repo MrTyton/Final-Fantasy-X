@@ -1,6 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-
+import { fileURLToPath } from 'url'; // Import fileURLToPath
+// Get the directory name of the current module in ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const typesFilePath = path.join(__dirname, '../src/types.ts');
 const outputFilePath = path.join(__dirname, '../src/generated/knownTrackables.ts');
 const outputDir = path.dirname(outputFilePath);

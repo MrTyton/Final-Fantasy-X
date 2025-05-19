@@ -1,8 +1,11 @@
 // scripts/generate-flag-map.ts
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url'; // Import fileURLToPath
 import type { FFXSpeedrunGuide, AcquiredItemFlag } from '../src/types'; // Import all relevant types
-
+// Get the directory name of the current module in ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const projectRoot = path.join(__dirname, '..'); // Adjust if script is elsewhere
 const mainGuidePath = path.join(projectRoot, 'public/data/ffx_guide_main.json'); // Path to main guide
 const outputFilePath = path.join(projectRoot, 'src/generated/flagIdToItemNameMap.ts');
