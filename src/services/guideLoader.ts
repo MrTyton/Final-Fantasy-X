@@ -7,27 +7,47 @@ import type {
     FormattedText,
 } from '../types'; // Adjust path if your types.ts is elsewhere within src
 
-const BASE_URL = ''; // Assuming files are served from the root.
+const APP_BASE_URL = import.meta.env.BASE_URL || '/'; // Default to '/' if undefined (e.g. non-Vite env)
 // If deployed in a subfolder, this might need to be configured.
 
 /**
  * Fetches and parses a JSON file from the given path.
+ * Path should be absolute from the public root (e.g., '/data/some_file.json').
+ * The APP_BASE_URL will be prepended if it's not just '/'.
  * @param path - The path to the JSON file (e.g., '/data/some_file.json').
  * @returns A promise that resolves with the parsed JSON data, or null if an error occurs.
  */
 async function fetchJsonFile<T>(path: string): Promise<T | null> {
-    try {
-        const response = await fetch(`${BASE_URL}${path}`);
-        if (!response.ok) {
-            console.error(`Error fetching ${path}: ${response.status} ${response.statusText}`);
-            return null;
+  try {
+    // Ensure path starts with a slash if APP_BASE_URL ends with one and path doesn't, or vice versa
+    // Simplest: assume path always starts with '/' and APP_BASE_URL might end with '/' or not.
+    let fetchUrl = path;
+    if (APP_BASE_URL && APP_BASE_URL !== '/') {
+        // If APP_BASE_URL is '/Final-Fantasy-X/' and path is '/data/file.json',
+        // we want '/Final-Fantasy-X/data/file.json'.
+        // If path already includes base (less likely), don't double-prefix.
+        if (path.startsWith(APP_BASE_URL)) {
+            fetchUrl = path;
+        } else {
+            // Ensure no double slashes
+            const cleanBase = APP_BASE_URL.endsWith('/') ? APP_BASE_URL.slice(0, -1) : APP_BASE_URL;
+            const cleanPath = path.startsWith('/') ? path : `/${path}`;
+            fetchUrl = `${cleanBase}${cleanPath}`;
         }
-        const data: T = await response.json();
-        return data;
-    } catch (error) {
-        console.error(`Error parsing JSON from ${path}:`, error);
-        return null;
     }
+    // console.log(`[fetchJsonFile] Attempting to fetch: ${fetchUrl} (Original path: ${path}, Base: ${APP_BASE_URL})`);
+
+    const response = await fetch(fetchUrl);
+    if (!response.ok) {
+      console.error(`Error fetching ${fetchUrl}: ${response.status} ${response.statusText}`);
+      return null;
+    }
+    const data: T = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Error parsing JSON from ${path} (resolved as ${APP_BASE_URL}${path}):`, error);
+    return null;
+  }
 }
 
 /**
