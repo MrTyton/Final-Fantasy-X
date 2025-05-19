@@ -95,15 +95,28 @@ const ImageBlockComponent: React.FC<ImageBlockProps> = ({ blockData }) => {
     const thumbnailRef = useRef<HTMLImageElement>(null);
 
     const processedPath = useMemo(() => {
-        let path = blockData.path;
-        if (!/\.(jpeg|jpg|gif|png|svg)$/i.test(path)) {
-            path += '.png';
+        let relativePathFromJson = blockData.path; // e.g., "graphics/tiduscheer"
+
+        // 1. Guess extension if missing
+        if (!/\.(jpeg|jpg|gif|png|svg)$/i.test(relativePathFromJson)) {
+            relativePathFromJson += '.png';
         }
-        // Use app base URL for correct asset resolution (works with Vite and fallback)
-        const APP_BASE_URL = (import.meta as any).env?.BASE_URL || '/';
-        // Ensure no double slashes except after protocol
-        path = APP_BASE_URL.replace(/\/+$/, '') + '/' + path.replace(/^\/+/, '');
-        return path;
+
+        const appBaseUrl = import.meta.env.BASE_URL; // e.g., "/" or "/Final-Fantasy-X/"
+
+        // Vite's BASE_URL:
+        // - For root deployment: "/"
+        // - For sub-path deployment: "/repo-name/" (starts and ends with a slash)
+        // Our relativePathFromJson is like "graphics/image.png" (no leading slash)
+
+        if (appBaseUrl === '/') {
+            return `/${relativePathFromJson}`; // Prepend slash to make it /graphics/image.png
+        } else {
+            // appBaseUrl is e.g., "/Final-Fantasy-X/"
+            // relativePathFromJson is e.g., "graphics/image.png"
+            // Result: "/Final-Fantasy-X/graphics/image.png"
+            return `${appBaseUrl}${relativePathFromJson}`;
+        }
     }, [blockData.path]);
 
     const openModal = () => {
