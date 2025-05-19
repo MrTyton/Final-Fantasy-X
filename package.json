@@ -1,5 +1,8 @@
 {
   "name": "final-fantasy-x",
+  "homepage": "https://mrtyton.github.io/Final-Fantasy-X",
+  "type": "module",
+  "private": true,
   "version": "1.0.0",
   "description": "Final Fantasy X Any% Speedrun Notes.",
   "main": "index.js",
@@ -12,7 +15,9 @@
     "dev": "concurrently \"vite\" \"npm run watch-types\" \"npm run watch-data-for-flag-map\"",
     "predev": "npm run generate-trackables && npm run generate-flag-map",
     "build": "npm run generate-trackables && npm run generate-flag-map && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +30,7 @@
     "@vitejs/plugin-react": "^4.4.1",
     "concurrently": "^9.1.2",
     "fs-extra": "^11.3.0",
+    "gh-pages": "^6.3.0",
     "onchange": "^7.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
