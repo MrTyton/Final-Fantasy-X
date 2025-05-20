@@ -218,9 +218,13 @@ const TrackerAreaComponent: React.FC<TrackerAreaProps> = ({
     // Define which resources are "key" and always shown in collapsed view / mobile footer
     const KEY_RESOURCES_FOR_SUMMARY: string[] = ['PowerSphere', 'SpeedSphere', 'Grenade'];
 
-    const allResourceEntries = Object.entries(tracker.resources)
+    // Safeguard against tracker.resources or tracker.flags being null/undefined
+    const resources = tracker?.resources || {};
+    const flags = tracker?.flags || {};
+
+    const allResourceEntries = Object.entries(resources)
         .sort(([nameA], [nameB]) => nameA.localeCompare(nameB));
-    const allFlagEntries = Object.entries(tracker.flags)
+    const allFlagEntries = Object.entries(flags)
         .sort(([nameA], [nameB]) => nameA.localeCompare(nameB));
 
     // Determine current overall style for the component's root element
@@ -241,7 +245,7 @@ const TrackerAreaComponent: React.FC<TrackerAreaProps> = ({
     // Content for mobile footer view
     const renderMobileFooterContent = () => {
         const summaryItems = KEY_RESOURCES_FOR_SUMMARY.map(key => {
-            const quantity = tracker.resources[key] || 0;
+            const quantity = resources[key] || 0; // Use safeguarded resources
             // Shorten names for brevity, e.g., PowerSphere -> Pwr
             const shortName = key.replace('Sphere', '').substring(0,3);
             return `${shortName}: ${quantity}`;
@@ -251,7 +255,7 @@ const TrackerAreaComponent: React.FC<TrackerAreaProps> = ({
 
     // Content for expanded view (desktop or mobile fullscreen)
     const renderExpandedContent = () => {
-        const resourcesToDisplay = isMobileView || isDesktopExpanded
+        const resourcesToDisplay = (isMobileView && isTrackerExpandedMobile) || (!isMobileView && isDesktopExpanded)
             ? allResourceEntries
             : allResourceEntries.filter(([name]) => KEY_RESOURCES_FOR_SUMMARY.includes(name));
         
@@ -268,7 +272,7 @@ const TrackerAreaComponent: React.FC<TrackerAreaProps> = ({
                     ))
                 ) : (
                     <p style={{ fontSize: '0.9em', color: '#6c757d', fontStyle: 'italic' }}>
-                        {(isMobileView && isTrackerExpandedMobile) || (!isMobileView && isDesktopExpanded) ? "No resources defined." : "No key resources."}
+                        {(isMobileView && isTrackerExpandedMobile) || (!isMobileView && isDesktopExpanded) ? "No resources defined." : "No key resources to display."}
                     </p>
                 )}
 
@@ -299,15 +303,75 @@ const TrackerAreaComponent: React.FC<TrackerAreaProps> = ({
         ? { display: 'none' } // Hide title in footer mode
         : baseTitleStyle;
 
+    // Simplified UI for Mobile Fullscreen Test as per instructions (Turn 28)
+    if (isMobileView && isTrackerExpandedMobile && setIsTrackerExpandedMobile) {
+        // buttonAction and buttonText are already correctly defined for this state by the component's logic:
+        // buttonText should be "↓ Close"
+        // buttonAction should be `() => setIsTrackerExpandedMobile(false)`
+
+        const simplifiedTestInnerDivStyle: React.CSSProperties = {
+            // This div is inside the main component div (which has mobileFullscreenStyle)
+            // mobileFullscreenStyle provides display:flex, flexDirection:column, and paddingTop.
+            // This inner div should take up the remaining space.
+            flexGrow: 1, 
+            backgroundColor: 'lime', // As per conceptual example
+            padding: '20px',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxSizing: 'border-box',
+            width: '100%', // Fill width of parent
+        };
+
+        const simplifiedTestH2Style: React.CSSProperties = {
+            color: 'black', // As per conceptual example
+            marginBottom: '10px', // Adjusted from example for spacing
+        };
+        
+        const simplifiedTestButtonStyle: React.CSSProperties = {
+            // Styles from the conceptual example
+            padding: '10px', 
+            fontSize: '16px', 
+            backgroundColor: 'blue', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer', 
+            marginTop: '10px'
+        };
+
+        const simplifiedTestPStyle: React.CSSProperties = {
+            color: 'black', // As per conceptual example
+            marginTop: '20px', 
+        };
+        
+        return (
+            // currentTrackerStyle here will be mobileFullscreenStyle.
+            // mobileFullscreenStyle has display:flex, flexDirection:column, and paddingTop: '48px'.
+            // The lime div below will render *inside* this padded area and fill the remaining space due to flexGrow:1.
+            <div style={currentTrackerStyle}> 
+                <div style={simplifiedTestInnerDivStyle}>
+                    <h2 style={simplifiedTestH2Style}>Tracker Fullscreen Test Area</h2>
+                    <button
+                        onClick={buttonAction} // Actual action from component logic
+                        style={simplifiedTestButtonStyle} 
+                    >
+                        {buttonText} {/* Actual text, should be "↓ Close" */}
+                    </button>
+                    <p style={simplifiedTestPStyle}>If you see this, the container is visible.</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
-        // Note: The <aside> tag is in Layout.tsx. This component renders the *content* of that aside.
-        // For mobile fullscreen, this component's root div will be styled to be fixed and cover the screen.
-        // For mobile footer, this component's root div will be styled for the footer.
-        // For desktop, this component's root div will be styled as the original sidebar.
+        // Original rendering for Desktop and Mobile Footer
         <div style={currentTrackerStyle}>
             {/* Header: Title and Toggle Button */}
-            {/* In mobile footer, header might be just the button or a summary + button */}
-            { !(isMobileView && !isTrackerExpandedMobile) && ( // Hide header block in mobile footer, content is directly in the footer
+            {/* This header is NOT rendered in mobile footer view (when !isTrackerExpandedMobile is true for mobile) */}
+            { !(isMobileView && !isTrackerExpandedMobile) && ( 
                  <div style={currentHeaderStyle}>
                     <h2 style={currentTitleStyle}>Tracker</h2>
                     <button onClick={buttonAction} style={baseToggleButtonStyle}>
@@ -317,16 +381,18 @@ const TrackerAreaComponent: React.FC<TrackerAreaProps> = ({
             )}
 
             {/* Content Area */}
+            {/* If mobile view AND tracker is NOT expanded (i.e., mobile footer) */}
             {isMobileView && !isTrackerExpandedMobile ? (
-                // Mobile Footer View: Summary and Button are part of the main div with flex justify-space-between
                 <> 
                     {renderMobileFooterContent()}
+                    {/* Footer button */}
                     <button onClick={buttonAction} style={{...baseToggleButtonStyle, fontSize: '0.8em', padding: '4px 8px'}}>
-                        {buttonText}
+                        {buttonText} {/* Should be "↑ Details" */}
                     </button>
                 </>
             ) : (
-                // Desktop View or Mobile Fullscreen View
+                // Desktop View (expanded or collapsed)
+                // This path should not be hit for mobile fullscreen due to the explicit test block above.
                 <div style={baseContentStyle}>
                     {renderExpandedContent()}
                 </div>
