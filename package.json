@@ -7,19 +7,15 @@
   "description": "Final Fantasy X Any% Speedrun Notes.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    
     "// Helper scripts for generation - using ts-node ESM loader": "",
     "generate-trackables": "cross-env TS_NODE_PROJECT=tsconfig.scripts.json node --loader ts-node/esm --experimental-specifier-resolution=node ./scripts/generate-trackables.ts",
     "generate-flag-map": "cross-env TS_NODE_PROJECT=tsconfig.scripts.json node --loader ts-node/esm --experimental-specifier-resolution=node ./scripts/generate-flag-map.ts",
-    
     "// Watchers for development (run concurrently with Vite)": "",
     "watch-types": "onchange \"src/types.ts\" -- npm run generate-trackables",
     "watch-data-for-flag-map": "onchange \"public/data/**/*.json\" -- npm run generate-flag-map",
-    
     "// Main development script": "",
     "predev": "npm run generate-trackables && npm run generate-flag-map",
     "dev": "concurrently \"vite\" \"npm run watch-types\" \"npm run watch-data-for-flag-map\"",
-    
     "// Build and deployment scripts": "",
     "build": "npm run generate-trackables && npm run generate-flag-map && vite build",
     "preview": "vite preview",
@@ -42,7 +38,7 @@
     "onchange": "^7.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
-    "vite": "^5.2.13"
+    "vite": "^7.0.6"
   },
   "dependencies": {
     "ajv": "^8.17.1",
