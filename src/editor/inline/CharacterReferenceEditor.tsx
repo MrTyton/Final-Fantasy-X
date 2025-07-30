@@ -11,8 +11,8 @@ export const CharacterReferenceEditor: React.FC<CharacterReferenceEditorProps> =
     const handleCharacterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const characterName = e.target.value;
         const defaultColor = getDefaultCharacterColor(characterName);
-        onChange({ 
-            ...node, 
+        onChange({
+            ...node,
             characterName,
             color: defaultColor || node.color
         });

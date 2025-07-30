@@ -23,7 +23,7 @@ export const TextParagraphEditor: React.FC<TextParagraphEditorProps> = ({ block,
 
     const addInlineElement = (type: string) => {
         let newElement: any;
-        
+
         switch (type) {
             case 'plainText':
                 newElement = { type: 'plainText', text: 'New text' };
@@ -41,16 +41,16 @@ export const TextParagraphEditor: React.FC<TextParagraphEditorProps> = ({ block,
                 newElement = { type: 'gameMacro', macroName: 'sd' };
                 break;
             case 'formation':
-                newElement = { 
-                    type: 'formation', 
-                    characters: [{ type: 'characterReference', characterName: 'tidus' }] 
+                newElement = {
+                    type: 'formation',
+                    characters: [{ type: 'characterReference', characterName: 'tidus' }]
                 };
                 break;
             case 'link':
-                newElement = { 
-                    type: 'link', 
-                    url: 'https://example.com', 
-                    text: [{ type: 'formattedText', text: 'Link text' }] 
+                newElement = {
+                    type: 'link',
+                    url: 'https://example.com',
+                    text: [{ type: 'formattedText', text: 'Link text' }]
                 };
                 break;
             case 'nth':
@@ -65,7 +65,7 @@ export const TextParagraphEditor: React.FC<TextParagraphEditorProps> = ({ block,
             default:
                 newElement = { type: 'plainText', text: 'New text' };
         }
-        
+
         const newContent = [...block.content, newElement];
         const newBlock = { ...block, content: newContent };
         updateNode(path, newBlock);
@@ -191,7 +191,7 @@ export const TextParagraphEditor: React.FC<TextParagraphEditorProps> = ({ block,
                     </select>
                 </div>
             </div>
-            
+
             <div style={contentStyle}>
                 {block.content.length === 0 ? (
                     <em style={{ color: '#666', fontSize: '14px' }}>

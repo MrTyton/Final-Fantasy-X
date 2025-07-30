@@ -127,7 +127,7 @@ export const EquipEditor: React.FC<EquipEditorProps> = ({ block, path }) => {
                         <div>
                             {block.content.map((item, index) => (
                                 <div key={index} style={{ position: 'relative', marginBottom: '8px' }}>
-                                    <div style={{ 
+                                    <div style={{
                                         position: 'relative',
                                         border: '1px solid #d8b4fe',
                                         borderRadius: '4px',

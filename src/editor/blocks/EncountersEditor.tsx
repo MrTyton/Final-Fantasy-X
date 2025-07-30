@@ -15,7 +15,7 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
 
     const addContentItem = (contentType: string = 'listItem') => {
         let newContent: ListItemElement | ConditionalBlock;
-        
+
         if (contentType === 'conditional') {
             newContent = {
                 type: 'conditional',
@@ -200,8 +200,8 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                             </em>
                         ) : (
                             block.content.map((contentItem, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     border: '1px solid #e0e7ff',
                                     borderRadius: '4px',
@@ -257,8 +257,8 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                             </em>
                         ) : (
                             block.notes.map((note, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     border: '1px solid #e0e7ff',
                                     borderRadius: '4px',
@@ -314,8 +314,8 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                             </em>
                         ) : (
                             block.trackedResourceUpdates.map((resource, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     padding: '12px',
                                     border: '1px solid #e0e7ff',
@@ -344,7 +344,7 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                     >
                                         ×
                                     </button>
-                                    
+
                                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
                                         <label style={{ display: 'flex', flexDirection: 'column', minWidth: '120px' }}>
                                             <strong style={{ fontSize: '12px', marginBottom: '2px' }}>Resource Name:</strong>
@@ -352,7 +352,7 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                                 type="text"
                                                 value={resource.name}
                                                 onChange={(e) => updateTrackedResource(index, { ...resource, name: e.target.value })}
-                                                style={{ 
+                                                style={{
                                                     padding: '4px 8px',
                                                     borderRadius: '4px',
                                                     border: '1px solid #ccc',
@@ -362,14 +362,14 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                                 placeholder="Resource name"
                                             />
                                         </label>
-                                        
+
                                         <label style={{ display: 'flex', flexDirection: 'column', minWidth: '80px' }}>
                                             <strong style={{ fontSize: '12px', marginBottom: '2px' }}>Quantity:</strong>
                                             <input
                                                 type="number"
                                                 value={resource.quantity}
                                                 onChange={(e) => updateTrackedResource(index, { ...resource, quantity: parseInt(e.target.value) || 0 })}
-                                                style={{ 
+                                                style={{
                                                     padding: '4px 8px',
                                                     borderRadius: '4px',
                                                     border: '1px solid #ccc',
@@ -379,13 +379,13 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                                 min="0"
                                             />
                                         </label>
-                                        
+
                                         <label style={{ display: 'flex', flexDirection: 'column', minWidth: '150px' }}>
                                             <strong style={{ fontSize: '12px', marginBottom: '2px' }}>Update Type:</strong>
                                             <select
                                                 value={resource.updateType}
                                                 onChange={(e) => updateTrackedResource(index, { ...resource, updateType: e.target.value as any })}
-                                                style={{ 
+                                                style={{
                                                     padding: '4px 8px',
                                                     borderRadius: '4px',
                                                     border: '1px solid #ccc',
@@ -401,14 +401,14 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                             </select>
                                         </label>
                                     </div>
-                                    
+
                                     <label style={{ display: 'block', marginTop: '8px' }}>
                                         <strong style={{ fontSize: '12px', marginBottom: '2px', display: 'block' }}>Description (optional):</strong>
                                         <input
                                             type="text"
                                             value={resource.description || ''}
                                             onChange={(e) => updateTrackedResource(index, { ...resource, description: e.target.value || undefined })}
-                                            style={{ 
+                                            style={{
                                                 padding: '4px 8px',
                                                 borderRadius: '4px',
                                                 border: '1px solid #ccc',
@@ -442,8 +442,8 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                             </em>
                         ) : (
                             block.itemAcquisitionFlags.map((flag, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     padding: '12px',
                                     border: '1px solid #e0e7ff',
@@ -472,7 +472,7 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                     >
                                         ×
                                     </button>
-                                    
+
                                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
                                         <label style={{ display: 'flex', flexDirection: 'column', minWidth: '140px' }}>
                                             <strong style={{ fontSize: '12px', marginBottom: '2px' }}>Item Name:</strong>
@@ -480,7 +480,7 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                                 type="text"
                                                 value={flag.itemName}
                                                 onChange={(e) => updateItemFlag(index, { ...flag, itemName: e.target.value })}
-                                                style={{ 
+                                                style={{
                                                     padding: '4px 8px',
                                                     borderRadius: '4px',
                                                     border: '1px solid #ccc',
@@ -490,13 +490,13 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                                 placeholder="Item name"
                                             />
                                         </label>
-                                        
+
                                         <label style={{ display: 'flex', flexDirection: 'column', minWidth: '180px' }}>
                                             <strong style={{ fontSize: '12px', marginBottom: '2px' }}>Set Type:</strong>
                                             <select
                                                 value={flag.setType}
                                                 onChange={(e) => updateItemFlag(index, { ...flag, setType: e.target.value as any })}
-                                                style={{ 
+                                                style={{
                                                     padding: '4px 8px',
                                                     borderRadius: '4px',
                                                     border: '1px solid #ccc',
@@ -510,14 +510,14 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                             </select>
                                         </label>
                                     </div>
-                                    
+
                                     <label style={{ display: 'block', marginTop: '8px' }}>
                                         <strong style={{ fontSize: '12px', marginBottom: '2px', display: 'block' }}>Source Description:</strong>
                                         <input
                                             type="text"
                                             value={flag.sourceDescription}
                                             onChange={(e) => updateItemFlag(index, { ...flag, sourceDescription: e.target.value })}
-                                            style={{ 
+                                            style={{
                                                 padding: '4px 8px',
                                                 borderRadius: '4px',
                                                 border: '1px solid #ccc',

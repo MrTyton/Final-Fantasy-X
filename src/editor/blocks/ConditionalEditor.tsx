@@ -33,7 +33,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
             type: 'formattedText',
             text: 'New condition text'
         };
-        
+
         const newTextCondition = block.textCondition ? [...block.textCondition, newCondition] : [newCondition];
         const newBlock = { ...block, textCondition: newTextCondition };
         updateNode(path, newBlock);
@@ -54,7 +54,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
                 text: `New ${sectionName} content`
             }]
         };
-        
+
         const existingContent = block[sectionName] || [];
         const newSectionContent = [...existingContent, newContent];
         const newBlock = { ...block, [sectionName]: newSectionContent };
@@ -64,7 +64,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
     const removeContentFromSection = (sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent', index: number) => {
         const existingContent = block[sectionName];
         if (!existingContent) return;
-        
+
         const newSectionContent = existingContent.filter((_, i) => i !== index);
         const newBlock = { ...block, [sectionName]: newSectionContent.length > 0 ? newSectionContent : undefined };
         updateNode(path, newBlock);
@@ -116,7 +116,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
         title: string
     ) => {
         const content = block[sectionName];
-        
+
         return (
             <div style={sectionStyle}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
@@ -136,8 +136,8 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
                     </em>
                 ) : (
                     content.map((item, index) => (
-                        <div key={index} style={{ 
-                            position: 'relative', 
+                        <div key={index} style={{
+                            position: 'relative',
                             margin: '8px 0',
                             border: '1px solid #fff3e0',
                             borderRadius: '4px',
@@ -260,8 +260,8 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
                                 </em>
                             ) : (
                                 block.textCondition.map((condition, index) => (
-                                    <div key={index} style={{ 
-                                        position: 'relative', 
+                                    <div key={index} style={{
+                                        position: 'relative',
                                         margin: '8px 0',
                                         border: '1px solid #fff3e0',
                                         borderRadius: '4px',

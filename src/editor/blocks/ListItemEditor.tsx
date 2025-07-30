@@ -15,7 +15,7 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
 
     const addInlineElement = (type: string) => {
         let newElement: any;
-        
+
         switch (type) {
             case 'plainText':
                 newElement = { type: 'plainText', text: 'New text' };
@@ -33,16 +33,16 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
                 newElement = { type: 'gameMacro', macroName: 'sd' };
                 break;
             case 'formation':
-                newElement = { 
-                    type: 'formation', 
-                    characters: [{ type: 'characterReference', characterName: 'tidus' }] 
+                newElement = {
+                    type: 'formation',
+                    characters: [{ type: 'characterReference', characterName: 'tidus' }]
                 };
                 break;
             case 'link':
-                newElement = { 
-                    type: 'link', 
-                    url: 'https://example.com', 
-                    text: [{ type: 'formattedText', text: 'Link text' }] 
+                newElement = {
+                    type: 'link',
+                    url: 'https://example.com',
+                    text: [{ type: 'formattedText', text: 'Link text' }]
                 };
                 break;
             case 'nth':
@@ -85,7 +85,7 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
             default:
                 newElement = { type: 'plainText', text: 'New text' };
         }
-        
+
         const newContent = [...block.content, newElement];
         const newBlock = { ...block, content: newContent };
         updateNode(path, newBlock);
@@ -102,7 +102,7 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
             type: 'listItem',
             content: [{ type: 'plainText', text: 'New sub-item' }]
         };
-        
+
         const newSubContent = [...(block.subContent || []), newSubItem];
         const newBlock = { ...block, subContent: newSubContent };
         updateNode(path, newBlock);
@@ -111,9 +111,9 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
     const removeSubContentItem = (index: number) => {
         if (!block.subContent) return;
         const newSubContent = block.subContent.filter((_, i) => i !== index);
-        const newBlock = { 
-            ...block, 
-            subContent: newSubContent.length > 0 ? newSubContent : undefined 
+        const newBlock = {
+            ...block,
+            subContent: newSubContent.length > 0 ? newSubContent : undefined
         };
         updateNode(path, newBlock);
     };
@@ -126,7 +126,7 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
             id: `resource_${Date.now()}`,
             description: 'Sphere obtained from battle victory'
         };
-        
+
         const newTrackedResources = [...(block.trackedResourceUpdates || []), newResource];
         const newBlock = { ...block, trackedResourceUpdates: newTrackedResources };
         updateNode(path, newBlock);
@@ -135,9 +135,9 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
     const removeTrackedResource = (index: number) => {
         if (!block.trackedResourceUpdates) return;
         const newTrackedResources = block.trackedResourceUpdates.filter((_, i) => i !== index);
-        const newBlock = { 
-            ...block, 
-            trackedResourceUpdates: newTrackedResources.length > 0 ? newTrackedResources : undefined 
+        const newBlock = {
+            ...block,
+            trackedResourceUpdates: newTrackedResources.length > 0 ? newTrackedResources : undefined
         };
         updateNode(path, newBlock);
     };
@@ -157,7 +157,7 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
             sourceDescription: 'Item acquired from battle victory',
             id: `flag_${Date.now()}`
         };
-        
+
         const newFlags = [...(block.itemAcquisitionFlags || []), newFlag];
         const newBlock = { ...block, itemAcquisitionFlags: newFlags };
         updateNode(path, newBlock);
@@ -166,9 +166,9 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
     const removeItemFlag = (index: number) => {
         if (!block.itemAcquisitionFlags) return;
         const newFlags = block.itemAcquisitionFlags.filter((_, i) => i !== index);
-        const newBlock = { 
-            ...block, 
-            itemAcquisitionFlags: newFlags.length > 0 ? newFlags : undefined 
+        const newBlock = {
+            ...block,
+            itemAcquisitionFlags: newFlags.length > 0 ? newFlags : undefined
         };
         updateNode(path, newBlock);
     };
@@ -182,8 +182,8 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
     };
 
     const updateCSRBehavior = (behavior: string) => {
-        const newBlock = { 
-            ...block, 
+        const newBlock = {
+            ...block,
             csrBehavior: behavior === 'none' ? undefined : behavior as any
         };
         updateNode(path, newBlock);
@@ -194,7 +194,7 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
             type: 'formattedText',
             text: 'New CSR note'
         };
-        
+
         const newNotes = [...(block.csrNote || []), newNote];
         const newBlock = { ...block, csrNote: newNotes };
         updateNode(path, newBlock);
@@ -203,9 +203,9 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
     const removeCSRNote = (index: number) => {
         if (!block.csrNote) return;
         const newNotes = block.csrNote.filter((_, i) => i !== index);
-        const newBlock = { 
-            ...block, 
-            csrNote: newNotes.length > 0 ? newNotes : undefined 
+        const newBlock = {
+            ...block,
+            csrNote: newNotes.length > 0 ? newNotes : undefined
         };
         updateNode(path, newBlock);
     };
@@ -399,7 +399,7 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
                     <div style={{ marginBottom: '8px' }}>
                         <strong style={{ fontSize: '12px', color: '#666' }}>Tracking & CSR</strong>
                     </div>
-                    
+
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '8px' }}>
                         <button
                             style={{ ...buttonStyle, fontSize: '10px' }}

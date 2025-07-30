@@ -49,7 +49,7 @@ export const BattleBlockEditor: React.FC<BattleBlockEditorProps> = ({ block, pat
             type: 'listItem',
             content: newContent as any
         };
-        
+
         const newStrategy = [...block.strategy, newItem];
         const newBlock = { ...block, strategy: newStrategy };
         updateNode(path, newBlock);
@@ -66,7 +66,7 @@ export const BattleBlockEditor: React.FC<BattleBlockEditorProps> = ({ block, pat
             type: 'formattedText',
             text: 'New battle note'
         };
-        
+
         const newNotes = block.notes ? [...block.notes, newParagraph] : [newParagraph];
         const newBlock = { ...block, notes: newNotes };
         updateNode(path, newBlock);
@@ -269,7 +269,7 @@ export const BattleBlockEditor: React.FC<BattleBlockEditorProps> = ({ block, pat
                             <ol style={{ paddingLeft: '20px', margin: 0 }}>
                                 {block.strategy.map((step, index) => (
                                     <li key={index} style={{ position: 'relative', marginBottom: '8px' }}>
-                                        <div style={{ 
+                                        <div style={{
                                             position: 'relative',
                                             border: '1px solid #ffebee',
                                             borderRadius: '4px',
@@ -327,8 +327,8 @@ export const BattleBlockEditor: React.FC<BattleBlockEditorProps> = ({ block, pat
                             </em>
                         ) : (
                             block.notes.map((note, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     border: '1px solid #ffebee',
                                     borderRadius: '4px',
@@ -396,13 +396,13 @@ export const BattleBlockEditor: React.FC<BattleBlockEditorProps> = ({ block, pat
                             onUpdateItemFlag={updateItemFlag}
                             onRemoveItemFlag={removeItemFlag}
                         />
-                        
-                        {(!block.trackedResourceUpdates || block.trackedResourceUpdates.length === 0) && 
-                         (!block.itemAcquisitionFlags || block.itemAcquisitionFlags.length === 0) && (
-                            <em style={{ color: '#666', fontSize: '14px', display: 'block', textAlign: 'center', padding: '20px' }}>
-                                No tracked resources or item flags - use the buttons above to add them
-                            </em>
-                        )}
+
+                        {(!block.trackedResourceUpdates || block.trackedResourceUpdates.length === 0) &&
+                            (!block.itemAcquisitionFlags || block.itemAcquisitionFlags.length === 0) && (
+                                <em style={{ color: '#666', fontSize: '14px', display: 'block', textAlign: 'center', padding: '20px' }}>
+                                    No tracked resources or item flags - use the buttons above to add them
+                                </em>
+                            )}
                     </div>
                 </>
             )}

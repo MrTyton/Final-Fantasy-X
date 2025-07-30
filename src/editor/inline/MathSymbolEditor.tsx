@@ -23,7 +23,7 @@ export const MathSymbolEditor: React.FC<MathSymbolEditorProps> = ({ node, onChan
         // Arrows - LaTeX style
         '\\uparrow', '\\downarrow', '\\leftarrow', '\\rightarrow',
         '\\nwarrow', '\\nearrow', '\\swarrow', '\\searrow',
-        '\\uparrow\\uparrow', '\\downarrow\\downarrow', 
+        '\\uparrow\\uparrow', '\\downarrow\\downarrow',
         '\\leftarrow\\leftarrow', '\\rightarrow\\rightarrow',
         '\\leftarrow\\leftarrow\\leftarrow', '\\leftarrow\\leftarrow\\leftarrow\\leftarrow',
         '\\nwarrow\\leftarrow\\leftarrow', '\\swarrow\\swarrow',

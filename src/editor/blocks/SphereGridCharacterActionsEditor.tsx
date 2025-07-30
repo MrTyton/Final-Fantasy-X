@@ -187,7 +187,7 @@ export const SphereGridCharacterActionsEditor: React.FC<SphereGridCharacterActio
                             <ul style={{ paddingLeft: '20px', margin: 0 }}>
                                 {block.actions.map((action, index) => (
                                     <li key={index} style={{ position: 'relative', marginBottom: '8px' }}>
-                                        <div style={{ 
+                                        <div style={{
                                             position: 'relative',
                                             border: '1px solid #e0e7ff',
                                             borderRadius: '4px',
@@ -245,8 +245,8 @@ export const SphereGridCharacterActionsEditor: React.FC<SphereGridCharacterActio
                             </em>
                         ) : (
                             block.associatedImages.map((image, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     border: '1px solid #e0e7ff',
                                     borderRadius: '4px',
@@ -302,8 +302,8 @@ export const SphereGridCharacterActionsEditor: React.FC<SphereGridCharacterActio
                             </em>
                         ) : (
                             block.trackedResourceUpdates.map((resource, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     padding: '8px',
                                     border: '1px solid #e0e7ff',

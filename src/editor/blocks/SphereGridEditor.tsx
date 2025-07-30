@@ -22,8 +22,8 @@ export const SphereGridEditor: React.FC<SphereGridEditorProps> = ({ block, path 
         let newContent: SphereGridCharacterActions | ConditionalBlock | ImageBlock | ListItemElement;
         switch (contentType) {
             case 'sphereGridCharacterActions':
-                newContent = { 
-                    type: 'sphereGridCharacterActions', 
+                newContent = {
+                    type: 'sphereGridCharacterActions',
                     character: 'Tidus',
                     actions: []
                 };
@@ -35,14 +35,14 @@ export const SphereGridEditor: React.FC<SphereGridEditorProps> = ({ block, path 
                 newContent = { type: 'image', path: '' };
                 break;
             case 'listItem':
-                newContent = { 
-                    type: 'listItem', 
+                newContent = {
+                    type: 'listItem',
                     content: [{ type: 'plainText', text: 'New list item' }]
                 };
                 break;
             default:
-                newContent = { 
-                    type: 'listItem', 
+                newContent = {
+                    type: 'listItem',
                     content: [{ type: 'plainText', text: 'New content' }]
                 };
         }
@@ -171,8 +171,8 @@ export const SphereGridEditor: React.FC<SphereGridEditorProps> = ({ block, path 
                             </em>
                         ) : (
                             block.content.map((contentItem, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     border: '1px solid #b3e5fc',
                                     borderRadius: '4px',

@@ -162,7 +162,7 @@ export const TrialEditor: React.FC<TrialEditorProps> = ({ block, path }) => {
                             <ol style={{ paddingLeft: '20px', margin: 0 }}>
                                 {block.steps.map((step, index) => (
                                     <li key={index} style={{ position: 'relative', marginBottom: '8px' }}>
-                                        <div style={{ 
+                                        <div style={{
                                             position: 'relative',
                                             border: '1px solid #fecaca',
                                             borderRadius: '4px',
@@ -220,8 +220,8 @@ export const TrialEditor: React.FC<TrialEditorProps> = ({ block, path }) => {
                             </em>
                         ) : (
                             block.trackedResourceUpdates.map((resource, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     padding: '8px',
                                     border: '1px solid #fecaca',
@@ -278,8 +278,8 @@ export const TrialEditor: React.FC<TrialEditorProps> = ({ block, path }) => {
                             </em>
                         ) : (
                             block.itemAcquisitionFlags.map((flag, index) => (
-                                <div key={index} style={{ 
-                                    position: 'relative', 
+                                <div key={index} style={{
+                                    position: 'relative',
                                     margin: '8px 0',
                                     padding: '8px',
                                     border: '1px solid #fecaca',

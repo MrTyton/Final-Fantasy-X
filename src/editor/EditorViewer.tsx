@@ -10,14 +10,17 @@ export const EditorViewer: React.FC = () => {
         activeChapterContent,
         activeChapterTitle,
         isLoading,
+        isSaving,
         error,
+        saveStatus,
         loadChapter,
+        saveChapter,
         updateNode,
     } = useEditorStore();
 
     const addTopLevelBlock = (blockType: string) => {
         let newBlock;
-        
+
         switch (blockType) {
             case 'textParagraph':
                 newBlock = {
@@ -146,15 +149,15 @@ export const EditorViewer: React.FC = () => {
                 {/* If not loading and no errors, and we have content, show the editor */}
                 {!isLoading && !error && activeChapterContent.length >= 0 && (
                     <>
-                        <div style={{ 
+                        <div style={{
                             position: 'sticky',
                             top: 0,
                             zIndex: 100,
                             backgroundColor: '#fdfdfd',
-                            display: 'flex', 
-                            justifyContent: 'space-between', 
+                            display: 'flex',
+                            justifyContent: 'space-between',
                             alignItems: 'center',
-                            borderBottom: '2px solid #eee', 
+                            borderBottom: '2px solid #eee',
                             paddingBottom: '10px',
                             paddingTop: '10px',
                             marginBottom: '20px',
@@ -162,7 +165,63 @@ export const EditorViewer: React.FC = () => {
                         }}>
                             <h1 style={{ margin: 0 }}>{activeChapterTitle || 'No Chapter Selected'}</h1>
                             {activeChapterTitle && (
-                                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                                    {/* Save Button */}
+                                    <button
+                                        onClick={saveChapter}
+                                        disabled={isSaving}
+                                        style={{
+                                            padding: '8px 16px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #4CAF50',
+                                            backgroundColor: isSaving ? '#f0f0f0' : '#4CAF50',
+                                            color: isSaving ? '#999' : 'white',
+                                            cursor: isSaving ? 'not-allowed' : 'pointer',
+                                            fontSize: '14px',
+                                            fontWeight: 'bold',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '6px',
+                                            minWidth: '100px',
+                                            justifyContent: 'center'
+                                        }}
+                                        title="Save chapter - file watchers will auto-rebuild"
+                                    >
+                                        {isSaving ? (
+                                            <>
+                                                <span style={{
+                                                    display: 'inline-block',
+                                                    width: '12px',
+                                                    height: '12px',
+                                                    border: '2px solid #999',
+                                                    borderTop: '2px solid transparent',
+                                                    borderRadius: '50%',
+                                                    animation: 'spin 1s linear infinite'
+                                                }}></span>
+                                                Saving...
+                                            </>
+                                        ) : (
+                                            <>💾 Save</>
+                                        )}
+                                    </button>
+
+                                    {/* Save Status */}
+                                    {saveStatus && (
+                                        <span style={{
+                                            fontSize: '12px',
+                                            color: '#4CAF50',
+                                            fontWeight: 'bold',
+                                            backgroundColor: '#E8F5E8',
+                                            padding: '4px 8px',
+                                            borderRadius: '4px',
+                                            border: '1px solid #4CAF50'
+                                        }}>
+                                            {saveStatus}
+                                        </span>
+                                    )}
+
+                                    <div style={{ width: '1px', height: '24px', backgroundColor: '#ddd' }}></div>
+
                                     <span style={{ fontSize: '14px', color: '#666' }}>Add Block:</span>
                                     <select
                                         onChange={(e) => {

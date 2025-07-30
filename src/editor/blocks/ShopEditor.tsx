@@ -305,7 +305,7 @@ export const ShopEditor: React.FC<ShopEditorProps> = ({ block, path }) => {
                                             <ul style={{ paddingLeft: '20px', margin: 0 }}>
                                                 {section.items.map((item, itemIndex) => (
                                                     <li key={itemIndex} style={{ position: 'relative', marginBottom: '6px' }}>
-                                                        <div style={{ 
+                                                        <div style={{
                                                             position: 'relative',
                                                             border: '1px solid #fff3cd',
                                                             borderRadius: '3px',

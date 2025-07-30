@@ -43,7 +43,7 @@ export const InstructionListEditor: React.FC<InstructionListEditorProps> = ({ bl
             type: 'listItem',
             content: newContent as any
         };
-        
+
         const newItems = [...block.items, newItem];
         const newBlock = { ...block, items: newItems };
         updateNode(path, newBlock);
@@ -150,8 +150,8 @@ export const InstructionListEditor: React.FC<InstructionListEditorProps> = ({ bl
                 </span>
                 <div>
                     <button
-                        style={{ 
-                            ...buttonStyle, 
+                        style={{
+                            ...buttonStyle,
                             backgroundColor: block.ordered ? '#2196f3' : '#fff',
                             color: block.ordered ? '#fff' : '#000'
                         }}

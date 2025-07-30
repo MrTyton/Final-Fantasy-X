@@ -107,7 +107,7 @@ export const BlitzballGameEditor: React.FC<BlitzballGameEditorProps> = ({ block,
                         <ul style={{ paddingLeft: '20px', margin: 0 }}>
                             {block.strategy.map((strategy, index) => (
                                 <li key={index} style={{ position: 'relative', marginBottom: '8px' }}>
-                                    <div style={{ 
+                                    <div style={{
                                         position: 'relative',
                                         border: '1px solid #bfdbfe',
                                         borderRadius: '4px',

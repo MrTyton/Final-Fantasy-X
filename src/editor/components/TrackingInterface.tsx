@@ -56,7 +56,7 @@ export const TrackingInterface: React.FC<TrackingInterfaceProps> = ({
                             >
                                 ×
                             </button>
-                            
+
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '4px', paddingRight: '25px' }}>
                                 <label style={{ display: 'flex', flexDirection: 'column', minWidth: '100px' }}>
                                     <strong style={{ fontSize: '10px', marginBottom: '2px' }}>Resource Type:</strong>
@@ -69,10 +69,10 @@ export const TrackingInterface: React.FC<TrackingInterfaceProps> = ({
                                                 onUpdateTrackedResource(index, { ...resource, name: e.target.value });
                                             }
                                         }}
-                                        style={{ 
-                                            padding: '2px 4px', 
-                                            fontSize: '10px', 
-                                            border: '1px solid #ccc', 
+                                        style={{
+                                            padding: '2px 4px',
+                                            fontSize: '10px',
+                                            border: '1px solid #ccc',
                                             borderRadius: '2px',
                                             width: '110px',
                                             marginBottom: '2px'
@@ -88,43 +88,43 @@ export const TrackingInterface: React.FC<TrackingInterfaceProps> = ({
                                         type="text"
                                         value={resource.name}
                                         onChange={(e) => onUpdateTrackedResource(index, { ...resource, name: e.target.value })}
-                                        style={{ 
-                                            padding: '2px 4px', 
-                                            fontSize: '10px', 
-                                            border: '1px solid #ccc', 
+                                        style={{
+                                            padding: '2px 4px',
+                                            fontSize: '10px',
+                                            border: '1px solid #ccc',
                                             borderRadius: '2px',
                                             width: '100px'
                                         }}
                                         placeholder="Resource name"
                                     />
                                 </label>
-                                
+
                                 <label style={{ display: 'flex', flexDirection: 'column', minWidth: '50px' }}>
                                     <strong style={{ fontSize: '10px', marginBottom: '2px' }}>Qty:</strong>
                                     <input
                                         type="number"
                                         value={resource.quantity}
                                         onChange={(e) => onUpdateTrackedResource(index, { ...resource, quantity: parseInt(e.target.value) || 0 })}
-                                        style={{ 
-                                            padding: '2px 4px', 
-                                            fontSize: '10px', 
-                                            border: '1px solid #ccc', 
+                                        style={{
+                                            padding: '2px 4px',
+                                            fontSize: '10px',
+                                            border: '1px solid #ccc',
                                             borderRadius: '2px',
                                             width: '50px'
                                         }}
                                         min="0"
                                     />
                                 </label>
-                                
+
                                 <label style={{ display: 'flex', flexDirection: 'column', minWidth: '120px' }}>
                                     <strong style={{ fontSize: '10px', marginBottom: '2px' }}>Update Type:</strong>
                                     <select
                                         value={resource.updateType}
                                         onChange={(e) => onUpdateTrackedResource(index, { ...resource, updateType: e.target.value as any })}
-                                        style={{ 
-                                            padding: '2px 4px', 
-                                            fontSize: '10px', 
-                                            border: '1px solid #ccc', 
+                                        style={{
+                                            padding: '2px 4px',
+                                            fontSize: '10px',
+                                            border: '1px solid #ccc',
                                             borderRadius: '2px',
                                             width: '120px'
                                         }}
@@ -137,19 +137,19 @@ export const TrackingInterface: React.FC<TrackingInterfaceProps> = ({
                                     </select>
                                 </label>
                             </div>
-                            
+
                             <label style={{ display: 'block', marginTop: '4px' }}>
                                 <strong style={{ fontSize: '10px', marginBottom: '2px', display: 'block' }}>Description:</strong>
                                 <input
                                     type="text"
                                     value={resource.description || ''}
                                     onChange={(e) => onUpdateTrackedResource(index, { ...resource, description: e.target.value || undefined })}
-                                    style={{ 
-                                        padding: '2px 4px', 
-                                        fontSize: '10px', 
-                                        border: '1px solid #ccc', 
+                                    style={{
+                                        padding: '2px 4px',
+                                        fontSize: '10px',
+                                        border: '1px solid #ccc',
                                         borderRadius: '2px',
-                                        width: '100%', 
+                                        width: '100%',
                                         maxWidth: '250px'
                                     }}
                                     placeholder="Optional description"
@@ -194,7 +194,7 @@ export const TrackingInterface: React.FC<TrackingInterfaceProps> = ({
                             >
                                 ×
                             </button>
-                            
+
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '4px', paddingRight: '25px' }}>
                                 <label style={{ display: 'flex', flexDirection: 'column', minWidth: '180px' }}>
                                     <strong style={{ fontSize: '10px', marginBottom: '2px' }}>Item Type:</strong>
@@ -207,10 +207,10 @@ export const TrackingInterface: React.FC<TrackingInterfaceProps> = ({
                                                 onUpdateItemFlag(index, { ...flag, itemName: e.target.value });
                                             }
                                         }}
-                                        style={{ 
-                                            padding: '2px 4px', 
-                                            fontSize: '10px', 
-                                            border: '1px solid #ccc', 
+                                        style={{
+                                            padding: '2px 4px',
+                                            fontSize: '10px',
+                                            border: '1px solid #ccc',
                                             borderRadius: '2px',
                                             width: '180px',
                                             marginBottom: '2px'
@@ -226,26 +226,26 @@ export const TrackingInterface: React.FC<TrackingInterfaceProps> = ({
                                         type="text"
                                         value={flag.itemName}
                                         onChange={(e) => onUpdateItemFlag(index, { ...flag, itemName: e.target.value })}
-                                        style={{ 
-                                            padding: '2px 4px', 
-                                            fontSize: '10px', 
-                                            border: '1px solid #ccc', 
+                                        style={{
+                                            padding: '2px 4px',
+                                            fontSize: '10px',
+                                            border: '1px solid #ccc',
                                             borderRadius: '2px',
                                             width: '170px'
                                         }}
                                         placeholder="Item name"
                                     />
                                 </label>
-                                
+
                                 <label style={{ display: 'flex', flexDirection: 'column', minWidth: '140px' }}>
                                     <strong style={{ fontSize: '10px', marginBottom: '2px' }}>Set Type:</strong>
                                     <select
                                         value={flag.setType}
                                         onChange={(e) => onUpdateItemFlag(index, { ...flag, setType: e.target.value as any })}
-                                        style={{ 
-                                            padding: '2px 4px', 
-                                            fontSize: '10px', 
-                                            border: '1px solid #ccc', 
+                                        style={{
+                                            padding: '2px 4px',
+                                            fontSize: '10px',
+                                            border: '1px solid #ccc',
                                             borderRadius: '2px',
                                             width: '140px'
                                         }}
@@ -256,19 +256,19 @@ export const TrackingInterface: React.FC<TrackingInterfaceProps> = ({
                                     </select>
                                 </label>
                             </div>
-                            
+
                             <label style={{ display: 'block', marginTop: '4px' }}>
                                 <strong style={{ fontSize: '10px', marginBottom: '2px', display: 'block' }}>Source Description:</strong>
                                 <input
                                     type="text"
                                     value={flag.sourceDescription}
                                     onChange={(e) => onUpdateItemFlag(index, { ...flag, sourceDescription: e.target.value })}
-                                    style={{ 
-                                        padding: '2px 4px', 
-                                        fontSize: '10px', 
-                                        border: '1px solid #ccc', 
+                                    style={{
+                                        padding: '2px 4px',
+                                        fontSize: '10px',
+                                        border: '1px solid #ccc',
                                         borderRadius: '2px',
-                                        width: '100%', 
+                                        width: '100%',
                                         maxWidth: '250px'
                                     }}
                                     placeholder="Description of how this item is acquired"

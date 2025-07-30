@@ -37,3 +37,14 @@ body {
     /* React root div: ensures the app fills the viewport and inherits full height from body/html */
     height: 100%;
 }
+
+/* Spinner animation for loading states */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
