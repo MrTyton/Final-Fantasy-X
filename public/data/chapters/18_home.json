@@ -128,10 +128,6 @@
                             "textCondition": [
                                 {
                                     "type": "formattedText",
-                                    "text": "If "
-                                },
-                                {
-                                    "type": "formattedText",
                                     "text": "Kimahri",
                                     "color": "Tan",
                                     "isBold": true

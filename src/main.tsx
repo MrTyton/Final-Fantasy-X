@@ -3,19 +3,36 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { GlobalStateProvider } from './contexts/GlobalStateContext';
-import { ListNumberingProvider } from './contexts/ListNumberingContext'; // Provides context for list numbering in nested lists
-import './index.css'; // Global CSS for the app
+import { ListNumberingProvider } from './contexts/ListNumberingContext';
+import { EditorViewer } from './editor/EditorViewer'; // <-- Import our new editor view
+import './index.css';
 
-// Entry point for the React application.
-// Renders the App component into the root div, wrapped with global providers for state and list numbering.
-ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        {/* GlobalStateProvider supplies global app state and dispatch to all components */}
-        <GlobalStateProvider>
-            {/* ListNumberingProvider supplies context for managing ordered list numbering across nested lists/blocks */}
-            <ListNumberingProvider>
-                <App /> {/* Main application component */}
-            </ListNumberingProvider>
-        </GlobalStateProvider>
-    </React.StrictMode>,
-);
+// The root element to render into
+const rootElement = document.getElementById('root')!;
+const root = ReactDOM.createRoot(rootElement);
+
+// Read the environment variable we set in the .env file
+const appMode = import.meta.env.VITE_APP_MODE;
+
+// Conditionally render based on the mode
+if (appMode === 'editor') {
+    // If we are in 'editor' mode, render the new EditorView
+    console.log("Running in Editor Mode");
+    root.render(
+        <React.StrictMode>
+            <EditorViewer />
+        </React.StrictMode>
+    );
+} else {
+    // Otherwise, render the original FFX viewer App with all its providers
+    console.log("Running in Viewer Mode");
+    root.render(
+        <React.StrictMode>
+            <GlobalStateProvider>
+                <ListNumberingProvider>
+                    <App />
+                </ListNumberingProvider>
+            </GlobalStateProvider>
+        </React.StrictMode>
+    );
+}

@@ -85,11 +85,6 @@
                             "textCondition": [
                                 {
                                     "type": "formattedText",
-                                    "text": "If ",
-                                    "isItalic": true
-                                },
-                                {
-                                    "type": "formattedText",
                                     "text": "Rikku",
                                     "color": "ForestGreen",
                                     "isBold": true,
@@ -633,12 +628,14 @@
                                             ]
                                         }
                                     ],
-                                    "associatedImages": [{
-                                        "type": "image",
-                                        "multiColumnWidth": ".7",
-                                        "singleColumnWidth": ".4",
-                                        "path": "graphics/4_returns_w_luck_pt1"
-                                    }]
+                                    "associatedImages": [
+                                        {
+                                            "type": "image",
+                                            "multiColumnWidth": ".7",
+                                            "singleColumnWidth": ".4",
+                                            "path": "graphics/4_returns_w_luck_pt1"
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -760,12 +757,14 @@
                                             ]
                                         }
                                     ],
-                                    "associatedImages": [{
-                                        "type": "image",
-                                        "multiColumnWidth": ".7",
-                                        "singleColumnWidth": ".4",
-                                        "path": "graphics/yuna_returns_to_fire_2_returns"
-                                    }]
+                                    "associatedImages": [
+                                        {
+                                            "type": "image",
+                                            "multiColumnWidth": ".7",
+                                            "singleColumnWidth": ".4",
+                                            "path": "graphics/yuna_returns_to_fire_2_returns"
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -812,12 +811,14 @@
                                             ]
                                         }
                                     ],
-                                    "associatedImages": [{
-                                        "type": "image",
-                                        "multiColumnWidth": ".7",
-                                        "singleColumnWidth": ".4",
-                                        "path": "graphics/0_return_w_luck"
-                                    }]
+                                    "associatedImages": [
+                                        {
+                                            "type": "image",
+                                            "multiColumnWidth": ".7",
+                                            "singleColumnWidth": ".4",
+                                            "path": "graphics/0_return_w_luck"
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -1119,12 +1120,14 @@
                                             ]
                                         }
                                     ],
-                                    "associatedImages": [{
-                                        "type": "image",
-                                        "multiColumnWidth": ".7",
-                                        "singleColumnWidth": ".4",
-                                        "path": "graphics/yuna_returns_to_fire_4_returns"
-                                    }]
+                                    "associatedImages": [
+                                        {
+                                            "type": "image",
+                                            "multiColumnWidth": ".7",
+                                            "singleColumnWidth": ".4",
+                                            "path": "graphics/yuna_returns_to_fire_4_returns"
+                                        }
+                                    ]
                                 }
                             ]
                         }

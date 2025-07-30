@@ -1,4 +1,3 @@
-// tsconfig.node.json
 {
     "compilerOptions": {
         "composite": true, // Required for project references

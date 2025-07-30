@@ -495,11 +495,6 @@
                     "textCondition": [
                         {
                             "type": "formattedText",
-                            "text": "If ",
-                            "isItalic": true
-                        },
-                        {
-                            "type": "formattedText",
                             "text": "Tidus",
                             "color": "blue",
                             "isBold": true,
@@ -551,12 +546,14 @@
                                             ]
                                         }
                                     ],
-                                    "associatedImages": [{
-                                        "type": "image",
-                                        "multiColumnWidth": ".7",
-                                        "singleColumnWidth": ".4",
-                                        "path": "graphics/tiduscheer"
-                                    }]
+                                    "associatedImages": [
+                                        {
+                                            "type": "image",
+                                            "multiColumnWidth": ".7",
+                                            "singleColumnWidth": ".4",
+                                            "path": "graphics/tiduscheer"
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -616,11 +613,6 @@
                     "type": "conditional",
                     "conditionSource": "textual_inline_if_then",
                     "textCondition": [
-                        {
-                            "type": "formattedText",
-                            "text": "If ",
-                            "isItalic": true
-                        },
                         {
                             "type": "formattedText",
                             "text": "Tidus",
@@ -857,7 +849,6 @@
                     ]
                 }
             ],
-            
             "trackedResourceUpdates": [
                 {
                     "name": "PowerSphere",

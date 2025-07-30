@@ -19,11 +19,6 @@
                             "textCondition": [
                                 {
                                     "type": "formattedText",
-                                    "text": "If ",
-                                    "isItalic": true
-                                },
-                                {
-                                    "type": "formattedText",
                                     "text": "Rikku",
                                     "color": "ForestGreen",
                                     "isBold": true,
@@ -594,12 +589,14 @@
                                                     ]
                                                 }
                                             ],
-                                            "associatedImages": [{
-                                                "type": "image",
-                                                "multiColumnWidth": ".7",
-                                                "singleColumnWidth": ".4",
-                                                "path": "graphics/4_Return_final_grid"
-                                            }]
+                                            "associatedImages": [
+                                                {
+                                                    "type": "image",
+                                                    "multiColumnWidth": ".7",
+                                                    "singleColumnWidth": ".4",
+                                                    "path": "graphics/4_Return_final_grid"
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
@@ -717,12 +714,14 @@
                                                     ]
                                                 }
                                             ],
-                                            "associatedImages": [{
-                                                "type": "image",
-                                                "multiColumnWidth": ".7",
-                                                "singleColumnWidth": ".4",
-                                                "path": "graphics/0_return_before_BFA"
-                                            }]
+                                            "associatedImages": [
+                                                {
+                                                    "type": "image",
+                                                    "multiColumnWidth": ".7",
+                                                    "singleColumnWidth": ".4",
+                                                    "path": "graphics/0_return_before_BFA"
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
@@ -794,12 +793,14 @@
                                                     ]
                                                 }
                                             ],
-                                            "associatedImages": [{
-                                                "type": "image",
-                                                "multiColumnWidth": ".7",
-                                                "singleColumnWidth": ".4",
-                                                "path": "graphics/Tidus_BFA"
-                                            }]
+                                            "associatedImages": [
+                                                {
+                                                    "type": "image",
+                                                    "multiColumnWidth": ".7",
+                                                    "singleColumnWidth": ".4",
+                                                    "path": "graphics/Tidus_BFA"
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
