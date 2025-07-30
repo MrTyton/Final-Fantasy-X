@@ -1,17 +1,17 @@
 import React from 'react';
-import { BattleBlockViewer } from './blocks/BattleBlockViewer';
-import { InstructionListViewer } from './blocks/InstructionListViewer';
-import { TextParagraphViewer } from './blocks/TextParagraphViewer';
-import { ImageViewer } from './blocks/ImageViewer';
-import { ConditionalViewer } from './blocks/ConditionalViewer';
-import { ShopViewer } from './blocks/ShopViewer';
-import { SphereGridViewer } from './blocks/SphereGridViewer';
-import { SphereGridCharacterActionsViewer } from './blocks/SphereGridCharacterActionsViewer';
-import { EncountersViewer } from './blocks/EncountersViewer';
-import { TrialViewer } from './blocks/TrialViewer';
-import { BlitzballGameViewer } from './blocks/BlitzballGameViewer';
-import { EquipViewer } from './blocks/EquipViewer';
-import { ListItemViewer } from './blocks/ListItemViewer';
+import { BattleBlockEditor } from './blocks/BattleBlockEditor';
+import { InstructionListEditor } from './blocks/InstructionListEditor';
+import { TextParagraphEditor } from './blocks/TextParagraphEditor';
+import { ImageEditor } from './blocks/ImageEditor';
+import { ConditionalEditor } from './blocks/ConditionalEditor';
+import { ShopEditor } from './blocks/ShopEditor';
+import { SphereGridEditor } from './blocks/SphereGridEditor';
+import { SphereGridCharacterActionsEditor } from './blocks/SphereGridCharacterActionsEditor';
+import { EncountersEditor } from './blocks/EncountersEditor';
+import { TrialEditor } from './blocks/TrialEditor';
+import { BlitzballGameEditor } from './blocks/BlitzballGameEditor';
+import { EquipEditor } from './blocks/EquipEditor';
+import { ListItemEditor } from './blocks/ListItemEditor';
 import { useEditorStore } from './store'; // <-- Import the store
 import { PlainTextEditor } from './inline/PlainTextEditor';
 import { FormattedTextEditor } from './inline/FormattedTextEditor';
@@ -42,17 +42,17 @@ export const NodeRenderer: React.FC<NodeRendererProps> = ({ node, path }) => {
     switch (node.type) {
         // Block-level elements
         case 'instructionList':
-            return <InstructionListViewer block={node as any} path={path} />;
+            return <InstructionListEditor block={node as any} path={path} />;
         case 'battle':
-            return <BattleBlockViewer block={node as any} path={path} />;
+            return <BattleBlockEditor block={node as any} path={path} />;
         case 'textParagraph':
-            return <TextParagraphViewer block={node as any} path={path} />;
+            return <TextParagraphEditor block={node as any} path={path} />;
         case 'image':
-            return <ImageViewer block={node as any} path={path} />;
+            return <ImageEditor block={node as any} path={path} />;
         case 'conditional':
-            return <ConditionalViewer block={node as any} path={path} />;
+            return <ConditionalEditor block={node as any} path={path} />;
         case 'listItem':
-            return <ListItemViewer block={node as any} path={path} />;
+            return <ListItemEditor block={node as any} path={path} />;
 
         // Inline element editors
         case 'plainText':
@@ -78,19 +78,19 @@ export const NodeRenderer: React.FC<NodeRendererProps> = ({ node, path }) => {
 
         // Block-level elements that need viewers
         case 'sphereGrid':
-            return <SphereGridViewer block={node as any} path={path} />;
+            return <SphereGridEditor block={node as any} path={path} />;
         case 'sphereGridCharacterActions':
-            return <SphereGridCharacterActionsViewer block={node as any} path={path} />;
+            return <SphereGridCharacterActionsEditor block={node as any} path={path} />;
         case 'shop':
-            return <ShopViewer block={node as any} path={path} />;
+            return <ShopEditor block={node as any} path={path} />;
         case 'encounters':
-            return <EncountersViewer block={node as any} path={path} />;
+            return <EncountersEditor block={node as any} path={path} />;
         case 'trial':
-            return <TrialViewer block={node as any} path={path} />;
+            return <TrialEditor block={node as any} path={path} />;
         case 'blitzballGame':
-            return <BlitzballGameViewer block={node as any} path={path} />;
+            return <BlitzballGameEditor block={node as any} path={path} />;
         case 'equip':
-            return <EquipViewer block={node as any} path={path} />;
+            return <EquipEditor block={node as any} path={path} />;
         // Default fallback for any type we haven't implemented yet
         default:
             return (

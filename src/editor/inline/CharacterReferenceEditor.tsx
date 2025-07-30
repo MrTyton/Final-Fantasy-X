@@ -9,7 +9,13 @@ interface CharacterReferenceEditorProps {
 
 export const CharacterReferenceEditor: React.FC<CharacterReferenceEditorProps> = ({ node, onChange }) => {
     const handleCharacterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        onChange({ ...node, characterName: e.target.value });
+        const characterName = e.target.value;
+        const defaultColor = getDefaultCharacterColor(characterName);
+        onChange({ 
+            ...node, 
+            characterName,
+            color: defaultColor || node.color
+        });
     };
 
     const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +24,20 @@ export const CharacterReferenceEditor: React.FC<CharacterReferenceEditorProps> =
 
     const handleBoldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange({ ...node, isBold: e.target.checked || undefined });
+    };
+
+    // Default character colors based on the JSON data
+    const getDefaultCharacterColor = (characterName: string): string | undefined => {
+        const defaultColors: Record<string, string> = {
+            'Tidus': 'blue',
+            'Yuna': 'gray',
+            'Auron': 'red',
+            'Wakka': 'BurntOrange',
+            'Lulu': 'purple',
+            'Kimahri': 'Tan',
+            'Rikku': 'ForestGreen'
+        };
+        return defaultColors[characterName];
     };
 
     // Common FFX character names

@@ -50,7 +50,13 @@ export const useEditorStore = create<EditorState>((set) => ({
     updateNode: (path, value) => {
         set(
             produce((draft: EditorState) => {
-                // This magic lets us update a nested value easily
+                // Handle top-level updates (empty path means replace entire content)
+                if (path.length === 0) {
+                    draft.activeChapterContent = value;
+                    return;
+                }
+                
+                // Handle nested updates
                 let current: any = draft.activeChapterContent;
                 for (let i = 0; i < path.length - 1; i++) {
                     current = current[path[i]];
