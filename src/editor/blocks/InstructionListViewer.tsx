@@ -12,7 +12,7 @@ interface InstructionListViewerProps {
  * A sub-component responsible for rendering a single <li> item.
  * It maps over the item's 'content' array and passes the full path to each element.
  */
-const ListItemViewer: React.FC<{ item: ListItemElement; itemPath: (string | number)[] }> = ({ item, itemPath }) => {
+const InstructionListItemRenderer: React.FC<{ item: ListItemElement; itemPath: (string | number)[] }> = ({ item, itemPath }) => {
     return (
         <li style={{ marginBottom: '5px' }}>
             {/* The content of a list item is an array of inline elements */}
@@ -38,7 +38,7 @@ export const InstructionListViewer: React.FC<InstructionListViewerProps> = ({ bl
             </strong>
             <ListComponent style={{ paddingLeft: '20px', margin: 0 }}>
                 {block.items.map((item, index) => (
-                    <ListItemViewer
+                    <InstructionListItemRenderer
                         key={index}
                         item={item}
                         // The path to each item is the block's path + 'items' + its index
