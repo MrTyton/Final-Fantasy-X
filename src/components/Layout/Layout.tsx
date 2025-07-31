@@ -85,11 +85,11 @@ const Layout: React.FC<LayoutProps> = ({ tableOfContents, children, tracker }) =
     return (
         <div style={layoutContainerStyle}>
             {/* Fixed header at the top of the viewport */}
-            <div style={headerContainerStyle}>
+            <div style={headerContainerStyle} className="layout-header">
                 <Header />
             </div>
             {/* Main body: ToC (left), main content (center), tracker (right) */}
-            <div style={bodyContainerStyle}>
+            <div style={bodyContainerStyle} className="layout-body">
                 {/* Table of Contents sidebar, scrolls independently */}
                 <aside style={tocStyle}>
                     {tableOfContents}

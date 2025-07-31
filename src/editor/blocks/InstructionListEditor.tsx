@@ -128,16 +128,18 @@ export const InstructionListEditor: React.FC<InstructionListEditorProps> = ({ bl
     };
 
     const smallButtonStyle: React.CSSProperties = {
-        width: '20px',
-        height: '20px',
-        borderRadius: '3px',
+        width: '24px',
+        height: '24px',
+        borderRadius: '4px',
         border: '1px solid #ccc',
         backgroundColor: '#fff',
         cursor: 'pointer',
-        fontSize: '10px',
+        fontSize: '12px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+        transition: 'all 0.2s ease'
     };
 
     const ListComponent = block.ordered ? 'ol' : 'ul';

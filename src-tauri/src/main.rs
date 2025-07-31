@@ -3,10 +3,10 @@ use std::path::PathBuf;
 
 #[tauri::command]
 fn read_guide_file(filename: String) -> Result<String, String> {
-    // Try different possible paths for the file
+    // Try different possible paths for the file - prioritize the main public directory
     let possible_paths = vec![
-        PathBuf::from(format!("public/data/{}", filename)),
         PathBuf::from(format!("../public/data/{}", filename)),
+        PathBuf::from(format!("public/data/{}", filename)),
         PathBuf::from(format!("./public/data/{}", filename)),
         PathBuf::from(format!("data/{}", filename)),
     ];
@@ -34,39 +34,28 @@ fn read_guide_file(filename: String) -> Result<String, String> {
 
 #[tauri::command]
 fn write_guide_file(filename: String, content: String) -> Result<(), String> {
-    // Try to write to the same paths we read from
-    let possible_paths = vec![
-        PathBuf::from(format!("public/data/{}", filename)),
-        PathBuf::from(format!("../public/data/{}", filename)),
-        PathBuf::from(format!("./public/data/{}", filename)),
-        PathBuf::from(format!("data/{}", filename)),
-    ];
+    // Always write to the main public directory (parent folder)
+    let target_path = PathBuf::from(format!("../public/data/{}", filename));
     
-    for path in possible_paths {
-        println!("Trying to write file to: {:?}", path);
-        
-        // Ensure the parent directory exists
-        if let Some(parent) = path.parent() {
-            if let Err(e) = fs::create_dir_all(parent) {
-                println!("Failed to create directory {:?}: {}", parent, e);
-                continue;
-            }
-        }
-        
-        // Try to write the file
-        match fs::write(&path, &content) {
-            Ok(_) => {
-                println!("Successfully wrote file to: {:?}", path);
-                return Ok(());
-            }
-            Err(e) => {
-                println!("Failed to write to {:?}: {}", path, e);
-                continue;
-            }
+    println!("Writing file to: {:?}", target_path);
+    
+    // Ensure the parent directory exists
+    if let Some(parent) = target_path.parent() {
+        if let Err(e) = fs::create_dir_all(parent) {
+            return Err(format!("Failed to create directory {:?}: {}", parent, e));
         }
     }
     
-    Err(format!("Could not write file: {}", filename))
+    // Write the file
+    match fs::write(&target_path, &content) {
+        Ok(_) => {
+            println!("Successfully wrote file to: {:?}", target_path);
+            Ok(())
+        }
+        Err(e) => {
+            Err(format!("Failed to write to {:?}: {}", target_path, e))
+        }
+    }
 }
 
 fn main() {

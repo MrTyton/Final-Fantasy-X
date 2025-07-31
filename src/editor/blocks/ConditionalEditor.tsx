@@ -28,6 +28,17 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
         updateNode(path, newBlock);
     };
 
+    const updateComparison = (newComparison: string) => {
+        const newBlock = { ...block, comparison: newComparison || undefined };
+        updateNode(path, newBlock);
+    };
+
+    const updateValue = (newValue: string) => {
+        const numValue = parseInt(newValue, 10);
+        const newBlock = { ...block, value: isNaN(numValue) ? undefined : numValue };
+        updateNode(path, newBlock);
+    };
+
     const addTextCondition = () => {
         const newCondition: FormattedText = {
             type: 'formattedText',
@@ -46,7 +57,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
         updateNode(path, newBlock);
     };
 
-    const addContentToSection = (sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent') => {
+    const addContentToSection = (sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent' | 'contentToShowIfTrue' | 'contentToShowIfFalse') => {
         const newContent = {
             type: 'textParagraph',
             paragraphs: [{
@@ -61,7 +72,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
         updateNode(path, newBlock);
     };
 
-    const removeContentFromSection = (sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent', index: number) => {
+    const removeContentFromSection = (sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent' | 'contentToShowIfTrue' | 'contentToShowIfFalse', index: number) => {
         const existingContent = block[sectionName];
         if (!existingContent) return;
 
@@ -112,7 +123,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
     };
 
     const renderContentSection = (
-        sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent',
+        sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent' | 'contentToShowIfTrue' | 'contentToShowIfFalse',
         title: string
     ) => {
         const content = block[sectionName];
@@ -228,7 +239,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
 
                     {(block.conditionSource === 'tracked_resource_check') && (
                         <div style={{ marginBottom: '12px' }}>
-                            <label>
+                            <label style={{ display: 'block', marginBottom: '8px' }}>
                                 <strong>Resource Name:</strong>
                                 <input
                                     type="text"
@@ -236,6 +247,30 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
                                     onChange={(e) => updateResourceName(e.target.value)}
                                     style={{ marginLeft: '8px', padding: '4px', width: '150px' }}
                                     placeholder="e.g., PowerSphere, SpeedSphere"
+                                />
+                            </label>
+                            <label style={{ display: 'block', marginBottom: '8px' }}>
+                                <strong>Comparison:</strong>
+                                <select
+                                    value={block.comparison || 'less_than'}
+                                    onChange={(e) => updateComparison(e.target.value)}
+                                    style={{ marginLeft: '8px', padding: '4px' }}
+                                >
+                                    <option value="less_than">Less Than</option>
+                                    <option value="greater_than">Greater Than</option>
+                                    <option value="equal_to">Equal To</option>
+                                    <option value="greater_than_or_equal">Greater Than or Equal</option>
+                                    <option value="less_than_or_equal">Less Than or Equal</option>
+                                </select>
+                            </label>
+                            <label style={{ display: 'block', marginBottom: '8px' }}>
+                                <strong>Value:</strong>
+                                <input
+                                    type="number"
+                                    value={block.value || 0}
+                                    onChange={(e) => updateValue(e.target.value)}
+                                    style={{ marginLeft: '8px', padding: '4px', width: '80px' }}
+                                    placeholder="0"
                                 />
                             </label>
                         </div>
@@ -313,6 +348,13 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
                         <>
                             {renderContentSection('thenContent', 'Then Content')}
                             {renderContentSection('elseContent', 'Else Content')}
+                        </>
+                    )}
+
+                    {(block.conditionSource === 'tracked_resource_check') && (
+                        <>
+                            {renderContentSection('contentToShowIfTrue', 'Content If True')}
+                            {renderContentSection('contentToShowIfFalse', 'Content If False')}
                         </>
                     )}
                 </>
