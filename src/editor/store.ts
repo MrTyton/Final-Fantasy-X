@@ -21,14 +21,14 @@ interface EditorState {
     saveStatus: string | null;
     hasUnsavedChanges: boolean;
     lastAutoSave: number | null;
-    
+
     // Undo/Redo functionality
     history: HistoryEntry[];
     historyIndex: number;
     maxHistorySize: number;
     lastChangeTime: number;
     changeGroupTimeout: number; // milliseconds to group changes together
-    
+
     // Actions
     loadChapter: (filePath: string) => Promise<void>;
     saveChapter: () => Promise<void>;
@@ -61,14 +61,14 @@ export const useEditorStore = create<EditorState>((set, get) => ({
     saveStatus: null,
     hasUnsavedChanges: false,
     lastAutoSave: null,
-    
+
     // Undo/Redo state
     history: [],
     historyIndex: -1,
     maxHistorySize: 50,
     lastChangeTime: 0,
     changeGroupTimeout: 1000, // 1 second to group changes together
-    
+
     loadChapter: async (filePath) => {
         set({ isLoading: true, error: null, saveStatus: null });
         try {
@@ -149,13 +149,13 @@ export const useEditorStore = create<EditorState>((set, get) => ({
             });
         }
     },
-    
+
     autoSave: async () => {
         const state = get();
         if (!state.hasUnsavedChanges || state.isSaving) {
             return;
         }
-        
+
         try {
             const chapterData: Chapter = {
                 id: state.activeChapterId,
@@ -164,7 +164,7 @@ export const useEditorStore = create<EditorState>((set, get) => ({
             };
 
             const jsonContent = JSON.stringify(chapterData, null, 4);
-            
+
             await invoke('write_guide_file', {
                 filename: state.activeChapterFilePath,
                 content: jsonContent
@@ -175,7 +175,7 @@ export const useEditorStore = create<EditorState>((set, get) => ({
                 lastAutoSave: Date.now(),
                 saveStatus: 'Auto-saved'
             });
-            
+
             // Clear auto-save status after 2 seconds
             setTimeout(() => {
                 const currentState = get();
@@ -183,7 +183,7 @@ export const useEditorStore = create<EditorState>((set, get) => ({
                     set({ saveStatus: null });
                 }
             }, 2000);
-            
+
         } catch (e: any) {
             console.error('Auto-save failed:', e);
         }
@@ -191,10 +191,10 @@ export const useEditorStore = create<EditorState>((set, get) => ({
     updateNode: (path, value, description, forceNewEntry = false) => {
         const state = get();
         const currentTime = Date.now();
-        
+
         // Determine if we should create a new history entry
         let shouldCreateNewEntry = forceNewEntry;
-        
+
         if (!shouldCreateNewEntry) {
             // Create new entry if:
             // 1. No history exists
@@ -202,12 +202,12 @@ export const useEditorStore = create<EditorState>((set, get) => ({
             // 3. The description suggests a different type of operation
             const timeSinceLastChange = currentTime - state.lastChangeTime;
             const lastDescription = state.history[state.historyIndex]?.description;
-            shouldCreateNewEntry = 
+            shouldCreateNewEntry =
                 state.history.length === 0 ||
                 timeSinceLastChange > state.changeGroupTimeout ||
                 (description !== undefined && description !== lastDescription);
         }
-        
+
         set(
             produce((draft: EditorState) => {
                 // Handle the content update
@@ -220,21 +220,21 @@ export const useEditorStore = create<EditorState>((set, get) => ({
                     }
                     current[path[path.length - 1]] = value;
                 }
-                
+
                 // Update history if needed
                 if (shouldCreateNewEntry) {
                     // Remove any future history (if we're not at the end)
                     const newHistory = [...draft.history.slice(0, draft.historyIndex + 1)];
-                    
+
                     // Add new entry with current state (before the change)
                     const previousContent = draft.history[draft.historyIndex]?.content || draft.activeChapterContent;
                     newHistory.push(createHistoryEntry(previousContent, description || 'Edit'));
-                    
+
                     // Limit history size
                     if (newHistory.length > draft.maxHistorySize) {
                         newHistory.shift();
                     }
-                    
+
                     draft.history = newHistory;
                     draft.historyIndex = newHistory.length - 1;
                 } else {
@@ -244,19 +244,19 @@ export const useEditorStore = create<EditorState>((set, get) => ({
                         draft.history[draft.historyIndex].timestamp = currentTime;
                     }
                 }
-                
+
                 draft.hasUnsavedChanges = true;
                 draft.lastChangeTime = currentTime;
             })
         );
     },
-    
+
     undo: () => {
         const state = get();
         if (state.historyIndex > 0) {
             const newIndex = state.historyIndex - 1;
             const previousState = state.history[newIndex];
-            
+
             set({
                 activeChapterContent: JSON.parse(JSON.stringify(previousState.content)),
                 historyIndex: newIndex,
@@ -264,13 +264,13 @@ export const useEditorStore = create<EditorState>((set, get) => ({
             });
         }
     },
-    
+
     redo: () => {
         const state = get();
         if (state.historyIndex < state.history.length - 1) {
             const newIndex = state.historyIndex + 1;
             const nextState = state.history[newIndex];
-            
+
             set({
                 activeChapterContent: JSON.parse(JSON.stringify(nextState.content)),
                 historyIndex: newIndex,
@@ -278,17 +278,17 @@ export const useEditorStore = create<EditorState>((set, get) => ({
             });
         }
     },
-    
+
     canUndo: () => {
         const state = get();
         return state.historyIndex > 0;
     },
-    
+
     canRedo: () => {
         const state = get();
         return state.historyIndex < state.history.length - 1;
     },
-    
+
     clearHistory: () => {
         const state = get();
         set({
@@ -316,7 +316,7 @@ export const startAutoSave = () => {
     if (autoSaveInterval) {
         clearInterval(autoSaveInterval);
     }
-    
+
     autoSaveInterval = setInterval(() => {
         const store = useEditorStore.getState();
         if (store.hasUnsavedChanges && !store.isSaving && store.activeChapterFilePath) {

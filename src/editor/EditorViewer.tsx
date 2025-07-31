@@ -342,10 +342,10 @@ export const EditorViewer: React.FC = () => {
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
-        
+
         // Initialize auto-save when component mounts
         startAutoSave();
-        
+
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
             stopAutoSave();
@@ -915,8 +915,8 @@ export const EditorViewer: React.FC = () => {
                                         background: isSaving
                                             ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'
                                             : hasUnsavedChanges
-                                            ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
-                                            : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                                                ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
+                                                : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
                                         color: isSaving ? '#9ca3af' : 'white',
                                         cursor: isSaving ? 'not-allowed' : 'pointer',
                                         fontSize: '14px',

@@ -30,7 +30,7 @@ export const AutoResizeTextarea: React.FC<AutoResizeTextareaProps> = ({
     const adjustHeight = useCallback(() => {
         const textarea = textareaRef.current;
         const hiddenDiv = hiddenDivRef.current;
-        
+
         if (!textarea || !hiddenDiv) return;
 
         // Copy styles to hidden div
@@ -43,16 +43,16 @@ export const AutoResizeTextarea: React.FC<AutoResizeTextareaProps> = ({
         hiddenDiv.style.padding = computedStyle.padding;
         hiddenDiv.style.border = computedStyle.border;
         hiddenDiv.style.width = textarea.clientWidth + 'px';
-        
+
         // Set content to measure height
         hiddenDiv.textContent = value || placeholder;
-        
+
         // Calculate the desired height
         const contentHeight = hiddenDiv.scrollHeight;
         const lineHeight = parseInt(computedStyle.lineHeight) || parseInt(computedStyle.fontSize) * 1.2;
         const minHeight = lineHeight * minRows;
         const maxHeight = lineHeight * maxRows;
-        
+
         const newHeight = Math.max(minHeight, Math.min(maxHeight, contentHeight));
         textarea.style.height = newHeight + 'px';
     }, [value, placeholder, minRows, maxRows]);
