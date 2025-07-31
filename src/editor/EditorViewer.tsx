@@ -2,7 +2,7 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { ChapterBrowser } from './ChapterBrowser';
 import { NodeRenderer } from './NodeRenderer';
-import { useEditorStore } from './store';
+import { useEditorStore, startAutoSave, stopAutoSave } from './store';
 import { LivePreview } from './LivePreview';
 
 export const EditorViewer: React.FC = () => {
@@ -14,9 +14,14 @@ export const EditorViewer: React.FC = () => {
         isSaving,
         error,
         saveStatus,
+        hasUnsavedChanges,
         loadChapter,
         saveChapter,
         updateNode,
+        undo,
+        redo,
+        canUndo,
+        canRedo,
     } = useEditorStore();
 
     const [isAddBlockModalOpen, setIsAddBlockModalOpen] = useState(false);
@@ -64,6 +69,22 @@ export const EditorViewer: React.FC = () => {
 
     // Keyboard shortcuts
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        // Undo: Ctrl+Z
+        if (e.ctrlKey && e.key === 'z' && !e.shiftKey) {
+            e.preventDefault();
+            if (canUndo()) {
+                undo();
+            }
+        }
+
+        // Redo: Ctrl+Y or Ctrl+Shift+Z
+        if ((e.ctrlKey && e.key === 'y') || (e.ctrlKey && e.shiftKey && e.key === 'Z')) {
+            e.preventDefault();
+            if (canRedo()) {
+                redo();
+            }
+        }
+
         // Save: Ctrl+S
         if (e.ctrlKey && e.key === 's') {
             e.preventDefault();
@@ -317,11 +338,18 @@ export const EditorViewer: React.FC = () => {
                 }
             }
         }
-    }, [activeChapterTitle, saveChapter, selectedBlockIndex, activeChapterContent.length, isAddBlockModalOpen, quickAddMode, activeChapterContent, setSelectedSubItemPath]);
+    }, [activeChapterTitle, saveChapter, undo, redo, canUndo, canRedo, selectedBlockIndex, activeChapterContent.length, isAddBlockModalOpen, quickAddMode, activeChapterContent, setSelectedSubItemPath]);
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
-        return () => document.removeEventListener('keydown', handleKeyDown);
+        
+        // Initialize auto-save when component mounts
+        startAutoSave();
+        
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            stopAutoSave();
+        };
     }, [handleKeyDown]);
 
     // Scroll to selected block
@@ -824,6 +852,58 @@ export const EditorViewer: React.FC = () => {
                                     </button>
                                 </div>
 
+                                {/* Undo/Redo Buttons */}
+                                <div style={{ display: 'flex', gap: '8px' }}>
+                                    <button
+                                        onClick={undo}
+                                        disabled={!canUndo()}
+                                        style={{
+                                            padding: '8px 12px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #d1d5db',
+                                            background: canUndo() ? '#ffffff' : '#f9fafb',
+                                            color: canUndo() ? '#374151' : '#9ca3af',
+                                            cursor: canUndo() ? 'pointer' : 'not-allowed',
+                                            fontSize: '14px',
+                                            fontWeight: '500',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '4px',
+                                            transition: 'all 0.2s ease',
+                                            boxShadow: canUndo() ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none'
+                                        }}
+                                        title="Undo (Ctrl+Z)"
+                                        onMouseEnter={(e) => canUndo() && (e.currentTarget.style.background = '#f3f4f6')}
+                                        onMouseLeave={(e) => canUndo() && (e.currentTarget.style.background = '#ffffff')}
+                                    >
+                                        ↶ Undo
+                                    </button>
+                                    <button
+                                        onClick={redo}
+                                        disabled={!canRedo()}
+                                        style={{
+                                            padding: '8px 12px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #d1d5db',
+                                            background: canRedo() ? '#ffffff' : '#f9fafb',
+                                            color: canRedo() ? '#374151' : '#9ca3af',
+                                            cursor: canRedo() ? 'pointer' : 'not-allowed',
+                                            fontSize: '14px',
+                                            fontWeight: '500',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '4px',
+                                            transition: 'all 0.2s ease',
+                                            boxShadow: canRedo() ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none'
+                                        }}
+                                        title="Redo (Ctrl+Y)"
+                                        onMouseEnter={(e) => canRedo() && (e.currentTarget.style.background = '#f3f4f6')}
+                                        onMouseLeave={(e) => canRedo() && (e.currentTarget.style.background = '#ffffff')}
+                                    >
+                                        ↷ Redo
+                                    </button>
+                                </div>
+
                                 {/* Save Button */}
                                 <button
                                     onClick={saveChapter}
@@ -831,9 +911,11 @@ export const EditorViewer: React.FC = () => {
                                     style={{
                                         padding: '12px 24px',
                                         borderRadius: '8px',
-                                        border: 'none',
+                                        border: hasUnsavedChanges ? '2px solid #f59e0b' : 'none',
                                         background: isSaving
                                             ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'
+                                            : hasUnsavedChanges
+                                            ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
                                             : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
                                         color: isSaving ? '#9ca3af' : 'white',
                                         cursor: isSaving ? 'not-allowed' : 'pointer',
@@ -848,7 +930,7 @@ export const EditorViewer: React.FC = () => {
                                         boxShadow: isSaving ? 'none' : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
                                         transform: isSaving ? 'none' : 'translateY(-1px)'
                                     }}
-                                    title="Save chapter to file (Ctrl+S)"
+                                    title={hasUnsavedChanges ? "Save unsaved changes (Ctrl+S)" : "Save chapter to file (Ctrl+S)"}
                                     onMouseEnter={(e) => !isSaving && (e.currentTarget.style.transform = 'translateY(-2px)')}
                                     onMouseLeave={(e) => !isSaving && (e.currentTarget.style.transform = 'translateY(-1px)')}
                                 >
@@ -866,7 +948,10 @@ export const EditorViewer: React.FC = () => {
                                             Saving Chapter...
                                         </>
                                     ) : (
-                                        <>💾 Save Chapter</>
+                                        <>
+                                            💾 {hasUnsavedChanges ? 'Save Changes' : 'Save Chapter'}
+                                            {hasUnsavedChanges && <span style={{ fontSize: '12px', opacity: 0.9 }}>●</span>}
+                                        </>
                                     )}
                                 </button>
 
@@ -1864,6 +1949,14 @@ export const EditorViewer: React.FC = () => {
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
                                         <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+S</kbd></span>
                                         <span>Save chapter</span>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Z</kbd></span>
+                                        <span>Undo</span>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Y</kbd></span>
+                                        <span>Redo</span>
                                     </div>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
                                         <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>F1</kbd> / <kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+?</kbd></span>

@@ -1,6 +1,7 @@
 // src/editor/inline/FormattedTextEditor.tsx
 import React from 'react';
 import type { FormattedText } from '../../types';
+import { AutoResizeTextarea } from '../components/AutoResizeTextarea';
 
 interface FormattedTextEditorProps {
     node: FormattedText;
@@ -8,8 +9,8 @@ interface FormattedTextEditorProps {
 }
 
 export const FormattedTextEditor: React.FC<FormattedTextEditorProps> = ({ node, onChange }) => {
-    const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        onChange({ ...node, text: e.target.value });
+    const handleTextChange = (value: string) => {
+        onChange({ ...node, text: value });
     };
 
     const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,22 +36,19 @@ export const FormattedTextEditor: React.FC<FormattedTextEditorProps> = ({ node, 
             borderRadius: '3px',
             backgroundColor: '#f8f9fa'
         }}>
-            <textarea
+            <AutoResizeTextarea
                 value={node.text}
                 onChange={handleTextChange}
+                placeholder="Text content"
+                minRows={1}
+                maxRows={3}
                 style={{
-                    border: '1px solid #ccc',
-                    padding: '2px 4px',
-                    borderRadius: '2px',
                     minWidth: '200px',
                     width: `${Math.max(200, node.text.length * 8 + 40)}px`,
-                    minHeight: '24px',
-                    resize: 'both',
                     fontFamily: 'inherit',
                     fontSize: 'inherit'
                 }}
-                rows={Math.max(1, Math.ceil(node.text.length / 50))}
-                placeholder="Text content"
+                spellCheck={true}
             />
             <input
                 type="text"

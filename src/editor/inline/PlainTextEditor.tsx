@@ -1,6 +1,7 @@
 // src/editor/inline/PlainTextEditor.tsx
 import React from 'react';
 import type { PlainTextElement } from '../../types';
+import { AutoResizeTextarea } from '../components/AutoResizeTextarea';
 
 interface PlainTextEditorProps {
     node: PlainTextElement;
@@ -9,36 +10,31 @@ interface PlainTextEditorProps {
 }
 
 export const PlainTextEditor: React.FC<PlainTextEditorProps> = ({ node, onChange }) => {
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        // When the input changes, we call the onChange prop
-        // with a new node object containing the updated text.
-        onChange({ ...node, text: e.target.value });
+    const handleChange = (value: string) => {
+        onChange({ ...node, text: value });
     };
 
     return (
-        <textarea
-            value={node.text}
-            onChange={handleChange}
-            style={{
-                border: '1px solid #ccc',
-                padding: '4px',
-                borderRadius: '3px',
-                margin: '0 2px',
-                background: '#f9f9f9',
-                minWidth: '200px',
-                width: `${Math.max(200, node.text.length * 8 + 40)}px`,
-                minHeight: '24px',
-                resize: 'both',
-                fontFamily: 'inherit',
-                fontSize: 'inherit',
-                overflow: 'hidden'
-            }}
-            rows={Math.max(1, Math.ceil(node.text.length / 50))}
-            onInput={(e) => {
-                const target = e.target as HTMLTextAreaElement;
-                target.style.height = 'auto';
-                target.style.height = target.scrollHeight + 'px';
-            }}
-        />
+        <div style={{
+            display: 'inline-block',
+            margin: '2px',
+            minWidth: '200px'
+        }}>
+            <AutoResizeTextarea
+                value={node.text}
+                onChange={handleChange}
+                placeholder="Enter text..."
+                minRows={1}
+                maxRows={5}
+                style={{
+                    background: '#f9f9f9',
+                    fontSize: 'inherit',
+                    fontFamily: 'inherit',
+                    minWidth: '200px',
+                    width: `${Math.max(200, node.text.length * 8 + 40)}px`
+                }}
+                spellCheck={true}
+            />
+        </div>
     );
 };
