@@ -60,7 +60,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
     const addContentToSection = (sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent' | 'contentToShowIfTrue' | 'contentToShowIfFalse') => {
         const newContent = {
             type: 'textParagraph',
-            paragraphs: [{
+            content: [{
                 type: 'formattedText',
                 text: `New ${sectionName} content`
             }]

@@ -121,6 +121,10 @@
                                     "text": "Otherwise run away."
                                 }
                             ]
+                        },
+                        {
+                            "type": "listItem",
+                            "content": []
                         }
                     ]
                 }
