@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
 import type { ConditionalBlock, FormattedText } from '../../types';
+import { createBlockTemplate, createInlineElement } from '../shared/elementFactory';
+import { CONTENT_TYPES_WITH_DESCRIPTIONS } from '../shared/contentTypes';
 import {
     getBlockContainerStyle,
     getBlockHeaderStyle,
@@ -23,19 +25,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
     const [showContentTypeModal, setShowContentTypeModal] = useState(false);
     const [selectedSection, setSelectedSection] = useState<'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent' | 'contentToShowIfTrue' | 'contentToShowIfFalse' | null>(null);
 
-    const contentTypes = [
-        { value: 'textParagraph', label: '📝 Text Paragraph', description: 'Simple text content' },
-        { value: 'instructionList', label: '📋 Instruction List', description: 'Step-by-step instructions' },
-        { value: 'battle', label: '⚔️ Battle', description: 'Battle encounter setup' },
-        { value: 'image', label: '🖼️ Image', description: 'Image with caption' },
-        { value: 'shop', label: '🛒 Shop', description: 'Shop purchase list' },
-        { value: 'sphereGrid', label: '🌐 Sphere Grid', description: 'Sphere grid actions' },
-        { value: 'encounters', label: '👹 Encounters', description: 'Enemy encounter details' },
-        { value: 'trial', label: '🏛️ Trial', description: 'Cloister trial information' },
-        { value: 'equip', label: '⚔️ Equipment', description: 'Equipment changes' },
-        { value: 'conditional', label: '❓ Conditional', description: 'Nested conditional logic' },
-        { value: 'listItem', label: '• List Item', description: 'Single list item' }
-    ];
+    const contentTypes = CONTENT_TYPES_WITH_DESCRIPTIONS;
 
     const openContentTypeModal = (sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent' | 'contentToShowIfTrue' | 'contentToShowIfFalse') => {
         setSelectedSection(sectionName);
@@ -45,146 +35,29 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
     const addContentToSection = (sectionName: 'winContent' | 'lossContent' | 'bothContent' | 'thenContent' | 'elseContent' | 'contentToShowIfTrue' | 'contentToShowIfFalse', contentType: string) => {
         let newContent;
 
-        switch (contentType) {
-            case 'textParagraph':
-                newContent = {
-                    type: 'textParagraph',
-                    content: [{
-                        type: 'formattedText',
-                        text: `New ${sectionName} content`
-                    }]
-                };
-                break;
-            case 'instructionList':
-                newContent = {
-                    type: 'instructionList',
-                    ordered: false,
-                    items: [{
-                        type: 'listItem',
-                        content: [{
-                            type: 'formattedText',
-                            text: `New instruction for ${sectionName}`
-                        }]
-                    }]
-                };
-                break;
-            case 'battle':
-                newContent = {
-                    type: 'battle',
-                    enemyName: 'New Battle',
-                    battleStrategy: [{
-                        type: 'listItem',
-                        content: [{
-                            type: 'formattedText',
-                            text: 'New battle strategy'
-                        }]
-                    }]
-                };
-                break;
-            case 'image':
-                newContent = {
-                    type: 'image',
-                    src: 'placeholder.png',
-                    alt: 'New image'
-                };
-                break;
-            case 'shop':
-                newContent = {
-                    type: 'shop',
-                    shopName: 'New Shop',
-                    items: [{
-                        type: 'listItem',
-                        content: [{
-                            type: 'formattedText',
-                            text: 'New shop item'
-                        }]
-                    }]
-                };
-                break;
-            case 'sphereGrid':
-                newContent = {
-                    type: 'sphereGrid',
-                    content: [{
-                        type: 'listItem',
-                        content: [{
-                            type: 'formattedText',
-                            text: 'New sphere grid action'
-                        }]
-                    }]
-                };
-                break;
-            case 'encounters':
-                newContent = {
-                    type: 'encounters',
-                    content: [{
-                        type: 'listItem',
-                        content: [{
-                            type: 'formattedText',
-                            text: 'New encounter strategy'
-                        }]
-                    }]
-                };
-                break;
-            case 'trial':
-                newContent = {
-                    type: 'trial',
-                    trialName: 'New Trial',
-                    content: [{
-                        type: 'listItem',
-                        content: [{
-                            type: 'formattedText',
-                            text: 'New trial instruction'
-                        }]
-                    }]
-                };
-                break;
-            case 'equip':
-                newContent = {
-                    type: 'equip',
-                    content: [{
-                        type: 'listItem',
-                        content: [{
-                            type: 'formattedText',
-                            text: 'New equipment change'
-                        }]
-                    }]
-                };
-                break;
-            case 'conditional':
-                newContent = {
-                    type: 'conditional',
-                    conditionSource: 'textual_inline_if_then',
-                    textCondition: [{
-                        type: 'formattedText',
-                        text: 'New condition'
-                    }],
-                    thenContent: [{
-                        type: 'textParagraph',
-                        content: [{
-                            type: 'formattedText',
-                            text: 'Then content'
-                        }]
-                    }]
-                };
-                break;
-            case 'listItem':
-                newContent = {
-                    type: 'listItem',
-                    content: [{
-                        type: 'formattedText',
-                        text: `New list item for ${sectionName}`
-                    }]
-                };
-                break;
-            default:
-                // Fallback to text paragraph
-                newContent = {
-                    type: 'textParagraph',
-                    content: [{
-                        type: 'formattedText',
-                        text: `New ${sectionName} content`
-                    }]
-                };
+        if (contentType === 'listItem') {
+            // Handle simple listItem case
+            newContent = {
+                type: 'listItem',
+                content: [createInlineElement('formattedText', `New list item for ${sectionName}`)]
+            };
+        } else if (contentType === 'conditional') {
+            // Handle special nested conditional case
+            newContent = {
+                type: 'conditional',
+                conditionSource: 'textual_inline_if_then',
+                textCondition: [createInlineElement('formattedText', 'New condition')],
+                thenContent: [createBlockTemplate('textParagraph')]
+            };
+        } else if (contentType === 'textParagraph') {
+            // Handle textParagraph with custom text
+            newContent = {
+                type: 'textParagraph',
+                content: [createInlineElement('formattedText', `New ${sectionName} content`)]
+            };
+        } else {
+            // Handle all other block types using factory
+            newContent = createBlockTemplate(contentType as any);
         }
 
         const existingContent = block[sectionName] || [];
@@ -223,10 +96,7 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
     };
 
     const addTextCondition = () => {
-        const newCondition: FormattedText = {
-            type: 'formattedText',
-            text: 'New condition text'
-        };
+        const newCondition = createInlineElement('formattedText', 'New condition text');
 
         const newTextCondition = block.textCondition ? [...block.textCondition, newCondition] : [newCondition];
         const newBlock = { ...block, textCondition: newTextCondition };

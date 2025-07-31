@@ -11,6 +11,7 @@ import {
     getRemoveButtonStyle,
     getBlockColors
 } from './shared/blockEditorUtils';
+import { createInlineElement } from '../shared/elementFactory';
 
 interface TextParagraphEditorProps {
     block: TextParagraphBlock;
@@ -30,50 +31,7 @@ export const TextParagraphEditor: React.FC<TextParagraphEditorProps> = ({ block,
     };
 
     const addInlineElement = (type: string) => {
-        let newElement: any;
-
-        switch (type) {
-            case 'plainText':
-                newElement = { type: 'plainText', text: 'New text' };
-                break;
-            case 'formattedText':
-                newElement = { type: 'formattedText', text: 'New formatted text' };
-                break;
-            case 'characterReference':
-                newElement = { type: 'characterReference', characterName: 'tidus' };
-                break;
-            case 'characterCommand':
-                newElement = { type: 'characterCommand', characterName: 'tidus', actionText: 'Attack' };
-                break;
-            case 'gameMacro':
-                newElement = { type: 'gameMacro', macroName: 'sd' };
-                break;
-            case 'formation':
-                newElement = {
-                    type: 'formation',
-                    characters: [{ type: 'characterReference', characterName: 'tidus' }]
-                };
-                break;
-            case 'link':
-                newElement = {
-                    type: 'link',
-                    url: 'https://example.com',
-                    text: [{ type: 'formattedText', text: 'Link text' }]
-                };
-                break;
-            case 'nth':
-                newElement = { type: 'nth', value: '1st' };
-                break;
-            case 'num':
-                newElement = { type: 'num', value: 0 };
-                break;
-            case 'mathSymbol':
-                newElement = { type: 'mathSymbol', symbol: 'plus' };
-                break;
-            default:
-                newElement = { type: 'plainText', text: 'New text' };
-        }
-
+        const newElement = createInlineElement(type);
         const newContent = [...block.content, newElement];
         const newBlock = { ...block, content: newContent };
         updateNode(path, newBlock);

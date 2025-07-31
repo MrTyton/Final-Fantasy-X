@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
-import type { BattleBlock, ListItemElement, FormattedText, TrackedResource, AcquiredItemFlag } from '../../types';
+import type { BattleBlock, FormattedText, TrackedResource, AcquiredItemFlag } from '../../types';
 import { TrackingInterface } from '../components/TrackingInterface';
 import {
     getBlockContainerStyle,
@@ -13,6 +13,7 @@ import {
     getBlockSectionStyle,
     getBlockColors
 } from './shared/blockEditorUtils';
+import { createListItemWithContent } from '../shared/elementFactory';
 
 interface BattleBlockEditorProps {
     block: BattleBlock;
@@ -33,32 +34,8 @@ export const BattleBlockEditor: React.FC<BattleBlockEditorProps> = ({ block, pat
     };
 
     const addStrategyItem = (contentType: string = 'plainText') => {
-        let newContent;
-        switch (contentType) {
-            case 'plainText':
-                newContent = [{ type: 'plainText', text: 'New strategy step' }];
-                break;
-            case 'formattedText':
-                newContent = [{ type: 'formattedText', text: 'New formatted step' }];
-                break;
-            case 'characterReference':
-                newContent = [{ type: 'characterReference', characterName: 'tidus' }];
-                break;
-            case 'characterCommand':
-                newContent = [{ type: 'characterCommand', characterName: 'tidus', actionText: 'Attack' }];
-                break;
-            case 'gameMacro':
-                newContent = [{ type: 'gameMacro', macroName: 'sd' }];
-                break;
-            default:
-                newContent = [{ type: 'plainText', text: 'New strategy step' }];
-        }
-
-        const newItem: ListItemElement = {
-            type: 'listItem',
-            content: newContent as any
-        };
-
+        const customText = contentType === 'plainText' ? 'New strategy step' : undefined;
+        const newItem = createListItemWithContent(contentType, customText);
         const newStrategy = [...block.strategy, newItem];
         const newBlock = { ...block, strategy: newStrategy };
         updateNode(path, newBlock);

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
-import type { ShopBlock, ShopSection, ListItemElement } from '../../types';
+import type { ShopBlock, ShopSection } from '../../types';
 import {
     getBlockContainerStyle,
     getBlockHeaderStyle,
@@ -12,6 +12,7 @@ import {
     getBlockSectionStyle,
     getBlockColors
 } from './shared/blockEditorUtils';
+import { createListItemWithContent } from '../shared/elementFactory';
 
 interface ShopEditorProps {
     block: ShopBlock;
@@ -51,58 +52,8 @@ export const ShopEditor: React.FC<ShopEditorProps> = ({ block, path }) => {
     };
 
     const addItemToSection = (sectionIndex: number, contentType: string = 'plainText') => {
-        let newContent;
-        switch (contentType) {
-            case 'plainText':
-                newContent = [{ type: 'plainText', text: 'New item' }];
-                break;
-            case 'formattedText':
-                newContent = [{ type: 'formattedText', text: 'New formatted item' }];
-                break;
-            case 'characterReference':
-                newContent = [{ type: 'characterReference', characterName: 'tidus' }];
-                break;
-            case 'characterCommand':
-                newContent = [{ type: 'characterCommand', characterName: 'tidus', actionText: 'Action' }];
-                break;
-            case 'gameMacro':
-                newContent = [{ type: 'gameMacro', macroName: 'sd' }];
-                break;
-            case 'formation':
-                newContent = [{ type: 'formation', characters: [{ type: 'characterReference', characterName: 'tidus' }] }];
-                break;
-            case 'link':
-                newContent = [{ type: 'link', url: 'https://example.com', text: 'Link' }];
-                break;
-            case 'nth':
-                newContent = [{ type: 'nth', number: 1 }];
-                break;
-            case 'num':
-                newContent = [{ type: 'num', value: 1 }];
-                break;
-            case 'mathSymbol':
-                newContent = [{ type: 'mathSymbol', symbol: 'plus' }];
-                break;
-            case 'conditional':
-                newContent = [{ type: 'conditional', condition: 'condition', trueContent: [], falseContent: [] }];
-                break;
-            case 'textParagraph':
-                newContent = [{ type: 'textParagraph', content: [{ type: 'plainText', text: 'New paragraph' }] }];
-                break;
-            case 'battle':
-                newContent = [{ type: 'battle', enemyName: 'Enemy', strategy: [] }];
-                break;
-            case 'instructionList':
-                newContent = [{ type: 'instructionList', items: [] }];
-                break;
-            default:
-                newContent = [{ type: 'plainText', text: 'New item' }];
-        }
-
-        const newItem: ListItemElement = {
-            type: 'listItem',
-            content: newContent as any
-        };
+        const customText = contentType === 'plainText' ? 'New item' : undefined;
+        const newItem = createListItemWithContent(contentType, customText);
 
         const newSections = [...block.sections];
         newSections[sectionIndex] = {

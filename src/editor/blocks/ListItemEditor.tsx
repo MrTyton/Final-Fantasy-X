@@ -7,6 +7,7 @@ import { TrackingInterface } from '../components/TrackingInterface';
 import {
     getBlockButtonStyle
 } from './shared/blockEditorUtils';
+import { createInlineElement } from '../shared/elementFactory';
 
 interface ListItemEditorProps {
     block: ListItemElement;
@@ -19,74 +20,44 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
     const addInlineElement = (type: string) => {
         let newElement: any;
 
-        switch (type) {
-            case 'plainText':
-                newElement = { type: 'plainText', text: 'New text' };
-                break;
-            case 'formattedText':
-                newElement = { type: 'formattedText', text: 'New formatted text' };
-                break;
-            case 'characterReference':
-                newElement = { type: 'characterReference', characterName: 'tidus' };
-                break;
-            case 'characterCommand':
-                newElement = { type: 'characterCommand', characterName: 'tidus', actionText: 'Attack' };
-                break;
-            case 'gameMacro':
-                newElement = { type: 'gameMacro', macroName: 'sd' };
-                break;
-            case 'formation':
-                newElement = {
-                    type: 'formation',
-                    characters: [{ type: 'characterReference', characterName: 'tidus' }]
-                };
-                break;
-            case 'link':
-                newElement = {
-                    type: 'link',
-                    url: 'https://example.com',
-                    text: [{ type: 'formattedText', text: 'Link text' }]
-                };
-                break;
-            case 'nth':
-                newElement = { type: 'nth', value: '1st' };
-                break;
-            case 'num':
-                newElement = { type: 'num', value: 0 };
-                break;
-            case 'mathSymbol':
-                newElement = { type: 'mathSymbol', symbol: 'plus' };
-                break;
-            // Block-level content types
-            case 'conditional':
-                newElement = {
-                    type: 'conditional',
-                    conditionSource: 'textual_direct_choice',
-                    displayAsItemizedCondition: false
-                };
-                break;
-            case 'textParagraph':
-                newElement = {
-                    type: 'textParagraph',
-                    content: [{ type: 'plainText', text: 'New paragraph content' }]
-                };
-                break;
-            case 'battle':
-                newElement = {
-                    type: 'battle',
-                    enemyName: 'New Enemy',
-                    strategy: []
-                };
-                break;
-            case 'instructionList':
-                newElement = {
-                    type: 'instructionList',
-                    ordered: false,
-                    items: []
-                };
-                break;
-            default:
-                newElement = { type: 'plainText', text: 'New text' };
+        // Check if it's an inline element first
+        const inlineTypes = ['plainText', 'formattedText', 'characterReference', 'characterCommand', 'gameMacro', 'formation', 'link', 'nth', 'num', 'mathSymbol'];
+
+        if (inlineTypes.includes(type)) {
+            newElement = createInlineElement(type);
+        } else {
+            // Handle block-level content types
+            switch (type) {
+                case 'conditional':
+                    newElement = {
+                        type: 'conditional',
+                        conditionSource: 'textual_direct_choice',
+                        displayAsItemizedCondition: false
+                    };
+                    break;
+                case 'textParagraph':
+                    newElement = {
+                        type: 'textParagraph',
+                        content: [createInlineElement('plainText', 'New paragraph content')]
+                    };
+                    break;
+                case 'battle':
+                    newElement = {
+                        type: 'battle',
+                        enemyName: 'New Enemy',
+                        strategy: []
+                    };
+                    break;
+                case 'instructionList':
+                    newElement = {
+                        type: 'instructionList',
+                        ordered: false,
+                        items: []
+                    };
+                    break;
+                default:
+                    newElement = createInlineElement('plainText');
+            }
         }
 
         const newContent = [...block.content, newElement];

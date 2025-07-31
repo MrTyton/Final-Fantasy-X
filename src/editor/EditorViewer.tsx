@@ -6,6 +6,8 @@ import { useEditorStore, startAutoSave, stopAutoSave } from './store';
 import { LivePreview } from './LivePreview';
 import { ResizableSplitter } from './components/ResizableSplitter';
 import { KeyboardShortcut, ShortcutRow, ShortcutSection, ShortcutSubsection } from './components/KeyboardShortcut';
+import { createBlockTemplate } from './shared/elementFactory';
+import { CONTENT_TYPE_CATEGORIES } from './shared/contentTypes';
 
 export const EditorViewer: React.FC = () => {
     // Connect to our Zustand store to get the state and the action function
@@ -34,40 +36,7 @@ export const EditorViewer: React.FC = () => {
     const [showKeyboardHelp, setShowKeyboardHelp] = useState(false);
     const [showJsonPreview, setShowJsonPreview] = useState(false);
 
-    const blockTypes = [
-        {
-            category: 'Content',
-            items: [
-                { value: 'textParagraph', label: '📝 Text Paragraph', shortcut: '1' },
-                { value: 'instructionList', label: '📋 Instruction List', shortcut: '2' },
-                { value: 'image', label: '🖼️ Image', shortcut: '3' }
-            ]
-        },
-        {
-            category: 'Gameplay',
-            items: [
-                { value: 'battle', label: '⚔️ Battle', shortcut: '4' },
-                { value: 'encounters', label: '👹 Encounters', shortcut: '5' },
-                { value: 'trial', label: '🏛️ Trial', shortcut: '6' },
-                { value: 'blitzballGame', label: '⚽ Blitzball Game', shortcut: '7' }
-            ]
-        },
-        {
-            category: 'Character',
-            items: [
-                { value: 'sphereGrid', label: '🔮 Sphere Grid', shortcut: '8' },
-                { value: 'sphereGridCharacterActions', label: '👤 Character Actions', shortcut: '9' },
-                { value: 'equip', label: '⚔️ Equipment', shortcut: '0' }
-            ]
-        },
-        {
-            category: 'Other',
-            items: [
-                { value: 'shop', label: '🏪 Shop', shortcut: 'S' },
-                { value: 'conditional', label: '🔀 Conditional', shortcut: 'C' }
-            ]
-        }
-    ];
+    const blockTypes = CONTENT_TYPE_CATEGORIES;
 
     // Keyboard shortcuts
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -417,90 +386,16 @@ export const EditorViewer: React.FC = () => {
     const addTopLevelBlock = (blockType: string) => {
         let newBlock;
 
-        switch (blockType) {
-            case 'textParagraph':
-                newBlock = {
-                    type: 'textParagraph',
-                    content: [{ type: 'plainText', text: 'New paragraph' }]
-                };
-                break;
-            case 'instructionList':
-                newBlock = {
-                    type: 'instructionList',
-                    items: []
-                };
-                break;
-            case 'battle':
-                newBlock = {
-                    type: 'battle',
-                    enemyName: 'New Enemy',
-                    strategy: []
-                };
-                break;
-            case 'image':
-                newBlock = {
-                    type: 'image',
-                    path: ''
-                };
-                break;
-            case 'conditional':
-                newBlock = {
-                    type: 'conditional',
-                    conditionSource: 'textual_direct_choice',
-                    winContent: [{ type: 'plainText', text: 'Content when condition is true' }],
-                    lossContent: [{ type: 'plainText', text: 'Content when condition is false' }]
-                };
-                break;
-            case 'shop':
-                newBlock = {
-                    type: 'shop',
-                    gilInfo: 'Gil information',
-                    sections: []
-                };
-                break;
-            case 'sphereGrid':
-                newBlock = {
-                    type: 'sphereGrid',
-                    characters: []
-                };
-                break;
-            case 'sphereGridCharacterActions':
-                newBlock = {
-                    type: 'sphereGridCharacterActions',
-                    character: 'Tidus',
-                    actions: []
-                };
-                break;
-            case 'encounters':
-                newBlock = {
-                    type: 'encounters',
-                    area: 'New Area',
-                    encounters: []
-                };
-                break;
-            case 'trial':
-                newBlock = {
-                    type: 'trial',
-                    steps: []
-                };
-                break;
-            case 'blitzballGame':
-                newBlock = {
-                    type: 'blitzballGame',
-                    strategy: []
-                };
-                break;
-            case 'equip':
-                newBlock = {
-                    type: 'equip',
-                    content: []
-                };
-                break;
-            default:
-                newBlock = {
-                    type: 'textParagraph',
-                    content: [{ type: 'plainText', text: 'New content' }]
-                };
+        if (blockType === 'sphereGridCharacterActions') {
+            // Special case for sphereGridCharacterActions which is not a top-level ChapterContent
+            newBlock = {
+                type: 'sphereGridCharacterActions',
+                character: 'Tidus',
+                actions: []
+            };
+        } else {
+            // Use the shared factory for all other block types
+            newBlock = createBlockTemplate(blockType);
         }
 
         const newContent = [...activeChapterContent, newBlock];

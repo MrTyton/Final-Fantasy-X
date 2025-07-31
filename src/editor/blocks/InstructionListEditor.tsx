@@ -2,7 +2,7 @@
 import React from 'react';
 import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
-import type { InstructionListBlock, ListItemElement } from '../../types';
+import type { InstructionListBlock } from '../../types';
 import {
     getBlockContainerStyle,
     getBlockHeaderStyle,
@@ -11,6 +11,7 @@ import {
     getBlockColors,
     getBlockSectionStyle
 } from './shared/blockEditorUtils';
+import { createListItemWithContent } from '../shared/elementFactory';
 
 interface InstructionListEditorProps {
     block: InstructionListBlock;
@@ -26,32 +27,8 @@ export const InstructionListEditor: React.FC<InstructionListEditorProps> = ({ bl
     };
 
     const addListItem = (contentType: string = 'plainText') => {
-        let newContent;
-        switch (contentType) {
-            case 'plainText':
-                newContent = [{ type: 'plainText', text: 'New list item' }];
-                break;
-            case 'formattedText':
-                newContent = [{ type: 'formattedText', text: 'New formatted item' }];
-                break;
-            case 'characterReference':
-                newContent = [{ type: 'characterReference', characterName: 'tidus' }];
-                break;
-            case 'characterCommand':
-                newContent = [{ type: 'characterCommand', characterName: 'tidus', actionText: 'Attack' }];
-                break;
-            case 'gameMacro':
-                newContent = [{ type: 'gameMacro', macroName: 'sd' }];
-                break;
-            default:
-                newContent = [{ type: 'plainText', text: 'New list item' }];
-        }
-
-        const newItem: ListItemElement = {
-            type: 'listItem',
-            content: newContent as any
-        };
-
+        const customText = contentType === 'plainText' ? 'New list item' : undefined;
+        const newItem = createListItemWithContent(contentType, customText);
         const newItems = [...block.items, newItem];
         const newBlock = { ...block, items: newItems };
         updateNode(path, newBlock);

@@ -12,6 +12,7 @@ import {
     getBlockSectionStyle,
     getBlockColors
 } from './shared/blockEditorUtils';
+import { createListItemWithContent } from '../shared/elementFactory';
 
 interface SphereGridEditorProps {
     block: SphereGridBlock;
@@ -44,16 +45,10 @@ export const SphereGridEditor: React.FC<SphereGridEditorProps> = ({ block, path 
                 newContent = { type: 'image', path: '' };
                 break;
             case 'listItem':
-                newContent = {
-                    type: 'listItem',
-                    content: [{ type: 'plainText', text: 'New list item' }]
-                };
+                newContent = createListItemWithContent(contentType, 'New list item');
                 break;
             default:
-                newContent = {
-                    type: 'listItem',
-                    content: [{ type: 'plainText', text: 'New content' }]
-                };
+                newContent = createListItemWithContent('plainText', 'New content');
         }
 
         const newContentArray = [...block.content, newContent];
