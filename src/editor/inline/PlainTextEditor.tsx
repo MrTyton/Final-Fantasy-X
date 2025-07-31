@@ -16,22 +16,32 @@ export const PlainTextEditor: React.FC<PlainTextEditorProps> = ({ node, onChange
 
     return (
         <div style={{
-            display: 'inline-block',
+            display: 'inline-flex',
+            alignItems: 'center',
             margin: '2px',
-            minWidth: '200px'
+            padding: '4px',
+            border: '1px solid #ddd',
+            borderRadius: '3px',
+            backgroundColor: '#f5f5f5'
         }}>
             <AutoResizeTextarea
                 value={node.text}
                 onChange={handleChange}
                 placeholder="Enter text..."
                 minRows={1}
-                maxRows={5}
+                maxRows={1}
                 style={{
-                    background: '#f9f9f9',
+                    background: 'transparent',
+                    border: 'none',
                     fontSize: 'inherit',
                     fontFamily: 'inherit',
                     minWidth: '200px',
-                    width: `${Math.max(200, node.text.length * 8 + 40)}px`
+                    width: `${Math.max(200, node.text.length * 8 + 40)}px`,
+                    resize: 'none',
+                    outline: 'none',
+                    padding: '2px 4px',
+                    height: '20px',
+                    lineHeight: '16px'
                 }}
                 spellCheck={true}
             />

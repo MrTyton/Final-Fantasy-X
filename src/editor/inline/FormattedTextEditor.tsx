@@ -41,12 +41,19 @@ export const FormattedTextEditor: React.FC<FormattedTextEditorProps> = ({ node, 
                 onChange={handleTextChange}
                 placeholder="Text content"
                 minRows={1}
-                maxRows={3}
+                maxRows={1}
                 style={{
                     minWidth: '200px',
                     width: `${Math.max(200, node.text.length * 8 + 40)}px`,
                     fontFamily: 'inherit',
-                    fontSize: 'inherit'
+                    fontSize: 'inherit',
+                    background: 'transparent',
+                    border: 'none',
+                    resize: 'none',
+                    outline: 'none',
+                    padding: '2px 4px',
+                    height: '20px',
+                    lineHeight: '16px'
                 }}
                 spellCheck={true}
             />

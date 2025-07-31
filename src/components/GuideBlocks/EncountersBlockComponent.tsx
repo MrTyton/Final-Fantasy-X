@@ -101,6 +101,21 @@ const EncountersBlockComponent: React.FC<EncountersBlockProps> = ({ blockData, p
           <p style={{ fontStyle: 'italic' }}>No specific encounter strategies defined.</p>
         )}
 
+        {/* Render notes if they exist */}
+        {blockData.notes && blockData.notes.length > 0 && (
+          <div style={{ marginTop: '15px', paddingTop: '10px', borderTop: '1px dashed #ffcc80' }}>
+            <p style={{ fontWeight: 'bold', fontSize: '1em', color: '#333', margin: '0 0 8px 0' }}>Notes:</p>
+            <div style={{ fontStyle: 'italic', color: '#555' }}>
+              {blockData.notes.map((noteText, index) => (
+                <span key={`note-${index}`}>
+                  {noteText.text}
+                  {index < blockData.notes!.length - 1 && ' '}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Render block-level resource updates and item acquisition flags using TrackableRenderer */}
         {(blockData.trackedResourceUpdates || blockData.itemAcquisitionFlags) && (
           <div style={{ marginTop: '15px', paddingTop: '10px', borderTop: '1px dashed #ffcc80' }}>
