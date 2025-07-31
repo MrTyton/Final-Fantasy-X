@@ -4,6 +4,9 @@ import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
 import type { ListItemElement, TrackedResource, AcquiredItemFlag, FormattedText } from '../../types';
 import { TrackingInterface } from '../components/TrackingInterface';
+import {
+    getBlockButtonStyle
+} from './shared/blockEditorUtils';
 
 interface ListItemEditorProps {
     block: ListItemElement;
@@ -244,15 +247,7 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({ block, path }) =
         backgroundColor: '#fff'
     };
 
-    const buttonStyle: React.CSSProperties = {
-        padding: '2px 6px',
-        margin: '2px',
-        borderRadius: '3px',
-        border: '1px solid #ccc',
-        backgroundColor: '#fff',
-        cursor: 'pointer',
-        fontSize: '10px'
-    };
+    const buttonStyle = getBlockButtonStyle();
 
     const toolbarStyle: React.CSSProperties = {
         display: 'flex',

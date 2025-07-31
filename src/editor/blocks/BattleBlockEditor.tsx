@@ -4,6 +4,15 @@ import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
 import type { BattleBlock, ListItemElement, FormattedText, TrackedResource, AcquiredItemFlag } from '../../types';
 import { TrackingInterface } from '../components/TrackingInterface';
+import { 
+    getBlockContainerStyle,
+    getBlockHeaderStyle,
+    getBlockLabelStyle,
+    getBlockButtonStyle,
+    getBlockInputStyle,
+    getBlockSectionStyle,
+    getBlockColors
+} from './shared/blockEditorUtils';
 
 interface BattleBlockEditorProps {
     block: BattleBlock;
@@ -149,55 +158,14 @@ export const BattleBlockEditor: React.FC<BattleBlockEditorProps> = ({ block, pat
         updateNode(path, newBlock);
     };
 
-    const containerStyle: React.CSSProperties = {
-        border: '2px solid #f44336',
-        padding: '12px',
-        margin: '10px 0',
-        borderRadius: '8px',
-        backgroundColor: '#fff5f5'
-    };
+    const colors = getBlockColors('battle');
+    const containerStyle = getBlockContainerStyle(colors.border, colors.background);
+    const headerStyle = getBlockHeaderStyle();
+    const labelStyle = getBlockLabelStyle(colors.label);
+    const buttonStyle = getBlockButtonStyle();
+    const inputStyle = getBlockInputStyle('120px');
 
-    const headerStyle: React.CSSProperties = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '12px',
-        paddingBottom: '8px',
-        borderBottom: '1px solid #ccc'
-    };
-
-    const labelStyle: React.CSSProperties = {
-        color: '#d32f2f',
-        fontWeight: 'bold',
-        fontSize: '14px'
-    };
-
-    const buttonStyle: React.CSSProperties = {
-        padding: '4px 8px',
-        margin: '0 2px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        backgroundColor: '#fff',
-        cursor: 'pointer',
-        fontSize: '12px'
-    };
-
-    const inputStyle: React.CSSProperties = {
-        padding: '4px 8px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        margin: '0 4px',
-        fontSize: '12px',
-        width: '120px'
-    };
-
-    const sectionStyle: React.CSSProperties = {
-        margin: '12px 0',
-        padding: '8px',
-        border: '1px dashed #f44336',
-        borderRadius: '4px',
-        backgroundColor: '#fff'
-    };
+    const sectionStyle = getBlockSectionStyle(colors.border);
 
     const fieldRowStyle: React.CSSProperties = {
         display: 'flex',

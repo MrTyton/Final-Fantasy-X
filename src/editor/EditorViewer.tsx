@@ -5,6 +5,7 @@ import { NodeRenderer } from './NodeRenderer';
 import { useEditorStore, startAutoSave, stopAutoSave } from './store';
 import { LivePreview } from './LivePreview';
 import { ResizableSplitter } from './components/ResizableSplitter';
+import { KeyboardShortcut, ShortcutRow, ShortcutSection, ShortcutSubsection } from './components/KeyboardShortcut';
 
 export const EditorViewer: React.FC = () => {
     // Connect to our Zustand store to get the state and the action function
@@ -1213,21 +1214,12 @@ export const EditorViewer: React.FC = () => {
                                                     <div>
                                                         <div style={{ fontWeight: '600', marginBottom: '6px', color: '#1f2937', fontSize: '13px' }}>Quick Creates</div>
                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                                <span>Text</span>
-                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+T</kbd>
-                                                            </div>
-                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                                <span>List</span>
-                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+L</kbd>
-                                                            </div>
-                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                                <span>Battle</span>
-                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+B</kbd>
-                                                            </div>
+                                                            <ShortcutRow shortcut="Ctrl+Shift+T" description="Text" />
+                                                            <ShortcutRow shortcut="Ctrl+Shift+L" description="List" />
+                                                            <ShortcutRow shortcut="Ctrl+Shift+B" description="Battle" />
                                                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                                                 <span>+ More...</span>
-                                                                <kbd style={{ background: '#f8fafc', padding: '2px 6px', borderRadius: '4px', border: '1px solid #e2e8f0', fontSize: '10px', fontWeight: '500', color: '#64748b' }}>F1</kbd>
+                                                                <KeyboardShortcut keys="F1" style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', color: '#64748b', fontWeight: '500' }} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2409,91 +2401,40 @@ export const EditorViewer: React.FC = () => {
                         }}>
                             {/* General Shortcuts */}
                             <div>
-                                <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', color: '#1e293b' }}>General</h3>
+                                <ShortcutSection title="General" />
                                 <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+S</kbd></span>
-                                        <span>Save chapter</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Z</kbd></span>
-                                        <span>Undo</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Y</kbd></span>
-                                        <span>Redo</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>F1</kbd> / <kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+?</kbd></span>
-                                        <span>Show/hide help</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Esc</kbd></span>
-                                        <span>Close modals/deselect</span>
-                                    </div>
+                                    <ShortcutRow shortcut="Ctrl+S" description="Save chapter" />
+                                    <ShortcutRow shortcut="Ctrl+Z" description="Undo" />
+                                    <ShortcutRow shortcut="Ctrl+Y" description="Redo" />
+                                    <ShortcutRow shortcut={["F1", "Ctrl+?"]} description="Show/hide help" />
+                                    <ShortcutRow shortcut="Esc" description="Close modals/deselect" />
                                 </div>
 
-                                <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '20px', color: '#1e293b' }}>Navigation</h3>
+                                <ShortcutSection title="Navigation" marginTop="20px" />
                                 <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+↑/↓</kbd></span>
-                                        <span>Navigate blocks</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>↑/↓</kbd></span>
-                                        <span>Navigate sub-items</span>
-                                    </div>
+                                    <ShortcutRow shortcut="Ctrl+↑/↓" description="Navigate blocks" />
+                                    <ShortcutRow shortcut="↑/↓" description="Navigate sub-items" />
                                 </div>
                             </div>
 
                             {/* Block Management */}
                             <div>
-                                <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', color: '#1e293b' }}>Block Management</h3>
+                                <ShortcutSection title="Block Management" />
                                 <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+A</kbd></span>
-                                        <span>Add block (modal)</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+↑/↓</kbd></span>
-                                        <span>Move block up/down</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+Del</kbd></span>
-                                        <span>Delete selected block</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+D</kbd></span>
-                                        <span>Duplicate block</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Enter</kbd></span>
-                                        <span>Add sub-item</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+N</kbd></span>
-                                        <span>Add sub-item (alternative)</span>
-                                    </div>
+                                    <ShortcutRow shortcut="Ctrl+Shift+A" description="Add block (modal)" />
+                                    <ShortcutRow shortcut="Ctrl+Shift+↑/↓" description="Move block up/down" />
+                                    <ShortcutRow shortcut="Ctrl+Shift+Del" description="Delete selected block" />
+                                    <ShortcutRow shortcut="Ctrl+D" description="Duplicate block" />
+                                    <ShortcutRow shortcut="Ctrl+Enter" description="Add sub-item" />
+                                    <ShortcutRow shortcut="Ctrl+N" description="Add sub-item (alternative)" />
                                 </div>
 
-                                <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '20px', color: '#1e293b' }}>Quick Add Categories</h3>
+                                <ShortcutSection title="Quick Add Categories" marginTop="20px" />
                                 <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+1</kbd></span>
-                                        <span>Quick add content (text, lists, images)</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+2</kbd></span>
-                                        <span>Quick add gameplay (battles, encounters, trials)</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+3</kbd></span>
-                                        <span>Quick add character (sphere grid, equipment)</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+4</kbd></span>
-                                        <span>Quick add other (shops, conditionals)</span>
-                                    </div>
+                                    <ShortcutRow shortcut="Ctrl+1" description="Quick add content (text, lists, images)" />
+                                    <ShortcutRow shortcut="Ctrl+2" description="Quick add gameplay (battles, encounters, trials)" />
+                                    <ShortcutRow shortcut="Ctrl+3" description="Quick add character (sphere grid, equipment)" />
+                                    <ShortcutRow shortcut="Ctrl+4" description="Quick add other (shops, conditionals)" />
                                     <div style={{ marginTop: '8px', fontSize: '12px', color: '#64748b', fontStyle: 'italic' }}>
                                         After activating quick add mode, press number keys (1-9) to select items from that category.
                                     </div>
@@ -2505,56 +2446,29 @@ export const EditorViewer: React.FC = () => {
                                 <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', color: '#1e293b' }}>Direct Block Creation (Ctrl+Shift+Key)</h3>
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', fontSize: '14px', lineHeight: '1.6' }}>
                                     <div>
-                                        <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px', color: '#374151' }}>Content Blocks</h4>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+T</kbd></span>
-                                            <span>Text Paragraph</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+L</kbd></span>
-                                            <span>Instruction List</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+I</kbd></span>
-                                            <span>Image</span>
+                                        <ShortcutSubsection title="Content Blocks" />
+                                        <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                                            <ShortcutRow shortcut="Ctrl+Shift+T" description="Text Paragraph" />
+                                            <ShortcutRow shortcut="Ctrl+Shift+L" description="Instruction List" />
+                                            <ShortcutRow shortcut="Ctrl+Shift+I" description="Image" />
                                         </div>
                                     </div>
                                     <div>
-                                        <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px', color: '#374151' }}>Gameplay Blocks</h4>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+B</kbd></span>
-                                            <span>Battle</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+E</kbd></span>
-                                            <span>Encounters</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+R</kbd></span>
-                                            <span>Trial</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+F</kbd></span>
-                                            <span>Blitzball Game</span>
+                                        <ShortcutSubsection title="Gameplay Blocks" />
+                                        <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                                            <ShortcutRow shortcut="Ctrl+Shift+B" description="Battle" />
+                                            <ShortcutRow shortcut="Ctrl+Shift+E" description="Encounters" />
+                                            <ShortcutRow shortcut="Ctrl+Shift+R" description="Trial" />
+                                            <ShortcutRow shortcut="Ctrl+Shift+F" description="Blitzball Game" />
                                         </div>
                                     </div>
                                     <div>
-                                        <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px', color: '#374151' }}>Character & Other</h4>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+G</kbd></span>
-                                            <span>Sphere Grid</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+Q</kbd></span>
-                                            <span>Equipment</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+S</kbd></span>
-                                            <span>Shop</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span><kbd style={{ backgroundColor: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px' }}>Ctrl+Shift+C</kbd></span>
-                                            <span>Conditional</span>
+                                        <ShortcutSubsection title="Character & Other" />
+                                        <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                                            <ShortcutRow shortcut="Ctrl+Shift+G" description="Sphere Grid" />
+                                            <ShortcutRow shortcut="Ctrl+Shift+Q" description="Equipment" />
+                                            <ShortcutRow shortcut="Ctrl+Shift+S" description="Shop" />
+                                            <ShortcutRow shortcut="Ctrl+Shift+C" description="Conditional" />
                                         </div>
                                     </div>
                                 </div>

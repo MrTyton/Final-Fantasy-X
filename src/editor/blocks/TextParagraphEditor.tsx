@@ -3,6 +3,14 @@ import React from 'react';
 import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
 import type { TextParagraphBlock } from '../../types';
+import { 
+    getBlockContainerStyle,
+    getBlockHeaderStyle,
+    getBlockLabelStyle,
+    getBlockButtonStyle,
+    getRemoveButtonStyle,
+    getBlockColors
+} from './shared/blockEditorUtils';
 
 interface TextParagraphEditorProps {
     block: TextParagraphBlock;
@@ -77,40 +85,15 @@ export const TextParagraphEditor: React.FC<TextParagraphEditorProps> = ({ block,
         updateNode(path, newBlock);
     };
 
-    const containerStyle: React.CSSProperties = {
-        border: '2px solid #4caf50',
-        padding: '12px',
-        margin: '10px 0',
-        borderRadius: '8px',
-        backgroundColor: isEmphasized ? '#fff3cd' : '#f1f8e9',
-        borderColor: isEmphasized ? '#ffc107' : '#4caf50',
-        position: 'relative'
+    const colors = isEmphasized ? getBlockColors('textParagraphEmphasized') : getBlockColors('textParagraph');
+
+    const containerStyle = {
+        ...getBlockContainerStyle(colors.border, colors.background)
     };
 
-    const headerStyle: React.CSSProperties = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '12px',
-        paddingBottom: '8px',
-        borderBottom: '1px solid #ccc'
-    };
-
-    const labelStyle: React.CSSProperties = {
-        color: isEmphasized ? '#856404' : '#2e7d32',
-        fontWeight: 'bold',
-        fontSize: '14px'
-    };
-
-    const buttonStyle: React.CSSProperties = {
-        padding: '4px 8px',
-        margin: '0 2px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        backgroundColor: '#fff',
-        cursor: 'pointer',
-        fontSize: '12px'
-    };
+    const headerStyle = getBlockHeaderStyle();
+    const labelStyle = getBlockLabelStyle(colors.label);
+    const buttonStyle = getBlockButtonStyle();
 
     const contentStyle: React.CSSProperties = {
         lineHeight: '1.4',
@@ -127,20 +110,11 @@ export const TextParagraphEditor: React.FC<TextParagraphEditorProps> = ({ block,
     };
 
     const removeButtonStyle: React.CSSProperties = {
-        position: 'absolute',
-        top: '4px',
-        right: '4px',
+        ...getRemoveButtonStyle(),
         width: '16px',
         height: '16px',
         borderRadius: '50%',
-        backgroundColor: '#f44336',
-        color: 'white',
-        border: 'none',
-        fontSize: '10px',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+        fontSize: '10px'
     };
 
     return (

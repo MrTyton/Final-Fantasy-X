@@ -3,6 +3,14 @@ import React from 'react';
 import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
 import type { InstructionListBlock, ListItemElement } from '../../types';
+import {
+    getBlockContainerStyle,
+    getBlockHeaderStyle,
+    getBlockLabelStyle,
+    getBlockButtonStyle,
+    getBlockColors,
+    getBlockSectionStyle
+} from './shared/blockEditorUtils';
 
 interface InstructionListEditorProps {
     block: InstructionListBlock;
@@ -71,45 +79,13 @@ export const InstructionListEditor: React.FC<InstructionListEditorProps> = ({ bl
         updateNode(path, newBlock);
     };
 
-    const containerStyle: React.CSSProperties = {
-        border: '2px solid #2196f3',
-        padding: '12px',
-        margin: '10px 0',
-        borderRadius: '8px',
-        backgroundColor: '#f3f8ff'
-    };
+    const colors = getBlockColors('instructionList');
+    const containerStyle = getBlockContainerStyle(colors.border, colors.background);
+    const headerStyle = getBlockHeaderStyle();
+    const labelStyle = getBlockLabelStyle(colors.label);
+    const buttonStyle = getBlockButtonStyle();
 
-    const headerStyle: React.CSSProperties = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '12px',
-        paddingBottom: '8px',
-        borderBottom: '1px solid #ccc'
-    };
-
-    const labelStyle: React.CSSProperties = {
-        color: '#1976d2',
-        fontWeight: 'bold',
-        fontSize: '14px'
-    };
-
-    const buttonStyle: React.CSSProperties = {
-        padding: '4px 8px',
-        margin: '0 2px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        backgroundColor: '#fff',
-        cursor: 'pointer',
-        fontSize: '12px'
-    };
-
-    const listContainerStyle: React.CSSProperties = {
-        border: '1px dashed #2196f3',
-        borderRadius: '4px',
-        padding: '8px',
-        backgroundColor: '#fff'
-    };
+    const listContainerStyle = getBlockSectionStyle(colors.border);
 
     const itemContainerStyle: React.CSSProperties = {
         position: 'relative',

@@ -3,6 +3,14 @@ import React, { useState } from 'react';
 import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
 import type { BlitzballGameBlock, ListItemElement } from '../../types';
+import {
+    getBlockContainerStyle,
+    getBlockHeaderStyle,
+    getBlockLabelStyle,
+    getBlockButtonStyle,
+    getBlockSectionStyle,
+    getBlockColors
+} from './shared/blockEditorUtils';
 
 interface BlitzballGameEditorProps {
     block: BlitzballGameBlock;
@@ -29,46 +37,12 @@ export const BlitzballGameEditor: React.FC<BlitzballGameEditorProps> = ({ block,
         updateNode(path, newBlock);
     };
 
-    const containerStyle: React.CSSProperties = {
-        border: '2px solid #3b82f6',
-        padding: '12px',
-        margin: '10px 0',
-        borderRadius: '8px',
-        backgroundColor: '#eff6ff'
-    };
-
-    const headerStyle: React.CSSProperties = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '12px',
-        paddingBottom: '8px',
-        borderBottom: '1px solid #ccc'
-    };
-
-    const labelStyle: React.CSSProperties = {
-        color: '#1d4ed8',
-        fontWeight: 'bold',
-        fontSize: '14px'
-    };
-
-    const buttonStyle: React.CSSProperties = {
-        padding: '4px 8px',
-        margin: '0 2px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        backgroundColor: '#fff',
-        cursor: 'pointer',
-        fontSize: '12px'
-    };
-
-    const sectionStyle: React.CSSProperties = {
-        margin: '12px 0',
-        padding: '8px',
-        border: '1px dashed #3b82f6',
-        borderRadius: '4px',
-        backgroundColor: '#fff'
-    };
+    const colors = getBlockColors('blitzballGame');
+    const containerStyle = getBlockContainerStyle(colors.border, colors.background);
+    const headerStyle = getBlockHeaderStyle();
+    const labelStyle = getBlockLabelStyle(colors.label);
+    const buttonStyle = getBlockButtonStyle();
+    const sectionStyle = getBlockSectionStyle(colors.border);
 
     return (
         <div style={containerStyle}>

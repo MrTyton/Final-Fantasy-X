@@ -2,6 +2,15 @@
 import React, { useState } from 'react';
 import { useEditorStore } from '../store';
 import type { ImageBlock } from '../../types';
+import {
+    getBlockContainerStyle,
+    getBlockHeaderStyle,
+    getBlockLabelStyle,
+    getBlockButtonStyle,
+    getBlockInputStyle,
+    getBlockSectionStyle,
+    getBlockColors
+} from './shared/blockEditorUtils';
 
 interface ImageEditorProps {
     block: ImageBlock;
@@ -32,47 +41,12 @@ export const ImageEditor: React.FC<ImageEditorProps> = ({ block, path }) => {
         updateNode(path, newBlock);
     };
 
-    const containerStyle: React.CSSProperties = {
-        border: '2px solid #4caf50',
-        padding: '12px',
-        margin: '10px 0',
-        borderRadius: '8px',
-        backgroundColor: '#f1f8e9'
-    };
-
-    const headerStyle: React.CSSProperties = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '12px',
-        paddingBottom: '8px',
-        borderBottom: '1px solid #ccc'
-    };
-
-    const labelStyle: React.CSSProperties = {
-        color: '#388e3c',
-        fontWeight: 'bold',
-        fontSize: '14px'
-    };
-
-    const buttonStyle: React.CSSProperties = {
-        padding: '4px 8px',
-        margin: '0 2px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        backgroundColor: '#fff',
-        cursor: 'pointer',
-        fontSize: '12px'
-    };
-
-    const inputStyle: React.CSSProperties = {
-        padding: '4px 8px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        margin: '0 4px',
-        fontSize: '12px',
-        width: '120px'
-    };
+    const colors = getBlockColors('image');
+    const containerStyle = getBlockContainerStyle(colors.border, colors.background);
+    const headerStyle = getBlockHeaderStyle();
+    const labelStyle = getBlockLabelStyle(colors.label);
+    const buttonStyle = getBlockButtonStyle();
+    const inputStyle = getBlockInputStyle('120px');
 
     const fieldRowStyle: React.CSSProperties = {
         display: 'flex',
@@ -83,12 +57,9 @@ export const ImageEditor: React.FC<ImageEditorProps> = ({ block, path }) => {
     };
 
     const previewStyle: React.CSSProperties = {
+        ...getBlockSectionStyle(colors.border),
         marginTop: '12px',
-        textAlign: 'center',
-        padding: '12px',
-        border: '1px dashed #4caf50',
-        borderRadius: '4px',
-        backgroundColor: '#fff'
+        textAlign: 'center'
     };
 
     return (

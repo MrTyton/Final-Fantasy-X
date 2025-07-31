@@ -3,6 +3,14 @@ import React, { useState } from 'react';
 import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
 import type { EquipBlock, ListItemElement, ConditionalBlock } from '../../types';
+import {
+    getBlockContainerStyle,
+    getBlockHeaderStyle,
+    getBlockLabelStyle,
+    getBlockButtonStyle,
+    getBlockSectionStyle,
+    getBlockColors
+} from './shared/blockEditorUtils';
 
 interface EquipEditorProps {
     block: EquipBlock;
@@ -56,46 +64,12 @@ export const EquipEditor: React.FC<EquipEditorProps> = ({ block, path }) => {
         updateNode(path, newBlock);
     };
 
-    const containerStyle: React.CSSProperties = {
-        border: '2px solid #8b5cf6',
-        padding: '12px',
-        margin: '10px 0',
-        borderRadius: '8px',
-        backgroundColor: '#f3f4f6'
-    };
-
-    const headerStyle: React.CSSProperties = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '12px',
-        paddingBottom: '8px',
-        borderBottom: '1px solid #ccc'
-    };
-
-    const labelStyle: React.CSSProperties = {
-        color: '#7c3aed',
-        fontWeight: 'bold',
-        fontSize: '14px'
-    };
-
-    const buttonStyle: React.CSSProperties = {
-        padding: '4px 8px',
-        margin: '0 2px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        backgroundColor: '#fff',
-        cursor: 'pointer',
-        fontSize: '12px'
-    };
-
-    const sectionStyle: React.CSSProperties = {
-        margin: '12px 0',
-        padding: '8px',
-        border: '1px dashed #8b5cf6',
-        borderRadius: '4px',
-        backgroundColor: '#fff'
-    };
+    const colors = getBlockColors('equip');
+    const containerStyle = getBlockContainerStyle(colors.border, colors.background);
+    const headerStyle = getBlockHeaderStyle();
+    const labelStyle = getBlockLabelStyle(colors.label);
+    const buttonStyle = getBlockButtonStyle();
+    const sectionStyle = getBlockSectionStyle(colors.border);
 
     return (
         <div style={containerStyle}>
