@@ -3,7 +3,7 @@ import React from 'react';
 import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
 import type { TextParagraphBlock } from '../../types';
-import { 
+import {
     getBlockContainerStyle,
     getBlockHeaderStyle,
     getBlockLabelStyle,

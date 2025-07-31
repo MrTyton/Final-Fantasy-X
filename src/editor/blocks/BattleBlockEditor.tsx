@@ -4,7 +4,7 @@ import { NodeRenderer } from '../NodeRenderer';
 import { useEditorStore } from '../store';
 import type { BattleBlock, ListItemElement, FormattedText, TrackedResource, AcquiredItemFlag } from '../../types';
 import { TrackingInterface } from '../components/TrackingInterface';
-import { 
+import {
     getBlockContainerStyle,
     getBlockHeaderStyle,
     getBlockLabelStyle,

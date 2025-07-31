@@ -11,10 +11,10 @@ interface KeyboardShortcutProps {
  * Reusable keyboard shortcut component
  * Provides consistent styling for kbd elements throughout the application
  */
-export const KeyboardShortcut: React.FC<KeyboardShortcutProps> = ({ 
-    keys, 
-    className = '', 
-    style = {} 
+export const KeyboardShortcut: React.FC<KeyboardShortcutProps> = ({
+    keys,
+    className = '',
+    style = {}
 }) => {
     const kbdStyle: React.CSSProperties = {
         backgroundColor: '#f1f5f9',
@@ -67,16 +67,16 @@ interface ShortcutSectionProps {
     marginTop?: string;
 }
 
-export const ShortcutSection: React.FC<ShortcutSectionProps> = ({ 
-    title, 
-    marginTop = '0' 
+export const ShortcutSection: React.FC<ShortcutSectionProps> = ({
+    title,
+    marginTop = '0'
 }) => (
-    <h3 style={{ 
-        fontSize: '18px', 
-        fontWeight: '600', 
-        marginBottom: '12px', 
-        marginTop, 
-        color: '#1e293b' 
+    <h3 style={{
+        fontSize: '18px',
+        fontWeight: '600',
+        marginBottom: '12px',
+        marginTop,
+        color: '#1e293b'
     }}>
         {title}
     </h3>
@@ -86,16 +86,16 @@ export const ShortcutSection: React.FC<ShortcutSectionProps> = ({
  * Shortcut subsection component for help modal
  * Provides consistent styling for subsection headers
  */
-export const ShortcutSubsection: React.FC<ShortcutSectionProps> = ({ 
-    title, 
-    marginTop = '20px' 
+export const ShortcutSubsection: React.FC<ShortcutSectionProps> = ({
+    title,
+    marginTop = '20px'
 }) => (
-    <h4 style={{ 
-        fontSize: '16px', 
-        fontWeight: '600', 
-        marginBottom: '8px', 
-        marginTop, 
-        color: '#374151' 
+    <h4 style={{
+        fontSize: '16px',
+        fontWeight: '600',
+        marginBottom: '8px',
+        marginTop,
+        color: '#374151'
     }}>
         {title}
     </h4>
