@@ -26,17 +26,21 @@ interface EditorState {
     history: HistoryEntry[];
     historyIndex: number;
     maxHistorySize: number;
+    lastChangeTime: number;
+    changeGroupTimeout: number; // milliseconds to group changes together
     
     // Actions
     loadChapter: (filePath: string) => Promise<void>;
     saveChapter: () => Promise<void>;
     autoSave: () => Promise<void>;
-    updateNode: (path: (string | number)[], value: any, description?: string) => void;
+    updateNode: (path: (string | number)[], value: any, description?: string, forceNewEntry?: boolean) => void;
     undo: () => void;
     redo: () => void;
     canUndo: () => boolean;
     canRedo: () => boolean;
     clearHistory: () => void;
+    startChangeGroup: () => void;
+    endChangeGroup: () => void;
 }
 
 // Helper function to create a deep copy for history
@@ -62,6 +66,8 @@ export const useEditorStore = create<EditorState>((set, get) => ({
     history: [],
     historyIndex: -1,
     maxHistorySize: 50,
+    lastChangeTime: 0,
+    changeGroupTimeout: 1000, // 1 second to group changes together
     
     loadChapter: async (filePath) => {
         set({ isLoading: true, error: null, saveStatus: null });
@@ -182,29 +188,32 @@ export const useEditorStore = create<EditorState>((set, get) => ({
             console.error('Auto-save failed:', e);
         }
     },
-    updateNode: (path, value, description) => {
+    updateNode: (path, value, description, forceNewEntry = false) => {
         const state = get();
+        const currentTime = Date.now();
         
-        // Create a copy of current state for history before making changes
-        const newHistory = [...state.history.slice(0, state.historyIndex + 1)];
+        // Determine if we should create a new history entry
+        let shouldCreateNewEntry = forceNewEntry;
         
-        // Add current state to history if it's different
-        if (newHistory.length === 0 || JSON.stringify(newHistory[newHistory.length - 1].content) !== JSON.stringify(state.activeChapterContent)) {
-            newHistory.push(createHistoryEntry(state.activeChapterContent, description || 'Edit'));
-        }
-        
-        // Limit history size
-        if (newHistory.length > state.maxHistorySize) {
-            newHistory.shift();
+        if (!shouldCreateNewEntry) {
+            // Create new entry if:
+            // 1. No history exists
+            // 2. Too much time has passed since last change
+            // 3. The description suggests a different type of operation
+            const timeSinceLastChange = currentTime - state.lastChangeTime;
+            const lastDescription = state.history[state.historyIndex]?.description;
+            shouldCreateNewEntry = 
+                state.history.length === 0 ||
+                timeSinceLastChange > state.changeGroupTimeout ||
+                (description !== undefined && description !== lastDescription);
         }
         
         set(
             produce((draft: EditorState) => {
-                // Handle top-level updates (empty path means replace entire content)
+                // Handle the content update
                 if (path.length === 0) {
                     draft.activeChapterContent = value;
                 } else {
-                    // Handle nested updates
                     let current: any = draft.activeChapterContent;
                     for (let i = 0; i < path.length - 1; i++) {
                         current = current[path[i]];
@@ -212,10 +221,32 @@ export const useEditorStore = create<EditorState>((set, get) => ({
                     current[path[path.length - 1]] = value;
                 }
                 
-                // Update history and state
-                draft.history = newHistory;
-                draft.historyIndex = newHistory.length - 1;
+                // Update history if needed
+                if (shouldCreateNewEntry) {
+                    // Remove any future history (if we're not at the end)
+                    const newHistory = [...draft.history.slice(0, draft.historyIndex + 1)];
+                    
+                    // Add new entry with current state (before the change)
+                    const previousContent = draft.history[draft.historyIndex]?.content || draft.activeChapterContent;
+                    newHistory.push(createHistoryEntry(previousContent, description || 'Edit'));
+                    
+                    // Limit history size
+                    if (newHistory.length > draft.maxHistorySize) {
+                        newHistory.shift();
+                    }
+                    
+                    draft.history = newHistory;
+                    draft.historyIndex = newHistory.length - 1;
+                } else {
+                    // Update the current history entry with the new content
+                    if (draft.history[draft.historyIndex]) {
+                        draft.history[draft.historyIndex].content = JSON.parse(JSON.stringify(draft.activeChapterContent));
+                        draft.history[draft.historyIndex].timestamp = currentTime;
+                    }
+                }
+                
                 draft.hasUnsavedChanges = true;
+                draft.lastChangeTime = currentTime;
             })
         );
     },
@@ -264,6 +295,17 @@ export const useEditorStore = create<EditorState>((set, get) => ({
             history: [createHistoryEntry(state.activeChapterContent, 'History cleared')],
             historyIndex: 0
         });
+    },
+
+    startChangeGroup: () => {
+        set(() => ({
+            lastChangeTime: Date.now(),
+        }));
+    },
+
+    endChangeGroup: () => {
+        // Optional method to explicitly end a change group
+        // Currently no additional logic needed
     },
 }));
 
