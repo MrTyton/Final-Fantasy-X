@@ -153,11 +153,6 @@
                     "textCondition": [
                         {
                             "type": "formattedText",
-                            "text": "If ",
-                            "isItalic": true
-                        },
-                        {
-                            "type": "formattedText",
                             "text": "Valefor",
                             "color": "Salmon",
                             "isBold": true,
@@ -281,11 +276,6 @@
                     "type": "conditional",
                     "conditionSource": "textual_inline_if_then",
                     "textCondition": [
-                        {
-                            "type": "formattedText",
-                            "text": "If ",
-                            "isItalic": true
-                        },
                         {
                             "type": "formattedText",
                             "text": "Tidus",
@@ -616,11 +606,6 @@
                     "type": "conditional",
                     "conditionSource": "textual_inline_if_then",
                     "textCondition": [
-                        {
-                            "type": "formattedText",
-                            "text": "If ",
-                            "isItalic": true
-                        },
                         {
                             "type": "formattedText",
                             "text": "Tidus",

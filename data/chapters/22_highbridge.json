@@ -482,10 +482,6 @@
                     "textCondition": [
                         {
                             "type": "formattedText",
-                            "text": "If "
-                        },
-                        {
-                            "type": "formattedText",
                             "text": "Lulu",
                             "color": "purple",
                             "isBold": true
