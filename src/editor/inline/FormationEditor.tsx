@@ -1,6 +1,13 @@
 // src/editor/inline/FormationEditor.tsx
 import React from 'react';
 import type { FormationElement, CharacterReference } from '../../types';
+import {
+    getInlineEditorContainerStyle,
+    getStandardInputStyle,
+    getStandardButtonStyle,
+    INLINE_EDITOR_BACKGROUNDS,
+    FFX_PARTY_CHARACTERS
+} from './shared/inlineEditorUtils';
 
 interface FormationEditorProps {
     node: FormationElement;
@@ -36,21 +43,8 @@ export const FormationEditor: React.FC<FormationEditorProps> = ({ node, onChange
         });
     };
 
-    const characterOptions = [
-        'Tidus', 'Yuna', 'Auron', 'Wakka', 'Lulu', 'Rikku', 'Kimahri', 'Seymour'
-    ];
-
     return (
-        <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '5px',
-            margin: '2px',
-            padding: '6px',
-            border: '2px solid #17a2b8',
-            borderRadius: '4px',
-            backgroundColor: '#e6f7ff'
-        }}>
+        <div style={getInlineEditorContainerStyle(INLINE_EDITOR_BACKGROUNDS.formation, '#17a2b8', '2px')}>
             <label style={{ fontSize: '10px', color: '#17a2b8', fontWeight: 'bold' }}>FORMATION:</label>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
@@ -60,29 +54,19 @@ export const FormationEditor: React.FC<FormationEditorProps> = ({ node, onChange
                             value={character.characterName}
                             onChange={(e) => handleCharacterNameChange(index, e.target.value)}
                             style={{
-                                border: '1px solid #ccc',
-                                padding: '1px',
-                                borderRadius: '2px',
+                                ...getStandardInputStyle(),
                                 fontSize: '11px',
                                 color: character.color || '#17a2b8',
                                 fontWeight: character.isBold ? 'bold' : 'normal'
                             }}
                         >
-                            {characterOptions.map(name => (
+                            {FFX_PARTY_CHARACTERS.map(name => (
                                 <option key={name} value={name}>{name}</option>
                             ))}
                         </select>
                         <button
                             onClick={() => handleRemoveCharacter(index)}
-                            style={{
-                                background: '#dc3545',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '2px',
-                                fontSize: '10px',
-                                padding: '1px 3px',
-                                cursor: 'pointer'
-                            }}
+                            style={getStandardButtonStyle('#dc3545')}
                             title="Remove character"
                         >
                             ×
@@ -96,14 +80,9 @@ export const FormationEditor: React.FC<FormationEditorProps> = ({ node, onChange
                 <button
                     onClick={handleAddCharacter}
                     style={{
-                        background: '#28a745',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '2px',
-                        fontSize: '10px',
-                        padding: '2px 4px',
-                        cursor: 'pointer',
-                        marginLeft: '3px'
+                        ...getStandardButtonStyle('#28a745'),
+                        marginLeft: '3px',
+                        padding: '2px 4px'
                     }}
                     title="Add character"
                 >

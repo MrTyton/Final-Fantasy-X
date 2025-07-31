@@ -2,6 +2,13 @@
 import React from 'react';
 import type { FormattedText } from '../../types';
 import { AutoResizeTextarea } from '../components/AutoResizeTextarea';
+import {
+    getInlineEditorContainerStyle,
+    getStandardInputStyle,
+    getStandardTextareaStyle,
+    calculateDynamicWidth,
+    INLINE_EDITOR_BACKGROUNDS
+} from './shared/inlineEditorUtils';
 
 interface FormattedTextEditorProps {
     node: FormattedText;
@@ -26,16 +33,7 @@ export const FormattedTextEditor: React.FC<FormattedTextEditorProps> = ({ node, 
     };
 
     return (
-        <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '5px',
-            margin: '2px',
-            padding: '4px',
-            border: '1px solid #ddd',
-            borderRadius: '3px',
-            backgroundColor: '#f8f9fa'
-        }}>
+        <div style={getInlineEditorContainerStyle(INLINE_EDITOR_BACKGROUNDS.formattedText)}>
             <AutoResizeTextarea
                 value={node.text}
                 onChange={handleTextChange}
@@ -43,17 +41,9 @@ export const FormattedTextEditor: React.FC<FormattedTextEditorProps> = ({ node, 
                 minRows={1}
                 maxRows={1}
                 style={{
+                    ...getStandardTextareaStyle(),
                     minWidth: '200px',
-                    width: `${Math.max(200, node.text.length * 8 + 40)}px`,
-                    fontFamily: 'inherit',
-                    fontSize: 'inherit',
-                    background: 'transparent',
-                    border: 'none',
-                    resize: 'none',
-                    outline: 'none',
-                    padding: '2px 4px',
-                    height: '20px',
-                    lineHeight: '16px'
+                    width: calculateDynamicWidth(node.text)
                 }}
                 spellCheck={true}
             />
@@ -61,12 +51,7 @@ export const FormattedTextEditor: React.FC<FormattedTextEditorProps> = ({ node, 
                 type="text"
                 value={node.color || ''}
                 onChange={handleColorChange}
-                style={{
-                    border: '1px solid #ccc',
-                    padding: '2px 4px',
-                    borderRadius: '2px',
-                    width: '60px'
-                }}
+                style={getStandardInputStyle('60px')}
                 placeholder="Color"
             />
             <label style={{ fontSize: '12px', display: 'flex', alignItems: 'center', gap: '2px' }}>

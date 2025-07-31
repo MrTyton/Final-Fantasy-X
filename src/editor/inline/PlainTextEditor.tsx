@@ -2,6 +2,12 @@
 import React from 'react';
 import type { PlainTextElement } from '../../types';
 import { AutoResizeTextarea } from '../components/AutoResizeTextarea';
+import {
+    getInlineEditorContainerStyle,
+    getStandardTextareaStyle,
+    calculateDynamicWidth,
+    INLINE_EDITOR_BACKGROUNDS
+} from './shared/inlineEditorUtils';
 
 interface PlainTextEditorProps {
     node: PlainTextElement;
@@ -15,15 +21,7 @@ export const PlainTextEditor: React.FC<PlainTextEditorProps> = ({ node, onChange
     };
 
     return (
-        <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            margin: '2px',
-            padding: '4px',
-            border: '1px solid #ddd',
-            borderRadius: '3px',
-            backgroundColor: '#f5f5f5'
-        }}>
+        <div style={getInlineEditorContainerStyle(INLINE_EDITOR_BACKGROUNDS.text)}>
             <AutoResizeTextarea
                 value={node.text}
                 onChange={handleChange}
@@ -31,17 +29,9 @@ export const PlainTextEditor: React.FC<PlainTextEditorProps> = ({ node, onChange
                 minRows={1}
                 maxRows={1}
                 style={{
-                    background: 'transparent',
-                    border: 'none',
-                    fontSize: 'inherit',
-                    fontFamily: 'inherit',
+                    ...getStandardTextareaStyle(),
                     minWidth: '200px',
-                    width: `${Math.max(200, node.text.length * 8 + 40)}px`,
-                    resize: 'none',
-                    outline: 'none',
-                    padding: '2px 4px',
-                    height: '20px',
-                    lineHeight: '16px'
+                    width: calculateDynamicWidth(node.text)
                 }}
                 spellCheck={true}
             />

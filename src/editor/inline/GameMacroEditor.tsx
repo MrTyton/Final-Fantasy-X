@@ -1,6 +1,12 @@
 // src/editor/inline/GameMacroEditor.tsx
 import React from 'react';
 import type { GameMacro } from '../../types';
+import {
+    getInlineEditorContainerStyle,
+    getStandardInputStyle,
+    getStandardLabelStyle,
+    INLINE_EDITOR_BACKGROUNDS
+} from './shared/inlineEditorUtils';
 
 interface GameMacroEditorProps {
     node: GameMacro;
@@ -23,25 +29,12 @@ export const GameMacroEditor: React.FC<GameMacroEditorProps> = ({ node, onChange
     ];
 
     return (
-        <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '5px',
-            margin: '2px',
-            padding: '4px',
-            border: '1px solid #ddd',
-            borderRadius: '3px',
-            backgroundColor: '#fff3e0'
-        }}>
-            <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Macro:</span>
+        <div style={getInlineEditorContainerStyle(INLINE_EDITOR_BACKGROUNDS.macro)}>
+            <span style={getStandardLabelStyle()}>Macro:</span>
             <select
                 value={node.macroName}
                 onChange={handleMacroNameChange}
-                style={{
-                    border: '1px solid #ccc',
-                    padding: '2px 4px',
-                    borderRadius: '2px'
-                }}
+                style={getStandardInputStyle()}
             >
                 {validMacros.map(macro => (
                     <option key={macro} value={macro}>{macro}</option>
@@ -51,12 +44,7 @@ export const GameMacroEditor: React.FC<GameMacroEditorProps> = ({ node, onChange
                 type="text"
                 value={node.value || ''}
                 onChange={handleValueChange}
-                style={{
-                    border: '1px solid #ccc',
-                    padding: '2px 4px',
-                    borderRadius: '2px',
-                    width: '60px'
-                }}
+                style={getStandardInputStyle('60px')}
                 placeholder="Value"
             />
         </div>

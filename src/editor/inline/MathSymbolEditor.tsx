@@ -1,6 +1,14 @@
 // src/editor/inline/MathSymbolEditor.tsx
 import React from 'react';
 import type { MathSymbolElement } from '../../types';
+import {
+    getInlineEditorContainerStyle,
+    getStandardInputStyle,
+    getStandardLabelStyle,
+    getStandardButtonStyle,
+    INLINE_EDITOR_BACKGROUNDS,
+    MATH_SYMBOLS
+} from './shared/inlineEditorUtils';
 
 interface MathSymbolEditorProps {
     node: MathSymbolElement;
@@ -18,61 +26,26 @@ export const MathSymbolEditor: React.FC<MathSymbolEditorProps> = ({ node, onChan
         onChange({ ...node, symbol: e.target.value });
     };
 
-    const mathSymbols = [
-        '=', '≠', '<', '>', '≤', '≥', '+', '-', '×', '÷', '±', '≈', '∞',
-        // Arrows - LaTeX style
-        '\\uparrow', '\\downarrow', '\\leftarrow', '\\rightarrow',
-        '\\nwarrow', '\\nearrow', '\\swarrow', '\\searrow',
-        '\\uparrow\\uparrow', '\\downarrow\\downarrow',
-        '\\leftarrow\\leftarrow', '\\rightarrow\\rightarrow',
-        '\\leftarrow\\leftarrow\\leftarrow', '\\leftarrow\\leftarrow\\leftarrow\\leftarrow',
-        '\\nwarrow\\leftarrow\\leftarrow', '\\swarrow\\swarrow',
-        // Common LaTeX math symbols
-        '\\alpha', '\\beta', '\\gamma', '\\delta', '\\epsilon', '\\theta', '\\lambda', '\\mu', '\\pi', '\\sigma', '\\omega',
-        '\\sum', '\\prod', '\\int', '\\sqrt{}', '\\frac{}{}', '\\cdot', '\\times', '\\div',
-        '\\leq', '\\geq', '\\neq', '\\approx', '\\equiv', '\\propto',
-        '\\in', '\\subset', '\\supset', '\\cup', '\\cap', '\\emptyset',
-        '\\forall', '\\exists', '\\neg', '\\land', '\\lor', '\\implies', '\\iff'
-    ];
-
-    const isCustomSymbol = !mathSymbols.includes(node.symbol);
+    const isCustomSymbol = !MATH_SYMBOLS.includes(node.symbol as any);
 
     return (
-        <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '5px',
-            margin: '2px',
-            padding: '4px',
-            border: '1px solid #ddd',
-            borderRadius: '3px',
-            backgroundColor: '#fff8e1'
-        }}>
-            <span style={{ fontSize: '12px', fontWeight: 'bold' }}>∑</span>
+        <div style={getInlineEditorContainerStyle(INLINE_EDITOR_BACKGROUNDS.math)}>
+            <span style={getStandardLabelStyle()}>∑</span>
             {isCustomSymbol ? (
                 <input
                     type="text"
                     value={node.symbol}
                     onChange={handleCustomSymbolChange}
-                    style={{
-                        border: '1px solid #ccc',
-                        padding: '2px 4px',
-                        borderRadius: '2px',
-                        width: '120px'
-                    }}
+                    style={getStandardInputStyle('120px')}
                     placeholder="LaTeX symbol"
                 />
             ) : (
                 <select
                     value={node.symbol}
                     onChange={handleSymbolChange}
-                    style={{
-                        border: '1px solid #ccc',
-                        padding: '2px 4px',
-                        borderRadius: '2px'
-                    }}
+                    style={getStandardInputStyle()}
                 >
-                    {mathSymbols.map(symbol => (
+                    {MATH_SYMBOLS.map(symbol => (
                         <option key={symbol} value={symbol}>{symbol}</option>
                     ))}
                 </select>
@@ -81,20 +54,14 @@ export const MathSymbolEditor: React.FC<MathSymbolEditorProps> = ({ node, onChan
                 onClick={() => {
                     if (isCustomSymbol) {
                         // Switch back to dropdown if current symbol is in list
-                        const firstMatch = mathSymbols.find(s => s === node.symbol) || mathSymbols[0];
+                        const firstMatch = MATH_SYMBOLS.find(s => s === node.symbol) || MATH_SYMBOLS[0];
                         onChange({ ...node, symbol: firstMatch });
                     } else {
                         // Switch to custom input
                         // Don't change the symbol value, just let the UI switch
                     }
                 }}
-                style={{
-                    border: '1px solid #ccc',
-                    padding: '1px 4px',
-                    borderRadius: '2px',
-                    fontSize: '10px',
-                    cursor: 'pointer'
-                }}
+                style={getStandardButtonStyle('#ccc', '#000')}
                 title={isCustomSymbol ? 'Use dropdown' : 'Custom LaTeX'}
             >
                 {isCustomSymbol ? '📋' : '✏️'}
