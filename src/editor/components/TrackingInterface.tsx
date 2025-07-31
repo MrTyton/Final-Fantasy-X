@@ -112,7 +112,6 @@ export const TrackingInterface: React.FC<TrackingInterfaceProps> = ({
                                             borderRadius: '2px',
                                             width: '50px'
                                         }}
-                                        min="0"
                                     />
                                 </label>
 

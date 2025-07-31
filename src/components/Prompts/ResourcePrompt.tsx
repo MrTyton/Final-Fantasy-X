@@ -76,12 +76,11 @@ export const ResourcePromptComponent: React.FC<ResourcePromptProps> = ({ resourc
         <span style={{ fontWeight: 'bold', color: '#263238' }}>
           {isConsumption ? 'Consume ' : 'Gain '}{resourceUpdate.name}:
         </span>
-        {/* Numeric input for user to specify the quantity (always positive) */}
+        {/* Numeric input for user to specify the quantity (can be negative for subtraction) */}
         <input
           type="number"
-          min="0" // Prevent negative numbers in input
           value={inputValue}
-          onChange={e => setInputValue(Math.max(0, parseInt(e.target.value, 10) || 0))}
+          onChange={e => setInputValue(parseInt(e.target.value, 10) || 0)}
           style={{
             width: '60px',
             textAlign: 'right',

@@ -121,10 +121,6 @@
                                     "text": "Otherwise run away."
                                 }
                             ]
-                        },
-                        {
-                            "type": "listItem",
-                            "content": []
                         }
                     ]
                 }
@@ -508,52 +504,68 @@
                     ],
                     "thenContent": [
                         {
-                            "type": "sphereGrid",
-                            "content": [
+                            "type": "instructionList",
+                            "ordered": false,
+                            "items": [
                                 {
-                                    "type": "sphereGridCharacterActions",
-                                    "character": "Tidus",
-                                    "actions": [
+                                    "type": "listItem",
+                                    "content": [
                                         {
-                                            "type": "listItem",
-                                            "content": [
-                                                {
-                                                    "type": "plainText",
-                                                    "text": "Move "
-                                                },
-                                                {
-                                                    "type": "mathSymbol",
-                                                    "symbol": "\\leftarrow"
-                                                }
-                                            ]
+                                            "type": "formattedText",
+                                            "text": "Move "
                                         },
                                         {
-                                            "type": "listItem",
-                                            "content": [
-                                                {
-                                                    "type": "plainText",
-                                                    "text": "Get Cheer, Str +1"
-                                                }
-                                            ],
-                                            "trackedResourceUpdates": [
-                                                {
-                                                    "name": "PowerSphere",
-                                                    "quantity": -1,
-                                                    "updateType": "consumption_implicit_grid",
-                                                    "id": "tidus_grid_cheer_str1_ps1",
-                                                    "description": "Tidus Str+1 (Cheer path)"
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "associatedImages": [
-                                        {
-                                            "type": "image",
-                                            "multiColumnWidth": ".7",
-                                            "singleColumnWidth": ".4",
-                                            "path": "graphics/tiduscheer"
+                                            "type": "mathSymbol",
+                                            "symbol": "\\leftarrow"
                                         }
                                     ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "plainText",
+                                            "text": "Get Cheer, Str +1"
+                                        }
+                                    ],
+                                    "trackedResourceUpdates": [
+                                        {
+                                            "name": "PowerSphere",
+                                            "quantity": -1,
+                                            "updateType": "consumption_implicit_grid",
+                                            "id": "resource_1753987136323",
+                                            "description": "Tidus Str+1 (Cheer Path)"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "image",
+                            "src": "placeholder.png",
+                            "alt": "New image",
+                            "path": "graphics/tiduscheer",
+                            "multiColumnWidth": "0.7",
+                            "singleColumnWidth": "0.4"
+                        }
+                    ],
+                    "elseContent": [
+                        {
+                            "type": "textParagraph",
+                            "content": [
+                                {
+                                    "type": "formattedText",
+                                    "text": "Keep this grid in mind, as you'll do it after the "
+                                },
+                                {
+                                    "type": "characterReference",
+                                    "characterName": "Kimahri",
+                                    "color": "Tan",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " fight."
                                 }
                             ]
                         }
@@ -590,7 +602,7 @@
                     "textCondition": [
                         {
                             "type": "formattedText",
-                            "text": "If the Attacks did at least 7 damage over average:",
+                            "text": "the Attacks did at least 7 damage over average:",
                             "isItalic": true
                         }
                     ],
@@ -771,6 +783,12 @@
                         }
                     ]
                 }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "If Wakka was in this fight, then it would have triggered additional dialogue, so make sure that you did the Formation beforehand."
+                }
             ]
         },
         {
@@ -863,6 +881,12 @@
                     "updateType": "user_confirm_rng_gain",
                     "id": "besaid_enc_dingo_overkill_ps2",
                     "description": "Overkill on Dingo (Besaid Encounters)"
+                }
+            ],
+            "notes": [
+                {
+                    "type": "formattedText",
+                    "text": "Guaranteed 1 Power Sphere from the Dingo, with an additional 1 if you get the Overkill."
                 }
             ]
         },

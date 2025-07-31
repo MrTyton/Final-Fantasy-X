@@ -437,7 +437,6 @@ export const EncountersEditor: React.FC<EncountersEditorProps> = ({ block, path 
                                                     fontSize: '12px',
                                                     width: '60px'
                                                 }}
-                                                min="0"
                                             />
                                         </label>
 

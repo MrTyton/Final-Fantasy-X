@@ -137,7 +137,7 @@ export const globalAppReducer = (state: GlobalAppState, action: GlobalAppAction)
         ...state,
         tracker: {
           ...state.tracker,
-          resources: { ...state.tracker.resources, [name]: Math.max(0, currentQuantity + change) },
+          resources: { ...state.tracker.resources, [name]: currentQuantity + change },
         },
       };
     }
@@ -147,7 +147,7 @@ export const globalAppReducer = (state: GlobalAppState, action: GlobalAppAction)
         ...state,
         tracker: {
           ...state.tracker,
-          resources: { ...state.tracker.resources, [name]: Math.max(0, newValue) },
+          resources: { ...state.tracker.resources, [name]: newValue },
         },
       };
     }
