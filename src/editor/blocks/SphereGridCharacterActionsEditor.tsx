@@ -39,6 +39,22 @@ export const SphereGridCharacterActionsEditor: React.FC<SphereGridCharacterActio
         updateNode(path, newBlock);
     };
 
+    const moveActionUp = (index: number) => {
+        if (index === 0) return;
+        const newActions = [...block.actions];
+        [newActions[index - 1], newActions[index]] = [newActions[index], newActions[index - 1]];
+        const newBlock = { ...block, actions: newActions };
+        updateNode(path, newBlock);
+    };
+
+    const moveActionDown = (index: number) => {
+        if (index === block.actions.length - 1) return;
+        const newActions = [...block.actions];
+        [newActions[index], newActions[index + 1]] = [newActions[index + 1], newActions[index]];
+        const newBlock = { ...block, actions: newActions };
+        updateNode(path, newBlock);
+    };
+
     const addImage = () => {
         const newImage: ImageBlock = {
             type: 'image',
@@ -192,30 +208,75 @@ export const SphereGridCharacterActionsEditor: React.FC<SphereGridCharacterActio
                                             border: '1px solid #e0e7ff',
                                             borderRadius: '4px',
                                             backgroundColor: '#fafafa',
-                                            paddingRight: '40px'
+                                            paddingRight: '80px'
                                         }}>
-                                            <button
-                                                style={{
-                                                    position: 'absolute',
-                                                    top: '4px',
-                                                    right: '4px',
-                                                    width: '20px',
-                                                    height: '20px',
-                                                    borderRadius: '3px',
-                                                    border: '1px solid #ccc',
-                                                    backgroundColor: '#f44336',
-                                                    color: 'white',
-                                                    cursor: 'pointer',
-                                                    fontSize: '10px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center'
-                                                }}
-                                                onClick={() => removeAction(index)}
-                                                title="Remove action"
-                                            >
-                                                ×
-                                            </button>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '4px',
+                                                right: '4px',
+                                                display: 'flex',
+                                                gap: '2px'
+                                            }}>
+                                                <button
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '3px',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: index === 0 ? '#ccc' : '#2196f3',
+                                                        color: 'white',
+                                                        cursor: index === 0 ? 'not-allowed' : 'pointer',
+                                                        fontSize: '10px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                    onClick={() => moveActionUp(index)}
+                                                    disabled={index === 0}
+                                                    title="Move up"
+                                                >
+                                                    ↑
+                                                </button>
+                                                <button
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '3px',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: index === block.actions.length - 1 ? '#ccc' : '#2196f3',
+                                                        color: 'white',
+                                                        cursor: index === block.actions.length - 1 ? 'not-allowed' : 'pointer',
+                                                        fontSize: '10px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                    onClick={() => moveActionDown(index)}
+                                                    disabled={index === block.actions.length - 1}
+                                                    title="Move down"
+                                                >
+                                                    ↓
+                                                </button>
+                                                <button
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '3px',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: '#f44336',
+                                                        color: 'white',
+                                                        cursor: 'pointer',
+                                                        fontSize: '10px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                    onClick={() => removeAction(index)}
+                                                    title="Remove action"
+                                                >
+                                                    ×
+                                                </button>
+                                            </div>
                                             <NodeRenderer
                                                 node={action}
                                                 path={[...path, 'actions', index]}

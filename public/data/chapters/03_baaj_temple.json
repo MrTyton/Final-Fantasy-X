@@ -210,7 +210,7 @@
                         {
                             "type": "characterCommand",
                             "characterName": "Rikku",
-                            "actionText": "Grenade x1, Steal x2 Grenades Total, Attack",
+                            "actionText": "Grenade x1",
                             "color": "ForestGreen",
                             "isBold": true,
                             "trackedResourceUpdates": [
@@ -241,9 +241,51 @@
                     "content": [
                         {
                             "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Steal Grenade",
+                            "isBold": true
+                        }
+                    ],
+                    "subContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Until you have stolen "
+                                },
+                                {
+                                    "type": "formattedText",
+                                    "text": "2x Grenades",
+                                    "isBold": true
+                                },
+                                {
+                                    "type": "plainText",
+                                    "text": " total. You should leave the fight with 3 total."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
                             "characterName": "Tidus",
                             "actionText": "Attack",
                             "color": "blue",
+                            "isBold": true
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "characterCommand",
+                            "characterName": "Rikku",
+                            "actionText": "Attack",
                             "isBold": true
                         }
                     ]
@@ -275,6 +317,14 @@
                             "text": "Continue until dead"
                         }
                     ]
+                }
+            ],
+            "trackedResourceUpdates": [
+                {
+                    "name": "Grenade",
+                    "quantity": 1,
+                    "updateType": "user_confirm_rng_gain",
+                    "id": "resource_1753940205528"
                 }
             ]
         },
@@ -500,7 +550,8 @@
                                         }
                                     ]
                                 }
-                            ]
+                            ],
+                            "displayAsItemizedCondition": false
                         }
                     ]
                 },

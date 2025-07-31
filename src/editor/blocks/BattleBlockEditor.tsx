@@ -61,6 +61,22 @@ export const BattleBlockEditor: React.FC<BattleBlockEditorProps> = ({ block, pat
         updateNode(path, newBlock);
     };
 
+    const moveStrategyItemUp = (index: number) => {
+        if (index === 0) return;
+        const newStrategy = [...block.strategy];
+        [newStrategy[index - 1], newStrategy[index]] = [newStrategy[index], newStrategy[index - 1]];
+        const newBlock = { ...block, strategy: newStrategy };
+        updateNode(path, newBlock);
+    };
+
+    const moveStrategyItemDown = (index: number) => {
+        if (index === block.strategy.length - 1) return;
+        const newStrategy = [...block.strategy];
+        [newStrategy[index], newStrategy[index + 1]] = [newStrategy[index + 1], newStrategy[index]];
+        const newBlock = { ...block, strategy: newStrategy };
+        updateNode(path, newBlock);
+    };
+
     const addNoteParagraph = () => {
         const newParagraph: FormattedText = {
             type: 'formattedText',
@@ -274,30 +290,75 @@ export const BattleBlockEditor: React.FC<BattleBlockEditorProps> = ({ block, pat
                                             border: '1px solid #ffebee',
                                             borderRadius: '4px',
                                             backgroundColor: '#fafafa',
-                                            paddingRight: '40px'
+                                            paddingRight: '80px'
                                         }}>
-                                            <button
-                                                style={{
-                                                    position: 'absolute',
-                                                    top: '4px',
-                                                    right: '4px',
-                                                    width: '20px',
-                                                    height: '20px',
-                                                    borderRadius: '3px',
-                                                    border: '1px solid #ccc',
-                                                    backgroundColor: '#f44336',
-                                                    color: 'white',
-                                                    cursor: 'pointer',
-                                                    fontSize: '10px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center'
-                                                }}
-                                                onClick={() => removeStrategyItem(index)}
-                                                title="Remove step"
-                                            >
-                                                ×
-                                            </button>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '4px',
+                                                right: '4px',
+                                                display: 'flex',
+                                                gap: '2px'
+                                            }}>
+                                                <button
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '3px',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: index === 0 ? '#ccc' : '#2196f3',
+                                                        color: 'white',
+                                                        cursor: index === 0 ? 'not-allowed' : 'pointer',
+                                                        fontSize: '10px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                    onClick={() => moveStrategyItemUp(index)}
+                                                    disabled={index === 0}
+                                                    title="Move up"
+                                                >
+                                                    ↑
+                                                </button>
+                                                <button
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '3px',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: index === block.strategy.length - 1 ? '#ccc' : '#2196f3',
+                                                        color: 'white',
+                                                        cursor: index === block.strategy.length - 1 ? 'not-allowed' : 'pointer',
+                                                        fontSize: '10px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                    onClick={() => moveStrategyItemDown(index)}
+                                                    disabled={index === block.strategy.length - 1}
+                                                    title="Move down"
+                                                >
+                                                    ↓
+                                                </button>
+                                                <button
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '3px',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: '#f44336',
+                                                        color: 'white',
+                                                        cursor: 'pointer',
+                                                        fontSize: '10px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                    onClick={() => removeStrategyItem(index)}
+                                                    title="Remove step"
+                                                >
+                                                    ×
+                                                </button>
+                                            </div>
                                             <NodeRenderer
                                                 node={step}
                                                 path={[...path, 'strategy', index]}

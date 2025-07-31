@@ -40,6 +40,22 @@ export const EquipEditor: React.FC<EquipEditorProps> = ({ block, path }) => {
         updateNode(path, newBlock);
     };
 
+    const moveItemUp = (index: number) => {
+        if (index === 0) return;
+        const newContent = [...block.content];
+        [newContent[index - 1], newContent[index]] = [newContent[index], newContent[index - 1]];
+        const newBlock = { ...block, content: newContent };
+        updateNode(path, newBlock);
+    };
+
+    const moveItemDown = (index: number) => {
+        if (index === block.content.length - 1) return;
+        const newContent = [...block.content];
+        [newContent[index], newContent[index + 1]] = [newContent[index + 1], newContent[index]];
+        const newBlock = { ...block, content: newContent };
+        updateNode(path, newBlock);
+    };
+
     const containerStyle: React.CSSProperties = {
         border: '2px solid #8b5cf6',
         padding: '12px',
@@ -132,30 +148,75 @@ export const EquipEditor: React.FC<EquipEditorProps> = ({ block, path }) => {
                                         border: '1px solid #d8b4fe',
                                         borderRadius: '4px',
                                         backgroundColor: '#fafafa',
-                                        paddingRight: '40px'
+                                        paddingRight: '80px'
                                     }}>
-                                        <button
-                                            style={{
-                                                position: 'absolute',
-                                                top: '4px',
-                                                right: '4px',
-                                                width: '20px',
-                                                height: '20px',
-                                                borderRadius: '3px',
-                                                border: '1px solid #ccc',
-                                                backgroundColor: '#f44336',
-                                                color: 'white',
-                                                cursor: 'pointer',
-                                                fontSize: '10px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center'
-                                            }}
-                                            onClick={() => removeItem(index)}
-                                            title="Remove item"
-                                        >
-                                            ×
-                                        </button>
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '4px',
+                                            right: '4px',
+                                            display: 'flex',
+                                            gap: '2px'
+                                        }}>
+                                            <button
+                                                style={{
+                                                    width: '20px',
+                                                    height: '20px',
+                                                    borderRadius: '3px',
+                                                    border: '1px solid #ccc',
+                                                    backgroundColor: index === 0 ? '#ccc' : '#2196f3',
+                                                    color: 'white',
+                                                    cursor: index === 0 ? 'not-allowed' : 'pointer',
+                                                    fontSize: '10px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center'
+                                                }}
+                                                onClick={() => moveItemUp(index)}
+                                                disabled={index === 0}
+                                                title="Move up"
+                                            >
+                                                ↑
+                                            </button>
+                                            <button
+                                                style={{
+                                                    width: '20px',
+                                                    height: '20px',
+                                                    borderRadius: '3px',
+                                                    border: '1px solid #ccc',
+                                                    backgroundColor: index === block.content.length - 1 ? '#ccc' : '#2196f3',
+                                                    color: 'white',
+                                                    cursor: index === block.content.length - 1 ? 'not-allowed' : 'pointer',
+                                                    fontSize: '10px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center'
+                                                }}
+                                                onClick={() => moveItemDown(index)}
+                                                disabled={index === block.content.length - 1}
+                                                title="Move down"
+                                            >
+                                                ↓
+                                            </button>
+                                            <button
+                                                style={{
+                                                    width: '20px',
+                                                    height: '20px',
+                                                    borderRadius: '3px',
+                                                    border: '1px solid #ccc',
+                                                    backgroundColor: '#f44336',
+                                                    color: 'white',
+                                                    cursor: 'pointer',
+                                                    fontSize: '10px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center'
+                                                }}
+                                                onClick={() => removeItem(index)}
+                                                title="Remove item"
+                                            >
+                                                ×
+                                            </button>
+                                        </div>
                                         <NodeRenderer
                                             node={item}
                                             path={[...path, 'content', index]}

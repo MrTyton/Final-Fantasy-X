@@ -4,6 +4,7 @@ import { ChapterBrowser } from './ChapterBrowser';
 import { NodeRenderer } from './NodeRenderer';
 import { useEditorStore, startAutoSave, stopAutoSave } from './store';
 import { LivePreview } from './LivePreview';
+import { ResizableSplitter } from './components/ResizableSplitter';
 
 export const EditorViewer: React.FC = () => {
     // Connect to our Zustand store to get the state and the action function
@@ -714,396 +715,1490 @@ export const EditorViewer: React.FC = () => {
                 display: 'flex',
                 backgroundColor: '#ffffff'
             }}>
-                <main style={{
-                    flex: showJsonPreview ? '0 0 60%' : 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    backgroundColor: '#ffffff',
-                    position: 'relative'
-                }}>
-                    {/* Top Toolbar */}
-                    <header style={{
-                        padding: '16px 24px',
-                        borderBottom: '1px solid #e2e8f0',
-                        backgroundColor: '#ffffff',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        minHeight: '72px',
-                        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-                        position: 'sticky',
-                        top: 0,
-                        zIndex: 100
-                    }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                            <h1 style={{
-                                margin: 0,
-                                fontSize: '24px',
-                                fontWeight: '700',
-                                color: '#0f172a'
+                {showJsonPreview ? (
+                    <ResizableSplitter
+                        defaultSplit={0.6}
+                        minSize={300}
+                        style={{ flex: 1 }}
+                    >
+                        {/* Editor Panel */}
+                        <main style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            backgroundColor: '#ffffff',
+                            position: 'relative',
+                            height: '100%'
+                        }}>
+                            {/* Top Toolbar */}
+                            <header style={{
+                                padding: '16px 24px',
+                                borderBottom: '1px solid #e2e8f0',
+                                backgroundColor: '#ffffff',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                minHeight: '72px',
+                                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+                                position: 'sticky',
+                                top: 0,
+                                zIndex: 100
                             }}>
-                                {activeChapterTitle || '📝 FFX Guide Editor'}
-                            </h1>
-                            {activeChapterTitle && (
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                                    <h1 style={{
+                                        margin: 0,
+                                        fontSize: '24px',
+                                        fontWeight: '700',
+                                        color: '#0f172a'
+                                    }}>
+                                        {activeChapterTitle || '📝 FFX Guide Editor'}
+                                    </h1>
+                                    {activeChapterTitle && (
+                                        <div style={{
+                                            fontSize: '12px',
+                                            color: '#64748b',
+                                            backgroundColor: '#f1f5f9',
+                                            padding: '4px 8px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #e2e8f0'
+                                        }}>
+                                            {activeChapterContent.length} blocks
+                                        </div>
+                                    )}
+                                </div>
+
+                                {activeChapterTitle && (
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        {/* Quick Action Buttons */}
+                                        <div style={{ display: 'flex', gap: '6px', marginRight: '12px' }}>
+                                            <button
+                                                onClick={() => setQuickAddMode('content')}
+                                                style={{
+                                                    padding: '10px 16px',
+                                                    borderRadius: '8px',
+                                                    border: quickAddMode === 'content' ? '2px solid #3b82f6' : '1px solid #e2e8f0',
+                                                    backgroundColor: quickAddMode === 'content' ? '#eff6ff' : '#ffffff',
+                                                    color: quickAddMode === 'content' ? '#3b82f6' : '#64748b',
+                                                    cursor: 'pointer',
+                                                    fontSize: '13px',
+                                                    fontWeight: '600',
+                                                    transition: 'all 0.2s ease',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '6px',
+                                                    minWidth: '100px',
+                                                    justifyContent: 'center'
+                                                }}
+                                                title="Quick add content blocks (Ctrl+1)"
+                                            >
+                                                📝 Content <kbd style={{ fontSize: '10px', opacity: 0.7, marginLeft: '4px' }}>Ctrl+1</kbd>
+                                            </button>
+                                            <button
+                                                onClick={() => setQuickAddMode('gameplay')}
+                                                style={{
+                                                    padding: '10px 16px',
+                                                    borderRadius: '8px',
+                                                    border: quickAddMode === 'gameplay' ? '2px solid #8b5cf6' : '1px solid #e2e8f0',
+                                                    backgroundColor: quickAddMode === 'gameplay' ? '#f3f4f6' : '#ffffff',
+                                                    color: quickAddMode === 'gameplay' ? '#8b5cf6' : '#64748b',
+                                                    cursor: 'pointer',
+                                                    fontSize: '13px',
+                                                    fontWeight: '600',
+                                                    transition: 'all 0.2s ease',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '6px',
+                                                    minWidth: '110px',
+                                                    justifyContent: 'center'
+                                                }}
+                                                title="Quick add gameplay blocks (Ctrl+2)"
+                                            >
+                                                ⚔️ Gameplay <kbd style={{ fontSize: '10px', opacity: 0.7, marginLeft: '4px' }}>Ctrl+2</kbd>
+                                            </button>
+                                            <button
+                                                onClick={() => setQuickAddMode('character')}
+                                                style={{
+                                                    padding: '10px 16px',
+                                                    borderRadius: '8px',
+                                                    border: quickAddMode === 'character' ? '2px solid #f59e0b' : '1px solid #e2e8f0',
+                                                    backgroundColor: quickAddMode === 'character' ? '#fffbeb' : '#ffffff',
+                                                    color: quickAddMode === 'character' ? '#f59e0b' : '#64748b',
+                                                    cursor: 'pointer',
+                                                    fontSize: '13px',
+                                                    fontWeight: '600',
+                                                    transition: 'all 0.2s ease',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '6px',
+                                                    minWidth: '110px',
+                                                    justifyContent: 'center'
+                                                }}
+                                                title="Quick add character blocks (Ctrl+3)"
+                                            >
+                                                👤 Character <kbd style={{ fontSize: '10px', opacity: 0.7, marginLeft: '4px' }}>Ctrl+3</kbd>
+                                            </button>
+                                            <button
+                                                onClick={() => setQuickAddMode('other')}
+                                                style={{
+                                                    padding: '10px 16px',
+                                                    borderRadius: '8px',
+                                                    border: quickAddMode === 'other' ? '2px solid #ef4444' : '1px solid #e2e8f0',
+                                                    backgroundColor: quickAddMode === 'other' ? '#fef2f2' : '#ffffff',
+                                                    color: quickAddMode === 'other' ? '#ef4444' : '#64748b',
+                                                    cursor: 'pointer',
+                                                    fontSize: '13px',
+                                                    fontWeight: '600',
+                                                    transition: 'all 0.2s ease',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '6px',
+                                                    minWidth: '90px',
+                                                    justifyContent: 'center'
+                                                }}
+                                                title="Quick add other blocks (Ctrl+4)"
+                                            >
+                                                🔧 Other <kbd style={{ fontSize: '10px', opacity: 0.7, marginLeft: '4px' }}>Ctrl+4</kbd>
+                                            </button>
+                                        </div>
+
+                                        {/* Undo/Redo Buttons */}
+                                        <div style={{ display: 'flex', gap: '8px' }}>
+                                            <button
+                                                onClick={undo}
+                                                disabled={!canUndo()}
+                                                style={{
+                                                    padding: '8px 12px',
+                                                    borderRadius: '6px',
+                                                    border: '1px solid #d1d5db',
+                                                    background: canUndo() ? '#ffffff' : '#f9fafb',
+                                                    color: canUndo() ? '#374151' : '#9ca3af',
+                                                    cursor: canUndo() ? 'pointer' : 'not-allowed',
+                                                    fontSize: '14px',
+                                                    fontWeight: '500',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '4px',
+                                                    transition: 'all 0.2s ease',
+                                                    boxShadow: canUndo() ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none'
+                                                }}
+                                                title="Undo (Ctrl+Z)"
+                                                onMouseEnter={(e) => canUndo() && (e.currentTarget.style.background = '#f3f4f6')}
+                                                onMouseLeave={(e) => canUndo() && (e.currentTarget.style.background = '#ffffff')}
+                                            >
+                                                ↶ Undo
+                                            </button>
+                                            <button
+                                                onClick={redo}
+                                                disabled={!canRedo()}
+                                                style={{
+                                                    padding: '8px 12px',
+                                                    borderRadius: '6px',
+                                                    border: '1px solid #d1d5db',
+                                                    background: canRedo() ? '#ffffff' : '#f9fafb',
+                                                    color: canRedo() ? '#374151' : '#9ca3af',
+                                                    cursor: canRedo() ? 'pointer' : 'not-allowed',
+                                                    fontSize: '14px',
+                                                    fontWeight: '500',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '4px',
+                                                    transition: 'all 0.2s ease',
+                                                    boxShadow: canRedo() ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none'
+                                                }}
+                                                title="Redo (Ctrl+Y)"
+                                                onMouseEnter={(e) => canRedo() && (e.currentTarget.style.background = '#f3f4f6')}
+                                                onMouseLeave={(e) => canRedo() && (e.currentTarget.style.background = '#ffffff')}
+                                            >
+                                                ↷ Redo
+                                            </button>
+                                        </div>
+
+                                        {/* Save Button */}
+                                        <button
+                                            onClick={saveChapter}
+                                            disabled={isSaving}
+                                            style={{
+                                                padding: '12px 24px',
+                                                borderRadius: '8px',
+                                                border: hasUnsavedChanges ? '2px solid #f59e0b' : 'none',
+                                                background: isSaving
+                                                    ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'
+                                                    : hasUnsavedChanges
+                                                        ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
+                                                        : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                                                color: isSaving ? '#9ca3af' : 'white',
+                                                cursor: isSaving ? 'not-allowed' : 'pointer',
+                                                fontSize: '14px',
+                                                fontWeight: '600',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '8px',
+                                                minWidth: '140px',
+                                                justifyContent: 'center',
+                                                transition: 'all 0.2s ease',
+                                                boxShadow: isSaving ? 'none' : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                                                transform: isSaving ? 'none' : 'translateY(-1px)'
+                                            }}
+                                            title={hasUnsavedChanges ? "Save unsaved changes (Ctrl+S)" : "Save chapter to file (Ctrl+S)"}
+                                            onMouseEnter={(e) => !isSaving && (e.currentTarget.style.transform = 'translateY(-2px)')}
+                                            onMouseLeave={(e) => !isSaving && (e.currentTarget.style.transform = 'translateY(-1px)')}
+                                        >
+                                            {isSaving ? (
+                                                <>
+                                                    <span style={{
+                                                        display: 'inline-block',
+                                                        width: '14px',
+                                                        height: '14px',
+                                                        border: '2px solid #d1d5db',
+                                                        borderTop: '2px solid #9ca3af',
+                                                        borderRadius: '50%',
+                                                        animation: 'spin 1s linear infinite'
+                                                    }}></span>
+                                                    Saving Chapter...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    💾 {hasUnsavedChanges ? 'Save Changes' : 'Save Chapter'}
+                                                    {hasUnsavedChanges && <span style={{ fontSize: '12px', opacity: 0.9 }}>●</span>}
+                                                </>
+                                            )}
+                                        </button>
+
+                                        {/* Add Block Button */}
+                                        <button
+                                            onClick={() => setIsAddBlockModalOpen(true)}
+                                            style={{
+                                                padding: '12px 24px',
+                                                borderRadius: '8px',
+                                                border: 'none',
+                                                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                                                color: 'white',
+                                                cursor: 'pointer',
+                                                fontSize: '14px',
+                                                fontWeight: '600',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '8px',
+                                                transition: 'all 0.2s ease',
+                                                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                                                transform: 'translateY(-1px)'
+                                            }}
+                                            title="Add new content block (Ctrl+Shift+A)"
+                                            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                                            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(-1px)'}
+                                        >
+                                            ➕ Add New Block
+                                        </button>
+
+                                        {/* JSON Preview Button */}
+                                        <button
+                                            onClick={() => setShowJsonPreview(!showJsonPreview)}
+                                            style={{
+                                                padding: '12px 20px',
+                                                borderRadius: '8px',
+                                                border: showJsonPreview ? '2px solid #8b5cf6' : '1px solid #e2e8f0',
+                                                background: showJsonPreview
+                                                    ? 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
+                                                    : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                                                color: showJsonPreview ? 'white' : '#374151',
+                                                cursor: 'pointer',
+                                                fontSize: '14px',
+                                                fontWeight: '600',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '8px',
+                                                transition: 'all 0.2s ease',
+                                                boxShadow: showJsonPreview
+                                                    ? '0 4px 6px -1px rgba(139, 92, 246, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+                                                    : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                                                transform: 'translateY(-1px)'
+                                            }}
+                                            title="Toggle live preview panel (F2 or Ctrl+J)"
+                                            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                                            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(-1px)'}
+                                        >
+                                            �️ {showJsonPreview ? 'Hide' : 'Show'} Preview
+                                        </button>
+                                    </div>
+                                )}
+                            </header>
+
+                            {/* Status Messages */}
+                            {(error || saveStatus) && (
                                 <div style={{
-                                    fontSize: '12px',
-                                    color: '#64748b',
-                                    backgroundColor: '#f1f5f9',
-                                    padding: '4px 8px',
-                                    borderRadius: '6px',
-                                    border: '1px solid #e2e8f0'
+                                    padding: '12px 24px',
+                                    borderBottom: '1px solid #e2e8f0'
                                 }}>
-                                    {activeChapterContent.length} blocks
+                                    {error && (
+                                        <div style={{
+                                            padding: '12px 16px',
+                                            backgroundColor: '#fef2f2',
+                                            border: '1px solid #fecaca',
+                                            borderRadius: '8px',
+                                            color: '#dc2626',
+                                            fontSize: '14px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '8px'
+                                        }}>
+                                            <span>🚨</span>
+                                            <strong>Error:</strong> {error}
+                                        </div>
+                                    )}
+                                    {saveStatus && (
+                                        <div style={{
+                                            padding: '12px 16px',
+                                            backgroundColor: '#f0fdf4',
+                                            border: '1px solid #bbf7d0',
+                                            borderRadius: '8px',
+                                            color: '#16a34a',
+                                            fontSize: '14px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '8px'
+                                        }}>
+                                            <span>✅</span>
+                                            {saveStatus}
+                                        </div>
+                                    )}
                                 </div>
                             )}
-                        </div>
 
-                        {activeChapterTitle && (
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                {/* Quick Action Buttons */}
-                                <div style={{ display: 'flex', gap: '6px', marginRight: '12px' }}>
-                                    <button
-                                        onClick={() => setQuickAddMode('content')}
-                                        style={{
-                                            padding: '10px 16px',
-                                            borderRadius: '8px',
-                                            border: quickAddMode === 'content' ? '2px solid #3b82f6' : '1px solid #e2e8f0',
-                                            backgroundColor: quickAddMode === 'content' ? '#eff6ff' : '#ffffff',
-                                            color: quickAddMode === 'content' ? '#3b82f6' : '#64748b',
-                                            cursor: 'pointer',
-                                            fontSize: '13px',
-                                            fontWeight: '600',
-                                            transition: 'all 0.2s ease',
+                            {/* Content Area - Split Layout */}
+                            <div style={{
+                                flex: 1,
+                                display: 'flex',
+                                flexDirection: 'row',
+                                overflow: 'hidden'
+                            }}>
+                                {/* Editor Panel */}
+                                <div style={{
+                                    flex: showJsonPreview ? '1 1 60%' : '1 1 100%',
+                                    overflowY: 'auto',
+                                    padding: '24px',
+                                    transition: 'flex 0.3s ease'
+                                }}>
+                                    {/* Loading State */}
+                                    {isLoading && (
+                                        <div style={{
                                             display: 'flex',
+                                            flexDirection: 'column',
                                             alignItems: 'center',
-                                            gap: '6px',
-                                            minWidth: '100px',
-                                            justifyContent: 'center'
-                                        }}
-                                        title="Quick add content blocks (Ctrl+1)"
-                                    >
-                                        📝 Content <kbd style={{ fontSize: '10px', opacity: 0.7, marginLeft: '4px' }}>Ctrl+1</kbd>
-                                    </button>
-                                    <button
-                                        onClick={() => setQuickAddMode('gameplay')}
-                                        style={{
-                                            padding: '10px 16px',
-                                            borderRadius: '8px',
-                                            border: quickAddMode === 'gameplay' ? '2px solid #8b5cf6' : '1px solid #e2e8f0',
-                                            backgroundColor: quickAddMode === 'gameplay' ? '#f3f4f6' : '#ffffff',
-                                            color: quickAddMode === 'gameplay' ? '#8b5cf6' : '#64748b',
-                                            cursor: 'pointer',
-                                            fontSize: '13px',
-                                            fontWeight: '600',
-                                            transition: 'all 0.2s ease',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '6px',
-                                            minWidth: '110px',
-                                            justifyContent: 'center'
-                                        }}
-                                        title="Quick add gameplay blocks (Ctrl+2)"
-                                    >
-                                        ⚔️ Gameplay <kbd style={{ fontSize: '10px', opacity: 0.7, marginLeft: '4px' }}>Ctrl+2</kbd>
-                                    </button>
-                                    <button
-                                        onClick={() => setQuickAddMode('character')}
-                                        style={{
-                                            padding: '10px 16px',
-                                            borderRadius: '8px',
-                                            border: quickAddMode === 'character' ? '2px solid #f59e0b' : '1px solid #e2e8f0',
-                                            backgroundColor: quickAddMode === 'character' ? '#fffbeb' : '#ffffff',
-                                            color: quickAddMode === 'character' ? '#f59e0b' : '#64748b',
-                                            cursor: 'pointer',
-                                            fontSize: '13px',
-                                            fontWeight: '600',
-                                            transition: 'all 0.2s ease',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '6px',
-                                            minWidth: '110px',
-                                            justifyContent: 'center'
-                                        }}
-                                        title="Quick add character blocks (Ctrl+3)"
-                                    >
-                                        👤 Character <kbd style={{ fontSize: '10px', opacity: 0.7, marginLeft: '4px' }}>Ctrl+3</kbd>
-                                    </button>
-                                    <button
-                                        onClick={() => setQuickAddMode('other')}
-                                        style={{
-                                            padding: '10px 16px',
-                                            borderRadius: '8px',
-                                            border: quickAddMode === 'other' ? '2px solid #ef4444' : '1px solid #e2e8f0',
-                                            backgroundColor: quickAddMode === 'other' ? '#fef2f2' : '#ffffff',
-                                            color: quickAddMode === 'other' ? '#ef4444' : '#64748b',
-                                            cursor: 'pointer',
-                                            fontSize: '13px',
-                                            fontWeight: '600',
-                                            transition: 'all 0.2s ease',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '6px',
-                                            minWidth: '90px',
-                                            justifyContent: 'center'
-                                        }}
-                                        title="Quick add other blocks (Ctrl+4)"
-                                    >
-                                        🔧 Other <kbd style={{ fontSize: '10px', opacity: 0.7, marginLeft: '4px' }}>Ctrl+4</kbd>
-                                    </button>
-                                </div>
-
-                                {/* Undo/Redo Buttons */}
-                                <div style={{ display: 'flex', gap: '8px' }}>
-                                    <button
-                                        onClick={undo}
-                                        disabled={!canUndo()}
-                                        style={{
-                                            padding: '8px 12px',
-                                            borderRadius: '6px',
-                                            border: '1px solid #d1d5db',
-                                            background: canUndo() ? '#ffffff' : '#f9fafb',
-                                            color: canUndo() ? '#374151' : '#9ca3af',
-                                            cursor: canUndo() ? 'pointer' : 'not-allowed',
-                                            fontSize: '14px',
-                                            fontWeight: '500',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '4px',
-                                            transition: 'all 0.2s ease',
-                                            boxShadow: canUndo() ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none'
-                                        }}
-                                        title="Undo (Ctrl+Z)"
-                                        onMouseEnter={(e) => canUndo() && (e.currentTarget.style.background = '#f3f4f6')}
-                                        onMouseLeave={(e) => canUndo() && (e.currentTarget.style.background = '#ffffff')}
-                                    >
-                                        ↶ Undo
-                                    </button>
-                                    <button
-                                        onClick={redo}
-                                        disabled={!canRedo()}
-                                        style={{
-                                            padding: '8px 12px',
-                                            borderRadius: '6px',
-                                            border: '1px solid #d1d5db',
-                                            background: canRedo() ? '#ffffff' : '#f9fafb',
-                                            color: canRedo() ? '#374151' : '#9ca3af',
-                                            cursor: canRedo() ? 'pointer' : 'not-allowed',
-                                            fontSize: '14px',
-                                            fontWeight: '500',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '4px',
-                                            transition: 'all 0.2s ease',
-                                            boxShadow: canRedo() ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none'
-                                        }}
-                                        title="Redo (Ctrl+Y)"
-                                        onMouseEnter={(e) => canRedo() && (e.currentTarget.style.background = '#f3f4f6')}
-                                        onMouseLeave={(e) => canRedo() && (e.currentTarget.style.background = '#ffffff')}
-                                    >
-                                        ↷ Redo
-                                    </button>
-                                </div>
-
-                                {/* Save Button */}
-                                <button
-                                    onClick={saveChapter}
-                                    disabled={isSaving}
-                                    style={{
-                                        padding: '12px 24px',
-                                        borderRadius: '8px',
-                                        border: hasUnsavedChanges ? '2px solid #f59e0b' : 'none',
-                                        background: isSaving
-                                            ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'
-                                            : hasUnsavedChanges
-                                                ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
-                                                : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                                        color: isSaving ? '#9ca3af' : 'white',
-                                        cursor: isSaving ? 'not-allowed' : 'pointer',
-                                        fontSize: '14px',
-                                        fontWeight: '600',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '8px',
-                                        minWidth: '140px',
-                                        justifyContent: 'center',
-                                        transition: 'all 0.2s ease',
-                                        boxShadow: isSaving ? 'none' : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                                        transform: isSaving ? 'none' : 'translateY(-1px)'
-                                    }}
-                                    title={hasUnsavedChanges ? "Save unsaved changes (Ctrl+S)" : "Save chapter to file (Ctrl+S)"}
-                                    onMouseEnter={(e) => !isSaving && (e.currentTarget.style.transform = 'translateY(-2px)')}
-                                    onMouseLeave={(e) => !isSaving && (e.currentTarget.style.transform = 'translateY(-1px)')}
-                                >
-                                    {isSaving ? (
-                                        <>
-                                            <span style={{
-                                                display: 'inline-block',
-                                                width: '14px',
-                                                height: '14px',
-                                                border: '2px solid #d1d5db',
-                                                borderTop: '2px solid #9ca3af',
+                                            justifyContent: 'center',
+                                            height: '200px',
+                                            gap: '16px'
+                                        }}>
+                                            <div style={{
+                                                width: '32px',
+                                                height: '32px',
+                                                border: '3px solid #e2e8f0',
+                                                borderTop: '3px solid #3b82f6',
                                                 borderRadius: '50%',
                                                 animation: 'spin 1s linear infinite'
-                                            }}></span>
-                                            Saving Chapter...
-                                        </>
-                                    ) : (
+                                            }}></div>
+                                            <p style={{ color: '#64748b', fontSize: '16px' }}>Loading Chapter...</p>
+                                        </div>
+                                    )}
+
+                                    {/* Chapter Content */}
+                                    {!isLoading && !error && activeChapterContent.length >= 0 && activeChapterTitle && (
                                         <>
-                                            💾 {hasUnsavedChanges ? 'Save Changes' : 'Save Chapter'}
-                                            {hasUnsavedChanges && <span style={{ fontSize: '12px', opacity: 0.9 }}>●</span>}
+                                            {/* Compact Keyboard Shortcuts Help */}
+                                            <div style={{
+                                                marginBottom: '24px',
+                                                padding: '16px 20px',
+                                                backgroundColor: '#f8fafc',
+                                                border: '1px solid #e2e8f0',
+                                                borderRadius: '12px',
+                                                fontSize: '12px',
+                                                color: '#64748b',
+                                                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                                            }}>
+                                                <div style={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'space-between',
+                                                    marginBottom: '12px'
+                                                }}>
+                                                    <div style={{ fontWeight: '600', color: '#374151', fontSize: '15px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                        ⌨️ Quick Reference
+                                                    </div>
+                                                    <button
+                                                        onClick={() => setShowKeyboardHelp(true)}
+                                                        style={{
+                                                            padding: '4px 12px',
+                                                            borderRadius: '6px',
+                                                            border: '1px solid #d1d5db',
+                                                            backgroundColor: '#ffffff',
+                                                            color: '#374151',
+                                                            cursor: 'pointer',
+                                                            fontSize: '11px',
+                                                            fontWeight: '500',
+                                                            transition: 'all 0.2s ease'
+                                                        }}
+                                                        title="View full keyboard shortcuts (F1)"
+                                                    >
+                                                        View All (F1)
+                                                    </button>
+                                                </div>
+
+                                                {/* Compact Grid Layout */}
+                                                <div style={{
+                                                    display: 'grid',
+                                                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                                                    gap: '12px 16px',
+                                                    maxWidth: '100%'
+                                                }}>
+                                                    {/* Essential Shortcuts */}
+                                                    <div>
+                                                        <div style={{ fontWeight: '600', marginBottom: '6px', color: '#1f2937', fontSize: '13px' }}>Essential</div>
+                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>Save Chapter</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+S</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>Add Block</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+A</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>Help</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>F1</kbd>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Quick Add Categories */}
+                                                    <div>
+                                                        <div style={{ fontWeight: '600', marginBottom: '6px', color: '#1f2937', fontSize: '13px' }}>Quick Add Categories</div>
+                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>📝 Content</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+1</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>⚔️ Gameplay</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+2</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>👤 Character</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+3</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>🔧 Other</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+4</kbd>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Navigation */}
+                                                    <div>
+                                                        <div style={{ fontWeight: '600', marginBottom: '6px', color: '#1f2937', fontSize: '13px' }}>Navigation</div>
+                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>Navigate Blocks</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+↑/↓</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>Move Block</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+↑/↓</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>Delete Block</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+Del</kbd>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Most Common Direct Creates */}
+                                                    <div>
+                                                        <div style={{ fontWeight: '600', marginBottom: '6px', color: '#1f2937', fontSize: '13px' }}>Quick Creates</div>
+                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>Text</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+T</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>List</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+L</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>Battle</span>
+                                                                <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+B</kbd>
+                                                            </div>
+                                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                                <span>+ More...</span>
+                                                                <kbd style={{ background: '#f8fafc', padding: '2px 6px', borderRadius: '4px', border: '1px solid #e2e8f0', fontSize: '10px', fontWeight: '500', color: '#64748b' }}>F1</kbd>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Content Blocks */}
+                                            {activeChapterContent.length > 0 ? (
+                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                                                    {activeChapterContent.map((node, index) => (
+                                                        <div
+                                                            key={index}
+                                                            data-block-index={index}
+                                                            style={{
+                                                                position: 'relative',
+                                                                background: selectedBlockIndex === index
+                                                                    ? 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)'
+                                                                    : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                                                                border: selectedBlockIndex === index ? '2px solid #3b82f6' : '1px solid #e2e8f0',
+                                                                borderRadius: '16px',
+                                                                padding: '24px',
+                                                                transition: 'all 0.3s ease',
+                                                                cursor: 'pointer',
+                                                                boxShadow: selectedBlockIndex === index
+                                                                    ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(59, 130, 246, 0.05)'
+                                                                    : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                                                                transform: selectedBlockIndex === index ? 'translateY(-2px)' : 'translateY(0)',
+                                                                backdropFilter: 'blur(8px)'
+                                                            }}
+                                                            onClick={() => {
+                                                                setSelectedBlockIndex(index);
+                                                                setSelectedSubItemPath([]);
+                                                            }}
+                                                            onMouseEnter={(e) => {
+                                                                if (selectedBlockIndex !== index) {
+                                                                    e.currentTarget.style.transform = 'translateY(-1px)';
+                                                                    e.currentTarget.style.boxShadow = '0 8px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+                                                                }
+                                                            }}
+                                                            onMouseLeave={(e) => {
+                                                                if (selectedBlockIndex !== index) {
+                                                                    e.currentTarget.style.transform = 'translateY(0)';
+                                                                    e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+                                                                }
+                                                            }}
+                                                        >
+                                                            {/* Block Controls */}
+                                                            <div style={{
+                                                                position: 'absolute',
+                                                                top: '16px',
+                                                                right: '16px',
+                                                                display: 'flex',
+                                                                gap: '8px',
+                                                                opacity: selectedBlockIndex === index ? 1 : 0.7,
+                                                                transition: 'opacity 0.3s ease'
+                                                            }}>
+                                                                <button
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation();
+                                                                        moveBlockUp(index);
+                                                                    }}
+                                                                    disabled={index === 0}
+                                                                    style={{
+                                                                        padding: '8px 12px',
+                                                                        borderRadius: '8px',
+                                                                        border: 'none',
+                                                                        background: index === 0
+                                                                            ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'
+                                                                            : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                                                                        color: index === 0 ? '#9ca3af' : '#374151',
+                                                                        cursor: index === 0 ? 'not-allowed' : 'pointer',
+                                                                        fontSize: '12px',
+                                                                        fontWeight: '600',
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center',
+                                                                        gap: '4px',
+                                                                        transition: 'all 0.2s ease',
+                                                                        boxShadow: index === 0 ? 'none' : '0 2px 4px -1px rgba(0, 0, 0, 0.1)',
+                                                                        backdropFilter: 'blur(8px)'
+                                                                    }}
+                                                                    title="Move block up (Ctrl+Shift+↑)"
+                                                                    onMouseEnter={(e) => {
+                                                                        if (index !== 0) {
+                                                                            e.currentTarget.style.transform = 'translateY(-1px)';
+                                                                            e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.15)';
+                                                                        }
+                                                                    }}
+                                                                    onMouseLeave={(e) => {
+                                                                        if (index !== 0) {
+                                                                            e.currentTarget.style.transform = 'translateY(0)';
+                                                                            e.currentTarget.style.boxShadow = '0 2px 4px -1px rgba(0, 0, 0, 0.1)';
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    ↑ Up
+                                                                </button>
+                                                                <button
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation();
+                                                                        moveBlockDown(index);
+                                                                    }}
+                                                                    disabled={index === activeChapterContent.length - 1}
+                                                                    style={{
+                                                                        padding: '8px 12px',
+                                                                        borderRadius: '8px',
+                                                                        border: 'none',
+                                                                        background: index === activeChapterContent.length - 1
+                                                                            ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'
+                                                                            : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                                                                        color: index === activeChapterContent.length - 1 ? '#9ca3af' : '#374151',
+                                                                        cursor: index === activeChapterContent.length - 1 ? 'not-allowed' : 'pointer',
+                                                                        fontSize: '12px',
+                                                                        fontWeight: '600',
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center',
+                                                                        gap: '4px',
+                                                                        transition: 'all 0.2s ease',
+                                                                        boxShadow: index === activeChapterContent.length - 1 ? 'none' : '0 2px 4px -1px rgba(0, 0, 0, 0.1)',
+                                                                        backdropFilter: 'blur(8px)'
+                                                                    }}
+                                                                    title="Move block down (Ctrl+Shift+↓)"
+                                                                    onMouseEnter={(e) => {
+                                                                        if (index !== activeChapterContent.length - 1) {
+                                                                            e.currentTarget.style.transform = 'translateY(-1px)';
+                                                                            e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.15)';
+                                                                        }
+                                                                    }}
+                                                                    onMouseLeave={(e) => {
+                                                                        if (index !== activeChapterContent.length - 1) {
+                                                                            e.currentTarget.style.transform = 'translateY(0)';
+                                                                            e.currentTarget.style.boxShadow = '0 2px 4px -1px rgba(0, 0, 0, 0.1)';
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    ↓ Down
+                                                                </button>
+                                                                <button
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation();
+                                                                        removeTopLevelBlock(index);
+                                                                    }}
+                                                                    style={{
+                                                                        padding: '8px 12px',
+                                                                        borderRadius: '8px',
+                                                                        border: 'none',
+                                                                        background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
+                                                                        color: 'white',
+                                                                        cursor: 'pointer',
+                                                                        fontSize: '12px',
+                                                                        fontWeight: '600',
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center',
+                                                                        gap: '4px',
+                                                                        transition: 'all 0.2s ease',
+                                                                        boxShadow: '0 2px 4px -1px rgba(0, 0, 0, 0.1)'
+                                                                    }}
+                                                                    title="Delete this block (Ctrl+Shift+Delete)"
+                                                                    onMouseEnter={(e) => {
+                                                                        e.currentTarget.style.transform = 'translateY(-1px)';
+                                                                        e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(220, 38, 38, 0.4)';
+                                                                    }}
+                                                                    onMouseLeave={(e) => {
+                                                                        e.currentTarget.style.transform = 'translateY(0)';
+                                                                        e.currentTarget.style.boxShadow = '0 2px 4px -1px rgba(0, 0, 0, 0.1)';
+                                                                    }}
+                                                                >
+                                                                    🗑️ Delete
+                                                                </button>
+                                                            </div>
+
+                                                            {/* Block Index */}
+                                                            <div style={{
+                                                                position: 'absolute',
+                                                                top: '12px',
+                                                                left: '12px',
+                                                                backgroundColor: selectedBlockIndex === index ? '#3b82f6' : '#f1f5f9',
+                                                                color: selectedBlockIndex === index ? 'white' : '#64748b',
+                                                                fontSize: '12px',
+                                                                fontWeight: '600',
+                                                                padding: '6px 10px',
+                                                                borderRadius: '8px',
+                                                                border: selectedBlockIndex === index ? '1px solid #3b82f6' : '1px solid #e2e8f0',
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                gap: '4px',
+                                                                transition: 'all 0.3s ease'
+                                                            }}>
+                                                                {selectedBlockIndex === index && <span>📍</span>}
+                                                                #{index + 1}
+                                                            </div>
+
+                                                            {/* Block Content */}
+                                                            <div style={{ marginTop: '20px' }}>
+                                                                <NodeRenderer
+                                                                    node={node}
+                                                                    path={[index]}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <div style={{
+                                                    textAlign: 'center',
+                                                    padding: '60px 20px',
+                                                    backgroundColor: '#f8fafc',
+                                                    border: '2px dashed #cbd5e1',
+                                                    borderRadius: '12px',
+                                                    margin: '20px 0'
+                                                }}>
+                                                    <div style={{ fontSize: '48px', marginBottom: '16px' }}>📝</div>
+                                                    <h3 style={{
+                                                        margin: '0 0 8px 0',
+                                                        color: '#374151',
+                                                        fontSize: '20px',
+                                                        fontWeight: '600'
+                                                    }}>
+                                                        No blocks in this chapter
+                                                    </h3>
+                                                    <p style={{
+                                                        margin: '0 0 20px 0',
+                                                        color: '#64748b',
+                                                        fontSize: '16px'
+                                                    }}>
+                                                        Click "Add Block" to add your first block, or press <kbd style={{
+                                                            background: '#fff',
+                                                            padding: '2px 6px',
+                                                            borderRadius: '4px',
+                                                            border: '1px solid #d1d5db',
+                                                            fontSize: '14px'
+                                                        }}>Ctrl+Shift+A</kbd>
+                                                    </p>
+                                                    <button
+                                                        onClick={() => setIsAddBlockModalOpen(true)}
+                                                        style={{
+                                                            padding: '12px 24px',
+                                                            borderRadius: '8px',
+                                                            border: '1px solid #3b82f6',
+                                                            backgroundColor: '#3b82f6',
+                                                            color: 'white',
+                                                            cursor: 'pointer',
+                                                            fontSize: '16px',
+                                                            fontWeight: '600',
+                                                            transition: 'all 0.2s ease',
+                                                            boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
+                                                        }}
+                                                    >
+                                                        ➕ Add Your First Block
+                                                    </button>
+                                                </div>
+                                            )}
                                         </>
                                     )}
-                                </button>
 
-                                {/* Add Block Button */}
-                                <button
-                                    onClick={() => setIsAddBlockModalOpen(true)}
-                                    style={{
-                                        padding: '12px 24px',
-                                        borderRadius: '8px',
-                                        border: 'none',
-                                        background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-                                        color: 'white',
-                                        cursor: 'pointer',
-                                        fontSize: '14px',
-                                        fontWeight: '600',
+                                    {/* Welcome Message */}
+                                    {!isLoading && !activeChapterTitle && (
+                                        <div style={{
+                                            textAlign: 'center',
+                                            padding: '60px 20px',
+                                            maxWidth: '600px',
+                                            margin: '40px auto'
+                                        }}>
+                                            <div style={{ fontSize: '64px', marginBottom: '24px' }}>📖</div>
+                                            <h2 style={{
+                                                margin: '0 0 16px 0',
+                                                color: '#0f172a',
+                                                fontSize: '32px',
+                                                fontWeight: '700'
+                                            }}>
+                                                Welcome to FFX Guide Editor
+                                            </h2>
+                                            <p style={{
+                                                margin: '0 0 32px 0',
+                                                color: '#64748b',
+                                                fontSize: '18px',
+                                                lineHeight: '1.6'
+                                            }}>
+                                                Select a chapter from the sidebar to begin editing. Create, modify, and organize your Final Fantasy X speedrun guide with ease.
+                                            </p>
+                                            <div style={{
+                                                display: 'grid',
+                                                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                                                gap: '16px',
+                                                marginTop: '32px'
+                                            }}>
+                                                <div style={{
+                                                    padding: '16px',
+                                                    backgroundColor: '#f8fafc',
+                                                    border: '1px solid #e2e8f0',
+                                                    borderRadius: '8px'
+                                                }}>
+                                                    <div style={{ fontSize: '24px', marginBottom: '8px' }}>⚡</div>
+                                                    <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '600' }}>Fast Editing</h4>
+                                                    <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Keyboard shortcuts for efficient workflow</p>
+                                                </div>
+                                                <div style={{
+                                                    padding: '16px',
+                                                    backgroundColor: '#f8fafc',
+                                                    border: '1px solid #e2e8f0',
+                                                    borderRadius: '8px'
+                                                }}>
+                                                    <div style={{ fontSize: '24px', marginBottom: '8px' }}>💾</div>
+                                                    <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '600' }}>Auto-Save</h4>
+                                                    <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Changes are automatically rebuilt</p>
+                                                </div>
+                                                <div style={{
+                                                    padding: '16px',
+                                                    backgroundColor: '#f8fafc',
+                                                    border: '1px solid #e2e8f0',
+                                                    borderRadius: '8px'
+                                                }}>
+                                                    <div style={{ fontSize: '24px', marginBottom: '8px' }}>🎯</div>
+                                                    <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '600' }}>Precise Control</h4>
+                                                    <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Rich content blocks for speedrun guides</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Quick Add Overlay */}
+                                {quickAddMode && (
+                                    <div style={{
+                                        position: 'fixed',
+                                        top: 0,
+                                        left: 0,
+                                        right: 0,
+                                        bottom: 0,
+                                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '8px',
-                                        transition: 'all 0.2s ease',
-                                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                                        transform: 'translateY(-1px)'
-                                    }}
-                                    title="Add new content block (Ctrl+Shift+A)"
-                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(-1px)'}
-                                >
-                                    ➕ Add New Block
-                                </button>
+                                        justifyContent: 'center',
+                                        zIndex: 999,
+                                        backdropFilter: 'blur(4px)'
+                                    }}>
+                                        <div style={{
+                                            backgroundColor: 'white',
+                                            borderRadius: '16px',
+                                            padding: '32px',
+                                            width: '90%',
+                                            maxWidth: '500px',
+                                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                                            border: '1px solid #e2e8f0',
+                                            position: 'relative'
+                                        }}>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '16px',
+                                                right: '16px',
+                                                width: '32px',
+                                                height: '32px',
+                                                borderRadius: '50%',
+                                                backgroundColor: '#f3f4f6',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                cursor: 'pointer',
+                                                fontSize: '16px',
+                                                color: '#6b7280'
+                                            }}
+                                                onClick={() => setQuickAddMode(null)}
+                                            >
+                                                ×
+                                            </div>
 
-                                {/* JSON Preview Button */}
-                                <button
-                                    onClick={() => setShowJsonPreview(!showJsonPreview)}
-                                    style={{
-                                        padding: '12px 20px',
-                                        borderRadius: '8px',
-                                        border: showJsonPreview ? '2px solid #8b5cf6' : '1px solid #e2e8f0',
-                                        background: showJsonPreview
-                                            ? 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
-                                            : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-                                        color: showJsonPreview ? 'white' : '#374151',
-                                        cursor: 'pointer',
-                                        fontSize: '14px',
-                                        fontWeight: '600',
+                                            <div style={{
+                                                textAlign: 'center',
+                                                marginBottom: '24px'
+                                            }}>
+                                                <h3 style={{
+                                                    margin: '0 0 8px 0',
+                                                    fontSize: '24px',
+                                                    fontWeight: '700',
+                                                    background: quickAddMode === 'content' ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' :
+                                                        quickAddMode === 'gameplay' ? 'linear-gradient(135deg, #8b5cf6, #7c3aed)' :
+                                                            quickAddMode === 'character' ? 'linear-gradient(135deg, #f59e0b, #d97706)' :
+                                                                'linear-gradient(135deg, #ef4444, #dc2626)',
+                                                    WebkitBackgroundClip: 'text',
+                                                    WebkitTextFillColor: 'transparent',
+                                                    backgroundClip: 'text'
+                                                }}>
+                                                    Quick Add {quickAddMode.charAt(0).toUpperCase() + quickAddMode.slice(1)}
+                                                </h3>
+                                                <p style={{
+                                                    margin: 0,
+                                                    color: '#64748b',
+                                                    fontSize: '14px'
+                                                }}>
+                                                    Press 1-{blockTypes.find(cat => cat.category.toLowerCase() === quickAddMode)?.items.length || 0} or click to add
+                                                </p>
+                                            </div>
+
+                                            <div style={{
+                                                display: 'grid',
+                                                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                                                gap: '12px'
+                                            }}>
+                                                {blockTypes.find(cat => cat.category.toLowerCase() === quickAddMode)?.items.map((item, index) => (
+                                                    <button
+                                                        key={item.value}
+                                                        onClick={() => {
+                                                            addTopLevelBlock(item.value);
+                                                            setQuickAddMode(null);
+                                                        }}
+                                                        style={{
+                                                            padding: '16px',
+                                                            borderRadius: '12px',
+                                                            border: '2px solid transparent',
+                                                            background: quickAddMode === 'content' ? 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)' :
+                                                                quickAddMode === 'gameplay' ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)' :
+                                                                    quickAddMode === 'character' ? 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)' :
+                                                                        'linear-gradient(135deg, #fef2f2 0%, #fecaca 100%)',
+                                                            cursor: 'pointer',
+                                                            fontSize: '14px',
+                                                            fontWeight: '600',
+                                                            color: '#374151',
+                                                            textAlign: 'left',
+                                                            transition: 'all 0.2s ease',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'space-between',
+                                                            position: 'relative',
+                                                            overflow: 'hidden'
+                                                        }}
+                                                        onMouseEnter={(e) => {
+                                                            e.currentTarget.style.transform = 'translateY(-2px)';
+                                                            e.currentTarget.style.boxShadow = '0 8px 25px -8px rgba(0, 0, 0, 0.2)';
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.currentTarget.style.transform = 'translateY(0)';
+                                                            e.currentTarget.style.boxShadow = 'none';
+                                                        }}
+                                                    >
+                                                        <span>{item.label}</span>
+                                                        <div style={{
+                                                            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                                                            padding: '4px 8px',
+                                                            borderRadius: '6px',
+                                                            fontSize: '12px',
+                                                            fontWeight: '700',
+                                                            color: quickAddMode === 'content' ? '#3b82f6' :
+                                                                quickAddMode === 'gameplay' ? '#8b5cf6' :
+                                                                    quickAddMode === 'character' ? '#f59e0b' :
+                                                                        '#ef4444',
+                                                            border: '1px solid rgba(255, 255, 255, 0.5)'
+                                                        }}>
+                                                            {index + 1}
+                                                        </div>
+                                                    </button>
+                                                )) || []}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Add Block Modal */}
+                                {isAddBlockModalOpen && (
+                                    <div style={{
+                                        position: 'fixed',
+                                        top: 0,
+                                        left: 0,
+                                        right: 0,
+                                        bottom: 0,
+                                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '8px',
-                                        transition: 'all 0.2s ease',
-                                        boxShadow: showJsonPreview
-                                            ? '0 4px 6px -1px rgba(139, 92, 246, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
-                                            : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                                        transform: 'translateY(-1px)'
+                                        justifyContent: 'center',
+                                        zIndex: 1000
+                                    }}>
+                                        <div style={{
+                                            backgroundColor: 'white',
+                                            borderRadius: '12px',
+                                            padding: '24px',
+                                            width: '90%',
+                                            maxWidth: '600px',
+                                            maxHeight: '80vh',
+                                            overflowY: 'auto',
+                                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                                        }}>
+                                            <div style={{
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                alignItems: 'center',
+                                                marginBottom: '24px'
+                                            }}>
+                                                <h3 style={{
+                                                    margin: 0,
+                                                    fontSize: '20px',
+                                                    fontWeight: '600',
+                                                    color: '#0f172a'
+                                                }}>
+                                                    ➕ Add New Block
+                                                </h3>
+                                                <button
+                                                    onClick={() => setIsAddBlockModalOpen(false)}
+                                                    style={{
+                                                        width: '32px',
+                                                        height: '32px',
+                                                        borderRadius: '6px',
+                                                        border: '1px solid #d1d5db',
+                                                        backgroundColor: '#ffffff',
+                                                        color: '#374151',
+                                                        cursor: 'pointer',
+                                                        fontSize: '16px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                >
+                                                    ×
+                                                </button>
+                                            </div>
+
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                                {blockTypes.map((category) => (
+                                                    <div key={category.category}>
+                                                        <h4 style={{
+                                                            margin: '0 0 12px 0',
+                                                            fontSize: '14px',
+                                                            fontWeight: '600',
+                                                            color: '#64748b',
+                                                            textTransform: 'uppercase',
+                                                            letterSpacing: '0.05em'
+                                                        }}>
+                                                            {category.category}
+                                                        </h4>
+                                                        <div style={{
+                                                            display: 'grid',
+                                                            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                                                            gap: '8px'
+                                                        }}>
+                                                            {category.items.map((item) => (
+                                                                <button
+                                                                    key={item.value}
+                                                                    onClick={() => addTopLevelBlock(item.value)}
+                                                                    style={{
+                                                                        padding: '12px 16px',
+                                                                        borderRadius: '8px',
+                                                                        border: '1px solid #e2e8f0',
+                                                                        backgroundColor: '#ffffff',
+                                                                        color: '#374151',
+                                                                        cursor: 'pointer',
+                                                                        fontSize: '14px',
+                                                                        fontWeight: '500',
+                                                                        textAlign: 'left',
+                                                                        transition: 'all 0.2s ease',
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'space-between'
+                                                                    }}
+                                                                    onMouseEnter={(e) => {
+                                                                        e.currentTarget.style.backgroundColor = '#f8fafc';
+                                                                        e.currentTarget.style.borderColor = '#3b82f6';
+                                                                    }}
+                                                                    onMouseLeave={(e) => {
+                                                                        e.currentTarget.style.backgroundColor = '#ffffff';
+                                                                        e.currentTarget.style.borderColor = '#e2e8f0';
+                                                                    }}
+                                                                >
+                                                                    <span>{item.label}</span>
+                                                                    <kbd style={{
+                                                                        background: '#f1f5f9',
+                                                                        padding: '2px 6px',
+                                                                        borderRadius: '4px',
+                                                                        border: '1px solid #cbd5e1',
+                                                                        fontSize: '12px',
+                                                                        color: '#64748b'
+                                                                    }}>
+                                                                        {item.shortcut}
+                                                                    </kbd>
+                                                                </button>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </main>
+
+                        {/* JSON Preview Panel */}
+                        <div style={{
+                            borderLeft: '1px solid #e2e8f0',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            backgroundColor: '#f8fafc',
+                            height: '100%'
+                        }}>
+                            {/* JSON Panel Header */}
+                            <div style={{
+                                padding: '16px 24px',
+                                borderBottom: '1px solid #e2e8f0',
+                                backgroundColor: '#ffffff',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                minHeight: '72px',
+                                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                            }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                    <h2 style={{
+                                        margin: 0,
+                                        fontSize: '18px',
+                                        fontWeight: '600',
+                                        color: '#0f172a'
+                                    }}>
+                                        �️ Live Preview
+                                    </h2>
+                                    <div style={{
+                                        fontSize: '12px',
+                                        color: '#64748b',
+                                        backgroundColor: '#f1f5f9',
+                                        padding: '2px 8px',
+                                        borderRadius: '4px',
+                                        border: '1px solid #e2e8f0'
+                                    }}>
+                                        Main App View
+                                    </div>
+                                </div>
+
+                                <button
+                                    onClick={() => setShowJsonPreview(false)}
+                                    style={{
+                                        padding: '6px 12px',
+                                        borderRadius: '6px',
+                                        border: '1px solid #d1d5db',
+                                        backgroundColor: '#ffffff',
+                                        color: '#374151',
+                                        cursor: 'pointer',
+                                        fontSize: '12px',
+                                        fontWeight: '500',
+                                        transition: 'all 0.2s ease'
                                     }}
-                                    title="Toggle live preview panel (F2 or Ctrl+J)"
-                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(-1px)'}
+                                    title="Close live preview (Esc)"
                                 >
-                                    �️ {showJsonPreview ? 'Hide' : 'Show'} Preview
+                                    ✕ Close
                                 </button>
                             </div>
-                        )}
-                    </header>
 
-                    {/* Status Messages */}
-                    {(error || saveStatus) && (
-                        <div style={{
-                            padding: '12px 24px',
-                            borderBottom: '1px solid #e2e8f0'
-                        }}>
-                            {error && (
-                                <div style={{
-                                    padding: '12px 16px',
-                                    backgroundColor: '#fef2f2',
-                                    border: '1px solid #fecaca',
-                                    borderRadius: '8px',
-                                    color: '#dc2626',
-                                    fontSize: '14px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '8px'
-                                }}>
-                                    <span>🚨</span>
-                                    <strong>Error:</strong> {error}
-                                </div>
-                            )}
-                            {saveStatus && (
-                                <div style={{
-                                    padding: '12px 16px',
-                                    backgroundColor: '#f0fdf4',
-                                    border: '1px solid #bbf7d0',
-                                    borderRadius: '8px',
-                                    color: '#16a34a',
-                                    fontSize: '14px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '8px'
-                                }}>
-                                    <span>✅</span>
-                                    {saveStatus}
-                                </div>
-                            )}
+                            {/* App Preview Content */}
+                            <div style={{
+                                flex: 1,
+                                overflow: 'auto',
+                                backgroundColor: '#f8fafc'
+                            }}>
+                                <LivePreview
+                                    key={`${activeChapterTitle}-${activeChapterContent?.length || 0}`}
+                                    chapterContent={activeChapterContent || []}
+                                    chapterTitle={activeChapterTitle || 'Chapter'}
+                                />
+                            </div>
                         </div>
-                    )}
-
-                    {/* Content Area - Split Layout */}
-                    <div style={{
+                    </ResizableSplitter>
+                ) : (
+                    <main style={{
                         flex: 1,
                         display: 'flex',
-                        flexDirection: 'row',
-                        overflow: 'hidden'
+                        flexDirection: 'column',
+                        backgroundColor: '#ffffff',
+                        position: 'relative',
+                        height: '100%'
                     }}>
-                        {/* Editor Panel */}
-                        <div style={{
-                            flex: showJsonPreview ? '1 1 60%' : '1 1 100%',
-                            overflowY: 'auto',
-                            padding: '24px',
-                            transition: 'flex 0.3s ease'
+                        <header style={{
+                            padding: '16px 24px',
+                            borderBottom: '1px solid #e2e8f0',
+                            backgroundColor: '#ffffff',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            minHeight: '72px',
+                            boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+                            position: 'sticky',
+                            top: 0,
+                            zIndex: 100
                         }}>
-                            {/* Loading State */}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                                <h1 style={{
+                                    margin: 0,
+                                    fontSize: '24px',
+                                    fontWeight: '700',
+                                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text'
+                                }}>
+                                    {activeChapterTitle ? `📝 ${activeChapterTitle}` : '📖 FFX Guide Editor'}
+                                </h1>
+                                {hasUnsavedChanges && (
+                                    <div style={{
+                                        padding: '4px 8px',
+                                        backgroundColor: '#fef3c7',
+                                        border: '1px solid #f59e0b',
+                                        borderRadius: '4px',
+                                        fontSize: '12px',
+                                        color: '#92400e',
+                                        fontWeight: '500'
+                                    }}>
+                                        Unsaved Changes
+                                    </div>
+                                )}
+                            </div>
+
+                            {activeChapterTitle && (
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                    <button
+                                        onClick={() => setShowJsonPreview(true)}
+                                        style={{
+                                            padding: '8px 16px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #3b82f6',
+                                            backgroundColor: '#3b82f6',
+                                            color: '#ffffff',
+                                            cursor: 'pointer',
+                                            fontSize: '14px',
+                                            fontWeight: '500',
+                                            transition: 'all 0.2s ease',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '6px'
+                                        }}
+                                        title="Show live preview panel (P)"
+                                    >
+                                        👁️ Preview
+                                    </button>
+
+                                    <button
+                                        onClick={() => setShowKeyboardHelp(true)}
+                                        style={{
+                                            padding: '8px 12px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #d1d5db',
+                                            backgroundColor: '#ffffff',
+                                            color: '#374151',
+                                            cursor: 'pointer',
+                                            fontSize: '14px',
+                                            fontWeight: '500',
+                                            transition: 'all 0.2s ease'
+                                        }}
+                                        title="Show keyboard shortcuts (H)"
+                                    >
+                                        ⌨️ Help
+                                    </button>
+
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <button
+                                            onClick={undo}
+                                            disabled={!canUndo()}
+                                            style={{
+                                                padding: '8px 12px',
+                                                borderRadius: '6px',
+                                                border: '1px solid #d1d5db',
+                                                backgroundColor: canUndo() ? '#ffffff' : '#f9fafb',
+                                                color: canUndo() ? '#374151' : '#9ca3af',
+                                                cursor: canUndo() ? 'pointer' : 'not-allowed',
+                                                fontSize: '14px',
+                                                fontWeight: '500',
+                                                transition: 'all 0.2s ease'
+                                            }}
+                                            title="Undo (Ctrl+Z)"
+                                        >
+                                            ↶ Undo
+                                        </button>
+                                        <button
+                                            onClick={redo}
+                                            disabled={!canRedo()}
+                                            style={{
+                                                padding: '8px 12px',
+                                                borderRadius: '6px',
+                                                border: '1px solid #d1d5db',
+                                                backgroundColor: canRedo() ? '#ffffff' : '#f9fafb',
+                                                color: canRedo() ? '#374151' : '#9ca3af',
+                                                cursor: canRedo() ? 'pointer' : 'not-allowed',
+                                                fontSize: '14px',
+                                                fontWeight: '500',
+                                                transition: 'all 0.2s ease'
+                                            }}
+                                            title="Redo (Ctrl+Y)"
+                                        >
+                                            ↷ Redo
+                                        </button>
+                                    </div>
+
+                                    <button
+                                        onClick={saveChapter}
+                                        disabled={isSaving || !hasUnsavedChanges}
+                                        style={{
+                                            padding: '8px 16px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #16a34a',
+                                            backgroundColor: isSaving || !hasUnsavedChanges ? '#f3f4f6' : '#16a34a',
+                                            color: isSaving || !hasUnsavedChanges ? '#9ca3af' : '#ffffff',
+                                            cursor: isSaving || !hasUnsavedChanges ? 'not-allowed' : 'pointer',
+                                            fontSize: '14px',
+                                            fontWeight: '600',
+                                            transition: 'all 0.2s ease',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '6px'
+                                        }}
+                                        title="Save chapter (Ctrl+S)"
+                                    >
+                                        {isSaving ? '⏳ Saving...' : '💾 Save'}
+                                    </button>
+                                </div>
+                            )}
+                        </header>
+
+                        {/* Status Messages */}
+                        {(error || saveStatus) && (
+                            <div style={{
+                                padding: '12px 24px',
+                                borderBottom: '1px solid #e2e8f0'
+                            }}>
+                                {error && (
+                                    <div style={{
+                                        padding: '12px 16px',
+                                        backgroundColor: '#fef2f2',
+                                        border: '1px solid #fecaca',
+                                        borderRadius: '8px',
+                                        color: '#dc2626',
+                                        fontSize: '14px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px'
+                                    }}>
+                                        ⚠️ {error}
+                                    </div>
+                                )}
+                                {saveStatus && (
+                                    <div style={{
+                                        padding: '12px 16px',
+                                        backgroundColor: '#f0fdf4',
+                                        border: '1px solid #bbf7d0',
+                                        borderRadius: '8px',
+                                        color: '#16a34a',
+                                        fontSize: '14px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px'
+                                    }}>
+                                        ✅ {saveStatus}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* Content Area - Full Width Without Split */}
+                        <div style={{
+                            flex: 1,
+                            overflowY: 'auto',
+                            padding: '24px'
+                        }}>
+                            {/* Quick Add Buttons */}
+                            {activeChapterTitle && (
+                                <div style={{
+                                    marginBottom: '24px',
+                                    padding: '16px',
+                                    backgroundColor: '#f8fafc',
+                                    border: '1px solid #e2e8f0',
+                                    borderRadius: '8px'
+                                }}>
+                                    <div style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'space-between',
+                                        marginBottom: '12px'
+                                    }}>
+                                        <h3 style={{
+                                            margin: 0,
+                                            fontSize: '16px',
+                                            fontWeight: '600',
+                                            color: '#0f172a'
+                                        }}>
+                                            ⚡ Quick Add
+                                        </h3>
+                                        <button
+                                            onClick={() => setIsAddBlockModalOpen(true)}
+                                            style={{
+                                                padding: '6px 12px',
+                                                borderRadius: '6px',
+                                                border: '1px solid #3b82f6',
+                                                backgroundColor: '#ffffff',
+                                                color: '#3b82f6',
+                                                cursor: 'pointer',
+                                                fontSize: '12px',
+                                                fontWeight: '500',
+                                                transition: 'all 0.2s ease'
+                                            }}
+                                            title="Open full block menu (Space)"
+                                        >
+                                            View All
+                                        </button>
+                                    </div>
+                                    <div style={{
+                                        display: 'grid',
+                                        gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+                                        gap: '8px'
+                                    }}>
+                                        {['Content', 'Gameplay', 'Character', 'Meta'].map((category) => (
+                                            <button
+                                                key={category}
+                                                onClick={() => setQuickAddMode(category.toLowerCase())}
+                                                style={{
+                                                    padding: '8px 12px',
+                                                    borderRadius: '6px',
+                                                    border: '1px solid #e2e8f0',
+                                                    backgroundColor: '#ffffff',
+                                                    color: '#374151',
+                                                    cursor: 'pointer',
+                                                    fontSize: '13px',
+                                                    fontWeight: '500',
+                                                    transition: 'all 0.2s ease',
+                                                    textAlign: 'center'
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.currentTarget.style.borderColor = '#3b82f6';
+                                                    e.currentTarget.style.backgroundColor = '#f8fafc';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.currentTarget.style.borderColor = '#e2e8f0';
+                                                    e.currentTarget.style.backgroundColor = '#ffffff';
+                                                }}
+                                            >
+                                                {category}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                             {isLoading && (
                                 <div style={{
                                     display: 'flex',
-                                    flexDirection: 'column',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    height: '200px',
-                                    gap: '16px'
+                                    padding: '40px',
+                                    color: '#64748b'
                                 }}>
                                     <div style={{
-                                        width: '32px',
-                                        height: '32px',
-                                        border: '3px solid #e2e8f0',
-                                        borderTop: '3px solid #3b82f6',
-                                        borderRadius: '50%',
-                                        animation: 'spin 1s linear infinite'
-                                    }}></div>
-                                    <p style={{ color: '#64748b', fontSize: '16px' }}>Loading Chapter...</p>
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px'
+                                    }}>
+                                        <div style={{
+                                            width: '20px',
+                                            height: '20px',
+                                            borderRadius: '50%',
+                                            border: '2px solid #e2e8f0',
+                                            borderTopColor: '#3b82f6',
+                                            animation: 'spin 1s linear infinite'
+                                        }}></div>
+                                        Loading chapter...
+                                    </div>
                                 </div>
                             )}
 
                             {/* Chapter Content */}
                             {!isLoading && !error && activeChapterContent.length >= 0 && activeChapterTitle && (
                                 <>
-                                    {/* Compact Keyboard Shortcuts Help */}
+                                    {/* Chapter Title and Meta */}
                                     <div style={{
-                                        marginBottom: '24px',
-                                        padding: '16px 20px',
+                                        marginBottom: '32px',
+                                        padding: '20px',
                                         backgroundColor: '#f8fafc',
                                         border: '1px solid #e2e8f0',
-                                        borderRadius: '12px',
-                                        fontSize: '12px',
-                                        color: '#64748b',
-                                        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                                        borderRadius: '12px'
                                     }}>
                                         <div style={{
                                             display: 'flex',
@@ -1111,317 +2206,38 @@ export const EditorViewer: React.FC = () => {
                                             justifyContent: 'space-between',
                                             marginBottom: '12px'
                                         }}>
-                                            <div style={{ fontWeight: '600', color: '#374151', fontSize: '15px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                ⌨️ Quick Reference
-                                            </div>
-                                            <button
-                                                onClick={() => setShowKeyboardHelp(true)}
-                                                style={{
-                                                    padding: '4px 12px',
-                                                    borderRadius: '6px',
-                                                    border: '1px solid #d1d5db',
-                                                    backgroundColor: '#ffffff',
-                                                    color: '#374151',
-                                                    cursor: 'pointer',
-                                                    fontSize: '11px',
-                                                    fontWeight: '500',
-                                                    transition: 'all 0.2s ease'
-                                                }}
-                                                title="View full keyboard shortcuts (F1)"
-                                            >
-                                                View All (F1)
-                                            </button>
-                                        </div>
-
-                                        {/* Compact Grid Layout */}
-                                        <div style={{
-                                            display: 'grid',
-                                            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                                            gap: '12px 16px',
-                                            maxWidth: '100%'
-                                        }}>
-                                            {/* Essential Shortcuts */}
-                                            <div>
-                                                <div style={{ fontWeight: '600', marginBottom: '6px', color: '#1f2937', fontSize: '13px' }}>Essential</div>
-                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>Save Chapter</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+S</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>Add Block</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+A</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>Help</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>F1</kbd>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Quick Add Categories */}
-                                            <div>
-                                                <div style={{ fontWeight: '600', marginBottom: '6px', color: '#1f2937', fontSize: '13px' }}>Quick Add Categories</div>
-                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>📝 Content</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+1</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>⚔️ Gameplay</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+2</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>👤 Character</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+3</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>🔧 Other</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+4</kbd>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Navigation */}
-                                            <div>
-                                                <div style={{ fontWeight: '600', marginBottom: '6px', color: '#1f2937', fontSize: '13px' }}>Navigation</div>
-                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>Navigate Blocks</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+↑/↓</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>Move Block</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+↑/↓</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>Delete Block</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+Del</kbd>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Most Common Direct Creates */}
-                                            <div>
-                                                <div style={{ fontWeight: '600', marginBottom: '6px', color: '#1f2937', fontSize: '13px' }}>Quick Creates</div>
-                                                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>Text</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+T</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>List</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+L</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>Battle</span>
-                                                        <kbd style={{ background: '#fff', padding: '2px 6px', borderRadius: '4px', border: '1px solid #d1d5db', fontSize: '10px', fontWeight: '600' }}>Ctrl+Shift+B</kbd>
-                                                    </div>
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                        <span>+ More...</span>
-                                                        <kbd style={{ background: '#f8fafc', padding: '2px 6px', borderRadius: '4px', border: '1px solid #e2e8f0', fontSize: '10px', fontWeight: '500', color: '#64748b' }}>F1</kbd>
-                                                    </div>
-                                                </div>
+                                            <h2 style={{
+                                                margin: 0,
+                                                fontSize: '20px',
+                                                fontWeight: '600',
+                                                color: '#0f172a'
+                                            }}>
+                                                {activeChapterTitle}
+                                            </h2>
+                                            <div style={{
+                                                fontSize: '14px',
+                                                color: '#64748b',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '16px'
+                                            }}>
+                                                <span>{activeChapterContent.length} blocks</span>
+                                                {hasUnsavedChanges && (
+                                                    <span style={{ color: '#f59e0b', fontWeight: '500' }}>● Unsaved</span>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Content Blocks */}
+                                    {/* Chapter Blocks */}
                                     {activeChapterContent.length > 0 ? (
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                                             {activeChapterContent.map((node, index) => (
-                                                <div
-                                                    key={index}
-                                                    data-block-index={index}
-                                                    style={{
-                                                        position: 'relative',
-                                                        background: selectedBlockIndex === index
-                                                            ? 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)'
-                                                            : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-                                                        border: selectedBlockIndex === index ? '2px solid #3b82f6' : '1px solid #e2e8f0',
-                                                        borderRadius: '16px',
-                                                        padding: '24px',
-                                                        transition: 'all 0.3s ease',
-                                                        cursor: 'pointer',
-                                                        boxShadow: selectedBlockIndex === index
-                                                            ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(59, 130, 246, 0.05)'
-                                                            : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                                                        transform: selectedBlockIndex === index ? 'translateY(-2px)' : 'translateY(0)',
-                                                        backdropFilter: 'blur(8px)'
-                                                    }}
-                                                    onClick={() => {
-                                                        setSelectedBlockIndex(index);
-                                                        setSelectedSubItemPath([]);
-                                                    }}
-                                                    onMouseEnter={(e) => {
-                                                        if (selectedBlockIndex !== index) {
-                                                            e.currentTarget.style.transform = 'translateY(-1px)';
-                                                            e.currentTarget.style.boxShadow = '0 8px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
-                                                        }
-                                                    }}
-                                                    onMouseLeave={(e) => {
-                                                        if (selectedBlockIndex !== index) {
-                                                            e.currentTarget.style.transform = 'translateY(0)';
-                                                            e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-                                                        }
-                                                    }}
-                                                >
-                                                    {/* Block Controls */}
-                                                    <div style={{
-                                                        position: 'absolute',
-                                                        top: '16px',
-                                                        right: '16px',
-                                                        display: 'flex',
-                                                        gap: '8px',
-                                                        opacity: selectedBlockIndex === index ? 1 : 0.7,
-                                                        transition: 'opacity 0.3s ease'
-                                                    }}>
-                                                        <button
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                moveBlockUp(index);
-                                                            }}
-                                                            disabled={index === 0}
-                                                            style={{
-                                                                padding: '8px 12px',
-                                                                borderRadius: '8px',
-                                                                border: 'none',
-                                                                background: index === 0
-                                                                    ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'
-                                                                    : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-                                                                color: index === 0 ? '#9ca3af' : '#374151',
-                                                                cursor: index === 0 ? 'not-allowed' : 'pointer',
-                                                                fontSize: '12px',
-                                                                fontWeight: '600',
-                                                                display: 'flex',
-                                                                alignItems: 'center',
-                                                                justifyContent: 'center',
-                                                                gap: '4px',
-                                                                transition: 'all 0.2s ease',
-                                                                boxShadow: index === 0 ? 'none' : '0 2px 4px -1px rgba(0, 0, 0, 0.1)',
-                                                                backdropFilter: 'blur(8px)'
-                                                            }}
-                                                            title="Move block up (Ctrl+Shift+↑)"
-                                                            onMouseEnter={(e) => {
-                                                                if (index !== 0) {
-                                                                    e.currentTarget.style.transform = 'translateY(-1px)';
-                                                                    e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.15)';
-                                                                }
-                                                            }}
-                                                            onMouseLeave={(e) => {
-                                                                if (index !== 0) {
-                                                                    e.currentTarget.style.transform = 'translateY(0)';
-                                                                    e.currentTarget.style.boxShadow = '0 2px 4px -1px rgba(0, 0, 0, 0.1)';
-                                                                }
-                                                            }}
-                                                        >
-                                                            ↑ Up
-                                                        </button>
-                                                        <button
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                moveBlockDown(index);
-                                                            }}
-                                                            disabled={index === activeChapterContent.length - 1}
-                                                            style={{
-                                                                padding: '8px 12px',
-                                                                borderRadius: '8px',
-                                                                border: 'none',
-                                                                background: index === activeChapterContent.length - 1
-                                                                    ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'
-                                                                    : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-                                                                color: index === activeChapterContent.length - 1 ? '#9ca3af' : '#374151',
-                                                                cursor: index === activeChapterContent.length - 1 ? 'not-allowed' : 'pointer',
-                                                                fontSize: '12px',
-                                                                fontWeight: '600',
-                                                                display: 'flex',
-                                                                alignItems: 'center',
-                                                                justifyContent: 'center',
-                                                                gap: '4px',
-                                                                transition: 'all 0.2s ease',
-                                                                boxShadow: index === activeChapterContent.length - 1 ? 'none' : '0 2px 4px -1px rgba(0, 0, 0, 0.1)',
-                                                                backdropFilter: 'blur(8px)'
-                                                            }}
-                                                            title="Move block down (Ctrl+Shift+↓)"
-                                                            onMouseEnter={(e) => {
-                                                                if (index !== activeChapterContent.length - 1) {
-                                                                    e.currentTarget.style.transform = 'translateY(-1px)';
-                                                                    e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.15)';
-                                                                }
-                                                            }}
-                                                            onMouseLeave={(e) => {
-                                                                if (index !== activeChapterContent.length - 1) {
-                                                                    e.currentTarget.style.transform = 'translateY(0)';
-                                                                    e.currentTarget.style.boxShadow = '0 2px 4px -1px rgba(0, 0, 0, 0.1)';
-                                                                }
-                                                            }}
-                                                        >
-                                                            ↓ Down
-                                                        </button>
-                                                        <button
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                removeTopLevelBlock(index);
-                                                            }}
-                                                            style={{
-                                                                padding: '8px 12px',
-                                                                borderRadius: '8px',
-                                                                border: 'none',
-                                                                background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
-                                                                color: 'white',
-                                                                cursor: 'pointer',
-                                                                fontSize: '12px',
-                                                                fontWeight: '600',
-                                                                display: 'flex',
-                                                                alignItems: 'center',
-                                                                justifyContent: 'center',
-                                                                gap: '4px',
-                                                                transition: 'all 0.2s ease',
-                                                                boxShadow: '0 2px 4px -1px rgba(0, 0, 0, 0.1)'
-                                                            }}
-                                                            title="Delete this block (Ctrl+Shift+Delete)"
-                                                            onMouseEnter={(e) => {
-                                                                e.currentTarget.style.transform = 'translateY(-1px)';
-                                                                e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(220, 38, 38, 0.4)';
-                                                            }}
-                                                            onMouseLeave={(e) => {
-                                                                e.currentTarget.style.transform = 'translateY(0)';
-                                                                e.currentTarget.style.boxShadow = '0 2px 4px -1px rgba(0, 0, 0, 0.1)';
-                                                            }}
-                                                        >
-                                                            🗑️ Delete
-                                                        </button>
-                                                    </div>
-
-                                                    {/* Block Index */}
-                                                    <div style={{
-                                                        position: 'absolute',
-                                                        top: '12px',
-                                                        left: '12px',
-                                                        backgroundColor: selectedBlockIndex === index ? '#3b82f6' : '#f1f5f9',
-                                                        color: selectedBlockIndex === index ? 'white' : '#64748b',
-                                                        fontSize: '12px',
-                                                        fontWeight: '600',
-                                                        padding: '6px 10px',
-                                                        borderRadius: '8px',
-                                                        border: selectedBlockIndex === index ? '1px solid #3b82f6' : '1px solid #e2e8f0',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: '4px',
-                                                        transition: 'all 0.3s ease'
-                                                    }}>
-                                                        {selectedBlockIndex === index && <span>📍</span>}
-                                                        #{index + 1}
-                                                    </div>
-
-                                                    {/* Block Content */}
-                                                    <div style={{ marginTop: '20px' }}>
-                                                        <NodeRenderer
-                                                            node={node}
-                                                            path={[index]}
-                                                        />
-                                                    </div>
-                                                </div>
+                                                <NodeRenderer
+                                                    key={`${activeChapterTitle}-${index}`}
+                                                    node={node}
+                                                    path={[index]}
+                                                />
                                             ))}
                                         </div>
                                     ) : (
@@ -1434,26 +2250,11 @@ export const EditorViewer: React.FC = () => {
                                             margin: '20px 0'
                                         }}>
                                             <div style={{ fontSize: '48px', marginBottom: '16px' }}>📝</div>
-                                            <h3 style={{
-                                                margin: '0 0 8px 0',
-                                                color: '#374151',
-                                                fontSize: '20px',
-                                                fontWeight: '600'
-                                            }}>
-                                                No blocks in this chapter
+                                            <h3 style={{ margin: '0 0 12px 0', color: '#0f172a', fontSize: '18px' }}>
+                                                No blocks yet
                                             </h3>
-                                            <p style={{
-                                                margin: '0 0 20px 0',
-                                                color: '#64748b',
-                                                fontSize: '16px'
-                                            }}>
-                                                Click "Add Block" to add your first block, or press <kbd style={{
-                                                    background: '#fff',
-                                                    padding: '2px 6px',
-                                                    borderRadius: '4px',
-                                                    border: '1px solid #d1d5db',
-                                                    fontSize: '14px'
-                                                }}>Ctrl+Shift+A</kbd>
+                                            <p style={{ margin: '0 0 24px 0', color: '#64748b', fontSize: '14px' }}>
+                                                Start building your chapter by adding your first block
                                             </p>
                                             <button
                                                 onClick={() => setIsAddBlockModalOpen(true)}
@@ -1462,15 +2263,14 @@ export const EditorViewer: React.FC = () => {
                                                     borderRadius: '8px',
                                                     border: '1px solid #3b82f6',
                                                     backgroundColor: '#3b82f6',
-                                                    color: 'white',
+                                                    color: '#ffffff',
                                                     cursor: 'pointer',
-                                                    fontSize: '16px',
+                                                    fontSize: '14px',
                                                     fontWeight: '600',
-                                                    transition: 'all 0.2s ease',
-                                                    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
+                                                    transition: 'all 0.2s ease'
                                                 }}
                                             >
-                                                ➕ Add Your First Block
+                                                ➕ Add First Block
                                             </button>
                                         </div>
                                     )}
@@ -1514,9 +2314,9 @@ export const EditorViewer: React.FC = () => {
                                             border: '1px solid #e2e8f0',
                                             borderRadius: '8px'
                                         }}>
-                                            <div style={{ fontSize: '24px', marginBottom: '8px' }}>⚡</div>
-                                            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '600' }}>Fast Editing</h4>
-                                            <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Keyboard shortcuts for efficient workflow</p>
+                                            <div style={{ fontSize: '24px', marginBottom: '8px' }}>✏️</div>
+                                            <h4 style={{ margin: '0 0 4px 0', color: '#0f172a', fontSize: '14px' }}>Edit Content</h4>
+                                            <p style={{ margin: 0, color: '#64748b', fontSize: '12px' }}>Click chapters to edit</p>
                                         </div>
                                         <div style={{
                                             padding: '16px',
@@ -1524,9 +2324,9 @@ export const EditorViewer: React.FC = () => {
                                             border: '1px solid #e2e8f0',
                                             borderRadius: '8px'
                                         }}>
-                                            <div style={{ fontSize: '24px', marginBottom: '8px' }}>💾</div>
-                                            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '600' }}>Auto-Save</h4>
-                                            <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Changes are automatically rebuilt</p>
+                                            <div style={{ fontSize: '24px', marginBottom: '8px' }}>👁️</div>
+                                            <h4 style={{ margin: '0 0 4px 0', color: '#0f172a', fontSize: '14px' }}>Live Preview</h4>
+                                            <p style={{ margin: 0, color: '#64748b', fontSize: '12px' }}>See changes instantly</p>
                                         </div>
                                         <div style={{
                                             padding: '16px',
@@ -1534,350 +2334,15 @@ export const EditorViewer: React.FC = () => {
                                             border: '1px solid #e2e8f0',
                                             borderRadius: '8px'
                                         }}>
-                                            <div style={{ fontSize: '24px', marginBottom: '8px' }}>🎯</div>
-                                            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '600' }}>Precise Control</h4>
-                                            <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Rich content blocks for speedrun guides</p>
+                                            <div style={{ fontSize: '24px', marginBottom: '8px' }}>⌨️</div>
+                                            <h4 style={{ margin: '0 0 4px 0', color: '#0f172a', fontSize: '14px' }}>Shortcuts</h4>
+                                            <p style={{ margin: 0, color: '#64748b', fontSize: '12px' }}>Press H for help</p>
                                         </div>
                                     </div>
                                 </div>
                             )}
                         </div>
-
-                        {/* Quick Add Overlay */}
-                        {quickAddMode && (
-                            <div style={{
-                                position: 'fixed',
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                zIndex: 999,
-                                backdropFilter: 'blur(4px)'
-                            }}>
-                                <div style={{
-                                    backgroundColor: 'white',
-                                    borderRadius: '16px',
-                                    padding: '32px',
-                                    width: '90%',
-                                    maxWidth: '500px',
-                                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                                    border: '1px solid #e2e8f0',
-                                    position: 'relative'
-                                }}>
-                                    <div style={{
-                                        position: 'absolute',
-                                        top: '16px',
-                                        right: '16px',
-                                        width: '32px',
-                                        height: '32px',
-                                        borderRadius: '50%',
-                                        backgroundColor: '#f3f4f6',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        cursor: 'pointer',
-                                        fontSize: '16px',
-                                        color: '#6b7280'
-                                    }}
-                                        onClick={() => setQuickAddMode(null)}
-                                    >
-                                        ×
-                                    </div>
-
-                                    <div style={{
-                                        textAlign: 'center',
-                                        marginBottom: '24px'
-                                    }}>
-                                        <h3 style={{
-                                            margin: '0 0 8px 0',
-                                            fontSize: '24px',
-                                            fontWeight: '700',
-                                            background: quickAddMode === 'content' ? 'linear-gradient(135deg, #3b82f6, #1d4ed8)' :
-                                                quickAddMode === 'gameplay' ? 'linear-gradient(135deg, #8b5cf6, #7c3aed)' :
-                                                    quickAddMode === 'character' ? 'linear-gradient(135deg, #f59e0b, #d97706)' :
-                                                        'linear-gradient(135deg, #ef4444, #dc2626)',
-                                            WebkitBackgroundClip: 'text',
-                                            WebkitTextFillColor: 'transparent',
-                                            backgroundClip: 'text'
-                                        }}>
-                                            Quick Add {quickAddMode.charAt(0).toUpperCase() + quickAddMode.slice(1)}
-                                        </h3>
-                                        <p style={{
-                                            margin: 0,
-                                            color: '#64748b',
-                                            fontSize: '14px'
-                                        }}>
-                                            Press 1-{blockTypes.find(cat => cat.category.toLowerCase() === quickAddMode)?.items.length || 0} or click to add
-                                        </p>
-                                    </div>
-
-                                    <div style={{
-                                        display: 'grid',
-                                        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                                        gap: '12px'
-                                    }}>
-                                        {blockTypes.find(cat => cat.category.toLowerCase() === quickAddMode)?.items.map((item, index) => (
-                                            <button
-                                                key={item.value}
-                                                onClick={() => {
-                                                    addTopLevelBlock(item.value);
-                                                    setQuickAddMode(null);
-                                                }}
-                                                style={{
-                                                    padding: '16px',
-                                                    borderRadius: '12px',
-                                                    border: '2px solid transparent',
-                                                    background: quickAddMode === 'content' ? 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)' :
-                                                        quickAddMode === 'gameplay' ? 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)' :
-                                                            quickAddMode === 'character' ? 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)' :
-                                                                'linear-gradient(135deg, #fef2f2 0%, #fecaca 100%)',
-                                                    cursor: 'pointer',
-                                                    fontSize: '14px',
-                                                    fontWeight: '600',
-                                                    color: '#374151',
-                                                    textAlign: 'left',
-                                                    transition: 'all 0.2s ease',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'space-between',
-                                                    position: 'relative',
-                                                    overflow: 'hidden'
-                                                }}
-                                                onMouseEnter={(e) => {
-                                                    e.currentTarget.style.transform = 'translateY(-2px)';
-                                                    e.currentTarget.style.boxShadow = '0 8px 25px -8px rgba(0, 0, 0, 0.2)';
-                                                }}
-                                                onMouseLeave={(e) => {
-                                                    e.currentTarget.style.transform = 'translateY(0)';
-                                                    e.currentTarget.style.boxShadow = 'none';
-                                                }}
-                                            >
-                                                <span>{item.label}</span>
-                                                <div style={{
-                                                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                                                    padding: '4px 8px',
-                                                    borderRadius: '6px',
-                                                    fontSize: '12px',
-                                                    fontWeight: '700',
-                                                    color: quickAddMode === 'content' ? '#3b82f6' :
-                                                        quickAddMode === 'gameplay' ? '#8b5cf6' :
-                                                            quickAddMode === 'character' ? '#f59e0b' :
-                                                                '#ef4444',
-                                                    border: '1px solid rgba(255, 255, 255, 0.5)'
-                                                }}>
-                                                    {index + 1}
-                                                </div>
-                                            </button>
-                                        )) || []}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Add Block Modal */}
-                        {isAddBlockModalOpen && (
-                            <div style={{
-                                position: 'fixed',
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                zIndex: 1000
-                            }}>
-                                <div style={{
-                                    backgroundColor: 'white',
-                                    borderRadius: '12px',
-                                    padding: '24px',
-                                    width: '90%',
-                                    maxWidth: '600px',
-                                    maxHeight: '80vh',
-                                    overflowY: 'auto',
-                                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-                                }}>
-                                    <div style={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        marginBottom: '24px'
-                                    }}>
-                                        <h3 style={{
-                                            margin: 0,
-                                            fontSize: '20px',
-                                            fontWeight: '600',
-                                            color: '#0f172a'
-                                        }}>
-                                            ➕ Add New Block
-                                        </h3>
-                                        <button
-                                            onClick={() => setIsAddBlockModalOpen(false)}
-                                            style={{
-                                                width: '32px',
-                                                height: '32px',
-                                                borderRadius: '6px',
-                                                border: '1px solid #d1d5db',
-                                                backgroundColor: '#ffffff',
-                                                color: '#374151',
-                                                cursor: 'pointer',
-                                                fontSize: '16px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center'
-                                            }}
-                                        >
-                                            ×
-                                        </button>
-                                    </div>
-
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                        {blockTypes.map((category) => (
-                                            <div key={category.category}>
-                                                <h4 style={{
-                                                    margin: '0 0 12px 0',
-                                                    fontSize: '14px',
-                                                    fontWeight: '600',
-                                                    color: '#64748b',
-                                                    textTransform: 'uppercase',
-                                                    letterSpacing: '0.05em'
-                                                }}>
-                                                    {category.category}
-                                                </h4>
-                                                <div style={{
-                                                    display: 'grid',
-                                                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                                                    gap: '8px'
-                                                }}>
-                                                    {category.items.map((item) => (
-                                                        <button
-                                                            key={item.value}
-                                                            onClick={() => addTopLevelBlock(item.value)}
-                                                            style={{
-                                                                padding: '12px 16px',
-                                                                borderRadius: '8px',
-                                                                border: '1px solid #e2e8f0',
-                                                                backgroundColor: '#ffffff',
-                                                                color: '#374151',
-                                                                cursor: 'pointer',
-                                                                fontSize: '14px',
-                                                                fontWeight: '500',
-                                                                textAlign: 'left',
-                                                                transition: 'all 0.2s ease',
-                                                                display: 'flex',
-                                                                alignItems: 'center',
-                                                                justifyContent: 'space-between'
-                                                            }}
-                                                            onMouseEnter={(e) => {
-                                                                e.currentTarget.style.backgroundColor = '#f8fafc';
-                                                                e.currentTarget.style.borderColor = '#3b82f6';
-                                                            }}
-                                                            onMouseLeave={(e) => {
-                                                                e.currentTarget.style.backgroundColor = '#ffffff';
-                                                                e.currentTarget.style.borderColor = '#e2e8f0';
-                                                            }}
-                                                        >
-                                                            <span>{item.label}</span>
-                                                            <kbd style={{
-                                                                background: '#f1f5f9',
-                                                                padding: '2px 6px',
-                                                                borderRadius: '4px',
-                                                                border: '1px solid #cbd5e1',
-                                                                fontSize: '12px',
-                                                                color: '#64748b'
-                                                            }}>
-                                                                {item.shortcut}
-                                                            </kbd>
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </main>
-
-                {/* JSON Preview Panel */}
-                {showJsonPreview && (
-                    <div style={{
-                        flex: '0 0 40%',
-                        borderLeft: '1px solid #e2e8f0',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        backgroundColor: '#f8fafc'
-                    }}>
-                        {/* JSON Panel Header */}
-                        <div style={{
-                            padding: '16px 24px',
-                            borderBottom: '1px solid #e2e8f0',
-                            backgroundColor: '#ffffff',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            minHeight: '72px',
-                            boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
-                        }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                <h2 style={{
-                                    margin: 0,
-                                    fontSize: '18px',
-                                    fontWeight: '600',
-                                    color: '#0f172a'
-                                }}>
-                                    �️ Live Preview
-                                </h2>
-                                <div style={{
-                                    fontSize: '12px',
-                                    color: '#64748b',
-                                    backgroundColor: '#f1f5f9',
-                                    padding: '2px 8px',
-                                    borderRadius: '4px',
-                                    border: '1px solid #e2e8f0'
-                                }}>
-                                    Main App View
-                                </div>
-                            </div>
-
-                            <button
-                                onClick={() => setShowJsonPreview(false)}
-                                style={{
-                                    padding: '6px 12px',
-                                    borderRadius: '6px',
-                                    border: '1px solid #d1d5db',
-                                    backgroundColor: '#ffffff',
-                                    color: '#374151',
-                                    cursor: 'pointer',
-                                    fontSize: '12px',
-                                    fontWeight: '500',
-                                    transition: 'all 0.2s ease'
-                                }}
-                                title="Close live preview (Esc)"
-                            >
-                                ✕ Close
-                            </button>
-                        </div>
-
-                        {/* App Preview Content */}
-                        <div style={{
-                            flex: 1,
-                            overflow: 'auto',
-                            backgroundColor: '#f8fafc'
-                        }}>
-                            <LivePreview
-                                key={`${activeChapterTitle}-${activeChapterContent?.length || 0}`}
-                                chapterContent={activeChapterContent || []}
-                                chapterTitle={activeChapterTitle || 'Chapter'}
-                            />
-                        </div>
-                    </div>
+                    </main>
                 )}
             </div>
 

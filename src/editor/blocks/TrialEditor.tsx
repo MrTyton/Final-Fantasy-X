@@ -29,6 +29,22 @@ export const TrialEditor: React.FC<TrialEditorProps> = ({ block, path }) => {
         updateNode(path, newBlock);
     };
 
+    const moveStepUp = (index: number) => {
+        if (index === 0) return;
+        const newSteps = [...block.steps];
+        [newSteps[index - 1], newSteps[index]] = [newSteps[index], newSteps[index - 1]];
+        const newBlock = { ...block, steps: newSteps };
+        updateNode(path, newBlock);
+    };
+
+    const moveStepDown = (index: number) => {
+        if (index === block.steps.length - 1) return;
+        const newSteps = [...block.steps];
+        [newSteps[index], newSteps[index + 1]] = [newSteps[index + 1], newSteps[index]];
+        const newBlock = { ...block, steps: newSteps };
+        updateNode(path, newBlock);
+    };
+
     const addTrackedResource = () => {
         const newResource: TrackedResource = {
             name: 'PowerSphere',
@@ -167,30 +183,75 @@ export const TrialEditor: React.FC<TrialEditorProps> = ({ block, path }) => {
                                             border: '1px solid #fecaca',
                                             borderRadius: '4px',
                                             backgroundColor: '#fafafa',
-                                            paddingRight: '40px'
+                                            paddingRight: '80px'
                                         }}>
-                                            <button
-                                                style={{
-                                                    position: 'absolute',
-                                                    top: '4px',
-                                                    right: '4px',
-                                                    width: '20px',
-                                                    height: '20px',
-                                                    borderRadius: '3px',
-                                                    border: '1px solid #ccc',
-                                                    backgroundColor: '#f44336',
-                                                    color: 'white',
-                                                    cursor: 'pointer',
-                                                    fontSize: '10px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center'
-                                                }}
-                                                onClick={() => removeStep(index)}
-                                                title="Remove step"
-                                            >
-                                                ×
-                                            </button>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '4px',
+                                                right: '4px',
+                                                display: 'flex',
+                                                gap: '2px'
+                                            }}>
+                                                <button
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '3px',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: index === 0 ? '#ccc' : '#2196f3',
+                                                        color: 'white',
+                                                        cursor: index === 0 ? 'not-allowed' : 'pointer',
+                                                        fontSize: '10px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                    onClick={() => moveStepUp(index)}
+                                                    disabled={index === 0}
+                                                    title="Move up"
+                                                >
+                                                    ↑
+                                                </button>
+                                                <button
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '3px',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: index === block.steps.length - 1 ? '#ccc' : '#2196f3',
+                                                        color: 'white',
+                                                        cursor: index === block.steps.length - 1 ? 'not-allowed' : 'pointer',
+                                                        fontSize: '10px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                    onClick={() => moveStepDown(index)}
+                                                    disabled={index === block.steps.length - 1}
+                                                    title="Move down"
+                                                >
+                                                    ↓
+                                                </button>
+                                                <button
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '3px',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: '#f44336',
+                                                        color: 'white',
+                                                        cursor: 'pointer',
+                                                        fontSize: '10px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                    onClick={() => removeStep(index)}
+                                                    title="Remove step"
+                                                >
+                                                    ×
+                                                </button>
+                                            </div>
                                             <NodeRenderer
                                                 node={step}
                                                 path={[...path, 'steps', index]}

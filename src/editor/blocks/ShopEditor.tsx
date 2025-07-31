@@ -114,6 +114,26 @@ export const ShopEditor: React.FC<ShopEditorProps> = ({ block, path }) => {
         updateNode(path, newBlock);
     };
 
+    const moveItemUpInSection = (sectionIndex: number, itemIndex: number) => {
+        if (itemIndex === 0) return;
+        const newSections = [...block.sections];
+        const sectionItems = [...newSections[sectionIndex].items];
+        [sectionItems[itemIndex - 1], sectionItems[itemIndex]] = [sectionItems[itemIndex], sectionItems[itemIndex - 1]];
+        newSections[sectionIndex] = { ...newSections[sectionIndex], items: sectionItems };
+        const newBlock = { ...block, sections: newSections };
+        updateNode(path, newBlock);
+    };
+
+    const moveItemDownInSection = (sectionIndex: number, itemIndex: number) => {
+        const newSections = [...block.sections];
+        const sectionItems = [...newSections[sectionIndex].items];
+        if (itemIndex === sectionItems.length - 1) return;
+        [sectionItems[itemIndex], sectionItems[itemIndex + 1]] = [sectionItems[itemIndex + 1], sectionItems[itemIndex]];
+        newSections[sectionIndex] = { ...newSections[sectionIndex], items: sectionItems };
+        const newBlock = { ...block, sections: newSections };
+        updateNode(path, newBlock);
+    };
+
     const containerStyle: React.CSSProperties = {
         border: '2px solid #ffc107',
         padding: '12px',
@@ -310,30 +330,75 @@ export const ShopEditor: React.FC<ShopEditorProps> = ({ block, path }) => {
                                                             border: '1px solid #fff3cd',
                                                             borderRadius: '3px',
                                                             backgroundColor: '#fafafa',
-                                                            paddingRight: '30px'
+                                                            paddingRight: '70px'
                                                         }}>
-                                                            <button
-                                                                style={{
-                                                                    position: 'absolute',
-                                                                    top: '4px',
-                                                                    right: '4px',
-                                                                    width: '16px',
-                                                                    height: '16px',
-                                                                    borderRadius: '2px',
-                                                                    border: '1px solid #ccc',
-                                                                    backgroundColor: '#f44336',
-                                                                    color: 'white',
-                                                                    cursor: 'pointer',
-                                                                    fontSize: '8px',
-                                                                    display: 'flex',
-                                                                    alignItems: 'center',
-                                                                    justifyContent: 'center'
-                                                                }}
-                                                                onClick={() => removeItemFromSection(sectionIndex, itemIndex)}
-                                                                title="Remove item"
-                                                            >
-                                                                ×
-                                                            </button>
+                                                            <div style={{
+                                                                position: 'absolute',
+                                                                top: '4px',
+                                                                right: '4px',
+                                                                display: 'flex',
+                                                                gap: '2px'
+                                                            }}>
+                                                                <button
+                                                                    style={{
+                                                                        width: '16px',
+                                                                        height: '16px',
+                                                                        borderRadius: '2px',
+                                                                        border: '1px solid #ccc',
+                                                                        backgroundColor: itemIndex === 0 ? '#ccc' : '#2196f3',
+                                                                        color: 'white',
+                                                                        cursor: itemIndex === 0 ? 'not-allowed' : 'pointer',
+                                                                        fontSize: '8px',
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center'
+                                                                    }}
+                                                                    onClick={() => moveItemUpInSection(sectionIndex, itemIndex)}
+                                                                    disabled={itemIndex === 0}
+                                                                    title="Move up"
+                                                                >
+                                                                    ↑
+                                                                </button>
+                                                                <button
+                                                                    style={{
+                                                                        width: '16px',
+                                                                        height: '16px',
+                                                                        borderRadius: '2px',
+                                                                        border: '1px solid #ccc',
+                                                                        backgroundColor: itemIndex === section.items.length - 1 ? '#ccc' : '#2196f3',
+                                                                        color: 'white',
+                                                                        cursor: itemIndex === section.items.length - 1 ? 'not-allowed' : 'pointer',
+                                                                        fontSize: '8px',
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center'
+                                                                    }}
+                                                                    onClick={() => moveItemDownInSection(sectionIndex, itemIndex)}
+                                                                    disabled={itemIndex === section.items.length - 1}
+                                                                    title="Move down"
+                                                                >
+                                                                    ↓
+                                                                </button>
+                                                                <button
+                                                                    style={{
+                                                                        width: '16px',
+                                                                        height: '16px',
+                                                                        borderRadius: '2px',
+                                                                        border: '1px solid #ccc',
+                                                                        backgroundColor: '#f44336',
+                                                                        color: 'white',
+                                                                        cursor: 'pointer',
+                                                                        fontSize: '8px',
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center'
+                                                                    }}
+                                                                    onClick={() => removeItemFromSection(sectionIndex, itemIndex)}
+                                                                    title="Remove item"
+                                                                >
+                                                                    ×
+                                                                </button>
+                                                            </div>
                                                             <NodeRenderer
                                                                 node={item}
                                                                 path={[...path, 'sections', sectionIndex, 'items', itemIndex]}

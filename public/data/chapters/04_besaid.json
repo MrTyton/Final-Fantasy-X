@@ -101,28 +101,24 @@
                         {
                             "type": "plainText",
                             "text": "Piranhas:"
+                        }
+                    ],
+                    "subContent": [
+                        {
+                            "type": "listItem",
+                            "content": [
+                                {
+                                    "type": "plainText",
+                                    "text": "Attack if 2 groups, or 3 if preempt."
+                                }
+                            ]
                         },
                         {
-                            "type": "instructionList",
-                            "ordered": false,
-                            "items": [
+                            "type": "listItem",
+                            "content": [
                                 {
-                                    "type": "listItem",
-                                    "content": [
-                                        {
-                                            "type": "plainText",
-                                            "text": "Attack if 2 groups, or 3 if preempt."
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "listItem",
-                                    "content": [
-                                        {
-                                            "type": "plainText",
-                                            "text": "Otherwise run away."
-                                        }
-                                    ]
+                                    "type": "plainText",
+                                    "text": "Otherwise run away."
                                 }
                             ]
                         }

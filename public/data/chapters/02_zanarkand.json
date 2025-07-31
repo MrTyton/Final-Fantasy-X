@@ -13,7 +13,8 @@
                             "type": "plainText",
                             "text": "Press Select to skip Cutscene (about 20 seconds in on PS2)"
                         }
-                    ]
+                    ],
+                    "csrBehavior": "standard_only"
                 },
                 {
                     "type": "listItem",
@@ -110,7 +111,8 @@
                             "type": "plainText",
                             "text": ". This lets you skip the one after Tanker."
                         }
-                    ]
+                    ],
+                    "csrBehavior": "standard_only"
                 }
             ]
         },
@@ -375,7 +377,8 @@
                             "type": "gameMacro",
                             "macroName": "skippableFmv"
                         }
-                    ]
+                    ],
+                    "csrBehavior": "standard_only"
                 }
             ]
         }
