@@ -250,7 +250,7 @@
                     "textCondition": [
                         {
                             "type": "formattedText",
-                            "text": "If Sin Fin is not dead yet:",
+                            "text": "Sin Fin is not dead yet:",
                             "isItalic": true
                         }
                     ],
@@ -506,7 +506,8 @@
                             "type": "plainText",
                             "text": " monologue."
                         }
-                    ]
+                    ],
+                    "csrBehavior": "standard_only"
                 }
             ]
         }

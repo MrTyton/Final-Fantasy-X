@@ -42,11 +42,26 @@ const NotesRenderer: React.FC<{ notes: FormattedText[] | undefined, showBorders:
 const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData, parentScopeKey }) => {
   const { tracker, settings } = useGlobalState();
 
+  // Detect if this conditional is nested inside a list item by examining the parentScopeKey
+  const isInListContext = /item\d+/.test(parentScopeKey);
+
   // --- Debug Styles ---
-  const baseStyleWithMargin: React.CSSProperties = { margin: '1em 0' };
+  const baseStyleWithMargin: React.CSSProperties = isInListContext
+    ? { margin: '0.25em 0' } // Reduced margin for list context
+    : { margin: '1em 0' };
   const activeStateDrivenBranchStyle: React.CSSProperties = settings.showConditionalBorders ?
-    { ...baseStyleWithMargin, padding: '10px', border: '1px dashed #4CAF50', borderRadius: '4px', background: '#E8F5E9' } :
-    baseStyleWithMargin;
+    {
+      ...baseStyleWithMargin,
+      padding: isInListContext ? '5px' : '10px',
+      border: '1px dashed #4CAF50',
+      borderRadius: '4px',
+      background: '#E8F5E9',
+      fontSize: isInListContext ? '0.95em' : 'inherit'
+    } :
+    {
+      ...baseStyleWithMargin,
+      fontSize: isInListContext ? '0.95em' : 'inherit'
+    };
   const textualOptionContainerStyle: React.CSSProperties = baseStyleWithMargin;
   const textualOptionItemStyle: React.CSSProperties = settings.showConditionalBorders ?
     { marginBottom: '15px', padding: '10px', border: '1px solid #e0e0e0', borderRadius: '4px', background: '#f9f9f9' } :
@@ -77,8 +92,12 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
 
     if (allAreListItems) {
       // Render as a bulleted list if all items are list items.
+      // Reduce indent if in list context (conditional inside a list)
+      const listStyle = isInListContext
+        ? { listStylePosition: 'outside' as const, paddingLeft: '0px', margin: '0.5em 0 0.5em 2px' }
+        : { listStylePosition: 'outside' as const, paddingLeft: '20px', margin: '0.5em 0 0.5em 20px' };
       return (
-        <ul style={{ listStylePosition: 'outside', paddingLeft: '20px', margin: '0.5em 0 0.5em 20px' }}>
+        <ul style={listStyle}>
           {branchContent.map((item, index) => {
             const itemKey = `${branchKeySuffix}_li_${index}`;
             const itemScopeKey = `${branchBaseScopeKey}_li${index}`;
@@ -176,14 +195,37 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
     case 'textual_direct_choice':
     case 'textual_block_options':
       // Render a set of textual options, each with its own condition text and content branch.
+      const optionContainerStyle = isInListContext
+        ? { ...textualOptionContainerStyle, marginLeft: '0', fontSize: '0.95em' }
+        : textualOptionContainerStyle;
+      const optionItemMargin = isInListContext ? '10px' : '15px';
+
       return (
-        <div className="conditional-textual-options" style={textualOptionContainerStyle}>
+        <div className="conditional-textual-options" style={optionContainerStyle}>
           {blockData.options?.map((option: ConditionalOption, index: number) => (
-            <div key={index} style={textualOptionItemStyle}>
-              <h4 style={{ marginTop: 0, marginBottom: '8px', fontStyle: 'italic', color: '#333', borderBottom: settings.showConditionalBorders ? '1px solid #ddd' : 'none', paddingBottom: '5px' }}>
+            <div key={index} style={{
+              ...textualOptionItemStyle,
+              marginBottom: optionItemMargin,
+              // Adjust styling for list context
+              ...(isInListContext && {
+                padding: settings.showConditionalBorders ? '5px' : '0',
+                border: settings.showConditionalBorders ? '1px solid #e0e0e0' : 'none',
+                borderRadius: settings.showConditionalBorders ? '4px' : '0',
+                background: settings.showConditionalBorders ? '#f9f9f9' : 'transparent'
+              })
+            }}>
+              <h4 style={{
+                marginTop: 0,
+                marginBottom: '8px',
+                fontStyle: 'italic',
+                color: '#333',
+                borderBottom: settings.showConditionalBorders ? '1px solid #ddd' : 'none',
+                paddingBottom: '5px',
+                fontSize: isInListContext ? '0.9em' : 'inherit'
+              }}>
                 {option.conditionText}
               </h4>
-              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : '20px' }}>
+              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : (isInListContext ? '15px' : '20px') }}>
                 {renderBranch(option.content, `option${index}`)}
               </div>
             </div>
@@ -194,23 +236,59 @@ const ConditionalBlockComponent: React.FC<ConditionalBlockProps> = ({ blockData,
 
     case 'textual_inline_if_then':
       // Render an inline if-then-else block with condition and corresponding content branches.
+      const inlineStyle = isInListContext
+        ? { ...baseStyleWithMargin, marginLeft: '25px', fontSize: '1em' } // Reduce indent and increase font size
+        : baseStyleWithMargin;
+
       return (
-        <div className="conditional-textual-inline" style={baseStyleWithMargin}>
+        <div className="conditional-textual-inline" style={inlineStyle}>
           {blockData.textCondition && blockData.thenContent && (
-            <div style={{ ...textualInlineIfThenBranchStyle, marginBottom: (blockData.elseContent ? '15px' : '0') }}>
-              <div style={{ fontStyle: 'italic', color: '#555', marginBottom: '5px' }}>
+            <div style={{
+              ...textualInlineIfThenBranchStyle,
+              marginBottom: (blockData.elseContent ? '15px' : '0'),
+              // Reduce padding and borders when in list context
+              ...(isInListContext && {
+                padding: settings.showConditionalBorders ? '5px' : '0',
+                border: settings.showConditionalBorders ? '1px solid #e0e0e0' : 'none',
+                borderRadius: settings.showConditionalBorders ? '4px' : '0',
+                background: settings.showConditionalBorders ? '#f9f9f9' : 'transparent'
+              })
+            }}>
+              <div style={{
+                fontStyle: 'italic',
+                color: '#555',
+                marginBottom: '5px',
+                fontSize: isInListContext ? '1em' : 'inherit'
+              }}>
                 If:{' '}
                 {blockData.textCondition.map((tc, i) => <InlineContentRenderer key={`tc-${i}`} element={tc} />)}
               </div>
-              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : '20px' }}>
+              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : (isInListContext ? '15px' : '20px') }}>
                 {renderBranch(blockData.thenContent, 'then')}
               </div>
             </div>
           )}
           {blockData.elseContent && (
-            <div style={{ ...textualInlineIfThenBranchStyle, marginTop: (blockData.textCondition && blockData.thenContent ? '10px' : '0') }}>
-              <div style={{ fontStyle: 'italic', color: '#555', marginBottom: '5px' }}>Else:</div>
-              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : '20px' }}>
+            <div style={{
+              ...textualInlineIfThenBranchStyle,
+              marginTop: (blockData.textCondition && blockData.thenContent ? '10px' : '0'),
+              // Reduce padding and borders when in list context
+              ...(isInListContext && {
+                padding: settings.showConditionalBorders ? '5px' : '0',
+                border: settings.showConditionalBorders ? '1px solid #e0e0e0' : 'none',
+                borderRadius: settings.showConditionalBorders ? '4px' : '0',
+                background: settings.showConditionalBorders ? '#f9f9f9' : 'transparent'
+              })
+            }}>
+              <div style={{
+                fontStyle: 'italic',
+                color: '#555',
+                marginBottom: '5px',
+                fontSize: isInListContext ? '1em' : 'inherit'
+              }}>
+                Else:
+              </div>
+              <div style={{ marginLeft: settings.showConditionalBorders ? '0px' : (isInListContext ? '15px' : '20px') }}>
                 {renderBranch(blockData.elseContent, 'else')}
               </div>
             </div>

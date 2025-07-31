@@ -118,8 +118,23 @@ export const ConditionalEditor: React.FC<ConditionalEditorProps> = ({ block, pat
         updateNode(path, newBlock);
     };
 
+    // Detect if this conditional is inside a list
+    const parentScopeKey = path.slice(0, -1).join('.');
+    const isInListContext = /li\d+_(content|sub)/.test(parentScopeKey);
+
     const colors = getBlockColors('conditional');
-    const containerStyle = getBlockContainerStyle(colors.border, colors.background);
+    let containerStyle = getBlockContainerStyle(colors.border, colors.background);
+
+    // Apply list-aware styling for textual_inline_if_then conditionals
+    if (block.conditionSource === 'textual_inline_if_then' && isInListContext) {
+        containerStyle = {
+            ...containerStyle,
+            margin: '0.25em 0',
+            padding: '8px 15px',
+            fontSize: '0.95em'
+        };
+    }
+
     const headerStyle = getBlockHeaderStyle();
     const labelStyle = getBlockLabelStyle(colors.label);
     const buttonStyle = getBlockButtonStyle();
